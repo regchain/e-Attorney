@@ -47,7 +47,7 @@
 	</div>
 	<div class="col-lg-8 col-md-8 col-sm-12">
 		<label>Kasus 
-            Posisi</label>
+            Posisi</label><br>
         <textarea id="editor1" name="kasus_posisi" rows="10" cols="120"> {{ $case->kasus_posisi }}</textarea>
 
 	</div>

@@ -8,7 +8,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-    <a href="home" class="navbar-bramd"><img src="dist/img/logo-kejaksaan-small.png"></a>
+    <a href="home" class="navbar-bramd"><img src="{{asset('dist/img/logo-kejaksaan-small.png')}}"></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->

@@ -39,7 +39,7 @@ class Rp1Controller extends Controller
         
         public function lidik(Kasus $case)
         {
-            return view('rp1.lidik_create', ['case' => $case]);
+            return view('rp2.rp2_create', ['case' => $case]);
         }
 
         public function lidikStore(Request $request, Kasus $case)

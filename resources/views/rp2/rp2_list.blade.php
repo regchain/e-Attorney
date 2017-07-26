@@ -25,7 +25,7 @@
                 @forelse ($cases as $case)
                 <tr>
                     <td>
-                        @include('partials._kasusrp2', ['case' => $case])
+                        @include('partials._kasusrp2a', ['case' => $case])
                     </td>
                 </tr>
             @empty
