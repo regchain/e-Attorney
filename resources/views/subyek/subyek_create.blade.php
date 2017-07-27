@@ -104,6 +104,19 @@
 			<label>Jabatan Lain</label>
 			<input type="text" class="form-control" placeholder="Enter ...">
 		</div>
+		<!-- Kategori Subyek -->
+		<div class="form-group">
+			<label>Kategori Subyek</label>
+			<select class="form-control" style="width: 100%;">
+				<option selected="selected">SWASTA</option>
+				<option>PNS</option>
+				<option>Hakim</option>
+				<option>Pengacara</option>
+				<option>Jaksa</option>
+				<option>Gubernur</option>
+				<option>Walikota</option>
+			</select>
+		</div>
 		<div class="box-tools pull-right">
 			<a href="#" class="btn btn-danger"> BATAL</a>
 			<a href="rp3mum" class="btn btn-success"> KIRIM</a>
