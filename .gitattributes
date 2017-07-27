@@ -3,3 +3,5 @@
 *.scss linguist-vendored
 *.js linguist-vendored
 CHANGELOG.md export-ignore
+public/dist/img/.DS_Store
+resources/views/.DS_Store

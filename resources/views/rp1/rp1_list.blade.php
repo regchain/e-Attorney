@@ -22,8 +22,8 @@
 <table class="table table-striped">
   <thead>
       <td>ID</td>
-      <td width="70%">KASUS POSISI</td>
-      <td width="20%">KETERANGAN</td>
+      <td width="60%">KASUS POSISI</td>
+      <td width="30%">KETERANGAN</td>
       <td width="10%" align="right"><a href='frp1' class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-plus"></i> &nbsp; Kasus Baru </a></td>
   </thead>
   <tbody>
@@ -31,12 +31,13 @@
     <tr>
         <td>{{ $case->id }}</td>
         <td><strong> {{$case->judul_kasus}} </strong>, {{ $case->kasus_posisi }}</td>
-        <td></td>
+        <td>Lokasi Kejadian: {{ $case->lokasi_kejadian }}<br>
+        Tanggal Kejadian: {{ $case->tanggal_kejadian }}<br>
+        Pelapor: {{ $case->nama_lengkap }}<br>
         <td>
             <div class="btn-group-vertical pull-right" role="group" aria-label="...">
-                <a href='erp1' class="btn btn-default btn-xs"><i class="glyphicon glyphicon-pencil"></i></a>
-                <a href='#' class="btn btn-default btn-xs"><i class="glyphicon glyphicon-minus-sign"></i></a>
-                <a href='rp1/{{$case->id}}/lidik' class="btn btn-success btn-xs"><span class="glyphicon glyphicon-share-alt"></span> Lidik</a>
+                <a href='erp1' class="btn btn-default btn-xs">Edit &nbsp;<i class="glyphicon glyphicon-pencil"></i></a>
+                <a href='rp1/{{$case->id}}/lidik' class="btn btn-success btn-xs">Sprint Lidik &nbsp;<span class="glyphicon glyphicon-log-in"></span></a>
             </div>
         </td>
     </tr>
