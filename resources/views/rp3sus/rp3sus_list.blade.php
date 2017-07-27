@@ -10,7 +10,7 @@
 
 @section('mainsubtitle', 'Tindak Pidana Khusus')
 
-@section('judulhalaman', 'DAFTAR PERKARA PENYIDIKAN khusus')
+@section('judulhalaman', 'DAFTAR PERKARA PENYIDIKAN khusus [rp-3 sus]')
 
 @section('materi')
 
@@ -20,7 +20,7 @@
    <div class="table-responsive no-padding">
               <table class="table table-striped">
                 <tbody><tr>
-                  <th>Kasus</th>
+                  <th>Berkas Perkara</th>
                 </tr>
                 <tr>
                   <td>

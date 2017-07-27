@@ -10,7 +10,7 @@
 
 @section('mainsubtitle', 'Tindak Pidana Khusus')
 
-@section('judulhalaman', 'DAFTAR PERKARA PENYIDIKAN UMUM')
+@section('judulhalaman', 'DAFTAR PERKARA PENYIDIKAN UMUM [rp-3 mum]')
 
 @section('materi')
 

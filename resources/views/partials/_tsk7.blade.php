@@ -1,6 +1,5 @@
 <div class="medi col-md-12a"> 
 <div class="btn-group-vertical btn-group-xs pull-right" role="group" aria-label="...">
-  <a href='frt1' class="btn btn-default"> TSK &nbsp;<i class="glyphicon glyphicon-log-in"></i></a>
   <a href='frt2' class="btn btn-danger">  TAHAN &nbsp;<i class="glyphicon glyphicon-log-in"></i></a>
 </div>
 </div>
