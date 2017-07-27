@@ -4,12 +4,14 @@
   <button type="button" class="btn btn-success btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     Tindakan <span class="caret"></span>
   </button>
-  <ul class="dropdown-menu">
-    <li><a href="erp3mum" class="text-right">Edit &nbsp;&nbsp;<i class="glyphicon glyphicon-pencil"></i></a></li>
-    <li><a href="geledah" class="text-right">Sprint Geledah &nbsp;&nbsp;<i class="glyphicon glyphicon-plus text-red"></i></a></li>
-    <li role="separator" class="divider"></li>
-    <li><a href="frp3sus" class="text-right text-red"><strong>Dik-Sus &nbsp;&nbsp;<i class="glyphicon glyphicon-share-alt text-red"></i></strong></a> </li>
-  </ul>
+  	<ul class="dropdown-menu">
+  		<li><a href="erp3sus" class="text-right">Edit &nbsp;&nbsp;<i class="glyphicon glyphicon-pencil"></i></a></li>
+  		<li><a href="geledah" class="text-right">Barang Bukti &nbsp;&nbsp;<i class="glyphicon glyphicon-plus text-red"></i></a></li>
+  		<li><a href="frp3mum" class="text-right">Sprint Dik Baru &nbsp;&nbsp;<i class="glyphicon glyphicon-plus text-red"></i></a></li>
+  		<li><a href="frp3mum" class="text-right">Ganti / Jaksa &nbsp;&nbsp;<i class="glyphicon glyphicon-plus text-red"></i></a></li>
+  		<li><a href="frt0" class="btn btn-default text-warning">Tambah Subyek Baru &nbsp;&nbsp;<i class="glyphicon glyphicon-plus"></i></a></li>
+  		<li><a href="frt1" class="btn btn-default"><strong>Penetapan Tersangka &nbsp;&nbsp;</strong><i class="glyphicon glyphicon-log-in"></i></a></li>
+  	</ul>
 </div><!-- end button group -->
 <div class="panel-heading" role="tab" id="headingOne"> 
 	<p class="panel-title"> <a href="#collapse1" role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="false" aria-controls="collapse1" class="collapsed"> <i class="glyphicon glyphicon-resize-vertical text-green"></i>&nbsp;Consectetur adipisicing elit </a> </p>
