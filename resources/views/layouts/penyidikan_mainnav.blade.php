@@ -17,9 +17,18 @@
         <li class="active"><a href="rp1">PENYIDIKAN</a></li>
         <li><a href="master_penuntutan">PENUNTUTAN</a></li>
          <li class="disabled"><a href="#">EKSEKUSI</a></li>
+        <li class="disabled"><a href="#">EKSAMINASI</a></li>
                
       </ul>
       <ul class="nav navbar-nav navbar-right">
+       <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-database"> </i> Master Data <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Data Jaksa</a></li>
+            <li><a href="#">UU / Pasal</a></li>
+            <li><a href="#">Kategori Subyek</a></li>
+          </ul>
+        </li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Wilayah Hukum <span class="caret"></span></a>
           <ul class="dropdown-menu">
