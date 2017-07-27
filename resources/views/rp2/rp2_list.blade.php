@@ -10,7 +10,7 @@
 
 @section('mainsubtitle', 'Tindak Pidana Khusus')
 
-@section('judulhalaman', 'DAFTAR PERKARA PENYELIDIKAN')
+@section('judulhalaman', 'DAFTAR PERKARA PENYELIDIKAN [RP-2]')
 
 @section('materi')
 
