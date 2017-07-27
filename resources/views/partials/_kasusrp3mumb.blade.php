@@ -19,61 +19,49 @@
 <div class="panel-collapse collapse" role="tabpanel" id="collapse2b" aria-labelledby="headingOne" aria-expanded="false" style="height: 0px;">
 	<div class="panel-body">
 		<div class="col-lg-4 col-md-4 col-sm-12 text-justify">
-			<!-- Custom Tabs (Pulled to the right) -->
-			<div class="nav-tabs-custom">
-				<ul class="nav nav-tabs pull-right">
-					<li class="active"><a href="#tab_3b1-1" data-toggle="tab" aria-expanded="true">Tab 1</a></li>
-					<li class=""><a href="#tab_3b2-2" data-toggle="tab" aria-expanded="false">Tab 2</a></li>
-					<li class=""><a href="#tab_3b3-2" data-toggle="tab" aria-expanded="false">Tab 3</a></li>
-					<li class="pull-left box">&nbsp;&nbsp;&nbsp;<i class="fa fa-balance-scale"></i> <label>Kasus Posisi:</label></li>
-				</ul>
-				<div class="tab-content">
-					<div class="tab-pane active" id="tab_3b1-1">
-						
-						inputLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-						consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-						proident, sunt in culpa qui officia deserunt mollit anim id est laborum..
+					<!-- Custom Tabs (Pulled to the right) -->
+					<div class="nav-tabs-custom">
+						<ul class="nav nav-tabs pull-right">
+							<li class="active"><a href="#tab_3b1-1" data-toggle="tab" aria-expanded="true">Kasus</a></li>
+							<li class=""><a href="#tab_3b2-2" data-toggle="tab" aria-expanded="false">Benda Sitaan</a></li>
+							<li class=""><a href="#tab_3b3-2" data-toggle="tab" aria-expanded="false">Pemulihan Aset</a></li>
+							<li class="pull-left box">&nbsp;&nbsp;&nbsp;<i class="fa fa-balance-scale"></i> <label>Kasus Posisi:</label></li>
+						</ul>
+						<div class="tab-content">
+							<div class="tab-pane active" id="tab_3b1-1">
+								
+								<strong>[kasus_posisi]</strong> 
+								<br>Kesimpulan: [kesimpulan]
+								<br>Saran: [saran]
+								<br>Disposisi: [disposisi]
+							</div>
+							<!-- /.tab-pane -->
+							<div class="tab-pane" id="tab_3b2-2">
+								<p class="text-red">...Cantumkan list benda sitaan (tanpa nilai)</p>
+							</div>
+							<!-- /.tab-pane -->
+							<div class="tab-pane" id="tab_3b3-2">
+								Nilai Kontrak / Anggaran: <strong>[nilai_kontrak] M.</strong> 
+										<br>Kerugian Negara <strong>[kerugian_negara] M.</strong> 
+										<br>Pemulihan Aset: <strong>[pemulihan _aset] M.</strong> 
+							</div>
+							<!-- /.tab-pane -->
+						</div>
+						<!-- /.tab-content -->
 					</div>
-					<!-- /.tab-pane -->
-					<div class="tab-pane" id="tab_3b2-2">
-						The European languages are members of the same family. Their separate existence is a myth.
-						For science, music, sport, etc, Europe uses the same vocabulary. The languages only differ
-						in their grammar, their pronunciation and their most common words. Everyone realizes why a
-						new common language would be desirable: one could refuse to pay expensive translators. To
-						achieve this, it would be necessary to have uniform grammar, pronunciation and more common
-						words. If several languages coalesce, the grammar of the resulting language is more simple
-						and regular than that of the individual languages.
-					</div>
-					<!-- /.tab-pane -->
-					<div class="tab-pane" id="tab_3b3-2">
-						Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-						Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-						when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-						It has survived not only five centuries, but also the leap into electronic typesetting,
-						remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset
-						sheets containing Lorem Ipsum passages, and more recently with desktop publishing software
-						like Aldus PageMaker including versions of Lorem Ipsum.
-					</div>
-					<!-- /.tab-pane -->
+					<!-- nav-tabs-custom -->
 				</div>
-				<!-- /.tab-content -->
-			</div>
-			<!-- nav-tabs-custom -->
-		</div>
 	<div class="col-lg-8 col-md-8 col-sm-12">
 		<table class="table table-responsive table-striped">
 			<tbody>
 				<tr>
-					<td>@include('partials._tsk2')</td>
+					<td>@include('partials._tlp2')</td>
 				</tr>
 				<tr>
-					<td>@include('partials._tsk11')</td>
+					<td>@include('partials._tlp11')</td>
 				</tr>
 				<tr>
-					<td>@include('partials._tsk6')</td>
+					<td>@include('partials._tlp6')</td>
 				</tr>
 			</tbody>
 		</table>
