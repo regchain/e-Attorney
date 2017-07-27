@@ -163,6 +163,10 @@ Route::get('frp3sus', 'Rp3susController@frp3sus');
 
 Route::get('erp3sus', 'Rp3susController@erp3sus');
 
+Route::get('fp15', 'Rp3susController@fp15');
+
+Route::get('fp15a', 'Rp3susController@fp15a');
+
 /*
 |--------------------------------------------------------------------------
 Subyek [Tersangka] Routes

@@ -20,4 +20,14 @@ class Rp3susController extends Controller
 		{
 		    return view('rp3sus.rp3sus_edit');
 		}
+
+		public function fp15()
+		{
+		    return view('rp3sus.p15_create');
+		}
+
+		public function fp15a()
+		{
+		    return view('rp3sus.p15a_create');
+		}
 }
