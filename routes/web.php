@@ -176,6 +176,8 @@ Subyek [Tersangka] Routes
 
 Route::get('subyek', 'SubyekController@index');
 
+Route::get('frt0', 'SubyekController@frt0');
+
 Route::get('frt1', 'SubyekController@frt1');
 
 Route::get('frt2', 'SubyekController@frt2');

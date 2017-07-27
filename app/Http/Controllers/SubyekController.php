@@ -17,6 +17,11 @@ class SubyekController extends Controller
         return view('subyek.subyek_list');
     }
 
+    public function frt0()
+    {
+        return view('subyek.subyek_create');
+    }
+
     public function frt1()
     {
         return view('subyek.subyek_tsk_create');
