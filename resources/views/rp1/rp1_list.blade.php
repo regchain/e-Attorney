@@ -34,6 +34,7 @@
         <td>Lokasi Kejadian: {{ $case->lokasi_kejadian }}<br>
         Tanggal Kejadian: {{ $case->tanggal_kejadian }}<br>
         Pelapor: {{ $case->nama_lengkap }}<br>
+        </td>
         <td>
             <div class="btn-group-vertical pull-right" role="group" aria-label="...">
                 <a href='erp1' class="btn btn-default btn-xs">Edit &nbsp;<i class="glyphicon glyphicon-pencil"></i></a>
