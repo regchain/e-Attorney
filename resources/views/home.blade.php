@@ -35,6 +35,6 @@
       
 @stop
 
-@section('script')
+@section('scripts')
 
 @endsection

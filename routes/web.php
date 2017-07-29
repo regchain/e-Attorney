@@ -205,4 +205,6 @@ Route::get('fjaksa', 'UserController@fjaksa');
 
 Route::get('ejaksa', 'UserController@ejaksa');
 
-
+Route::group(['prefix' => 'master', 'middleware' => ['auth']], function() {
+	Route::resource('kategori_subyek', 'KategoriSubyeksController');
+});

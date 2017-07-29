@@ -26,7 +26,7 @@
           <ul class="dropdown-menu">
             <li><a href="#">Data Jaksa</a></li>
             <li><a href="#">UU / Pasal</a></li>
-            <li><a href="#">Kategori Subyek</a></li>
+            <li><a href="{{ route('kategori_subyek.index') }}">Kategori Subyek</a></li>
           </ul>
         </li>
         <li class="dropdown">

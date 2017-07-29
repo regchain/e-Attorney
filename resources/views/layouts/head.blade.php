@@ -35,6 +35,8 @@
     <!-- TinyMCE -->
     <script src='{{ asset('js/tinymce/tinymce.min.js') }}'></script>
 
+    <!-- Styles -->
+    <link href="{{ asset('css/dataTables.bootstrap.min.css') }}" rel="stylesheet">
     
 
 
