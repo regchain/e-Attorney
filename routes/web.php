@@ -74,26 +74,6 @@ Route::get('erb1', 'ObyekController@erb1');
 
 /*
 |--------------------------------------------------------------------------
-| Pasal Disangkakan Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-Route::resource('pasal','PasalController');
-
-
-// Route::get('pasal', 'PasalController@index');
-
-// Route::get('fpasal', 'PasalController@fpasal');
-
-// Route::get('epasal', 'PasalController@epasal');
-
-/*
-|--------------------------------------------------------------------------
 | RP-1 Routes
 |--------------------------------------------------------------------------
 |
@@ -206,6 +186,8 @@ Route::get('fjaksa', 'UserController@fjaksa');
 Route::get('ejaksa', 'UserController@ejaksa');
 
 Route::group(['prefix' => '', 'middleware' => ['auth']], function() {
+	Route::resource('jaksa', 'JaksasController');
+	Route::resource('pasal', 'PasalsController');
 	Route::resource('kategori_subyek', 'KategoriSubyeksController');
 });
 

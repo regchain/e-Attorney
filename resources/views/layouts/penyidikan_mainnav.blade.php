@@ -24,8 +24,8 @@
        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-database"> </i> Master Data <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Data Jaksa</a></li>
-            <li><a href="#">UU / Pasal</a></li>
+            <li><a href="{{ route('jaksa.index') }}">Data Jaksa</a></li>
+            <li><a href="{{ route('pasal.index') }}">UU / Pasal</a></li>
             <li><a href="{{ route('kategori_subyek.index') }}">Kategori Subyek</a></li>
           </ul>
         </li>
