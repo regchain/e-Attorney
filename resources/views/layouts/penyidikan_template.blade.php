@@ -15,7 +15,7 @@
         </div>
         <div class="box-body">
 
-
+          @include('layouts.ks_flash')
           @yield('materi')
 
         </div>
@@ -38,6 +38,7 @@
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('js/dataTables.bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/confirm.js') }}"></script>
     @yield('scripts')
 
   </div><!-- /.content-wrapper -->
@@ -45,11 +46,11 @@
 </div><!-- /.wrapper -->
 
 <!-- JQuery -->
-    <script src='{{ asset('plugins/jQuery/jquery-3.2.1.min.js') }}'></script>    
+    <!--<script src='{{ asset('plugins/jQuery/jquery-3.2.1.min.js') }}'></script>-->
 
 
     <!-- Include all compiled plugins (below), or include individual files as needed -->
   <!-- Latest compiled and minified JavaScript -->
-    <script src="{{ asset('js/bootstrap.js') }}"></script>
+    <!--<script src="{{ asset('js/bootstrap.js') }}"></script>-->
     </body>
 </html>

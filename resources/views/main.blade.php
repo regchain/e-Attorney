@@ -81,7 +81,7 @@
 
 
 
-
+    @yield('layouts.ks_flash')
     @yield('materi')
 
 

@@ -68,7 +68,7 @@
                 </div>
             </div>
         </nav>
-
+        @yield('layouts.ks_flash')
         @yield('content')
     </div>
 
