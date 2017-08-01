@@ -18,6 +18,7 @@ class CreateJaksasTable extends Migration
             $table->string('nip', 30);
             $table->string('nama_jaksa', 50);
             $table->string('pangkat', 30);
+            $table->string('telepon', 30);
             $table->timestamps();
         });
     }

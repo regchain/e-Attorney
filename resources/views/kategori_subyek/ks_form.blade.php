@@ -1,13 +1,13 @@
-<div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-	{!! Form::label('name', 'Kategori Subyek', ['class' => 'col-md-2 control-label']) !!}
-	<div class="col-md-4">
-		{!! Form::text('name', null, ['class'=>'form-control']) !!}
+<div class="col-lg-12 col-md-12 col-sm-12">
+	<div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+		{!! Form::label('name', 'Kategori Subyek') !!}
+        {!! Form::text('name', null, ['class'=>'form-control', 'placeholder' => 'Enter ...']) !!}
 		{!! $errors->first('name', '<p class="help-block">:message</p>') !!}
 	</div>
 </div>
-
-<div class="form-group">
-	<div class="col-md-4 col-md-offset-2">
-		{!! Form::submit('Simpan', ['class' => 'btn btn-primary']) !!}
+<div class="col-lg-6 col-md-6 col-sm-12">
+	<div class="form-group">
+		{!! Form::submit('SIMPAN', ['class' => 'btn btn-primary']) !!}
+		<a href="{{ route('kategori_subyek.index') }}" class="btn btn-danger">BATAL</a>
 	</div>
 </div>

@@ -31,7 +31,7 @@ class KategoriSubyeksController extends Controller
         }
 
         $html = $htmlBuilder
-            ->addColumn(['data' => 'name', 'name' => 'name', 'title' => 'Nama'])
+            ->addColumn(['data' => 'name', 'name' => 'name', 'title' => 'Kategori Subyek'])
             ->addColumn(['data' => 'action', 'name' => 'action', 'title' => 'Aksi', 'orderable' => false, 'searchable' => false]);
 
         return view('kategori_subyek.index')->with(compact('html'));
@@ -58,8 +58,8 @@ class KategoriSubyeksController extends Controller
         $this->validate($request, ['name' => 'required|unique:kategori_subyeks']);
         $kategori_subyek = KategoriSubyek::create($request->only('name'));
         Session::flash("flash_notification", [
-            "level" => "success",
-            "message" => "Berhasil menyimpan $kategori_subyek->name"
+            "level"     => "info",
+            "message"   => "Berhasil menyimpan $kategori_subyek->name"
         ]);
 
         return redirect()->route('kategori_subyek.index');
@@ -101,8 +101,8 @@ class KategoriSubyeksController extends Controller
         $kategori_subyek = KategoriSubyek::find($id);
         $kategori_subyek->update($request->only('name'));
         Session::flash("flash_notification", [
-            "level" => "success",
-            "message" => "Berhasil menyimpan update $kategori_subyek->name"
+            "level"     => "info",
+            "message"   => "Berhasil menyimpan update $kategori_subyek->name"
         ]);
 
         return redirect()->route('kategori_subyek.index');
@@ -119,7 +119,7 @@ class KategoriSubyeksController extends Controller
         KategoriSubyek::destroy($id);
 
         Session::flash("flash_notification", [
-            "level"     => "success",
+            "level"     => "info",
             "message"   => "Kategori subyek berhasil dihapus"
         ]);
 

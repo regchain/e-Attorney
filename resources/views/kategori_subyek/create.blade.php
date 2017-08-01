@@ -18,11 +18,8 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h2 class="panel-title">Tambah Kategori Subyek</h2>
-					</div>
 					<div class="panel-body">
-						{!! Form::open(['url' => route('kategori_subyek.store'), 'method' => 'post', 'class' => 'form-horizontal']) !!}
+						{!! Form::open(['url' => route('kategori_subyek.store'), 'method' => 'post']) !!}
 						@include('kategori_subyek.ks_form')
 						{!! Form::close() !!}
 					</div>

@@ -18,11 +18,8 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h2 class="panel-title">Edit Jaksa</h2>
-					</div>
 					<div class="panel-body">
-						{!! Form::model($jaksa, ['url' => route('jaksa.update', $jaksa->id), 'method' => 'put', 'class' => 'form-horizontal']) !!}
+						{!! Form::model($jaksa, ['url' => route('jaksa.update', $jaksa->id), 'method' => 'put']) !!}
 						@include('jaksa._form')
 						{!! Form::close() !!}
 					</div>

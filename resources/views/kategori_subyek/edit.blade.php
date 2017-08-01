@@ -10,7 +10,7 @@
 
 @section('mainsubtitle', 'Tindak Pidana Khusus')
 
-@section('judulhalaman', 'Tambah Kategori Subyek')
+@section('judulhalaman', 'Edit Kategori Subyek')
 
 @section('materi')
 
@@ -18,11 +18,8 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h2 class="panel-title">Tambah Kategori Subyek</h2>
-					</div>
 					<div class="panel-body">
-						{!! Form::model($kategori_subyek, ['url' => route('kategori_subyek.update', $kategori_subyek->id), 'method' => 'put', 'class' => 'form-horizontal']) !!}
+						{!! Form::model($kategori_subyek, ['url' => route('kategori_subyek.update', $kategori_subyek->id), 'method' => 'put']) !!}
 						@include('kategori_subyek.ks_form')
 						{!! Form::close() !!}
 					</div>

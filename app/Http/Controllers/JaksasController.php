@@ -18,7 +18,7 @@ class JaksasController extends Controller
     public function index(Request $request, Builder $htmlBuilder)
     {
         if ($request->ajax()) {
-            $jaksas = Jaksa::select(['id', 'nip', 'nama_jaksa', 'pangkat']);
+            $jaksas = Jaksa::select(['id', 'nip', 'nama_jaksa', 'pangkat', 'telepon']);
             return Datatables::of($jaksas)
                 ->addColumn('action', function($jaksas) {
                     return view('datatable._action', [
@@ -34,6 +34,7 @@ class JaksasController extends Controller
             ->addColumn(['data' => 'nip', 'name' => 'nip', 'title' => 'NIP'])
             ->addColumn(['data' => 'nama_jaksa', 'name' => 'nama_jaksa', 'title' => 'Nama Jaksa'])
             ->addColumn(['data' => 'pangkat', 'name' => 'pangkat', 'title' => 'Pangkat'])
+            ->addColumn(['data' => 'telepon', 'name' => 'telepon', 'title' => 'No Telepon / HP'])
             ->addColumn(['data' => 'action', 'name' => 'action', 'title' => 'Aksi', 'orderable' => false, 'searchable' => false]);
 
         return view('jaksa.index')->with(compact('html'));
@@ -60,12 +61,13 @@ class JaksasController extends Controller
         $this->validate($request, [
             'nip'           => 'required|unique:jaksas,nip',
             'nama_jaksa'    => 'required',
-            'pangkat'       => 'required'
+            'pangkat'       => 'required',
+            'telepon'       => 'required|numeric|unique:jaksas,telepon'
         ]);
 
         $jaksa = Jaksa::create($request->all());
         Session::flash("flash_notification", [
-            "level"     => "success",
+            "level"     => "info",
             "message"   => "Berhasil menyimpan $jaksa->nama_jaksa"
         ]);
 
@@ -107,13 +109,14 @@ class JaksasController extends Controller
         $this->validate($request, [
             'nip'           => 'required|unique:jaksas,nip, '. $id,
             'nama_jaksa'    => 'required',
-            'pangkat'       => 'required'
+            'pangkat'       => 'required',
+            'telepon'       => 'required|numeric|unique:jaksas,telepon, '. $id
         ]);
 
         $jaksa = Jaksa::find($id);
-        $jaksa->update($request->only('nip','nama_jaksa','pangkat'));
+        $jaksa->update($request->only('nip','nama_jaksa','pangkat','telepon'));
         Session::flash("flash_notification", [
-            "level"     => "success",
+            "level"     => "info",
             "message"   => "Berhasil menyimpan update $jaksa->nama_jaksa"
         ]);
 
@@ -131,7 +134,7 @@ class JaksasController extends Controller
         Jaksa::destroy($id);
 
         Session::flash("flash_notification", [
-            "level"     => "success",
+            "level"     => "info",
             "message"   => "Jaksa berhasil dihapus"
         ]);
 

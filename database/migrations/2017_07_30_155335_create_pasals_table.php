@@ -19,7 +19,11 @@ class CreatePasalsTable extends Migration
             $table->string('pasal', 30);
             $table->integer('ayat');
             $table->text('keterangan');
-            $table->integer('masa_hukuman');
+            $table->integer('masa_hukuman_min');
+            $table->integer('masa_hukuman_max');
+            $table->double('denda_min', 15,2);
+            $table->double('denda_max', 15,2);
+            $table->string('kategori_pasal', 100);
             $table->timestamps();
         });
     }

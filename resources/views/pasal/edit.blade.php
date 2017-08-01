@@ -18,11 +18,8 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h2 class="panel-title">Edit Pasal</h2>
-					</div>
 					<div class="panel-body">
-						{!! Form::model($pasal, ['url' => route('pasal.update', $pasal->id), 'method' => 'put', 'class' => 'form-horizontal']) !!}
+						{!! Form::model($pasal, ['url' => route('pasal.update', $pasal->id), 'method' => 'put']) !!}
 						@include('pasal._form')
 						{!! Form::close() !!}
 					</div>
