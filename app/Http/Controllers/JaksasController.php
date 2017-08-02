@@ -35,7 +35,7 @@ class JaksasController extends Controller
             ->addColumn(['data' => 'nama_jaksa', 'name' => 'nama_jaksa', 'title' => 'Nama Jaksa'])
             ->addColumn(['data' => 'pangkat', 'name' => 'pangkat', 'title' => 'Pangkat'])
             ->addColumn(['data' => 'telepon', 'name' => 'telepon', 'title' => 'No Telepon / HP'])
-            ->addColumn(['data' => 'action', 'name' => 'action', 'title' => 'Aksi', 'orderable' => false, 'searchable' => false]);
+            ->addColumn(['data' => 'action', 'name' => 'action', 'title' => 'Aksi', 'orderable' => false, 'searchable' => false, 'width' => '15%']);
 
         return view('jaksa.index')->with(compact('html'));
     }

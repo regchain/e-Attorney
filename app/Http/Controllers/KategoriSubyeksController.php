@@ -32,7 +32,7 @@ class KategoriSubyeksController extends Controller
 
         $html = $htmlBuilder
             ->addColumn(['data' => 'name', 'name' => 'name', 'title' => 'Kategori Subyek'])
-            ->addColumn(['data' => 'action', 'name' => 'action', 'title' => 'Aksi', 'orderable' => false, 'searchable' => false]);
+            ->addColumn(['data' => 'action', 'name' => 'action', 'title' => 'Aksi', 'orderable' => false, 'searchable' => false, 'width' => '15%']);
 
         return view('kategori_subyek.index')->with(compact('html'));
     }
