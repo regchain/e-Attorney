@@ -13,6 +13,7 @@
 @section('judulhalaman', 'Tambah Laporan Kasus')
 
 @section('materi')
+
 {!! Form::open(['url' => 'frp1']) !!}
 <div class="row">
 	<div class="col-lg-4 col-md-4 col-sm-12">
@@ -20,14 +21,14 @@
 		<!-- Asal Surat -->
 		<div class="form-group">
 			<label>Asal Surat</label>
-            {!!Form::text('asal_surat', null, ['class' => 'form-control', 'placeholder' => 'Enter ...'])!!}
+            {!! Form::text('asal_surat', null, ['class' => 'form-control', 'placeholder' => 'Enter ...']) !!}
 		</div>
 	</div>
 	<div class="col-lg-4 col-md-4 col-sm-12">
 		<!-- No. Surat -->
 		<div class="form-group">
 			<label>No. Surat</label>
-			<input name="no_surat" type="text" class="form-control" placeholder="Enter ...">
+			{!! Form::text('no_surat', null, ['class' => 'form-control', 'placeholder' => 'Enter ...']) !!}
 		</div>
 		<!-- Tanggal Surat-->
 		<div class="form-group">
@@ -57,7 +58,7 @@
 		<!-- Pembuat Catatan -->
 		<div class="form-group">
 			<label>Pembuat Catatan</label>
-			<input name="pembuat_catatan_surat" type="text" class="form-control" placeholder="Enter ...">
+			{!! Form::text('pembuat_catatan_surat', null, ['class' => 'form-control', 'placeholder' => 'Enter ...']) !!}
 		</div>
 	</div>
 	<div class="col-lg-12 col-md-12 col-sm-12">
@@ -68,9 +69,7 @@
 		</div>
 		<label>Kasus Posisi / Telaahan Masalah</label>
         <br>
-        <textarea id="kasus_posisi" name="kasus_posisi" rows="10" cols="120">
-            (BERISI URAIAN KASUS POSISI SECARA SINGKAT)
-        </textarea>
+        <textarea id="kasus_posisi" name="kasus_posisi" rows="10" cols="120">(BERISI URAIAN KASUS POSISI SECARA SINGKAT)</textarea>
 	</div>
 </div>
 <div class="rows"> 
@@ -79,7 +78,7 @@
 		<!-- Nama Lengkap -->
 		<div class="form-group">
 			<label>Nama Lengkap</label>
-			<input name="nama_terlapor" type="text" class="form-control" placeholder="Enter ...">
+			{!! Form::text('nama_terlapor', null, ['class' => 'form-control', 'placeholder' => 'Enter ...']) !!}
 		</div>
 		<!-- Alamat -->
 		<div class="form-group">
@@ -91,19 +90,19 @@
 				<!-- Kota -->
 				<div class="form-group">
 					<label>Kota</label>
-					<input name="kota" type="text" class="form-control" placeholder="Enter ...">
+					{!! Form::text('kota', null, ['class' => 'form-control', 'placeholder' => 'Enter ...']) !!}
 				</div>
 			</div>
 			<div class="col-lg-4 col-md-4 col-sm-12">
 				<div class="form-group">
 					<label>Propinsi</label>
-					<input name="propinsi" type="text" class="form-control" placeholder="Enter ...">
+					{!! Form::text('propinsi', null, ['class' => 'form-control', 'placeholder' => 'Enter ...']) !!}
 				</div>
 			</div>
 			<div class="col-lg-4 col-md-4 col-sm-12">
 				<div class="form-group">
 					<label>Kode Pos</label>
-					<input name="kodepos" type="text" class="form-control" placeholder="Enter ...">
+					{!! Form::text('kodepos', null, ['class' => 'form-control', 'placeholder' => 'Enter ...']) !!}
 				</div>
 			</div>
 		</div>
@@ -143,12 +142,12 @@
 		<h4>Data Subyek [Terlapor]</h4>
 		<div class="form-group">
 			<label>Nama Lengkap</label>
-			<input name="nama_terlapor" type="text" class="form-control" placeholder="Enter ...">
+			{!! Form::text('nama_terlapor', null, ['class' => 'form-control', 'placeholder' => 'Enter ...']) !!}
 		</div>
 		<!-- text input -->
 		<div class="form-group">
 			<label> Lembaga</label>
-			<input name="lembaga" type="text" class="form-control" placeholder="Enter ...">
+			{!! Form::text('lembaga', null, ['class' => 'form-control', 'placeholder' => 'Enter ...']) !!}
 		</div>
 	</div>
 </div>
@@ -159,7 +158,7 @@
 			<!-- Obyek Pidana -->
 			<div class="form-group">
 				<label>Obyek Pidana</label>
-				<input name="obyek_pidana" type="text" class="form-control" placeholder="Enter ...">
+				{!! Form::text('obyek_pidana', null, ['class' => 'form-control', 'placeholder' => 'Enter ...']) !!}
 			</div>
 			<div class="box-tools pull-right">
 				<a href="rp1" class="btn btn-danger"> BATAL</a>
