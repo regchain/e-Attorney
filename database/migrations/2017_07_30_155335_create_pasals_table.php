@@ -15,9 +15,10 @@ class CreatePasalsTable extends Migration
     {
         Schema::create('pasals', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('undang_undang', 100);
+            $table->string('undang_undang', 200);
             $table->string('pasal', 30);
             $table->integer('ayat');
+            $table->string('huruf', 30);
             $table->text('keterangan');
             $table->integer('masa_hukuman_min');
             $table->integer('masa_hukuman_max');

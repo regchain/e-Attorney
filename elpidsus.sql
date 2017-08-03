@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: 01 Agu 2017 pada 23.04
+-- Generation Time: 03 Agu 2017 pada 14.35
 -- Versi Server: 5.7.19-0ubuntu0.17.04.1
 -- PHP Version: 7.0.18-0ubuntu0.17.04.1
 
@@ -307,15 +307,15 @@ INSERT INTO `obyek` (`id`, `kasus_id`, `benda_sitaan`, `nilai_kontrak`, `kerugia
 
 CREATE TABLE `pasals` (
   `id` int(10) UNSIGNED NOT NULL,
-  `undang_undang` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `undang_undang` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
   `pasal` int(11) NOT NULL,
-  `ayat` int(11) NULL,
-  'huruf' varchar(30) COLLATE utf8mb4_unicode_ci NULL,
+  `ayat` int(11) DEFAULT NULL,
+  `huruf` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `keterangan` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `masa_hukuman_min` int(11) NULL,
-  `masa_hukuman_max` int(11) NULL,
-  `denda_min` double(15,2) NULL,
-  `denda_max` double(15,2) NULL,
+  `masa_hukuman_min` int(11) DEFAULT NULL,
+  `masa_hukuman_max` int(11) DEFAULT NULL,
+  `denda_min` double(15,2) DEFAULT NULL,
+  `denda_max` double(15,2) DEFAULT NULL,
   `kategori_pasal` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -325,8 +325,8 @@ CREATE TABLE `pasals` (
 -- Dumping data untuk tabel `pasals`
 --
 
-INSERT INTO `pasals` (`id`, `undang_undang`, `pasal`, `ayat`, `keterangan`, `masa_hukuman_min`, `masa_hukuman_max`, `denda_min`, `denda_max`, `kategori_pasal`, `created_at`, `updated_at`) VALUES
-(1, 'Undang-Undang Nomor 31 Tahun 1999 Tentang Tindak Pidana Korupsi', '2', 1, 'Setiap orang yang secara melawan hukum melakukan perbuatan memperkaya diri sendiri atau orang lain yang suatu korporasi yang dapat merugikan keuangan negara atau perekonomian negara, dipidana dengan pidana penjara seumur hidup atau pidana penjara paling singkat 4 (empat) tahun dan paling lama 20 (dua puluh) tahun dan denda paling sedikit Rp. 200.000.000.00 (dua ratus juta rupiah) dan paling banyak Rp. 1.000.000.000,00 (satu miliar rupiah).', 4, 20, 200000000.00, 1000000000.00, 'Kerugian Keuangan Negara', '2017-08-01 08:47:52', '2017-08-01 08:51:56');
+INSERT INTO `pasals` (`id`, `undang_undang`, `pasal`, `ayat`, `huruf`, `keterangan`, `masa_hukuman_min`, `masa_hukuman_max`, `denda_min`, `denda_max`, `kategori_pasal`, `created_at`, `updated_at`) VALUES
+(1, 'UNDANG-UNDANG REPUBLIK INDONESIA NOMOR 20 TAHUN 2001 TENTANG PEMBERANTASAN TINDAK PIDANA KORUPSI', 2, 1, 'a, b', 'Setiap orang yang secara melawan hukum melakukan perbuatan memperkaya diri sendiri atau orang lain yang suatu korporasi yang dapat merugikan keuangan negara atau perekonomian negara, dipidana dengan pidana penjara seumur hidup atau pidana penjara paling singkat 4 (empat) tahun dan paling lama 20 (dua puluh) tahun dan denda paling sedikit Rp. 200.000.000.00 (dua ratus juta rupiah) dan paling banyak Rp. 1.000.000.000,00 (satu miliar rupiah).', 4, 20, 200000000.00, 1000000000.00, 'Kerugian Keuangan Negara', '2017-08-01 08:47:52', '2017-08-03 00:32:47');
 
 -- --------------------------------------------------------
 
@@ -468,7 +468,7 @@ INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`
 (1, '127.0.0.1', 'administrator', '$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36', '', 'admin@admin.com', '', NULL, NULL, NULL, 1268889823, 1499436520, 1, 'Admin', 'istrator', 'ADMIN', '0', NULL, NULL, NULL),
 (2, '::1', 'Akbar', '$2y$08$Up/1UzTNZZgZkjM0xywQX.G2u0YCaYf1zUT7HGd6HcI17hmNNa55G', NULL, 'akbar@akbar.com', NULL, NULL, NULL, NULL, 1494078910, 1497079982, 1, 'akbar', 'satria permadi', NULL, '081297018587', NULL, NULL, NULL),
 (3, '', NULL, '$2y$10$8fv5Ue0J72xW5duCqCt1qegdGrjj1zh8yIAJ.S31HzULk5oBgjVeC', NULL, 'rahmat.awaludin@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Rahmat Awaludin', '2017-07-15 01:53:00', '2017-07-15 01:53:00'),
-(4, '', NULL, '$2y$10$iNsaSiBuz3VnIinz72FkyeAlr4g9BVbV824WL/YbcMryKEl1b0GH6', NULL, 'azuwir@gmail.com', NULL, NULL, NULL, 'FRGNauc66OKd3nUcbB1gNSoSxwQOAj7XkFfad4n6T5PIPt5f2NGfJXOp4RQh', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Azuwir Azzurri', '2017-07-28 16:33:14', '2017-07-28 16:33:14');
+(4, '', NULL, '$2y$10$iNsaSiBuz3VnIinz72FkyeAlr4g9BVbV824WL/YbcMryKEl1b0GH6', NULL, 'azuwir@gmail.com', NULL, NULL, NULL, 'yqDYsJ6rnemoJfsINu8O9XtkANkKuPsC0qaYJgvoabCU1suM7cqRAg8dC3C6', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Azuwir Azzurri', '2017-07-28 16:33:14', '2017-07-28 16:33:14');
 
 -- --------------------------------------------------------
 
@@ -670,7 +670,7 @@ ALTER TABLE `obyek`
 -- AUTO_INCREMENT for table `pasals`
 --
 ALTER TABLE `pasals`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `pengumumen`
 --
