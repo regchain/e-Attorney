@@ -14,10 +14,6 @@
 
 @section('materi')
 
-
-
-
-
 <div class="table table-responsive">
 <table class="table table-striped">
   <thead>
@@ -42,15 +38,14 @@
             </div>
         </td>
     </tr>
-@empty
+    @empty
     <tr>
         <td>No Data</td>
     </tr>
-@endforelse
+    @endforelse
   </tbody>
 </table>
 </div>
-
 
 @stop
 
