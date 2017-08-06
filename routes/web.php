@@ -83,14 +83,15 @@ Route::get('erb1', 'ObyekController@erb1');
 |
 */
 
-Route::get('rp1', 'Rp1Controller@index');
-Route::get('rp1/{kasus}/lidik', 'Rp1Controller@lidik');
-Route::post('rp1/{kasus}/lidik', 'Rp1Controller@lidikStore');
+//Route::get('rp1', 'Rp1Controller@index');
+//Route::get('rp1/{kasus}/lidik', 'Rp1Controller@lidik');
+//Route::post('rp1/{kasus}/lidik', 'Rp1Controller@lidikStore');
 
-Route::get('frp1', 'Rp1Controller@frp1');
-Route::post('frp1', 'Rp1Controller@frp1Store');
+//Route::get('frp1', 'Rp1Controller@frp1');
+//Route::post('frp1', 'Rp1Controller@frp1Store');
 
-Route::get('erp1', 'Rp1Controller@erp1');
+//Route::get('erp1/{kasus}', 'Rp1Controller@erp1');
+//Route::post('erp1', 'Rp1Controller@update');
 
 /*
 |--------------------------------------------------------------------------
@@ -189,5 +190,6 @@ Route::group(['prefix' => '', 'middleware' => ['auth']], function() {
 	Route::resource('jaksa', 'JaksasController');
 	Route::resource('pasal', 'PasalsController');
 	Route::resource('kategori_subyek', 'KategoriSubyeksController');
+	Route::resource('rp1', 'Rp1Controller');
 });
 

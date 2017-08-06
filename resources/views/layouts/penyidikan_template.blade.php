@@ -21,7 +21,7 @@
         </div>
         <div class="panel-footer"><p>
         <div class="btn-group btn-xs">
-          <a href="rp1" class="btn btn-default"><i class="fa fa-list-ol"></i> RP-1</a>                    
+          <a href="{{ route('rp1.index') }}" class="btn btn-default"><i class="fa fa-list-ol"></i> RP-1</a>                    
           <a href="rp2" class="btn btn-default"><i class="fa fa-list-ol"></i> RP-2</a>                    
           <a href="rp3mum" class="btn btn-default"><i class="fa fa-list-ol"></i> RP-3Mum</a>                    
           <a href="rp3sus" class="btn btn-default"><i class="fa fa-list-ol"></i> RP-3Sus</a>  

@@ -36,7 +36,7 @@ class PasalsController extends Controller
             ->addColumn(['data' => 'ayat', 'name' => 'ayat', 'title' => 'Ayat'])
             ->addColumn(['data' => 'huruf', 'name' => 'huruf', 'title' => 'Huruf'])
             ->addColumn(['data' => 'keterangan', 'name' => 'keterangan', 'title' => 'Keterangan', 'width' => '55%'])
-            ->addColumn(['data' => 'action', 'name' => 'action', 'title' => 'Aksi', 'orderable' => false, 'searchable' => false, 'width' => '10%']);
+            ->addColumn(['data' => 'action', 'name' => 'action', 'title' => 'Aksi', 'orderable' => false, 'searchable' => false, 'width' => '15%']);
 
         return view('pasal.index')->with(compact('html'));
     }

@@ -22,7 +22,9 @@
 						<p align="right">
 							<a class="btn btn-primary btn-xs" href="{{ route('kategori_subyek.create') }}"><i class="glyphicon glyphicon-plus"></i> Tambah</a>
 						</p>
-						{!! $html->table(['class' => 'table table-striped table-bordered']) !!}
+						<div class="table-responsive">
+							{!! $html->table(['class' => 'table table-striped table-bordered', 'width' => '100%']) !!}
+						</div>
 					</div>
 				</div>
 			</div>

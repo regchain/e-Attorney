@@ -50,4 +50,9 @@ class Kasus extends Model
     {
         return $this->belongsToMany(Subyek::class, 'kasus_subyek', 'kasus_id', 'subyek_id');
     }
+
+    public function obyeks()
+    {
+        return $this->belongsToMany(Obyek::class, 'kasus_obyek', 'kasus_id', 'obyek_id');
+    }
 }

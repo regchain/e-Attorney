@@ -20,7 +20,7 @@
       <td>ID</td>
       <td width="60%">KASUS POSISI</td>
       <td width="30%">KETERANGAN</td>
-      <td width="10%" align="right"><a href='frp1' class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-plus"></i> &nbsp; Kasus Baru </a></td>
+      <td width="10%" align="right"><a href="{{ route('rp1.create') }}" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-plus"></i> &nbsp; Kasus Baru </a></td>
   </thead>
   <tbody>
     @forelse ($cases as $case)
@@ -33,7 +33,7 @@
         </td>
         <td>
             <div class="btn-group-vertical pull-right" role="group" aria-label="...">
-                <a href='erp1' class="btn btn-default btn-xs">Edit &nbsp;<i class="glyphicon glyphicon-pencil"></i></a>
+                <a href="{{ route('rp1.edit', $case->id) }}" class="btn btn-default btn-xs">Edit &nbsp;<i class="glyphicon glyphicon-pencil"></i></a>
                 <a href='rp1/{{$case->id}}/lidik' class="btn btn-success btn-xs">Sprint Lidik &nbsp;<span class="glyphicon glyphicon-log-in"></span></a>
             </div>
         </td>
