@@ -7,7 +7,7 @@ use App\Kasus;
 use App\Obyek;
 use App\Subyek;
 
-class Rp1Controller extends Controller
+class Rp1ControllerOri extends Controller
 {
 	public function index()
 	{
