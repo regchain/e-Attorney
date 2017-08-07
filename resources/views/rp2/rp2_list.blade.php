@@ -14,9 +14,6 @@
 
 @section('materi')
 
-
-
-
     <div class="table-responsive no-padding">
         <table class="table table-striped">
             <tbody><tr>
@@ -35,12 +32,6 @@
             @endforelse
         </tbody></table>
     </div>
-    
-
-
-
-
-
 
 @stop
 

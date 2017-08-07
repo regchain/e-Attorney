@@ -104,11 +104,11 @@ Route::get('erb1', 'ObyekController@erb1');
 |
 */
 
-Route::get('rp2', 'Rp2Controller@index');
+//Route::get('rp2', 'Rp2Controller@index');
 
-Route::get('frp2/{kasus}', 'Rp2Controller@frp2');
+//Route::get('frp2/{kasus}', 'Rp2Controller@frp2');
 
-Route::get('erp2', 'Rp2Controller@erp2');
+//Route::get('erp2', 'Rp2Controller@erp2');
 
 /*
 |--------------------------------------------------------------------------
@@ -192,5 +192,6 @@ Route::group(['prefix' => '', 'middleware' => ['auth']], function() {
 	Route::resource('kategori_subyek', 'KategoriSubyeksController');
 	Route::resource('rp1', 'Rp1Controller');
 	Route::resource('lidik', 'LidikController');
+	Route::resource('rp2', 'Rp2Controller');
 });
 
