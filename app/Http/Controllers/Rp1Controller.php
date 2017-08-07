@@ -16,11 +16,7 @@ class Rp1Controller extends Controller
      */
     public function index()
     {
-        $cases = Kasus::where('status', Kasus::STATUS_BARU)
-            ->orWhere('status', Kasus::STATUS_DIALIHKAN)
-            ->orWhere('status', Kasus::STATUS_DIHENTIKAN)
-            ->orWhere('status', Kasus::STATUS_DITERUSKAN)
-            ->get();
+        $cases = Kasus::where('no_surat_rp2', NULL)->get();
         if ($cases && !empty($cases)) {
             return view('rp1.rp1_list', ['cases' => $cases]);
         }

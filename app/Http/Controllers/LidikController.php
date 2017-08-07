@@ -98,10 +98,14 @@ class LidikController extends Controller
         } else {
             $case = Kasus::find($id);
             if ($case) {
-                $case->update($request->only('judul_kasus','kasus_posisi','disposisi','tanggal_rp2','no_surat_rp2','status'));
+                $case->update($request->only('judul_kasus','kasus_posisi','disposisi','status'));
                 
                 $kasus_rp2 = $case->toArray();
                 $newCase = Kasus::create($kasus_rp2);
+                $caseID = $newCase->id;
+
+                $updateNewCase = Kasus::find($caseID);
+                $updateNewCase->update($request->only('tanggal_rp2','no_surat_rp2'));
             }
         }
 
