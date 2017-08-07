@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Obyek;
 use App\Subyek;
+use App\Jaksa;
 
 class Kasus extends Model
 {
@@ -54,5 +55,10 @@ class Kasus extends Model
     public function obyeks()
     {
         return $this->belongsToMany(Obyek::class, 'kasus_obyek', 'kasus_id', 'obyek_id');
+    }
+
+    public function jaksas()
+    {
+        return $this->belongsToMany(Jaksa::class, 'kasus_jaksas', 'kasus_id', 'jaksa_id');
     }
 }

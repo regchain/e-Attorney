@@ -191,5 +191,6 @@ Route::group(['prefix' => '', 'middleware' => ['auth']], function() {
 	Route::resource('pasal', 'PasalsController');
 	Route::resource('kategori_subyek', 'KategoriSubyeksController');
 	Route::resource('rp1', 'Rp1Controller');
+	Route::resource('lidik', 'LidikController');
 });
 
