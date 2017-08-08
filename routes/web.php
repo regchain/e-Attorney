@@ -74,44 +74,6 @@ Route::get('erb1', 'ObyekController@erb1');
 
 /*
 |--------------------------------------------------------------------------
-| RP-1 Routes
-|--------------------------------------------------------------------------
-|
-| erp1 = Edit Kasus
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-//Route::get('rp1', 'Rp1Controller@index');
-//Route::get('rp1/{kasus}/lidik', 'Rp1Controller@lidik');
-//Route::post('rp1/{kasus}/lidik', 'Rp1Controller@lidikStore');
-
-//Route::get('frp1', 'Rp1Controller@frp1');
-//Route::post('frp1', 'Rp1Controller@frp1Store');
-
-//Route::get('erp1/{kasus}', 'Rp1Controller@erp1');
-//Route::post('erp1', 'Rp1Controller@update');
-
-/*
-|--------------------------------------------------------------------------
-| RP-2 Routes
-|--------------------------------------------------------------------------
-|
-| frp2 adalah form dari RP-1 untuk masuk daftar rp2
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-//Route::get('rp2', 'Rp2Controller@index');
-
-//Route::get('frp2/{kasus}', 'Rp2Controller@frp2');
-
-//Route::get('erp2', 'Rp2Controller@erp2');
-
-/*
-|--------------------------------------------------------------------------
 | RP-3mum Routes
 |--------------------------------------------------------------------------
 |
@@ -191,7 +153,10 @@ Route::group(['prefix' => '', 'middleware' => ['auth']], function() {
 	Route::resource('pasal', 'PasalsController');
 	Route::resource('kategori_subyek', 'KategoriSubyeksController');
 	Route::resource('rp1', 'Rp1Controller');
-	Route::resource('lidik', 'LidikController');
+	Route::resource('lidik', 'LidikController', [
+		'except' => ['create', 'store', 'show', 'destroy']]);
 	Route::resource('rp2', 'Rp2Controller');
+	Route::resource('rp3mum', 'Rp3MumController');
+	Route::resource('rp3sus', 'Rp3SusController');
 });
 

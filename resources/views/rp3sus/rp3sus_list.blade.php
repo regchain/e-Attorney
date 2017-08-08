@@ -14,47 +14,30 @@
 
 @section('materi')
 
-
-
-
-   <div class="table-responsive no-padding">
-              <table class="table table-striped">
-                <tbody><tr>
-                  <th>Berkas Perkara</th>
-                </tr>
-                <tr>
-                  <td>
-                  @include('partials._kasusrp3susa')
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                  @include('partials._kasusrp3susb')
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                  @include('partials._kasusrp3susc')
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                  @include('partials._kasusrp3susd')
-                  </td>
-                </tr>
-              </tbody></table>
-            </div>
-    
-
-
-
-
-
+  <div class="table-responsive no-padding">
+    <table class="table table-striped">
+      <tbody>
+        <tr>
+          <th>Berkas Perkara</th>
+        </tr>
+        @forelse ($cases as $case)
+        <tr>
+          <td>
+            @include('partials._kasusrp3sus', ['case' => $case])
+          </td>
+        </tr>
+        @empty
+        <tr>
+          <td>No data.</td>
+        </tr>
+        @endforelse
+      </tbody>
+    </table>
+  </div>
 
 @stop
 
 @section('script')
-
   <!-- Form Kasus Posisi -->
   <script src='{{ asset('js/kasus_posisi.js') }}'></script>
 

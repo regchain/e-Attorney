@@ -16,7 +16,8 @@
 
     <div class="table-responsive no-padding">
         <table class="table table-striped">
-            <tbody><tr>
+            <tbody>
+                <tr>
                     <th>Kasus</th>
                 </tr>
                 @forelse ($cases as $case)
@@ -25,11 +26,11 @@
                         @include('partials._kasusrp2a', ['case' => $case])
                     </td>
                 </tr>
-            @empty
+                @empty
                 <tr>
                     <td>No data.</td>
                 </tr>
-            @endforelse
+                @endforelse
         </tbody></table>
     </div>
 

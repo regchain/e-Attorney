@@ -51,7 +51,7 @@
 	<div class="col-lg-4 col-md-4 col-sm-12">
 		<label>Status</label>
 		<div class="input-group">
-			{!! Form::select('status', ['3' => 'DITERUSKAN', '2' => 'DIALIHKAN', '4' => 'DIHENTIKAN'], 3, ['class' => 'form-control']) !!}
+			{!! Form::select('status', ['3' => 'DITERUSKAN', '2' => 'DIALIHKAN', '4' => 'DIHENTIKAN'], $status, ['class' => 'form-control']) !!}
 			<!--
 			<div class="input-group-btn">
 				<button type="button" class="btn btn-default" aria-label="stop" title="DIHENTIKAN"><span class="glyphicon glyphicon-minus-sign"></span> </button>
@@ -68,64 +68,59 @@
 		</div>
 	</div>
 
+	<div class="col-lg-12 col-md-12 col-sm-12">
+		<h4>Data Terlapor</h4>			
+	</div>
+	<div class="col-lg-6 col-md-6 col-sm-12">			
+		<!-- Institusi / Lembaga -->
+		<div class="form-group">
+			<label>Institusi / Lembaga</label>
+			{!! Form::text('lembaga', null, ['class' => 'form-control', 'placeholder' => 'Enter ...']) !!}
+		</div>
+	</div>
+	<div class="col-lg-6 col-md-6 col-sm-12">
+		<!-- Nama Lengkap -->
+		<div class="form-group">
+			<label>Nama Lengkap</label>
+			{!! Form::text('nama_terlapor', null, ['class' => 'form-control', 'placeholder' => 'Enter ...']) !!}
+			{!! Form::hidden('subyek_id', null) !!}
+		</div>
+	</div>		
 	
-		<div class="col-lg-12 col-md-12 col-sm-12">
-			<h4>Data Terlapor</h4>			
+	<div class="col-lg-12 col-md-12 col-sm-12">
+		<h4>Data Obyek</h4>		
+	</div>
+	<div class="col-lg-6 col-md-6 col-sm-12">
+		<div class="form-group">
+			<label>Obyek Pidana</label>
+			{!! Form::text('obyek_pidana', null, ['class' => 'form-control', 'placeholder' => 'Enter ...']) !!}
+			{!! Form::hidden('obyek_id', null) !!}
 		</div>
-		<div class="col-lg-6 col-md-6 col-sm-12">
-			
-			<!-- Institusi / Lembaga -->
-			<div class="form-group">
-				<label>Institusi / Lembaga</label>
-				{!! Form::text('lembaga', null, ['class' => 'form-control', 'placeholder' => 'Enter ...']) !!}
+	</div>
+	<div class="col-lg-6 col-md-6 col-sm-12">
+		<!-- Nilai Anggaran / Kontrak -->
+		<div class="form-group">
+			<label>Nilai Anggaran</label>
+			<div class="input-group">
+				<span class="input-group-addon">Rp</span>
+				{!! Form::number('nilai_kontrak', null, ['class' => 'form-control', 'placeholder' => 'Enter ...']) !!}
+				<span class="input-group-addon">miliar</span>
 			</div>
 		</div>
-		<div class="col-lg-6 col-md-6 col-sm-12">
-			<!-- Nama Lengkap -->
-			<div class="form-group">
-				<label>Nama Lengkap</label>
-				{!! Form::text('nama_terlapor', null, ['class' => 'form-control', 'placeholder' => 'Enter ...']) !!}
-				{!! Form::hidden('subyek_id', null) !!}
-			</div>
-		</div>		
-	
-		<div class="col-lg-12 col-md-12 col-sm-12">
-			<h4>Data Obyek</h4>		
-		</div>
-		<div class="col-lg-6 col-md-6 col-sm-12">
-		
-			<div class="form-group">
-				<label>Obyek Pidana</label>
-				{!! Form::text('obyek_pidana', null, ['class' => 'form-control', 'placeholder' => 'Enter ...']) !!}
-				{!! Form::hidden('obyek_id', null) !!}
-			</div>
-		</div>
-		<div class="col-lg-6 col-md-6 col-sm-12">
-			<!-- Nilai Anggaran / Kontrak -->
-			<div class="form-group">
-				<label>Nilai Anggaran</label>
-				<div class="input-group">
-					<span class="input-group-addon">Rp</span>
-					{!! Form::number('nilai_kontrak', null, ['class' => 'form-control', 'placeholder' => 'Enter ...']) !!}
-					<span class="input-group-addon">miliar</span>
-				</div>
-			</div>
-		</div>
+	</div>
 
-	
-	
-		<div class="col-lg-12 col-md-12 col-sm-12">
+	<div class="col-lg-12 col-md-12 col-sm-12">
 		<h4>Data Jaksa</h4>
 			<div class="form-group">
-				<label>Pilih Jaksa</label>
+			<label>Pilih Jaksa</label>
 				{!! Form::select('jaksa_id[]', [''=>'']+App\Jaksa::pluck('nama_jaksa','id')->all(), 0, ['class'=>'form-control', 'placeholder' => 'Pilih Jaksa', 'multiple' => 'multiple']) !!}
 			</div>
 			<a href="{{ route('rp2.index') }}" class="btn btn-danger"> BATAL</a>
 			{{ Form::submit('KIRIM', ['class' => 'btn btn-success']) }}
-		</div>
-	
+	</div>
 </div>
 {!! Form::close() !!}
+
 @stop
 
 @section('script')

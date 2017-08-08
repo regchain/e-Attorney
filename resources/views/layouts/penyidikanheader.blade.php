@@ -14,8 +14,8 @@
 							<div class="pull-right">
 								<a href="{{ route('rp1.index') }}" class="btn btn-app btn-primary text-lime "><i class="fa fa-list-ol"></i> RP-1</a>                    
 								<a href="{{ route('rp2.index') }}" class="btn btn-app btn-primary text-lime"><i class="fa fa-list-ol"></i> RP-2</a>                    
-								<a href="rp3mum" class="btn btn-app btn-primary text-lime"><i class="fa fa-list-ol"></i> RP-3Mum</a>                    
-								<a href="rp3sus" class="btn btn-app btn-primary text-lime"><i class="fa fa-list-ol"></i> RP-3Sus</a>  
+								<a href="{{ route('rp3mum.index') }}" class="btn btn-app btn-primary text-lime"><i class="fa fa-list-ol"></i> RP-3Mum</a>                    
+								<a href="{{ route('rp3sus.index') }}" class="btn btn-app btn-primary text-lime"><i class="fa fa-list-ol"></i> RP-3Sus</a>  
 								<a href="obyek" class="btn btn-app btn-primary text-lime"><i class="fa fa-cubes"></i> RB-1</a>  
 								<a href="subyek" class="btn btn-app btn-primary text-lime"><i class="fa fa-odnoklassniki"></i> RT</a>  
 							</div>

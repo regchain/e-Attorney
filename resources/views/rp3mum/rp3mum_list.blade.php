@@ -14,46 +14,29 @@
 
 @section('materi')
 
-
-
-
-
-            <!-- /.box-header -->
-            <div class="table-responsive no-padding">
-              <table class="table table-striped">
-                <tbody><tr>
-                  <th>Kasus</th>
-                </tr>
-                <tr>
-                  <td>
-                  @include('partials._kasusrp3muma')
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                  @include('partials._kasusrp3mumb')
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                  @include('partials._kasusrp3mumc')
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                  @include('partials._kasusrp3mumd')
-                  </td>
-                </tr>
-              </tbody></table>
-            </div>
-            <!-- /.box-body -->
+  <!-- /.box-header -->
+  <div class="table-responsive no-padding">
+    <table class="table table-striped">
+      <tbody>
+        <tr>
+          <th>Kasus</th>
+        </tr>
+        @forelse ($cases as $case)
+        <tr>
+          <td>
+              @include('partials._kasusrp3mum', ['case' => $case])
+          </td>
+        </tr>
+        @empty
+        <tr>
+          <td>No data.</td>
+        </tr>
+        @endforelse
+      </tbody>
+    </table>
+  </div>
+  <!-- /.box-body -->
     
-
-
-
-
-
-
 @stop
 
 @section('script')

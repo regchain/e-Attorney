@@ -13,24 +13,23 @@
 	<p class="panel-title"> <a href="#collapse1" role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="false" aria-controls="collapse1" class="collapsed"> <i class="glyphicon glyphicon-resize-vertical text-green"></i>&nbsp;[{{ $case->judul_kasus }}] </a> </p>
 </div>
 
-
 <div class="panel-collapse collapse" role="tabpanel" id="collapse1" aria-labelledby="headingOne" aria-expanded="false" style="height: 0px;">
 	<div class="panel-body">
 	<div class="col-lg-4 col-md-4 col-sm-12 text-justify">
 		<label>Kasus Posisi:</label>
 		[{{ $case->kasus_posisi }}]. 
-		<br>Kesimpulan: [kesimpulan]
-		<br>Saran: [saran]
-		<br>Disposisi: [disposisi]
+		<br>Kesimpulan: [{{ $case->kesimpulan }}]
+		<br>Saran: [{{ $case->saran }}]
+		<br>Disposisi: [{{ $case->disposisi }}]
 		<br>Nilai Kontrak / Anggaran: <strong>[{{ $case->nilai_kontrak }}] M.</strong> 
-		<br>Kerugian Negara <strong>[kerugian_negara] M.</strong> 
-		<br>Pemulihan Aset: <strong>[pemulihan _aset] M.</strong> 
+		<br>Kerugian Negara <strong>[{{ $case->kerugian_negara }}] M.</strong> 
+		<br>Pemulihan Aset: <strong>[{{ $case->pemulihan_aset }}] M.</strong> 
 	</div>
 	<div class="col-lg-8 col-md-8 col-sm-12">
 		<table class="table table-responsive table-striped">
 			<tbody>
 				<tr>
-					<td>@include('partials._tsk4')</td>
+					<td>@include('partials._subyekrp2')</td>
 				</tr>
 			</tbody>
 		</table>

@@ -6,8 +6,9 @@ use Illuminate\Http\Request;
 use App\Kasus;
 use App\Obyek;
 use App\Subyek;
+use App\KasusSubyek;
 
-class Rp2Controller extends Controller
+class Rp3MumController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +17,10 @@ class Rp2Controller extends Controller
      */
     public function index()
     {
-        $cases = Kasus::select(['kasus.*','subyek.id as subyek_id','subyek.nama_terlapor','subyek.lembaga','subyek.jabatan_resmi','subyek.jabatan_lain','obyek.id as obyek_id','obyek.obyek_pidana','obyek.nilai_kontrak','obyek.kerugian_negara','obyek.pemulihan_aset'])
+        $cases = array();
+
+        /*
+        $kasus = Kasus::select(['kasus.*','subyek.id as subyek_id','subyek.nama_terlapor','subyek.lembaga','subyek.jabatan_resmi','subyek.jabatan_lain','obyek.id as obyek_id','obyek.obyek_pidana','obyek.nilai_kontrak','obyek.kerugian_negara','obyek.pemulihan_aset'])
             ->join('kasus_subyek','kasus.id','=','kasus_subyek.kasus_id')
             ->join('subyek','kasus_subyek.subyek_id','=','subyek.id')
             ->join('kasus_obyek','kasus.id','=','kasus_obyek.kasus_id')
@@ -24,9 +28,29 @@ class Rp2Controller extends Controller
             ->where('kasus.status', Kasus::STATUS_DITERUSKAN)
             ->where('kasus.no_surat_rp2', '<>', NULL)
             ->get();
+        */
+        $kasus = Kasus::select(['*'])
+            ->where('kasus.status', Kasus::STATUS_DITERUSKAN)
+            ->where('kasus.no_surat_rp2', '<>', NULL)
+            ->get();
+
+        foreach ($kasus as $a) {
+            $subyeks = array();
+            $kasus_id = $a["id"];
+            $kasus_subyek = KasusSubyek::select(['subyek_id','nama_terlapor','lembaga'])
+                ->join('subyek','subyek.id','=','kasus_subyek.subyek_id')
+                ->where('kasus_id',$kasus_id)
+                ->get();
+            foreach ($kasus_subyek as $b) {
+                array_push($subyeks, $b);
+            }
+            $a["subyeks"] = $subyeks;
+            
+        }
+        array_push($cases, $a);
         
         if ($cases && !empty($cases)) {
-            return view('rp2.rp2_list', ['cases' => $cases]);
+            return view('rp3mum.rp3mum_list', ['cases' => $cases]);
         }
     }
 
@@ -70,27 +94,7 @@ class Rp2Controller extends Controller
      */
     public function edit($id)
     {
-        $status = array(
-            Kasus::STATUS_BARU          => "STATUS_BARU",
-            Kasus::STATUS_DIALIHKAN     => "STATUS_DIALIHKAN",
-            Kasus::STATUS_DITERUSKAN    => "STATUS_DITERUSKAN",
-            Kasus::STATUS_DIHENTIKAN    => "STATUS_DIHENTIKAN"
-        );
-
-        $case = Kasus::select(['kasus.*','subyek.id as subyek_id','subyek.nama_terlapor','subyek.lembaga','obyek.id as obyek_id','obyek.obyek_pidana','obyek.nilai_kontrak'])
-            ->join('kasus_subyek','kasus.id','=','kasus_subyek.kasus_id')
-            ->join('subyek','kasus_subyek.subyek_id','=','subyek.id')
-            ->join('kasus_obyek','kasus.id','=','kasus_obyek.kasus_id')
-            ->join('obyek','kasus_obyek.obyek_id','=','obyek.id')
-            ->where('kasus.id',$id)
-            ->first();
-        
-        if ($case && !empty($case)) {
-            //return view('rp2.rp2_edit')->with(compact('case'));
-            return view('rp2.rp2_edit', ['case' => $case, 'status' => $status]);
-        } else {
-            return redirect()->route('rp2.index');
-        }        
+        //
     }
 
     /**

@@ -4,19 +4,16 @@
   <button type="button" class="btn btn-success btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     Tindakan <span class="caret"></span>
   </button>
-  	<ul class="dropdown-menu">
-  		<li><a href="erp3sus" class="text-right">Edit &nbsp;&nbsp;<i class="glyphicon glyphicon-pencil"></i></a></li>
-  		<li><a href="geledah" class="text-right">Barang Bukti &nbsp;&nbsp;<i class="glyphicon glyphicon-plus text-red"></i></a></li>
-  		<li><a href="frp3mum" class="text-right">Sprint Dik Baru &nbsp;&nbsp;<i class="glyphicon glyphicon-plus text-red"></i></a></li>
-  		<li><a href="frp3mum" class="text-right">Ganti / Jaksa &nbsp;&nbsp;<i class="glyphicon glyphicon-plus text-red"></i></a></li>
-  		<li><a href="frt0" class="btn btn-default text-warning">Tambah Subyek Baru &nbsp;&nbsp;<i class="glyphicon glyphicon-plus"></i></a></li>
-  		<li><a href="frt1" class="btn btn-default"><strong>Penetapan Tersangka &nbsp;&nbsp;</strong><i class="glyphicon glyphicon-log-in"></i></a></li>
-  	</ul>
+  <ul class="dropdown-menu">
+    <li><a href="erp3sus" class="text-right">Edit &nbsp;&nbsp;<i class="glyphicon glyphicon-pencil"></i></a></li>
+    <li><a href="geledah" class="text-right">Sprint Geledah &nbsp;&nbsp;<i class="glyphicon glyphicon-plus text-red"></i></a></li>
+    <li><a href="fp15" class="btn btn-default"><strong>P-15 &nbsp;&nbsp;<i class="glyphicon glyphicon-share-alt"></i></strong></a></li>
+    <li><a href="fp15a" class="btn btn-default"><strong>P-15a &nbsp;&nbsp;<i class="glyphicon glyphicon-share-alt"></i></strong></a></li>
+  </ul>
 </div><!-- end button group -->
 <div class="panel-heading" role="tab" id="headingOne"> 
-	<p class="panel-title"> <a href="#collapse1" role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="false" aria-controls="collapse1" class="collapsed"> <i class="glyphicon glyphicon-resize-vertical text-green"></i>&nbsp;[judul_kasus]</a> </p>
+	<p class="panel-title"> <a href="#collapse1" role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="false" aria-controls="collapse1" class="collapsed"> <i class="glyphicon glyphicon-resize-vertical text-green"></i>&nbsp;{{ $case->judul_kasus }} </a> </p>
 </div>
-
 
 <div class="panel-collapse collapse" role="tabpanel" id="collapse1" aria-labelledby="headingOne" aria-expanded="false" style="height: 0px;">
 	<div class="panel-body">
@@ -31,11 +28,10 @@
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane active" id="tab_3a1-1">
-						
-						<strong>[kasus_posisi]</strong> 
-						<br>Kesimpulan: [kesimpulan]
-						<br>Saran: [saran]
-						<br>Disposisi: [disposisi]
+						<strong>[{{ $case->kasus_posisi }}]</strong> 
+						<br>Kesimpulan: [{{ $case->kesimpulan }}]
+						<br>Saran: [{{ $case->saran }}]
+						<br>Disposisi: [{{ $case->disposisi }}]
 					</div>
 					<!-- /.tab-pane -->
 					<div class="tab-pane" id="tab_3a2-2">
@@ -43,9 +39,9 @@
 					</div>
 					<!-- /.tab-pane -->
 					<div class="tab-pane" id="tab_3a3-2">
-						Nilai Kontrak / Anggaran: <strong>[nilai_kontrak] M.</strong> 
-								<br>Kerugian Negara <strong>[kerugian_negara] M.</strong> 
-								<br>Pemulihan Aset: <strong>[pemulihan _aset] M.</strong> 
+						Nilai Kontrak / Anggaran: <strong>[{{ $case->nilai_kontrak }}] M.</strong> 
+						<br>Kerugian Negara <strong>[{{ $case->kerugian_negara }}] M.</strong> 
+						<br>Pemulihan Aset: <strong>[{{ $case->pemulihan_aset }}] M.</strong> 
 					</div>
 					<!-- /.tab-pane -->
 				</div>
@@ -56,15 +52,7 @@
 	<div class="col-lg-8 col-md-8 col-sm-12">
 		<table class="table table-responsive table-striped">
 			<tbody>
-				<tr>
-					<td>@include('partials._tlp4')</td>
-				</tr>
-				<tr>
-					<td>@include('partials._tlp12')</td>
-				</tr>
-				<tr>
-					<td>@include('partials._tlp5')</td>
-				</tr>
+				@include('partials._subyekrp3sus', ['case' => $case])
 			</tbody>
 		</table>
 	</div>
