@@ -6,7 +6,7 @@
   </button>
   <ul class="dropdown-menu">
     <li><a href="{{ route('rp3sus.edit', $case->id) }}" class="text-right">Edit &nbsp;&nbsp;<i class="glyphicon glyphicon-pencil"></i></a></li>
-    <li><a href="geledah" class="text-right">Sprint Geledah &nbsp;&nbsp;<i class="glyphicon glyphicon-plus text-red"></i></a></li>
+    <li><a href="{{ route('obyek.create', $case->id) }}" class="text-right">Sprint Geledah &nbsp;&nbsp;<i class="glyphicon glyphicon-plus text-red"></i></a></li>
     <li><a href="{{ url('/fp15', $case->id) }}" class="btn btn-default"><strong>P-15 &nbsp;&nbsp;<i class="glyphicon glyphicon-share-alt"></i></strong></a></li>
     <li><a href="{{ url('/fp15a', $case->id) }}" class="btn btn-default"><strong>P-15a &nbsp;&nbsp;<i class="glyphicon glyphicon-share-alt"></i></strong></a></li>
   </ul>

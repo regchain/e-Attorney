@@ -208,7 +208,7 @@
 		</div>
 
 		<div class="box-tools pull-right">
-			<a href="rp1" class="btn btn-danger"> BATAL</a>
+			<a href="{{ route('rp3mum.index') }}" class="btn btn-danger"> BATAL</a>
 			<a href="rp2" class="btn btn-success"> KIRIM</a>
 		</div>
 	</div>
