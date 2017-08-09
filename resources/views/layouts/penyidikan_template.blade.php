@@ -25,8 +25,8 @@
           <a href="{{ route('rp2.index') }}" class="btn btn-default"><i class="fa fa-list-ol"></i> RP-2</a>                    
           <a href="{{ route('rp3mum.index') }}" class="btn btn-default"><i class="fa fa-list-ol"></i> RP-3Mum</a>                    
           <a href="{{ route('rp3sus.index') }}" class="btn btn-default"><i class="fa fa-list-ol"></i> RP-3Sus</a>  
-          <a href="obyek" class="btn btn-default"><i class="fa fa-cubes"></i> RB-1</a>  
-          <a href="subyek" class="btn btn-default"><i class="fa fa-odnoklassniki"></i> RT</a>  
+          <a href="{{ url('/obyek') }}" class="btn btn-default"><i class="fa fa-cubes"></i> RB-1</a>  
+          <a href="{{ url('/subyek') }}" class="btn btn-default"><i class="fa fa-odnoklassniki"></i> RT</a>  
         </div>
         </p>
         </div>

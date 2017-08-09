@@ -15,151 +15,110 @@
 @section('materi')
 
 <div class="box-body">
-				<div class="row">
-			<div class="col-lg-6 col-md-6 col-xs-12">
-				<!-- left column -->
-				<div class="row">
-					<div class="col-lg-6 col-md-6 col-xs-12">				
-							<!-- No. Surat -->
-						<div class="form-group">
-							<label> No. Surat P-15</label>
-							<input type="text" class="form-control" placeholder="PRINT-">
-						</div>
+	<div class="row">
+		<div class="col-lg-6 col-md-6 col-xs-12">
+			<!-- left column -->
+			<div class="row">
+				<div class="col-lg-6 col-md-6 col-xs-12">				
+					<!-- No. Surat -->
+					<div class="form-group">
+						<label> No. Surat P-15</label>
+						<input type="text" class="form-control" placeholder="PRINT-">
 					</div>
-					<div class="col-lg-6 col-md-6 col-xs-12">
-						<!-- Tanggal Surat -->
-						<div class="form-group">
-							<label>Tanggal</label>
-							<div class="input-group date">
-								<div class="input-group-addon">
-									<span class="fa fa-calendar"></span>
-								</div>
-								<input type="date" class="form-control pull-right" id="datepicker">
+				</div>
+				<div class="col-lg-6 col-md-6 col-xs-12">
+					<!-- Tanggal Surat -->
+					<div class="form-group">
+						<label>Tanggal</label>
+						<div class="input-group date">
+							<div class="input-group-addon">
+								<span class="fa fa-calendar"></span>
 							</div>
-							<!-- /.input group -->
+							<input type="date" class="form-control pull-right" id="datepicker">
 						</div>
-						<!-- /.form group -->
+						<!-- /.input group -->
 					</div>
-					<div class="col-lg-12 col-md-12 col-xs-12">
+					<!-- /.form group -->
+				</div>
+				<div class="col-lg-12 col-md-12 col-xs-12">
 					<p>
-						<label>Berkas Perkara Berdasarkan:</label><br>
-							<li>Sprint Dik No. <span class="label label-success">Print-xx/F.2/Fd.1/dd/mm/yyyy</span> Tgl. xx/mm/yyy</li>
-							<li>Sprint Dik No. <span class="label label-success">Print-xx/F.2/Fd.1/dd/mm/yyyy</span> Tgl. xx/mm/yyy</li>
-							<li>Penetapan Tersangka. <span class="label label-success">B-xx/F.2/Fd.1/dd/mm/yyyy</span> Tgl. xx/mm/yyy</li>
+					<label>Berkas Perkara Berdasarkan:</label><br>
+						<li>Sprint Dik No. <span class="label label-success">Print-xx/F.2/Fd.1/dd/mm/yyyy</span> Tgl. xx/mm/yyy</li>
+						<li>Sprint Dik No. <span class="label label-success">Print-xx/F.2/Fd.1/dd/mm/yyyy</span> Tgl. xx/mm/yyy</li>
+						<li>Penetapan Tersangka. <span class="label label-success">B-xx/F.2/Fd.1/dd/mm/yyyy</span> Tgl. xx/mm/yyy</li>
 					</p>
-					</div>
-						<div class="col-lg-6 col-md-6 col-xs-12">
-						<div class="form-group">
-							<label>Pasal Disangkakan</label>
-								<li>Pasal 1</li>
-								<li>Pasal 2</li>
-								<li>Pasal 3</li>
-								<li>Pasal 4</li>
-								<li>Pasal 5</li>
-								<li>Pasal 6</li>
-						</div>
-							</div>							
 				</div>
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h3 class="panel-title">Judul Kasus : Brunch 3 wolf moon tempor, sunt aliqua put a bird on it</h3>
+				<div class="col-lg-6 col-md-6 col-xs-12">
+					<div class="form-group">
+						<label>Pasal Disangkakan</label>
+							<li>Pasal 1</li>
+							<li>Pasal 2</li>
+							<li>Pasal 3</li>
+							<li>Pasal 4</li>
+							<li>Pasal 5</li>
+							<li>Pasal 6</li>
 					</div>
-					<div class="panel-body">
-						<strong>Kasus Posisis: </strong> Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-					</div>
+				</div>							
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">Judul Kasus : {{ $case->judul_kasus }}</h3>
 				</div>
-				<div class="list-group">
-					<a href="#" class="list-group-item">
-						<strong>PEMULIHAN ASET</strong>
-					</a>
-					<a href="#" class="list-group-item">Nilai Anggaran <div class="pull-right">
-						Rp. xxx.xxx.xxx.xxx	
-					</div></a>
-					<a href="#" class="list-group-item">Kerugian Negara<div class="pull-right">
-						Rp. xxx.xxx.xxx.xxx	
-					</div></a>
-					<a href="#" class="list-group-item">Pemulihan Aset<div class="pull-right">
-						Rp. xxx.xxx.xxx.xxx	
-					</div></a>
-				</div><!-- ./left column -->
+				<div class="panel-body">
+					<strong>Kasus Posisis: </strong> {{ $case->kasus_posisi }}
 				</div>
-			<div class="col-lg-6 col-md-6 col-xs-12">
-					<!-- Widget: user widget style 1 -->
-					<div class="box box-widget widget-user-2 bg-gray">
-						<!-- Add the bg color to the header using any of the bg-* classes -->
-						<div class="widget-user-header">
-							<div class="widget-user-image">
-								<img class="img-circle" src="dist/img/subyek/robert.jpg" alt="User Avatar">
-							</div>
-							<!-- /.widget-user-image -->
-							<h3 class="widget-user-username">[nama_terlapor]</h3>
-							<h5 class="widget-user-desc">DITAHAN</h5>
-						</div>
-						<div class="box-footer no-padding">
-							<ul class="nav nav-stacked">
-								<li><a href="#">Surat Penetapan Tersangka <strong class="pull-right">B-xxx/xx/mm/yyyy</strong></a></li>
-								<li><a href="#">Institusi / Lembaga <span class="pull-right">Pem.Prov Lampung</span></a></li>
-								<li><a href="#">Jabatan Resmi <span class="pull-right ">Gubernur</span></a></li>
-								<li><a href="#">Jabatan Lain <span class="pull-right">Panitia Lelang</span></a></li>
-							</ul>
-						</div>
+			</div>
+			<div class="list-group">
+				<a href="#" class="list-group-item">
+					<strong>PEMULIHAN ASET</strong>
+				</a>
+				<a href="#" class="list-group-item">Nilai Anggaran 
+					<div class="pull-right">Rp. xxx.xxx.xxx.xxx</div>
+				</a>
+				<a href="#" class="list-group-item">Kerugian Negara
+					<div class="pull-right">
+						Rp. xxx.xxx.xxx.xxx	
 					</div>
-					<!-- /.widget-user -->
+				</a>
+				<a href="#" class="list-group-item">Pemulihan Aset
+					<div class="pull-right">
+						Rp. xxx.xxx.xxx.xxx	
+					</div>
+				</a>
+			</div><!-- ./left column -->
+		</div>
+		<div class="col-lg-6 col-md-6 col-xs-12">
+			<!-- Widget: user widget style 1 -->
+			<div class="box box-widget widget-user-2 bg-gray">
+				<!-- Add the bg color to the header using any of the bg-* classes -->
+				<div class="widget-user-header">
+					<div class="widget-user-image">
+						<img class="img-circle" src="{{ asset('images/robert.jpg') }}" alt="User Avatar">
+					</div>
+					<!-- /.widget-user-image -->
+					<h3 class="widget-user-username">[nama_terlapor]</h3>
+					<h5 class="widget-user-desc">DITAHAN</h5>
+				</div>
+				<div class="box-footer no-padding">
+					<ul class="nav nav-stacked">
+						<li><a href="#">Surat Penetapan Tersangka <strong class="pull-right">B-xxx/xx/mm/yyyy</strong></a></li>
+						<li><a href="#">Institusi / Lembaga <span class="pull-right">Pem.Prov Lampung</span></a></li>
+						<li><a href="#">Jabatan Resmi <span class="pull-right ">Gubernur</span></a></li>
+						<li><a href="#">Jabatan Lain <span class="pull-right">Panitia Lelang</span></a></li>
+					</ul>
+				</div>
+			</div>
+			<!-- /.widget-user -->
 					
-				<!-- Widget: user widget style 1 -->
-				<div class="box box-widget widget-user-2 bg-gray">
-					<!-- Add the bg color to the header using any of the bg-* classes -->
-					<div class="widget-user-header">
-						<div class="widget-user-image">
-							<img class="img-circle" src="dist/img/subyek/nancy.jpg" alt="User Avatar">
-						</div>
-						<!-- /.widget-user-image -->
-						<h3 class="widget-user-username">[nama_terlapor]</h3>
-						<h5 class="widget-user-desc">DITAHAN</h5>
-					</div>
-					<div class="box-footer no-padding">
-						<ul class="nav nav-stacked">
-							<li><a href="#">Surat Penetapan Tersangka <strong class="pull-right">B-xxx/xx/mm/yyyy</strong></a></li>
-							<li><a href="#">Institusi / Lembaga <span class="pull-right">Pem.Prov Lampung</span></a></li>
-							<li><a href="#">Jabatan Resmi <span class="pull-right ">Gubernur</span></a></li>
-							<li><a href="#">Jabatan Lain <span class="pull-right">Panitia Lelang</span></a></li>
-						</ul>
-					</div>
-				</div>
-				<!-- /.widget-user -->
-
-				<!-- Widget: user widget style 1 -->
-				<div class="box box-widget widget-user-2 bg-gray">
-					<!-- Add the bg color to the header using any of the bg-* classes -->
-					<div class="widget-user-header">
-						<div class="widget-user-image">
-							<img class="img-circle" src="dist/img/subyek/avatar5.png" alt="User Avatar">
-						</div>
-						<!-- /.widget-user-image -->
-						<h3 class="widget-user-username">[nama_terlapor]</h3>
-						<h5 class="widget-user-desc">DITAHAN</h5>
-					</div>
-					<div class="box-footer no-padding">
-						<ul class="nav nav-stacked">
-							<li><a href="#">Surat Penetapan Tersangka <strong class="pull-right">B-xxx/xx/mm/yyyy</strong></a></li>
-							<li><a href="#">Institusi / Lembaga <span class="pull-right">Pem.Prov Lampung</span></a></li>
-							<li><a href="#">Jabatan Resmi <span class="pull-right ">Gubernur</span></a></li>
-							<li><a href="#">Jabatan Lain <span class="pull-right">Panitia Lelang</span></a></li>
-						</ul>
-					</div>
-				</div>
-				<!-- /.widget-user -->
-					<div class="box-tools pull-right">
-						<a href="rp3sus" class="btn btn-danger"> BATAL</a>
-						<a href="rp3sus" class="btn btn-success"> KIRIM</a>
-					</div>
-				</div>
-				</div><!-- ./row -->
+			<div class="box-tools pull-right">
+				<a href="rp3sus" class="btn btn-danger"> BATAL</a>
+				<a href="rp3sus" class="btn btn-success"> KIRIM</a>
+			</div>
+		</div>
+	</div><!-- ./row -->
 </div>
 
-		@stop
-
-
+@stop
 
 @section('script')
 

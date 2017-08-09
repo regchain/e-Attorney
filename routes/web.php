@@ -102,12 +102,6 @@ Route::get('rp3sus', 'Rp3susController@index');
 
 Route::get('frp3sus', 'Rp3susController@frp3sus');
 
-Route::get('erp3sus', 'Rp3susController@erp3sus');
-
-Route::get('fp15', 'Rp3susController@fp15');
-
-Route::get('fp15a', 'Rp3susController@fp15a');
-
 /*
 |--------------------------------------------------------------------------
 Subyek [Tersangka] Routes
@@ -122,8 +116,6 @@ Subyek [Tersangka] Routes
 Route::get('subyek', 'SubyekController@index');
 
 Route::get('frt0', 'SubyekController@frt0');
-
-Route::get('frt1', 'SubyekController@frt1');
 
 Route::get('frt2', 'SubyekController@frt2');
 
@@ -157,7 +149,10 @@ Route::group(['prefix' => '', 'middleware' => ['auth']], function() {
 	Route::resource('rp3mum', 'Rp3MumController');
 	Route::resource('rp3sus', 'Rp3SusController');
 	Route::get('subyek', 'SubyekController@index');
+	Route::get('tersangka/{kasus_id}', 'SubyekController@tersangka');
 	Route::get('obyek', 'ObyekController@index');
+	Route::get('fp15/{kasus_id}', 'Rp3SusController@fp15');
+	Route::get('fp15a/{kasus_id}', 'Rp3SusController@fp15a');
 });
 
 Route::group(['prefix' => 'kasus'], function() {

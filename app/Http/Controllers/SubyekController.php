@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Kasus;
 use App\Subyek;
+use App\KasusSubyek;
 
 class SubyekController extends Controller
 {
@@ -40,9 +42,21 @@ class SubyekController extends Controller
     {
         $this->validate($request, [
             'nama_terlapor'     => 'required',
-            'tempat_tinggal'    => 'required'
+            'tempat_tinggal'    => 'required',
+            'pendidikan'    => 'required',
         ]);
-        
+
+        $subyek = Subyek::create($request->all());
+        if ($subyek) {
+            $subyek_id = $subyek->id;
+        }
+
+        $kasus_subyek_data = array("kasus_id" => $kasus_id, "subyek_id" => $subyek_id);
+        $kasus_subyek = KasusSubyek::create($kasus_subyek_data);
+
+        if ($kasus_subyek) {
+            return redirect()->route('rp3mum.index');
+        }        
     }
 
     /**
@@ -88,5 +102,10 @@ class SubyekController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function tersangka($kasus_id)
+    {
+        return view('subyek.subyek_tsk_create');
     }
 }

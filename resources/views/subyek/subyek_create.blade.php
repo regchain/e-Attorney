@@ -47,7 +47,7 @@
 		<!-- Pendidikan -->
 		<div class="form-group">
 			<label>Pendidikan</label>
-			<input type="text" class="form-control" placeholder="Enter ...">
+			{!! Form::text('pendidikan', null, ['class' => 'form-control', 'placeholder' => 'Enter ...']) !!}
 		</div>
 
 		<div class="row">
@@ -119,7 +119,7 @@
 			</select>
 		</div>
 		<div class="box-tools pull-right">
-			<a href="#" class="btn btn-danger"> BATAL</a>
+			<a href="{{ route('rp3mum.index') }}" class="btn btn-danger"> BATAL</a>
 			{{ Form::submit('KIRIM', ['class' => 'btn btn-success']) }}
 		</div>
 

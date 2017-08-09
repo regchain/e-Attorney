@@ -83,7 +83,7 @@ class Rp3SusController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('rp3sus.rp3sus_edit');
     }
 
     /**
@@ -107,5 +107,38 @@ class Rp3SusController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function fp15($kasus_id)
+    {
+        $cases = array();
+        $kasus = Kasus::select(['*'])
+            ->where('kasus.id', $kasus_id)
+            ->first();
+        /*
+        foreach ($kasus as $a) {
+            $subyeks = array();
+            $kasus_id = $a["id"];
+            $kasus_subyek = KasusSubyek::select(['subyek_id','nama_terlapor','lembaga'])
+                ->join('subyek','subyek.id','=','kasus_subyek.subyek_id')
+                ->where('kasus_id',$kasus_id)
+                ->get();
+            foreach ($kasus_subyek as $b) {
+                array_push($subyeks, $b);
+            }
+            $a["subyeks"] = $subyeks;
+            
+        }
+        array_push($cases, $a);
+        */
+        
+        if ($kasus && !empty($kasus)) {
+            return view('rp3sus.p15_create', ['case' => $kasus]);
+        }        
+    }
+
+    public function fp15a($kasus_id)
+    {
+        return view('rp3sus.p15a_create');
     }
 }

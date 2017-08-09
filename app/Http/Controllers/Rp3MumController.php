@@ -94,7 +94,7 @@ class Rp3MumController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('rp3mum.rp3mum_edit');
     }
 
     /**

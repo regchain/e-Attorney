@@ -95,7 +95,7 @@
 						<!-- Add the bg color to the header using any of the bg-* classes -->
 						<div class="widget-user-header">
 							<div class="widget-user-image">
-								<img class="img-circle" src="dist/img/subyek/robert.jpg" alt="User Avatar">
+								<img class="img-circle" src="{{ asset('images/robert.jpg') }}" alt="User Avatar">
 							</div>
 							<!-- /.widget-user-image -->
 							<h3 class="widget-user-username">[nama_terlapor]</h3>
@@ -112,49 +112,6 @@
 					</div>
 					<!-- /.widget-user -->
 					
-				<!-- Widget: user widget style 1 -->
-				<div class="box box-widget widget-user-2 bg-gray">
-					<!-- Add the bg color to the header using any of the bg-* classes -->
-					<div class="widget-user-header">
-						<div class="widget-user-image">
-							<img class="img-circle" src="dist/img/subyek/nancy.jpg" alt="User Avatar">
-						</div>
-						<!-- /.widget-user-image -->
-						<h3 class="widget-user-username">[nama_terlapor]</h3>
-						<h5 class="widget-user-desc">DITAHAN</h5>
-					</div>
-					<div class="box-footer no-padding">
-						<ul class="nav nav-stacked">
-							<li><a href="#">Surat Penetapan Tersangka <strong class="pull-right">B-xxx/xx/mm/yyyy</strong></a></li>
-							<li><a href="#">Institusi / Lembaga <span class="pull-right">Pem.Prov Lampung</span></a></li>
-							<li><a href="#">Jabatan Resmi <span class="pull-right ">Gubernur</span></a></li>
-							<li><a href="#">Jabatan Lain <span class="pull-right">Panitia Lelang</span></a></li>
-						</ul>
-					</div>
-				</div>
-				<!-- /.widget-user -->
-
-				<!-- Widget: user widget style 1 -->
-				<div class="box box-widget widget-user-2 bg-gray">
-					<!-- Add the bg color to the header using any of the bg-* classes -->
-					<div class="widget-user-header">
-						<div class="widget-user-image">
-							<img class="img-circle" src="dist/img/subyek/avatar5.png" alt="User Avatar">
-						</div>
-						<!-- /.widget-user-image -->
-						<h3 class="widget-user-username">[nama_terlapor]</h3>
-						<h5 class="widget-user-desc">DITAHAN</h5>
-					</div>
-					<div class="box-footer no-padding">
-						<ul class="nav nav-stacked">
-							<li><a href="#">Surat Penetapan Tersangka <strong class="pull-right">B-xxx/xx/mm/yyyy</strong></a></li>
-							<li><a href="#">Institusi / Lembaga <span class="pull-right">Pem.Prov Lampung</span></a></li>
-							<li><a href="#">Jabatan Resmi <span class="pull-right ">Gubernur</span></a></li>
-							<li><a href="#">Jabatan Lain <span class="pull-right">Panitia Lelang</span></a></li>
-						</ul>
-					</div>
-				</div>
-				<!-- /.widget-user -->
 					<div class="box-tools pull-right">
 						<a href="rp3sus" class="btn btn-danger"> BATAL</a>
 						<a href="master_penuntutan" class="btn btn-success"> KIRIM</a>
