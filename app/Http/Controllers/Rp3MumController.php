@@ -61,7 +61,7 @@ class Rp3MumController extends Controller
      */
     public function create()
     {
-        //
+        return view('rp3mum.rp3mum_create');
     }
 
     /**

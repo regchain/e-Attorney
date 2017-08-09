@@ -13,7 +13,7 @@ class ObyekController extends Controller
      */
     public function index()
     {
-        //
+        return view('obyek.obyek_list');
     }
 
     /**

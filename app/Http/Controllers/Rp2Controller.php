@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Kasus;
 use App\Obyek;
 use App\Subyek;
+use App\KasusSubyek;
+use App\KasusObyek;
 
 class Rp2Controller extends Controller
 {
@@ -16,6 +18,8 @@ class Rp2Controller extends Controller
      */
     public function index()
     {
+        $cases = array();
+        /*
         $cases = Kasus::select(['kasus.*','subyek.id as subyek_id','subyek.nama_terlapor','subyek.lembaga','subyek.jabatan_resmi','subyek.jabatan_lain','obyek.id as obyek_id','obyek.obyek_pidana','obyek.nilai_kontrak','obyek.kerugian_negara','obyek.pemulihan_aset'])
             ->join('kasus_subyek','kasus.id','=','kasus_subyek.kasus_id')
             ->join('subyek','kasus_subyek.subyek_id','=','subyek.id')
@@ -24,6 +28,38 @@ class Rp2Controller extends Controller
             ->where('kasus.status', Kasus::STATUS_DITERUSKAN)
             ->where('kasus.no_surat_rp2', '<>', NULL)
             ->get();
+        */
+
+        $kasus = Kasus::select(['*'])
+            ->where('kasus.status', Kasus::STATUS_DITERUSKAN)
+            ->where('kasus.no_surat_rp2', '<>', NULL)
+            ->get();
+
+        foreach ($kasus as $case) {
+            $subyeks = array();
+            $obyeks = array();
+
+            $kasus_id = $case["id"];
+            $kasus_subyek = KasusSubyek::select(['subyek_id','nama_terlapor','lembaga'])
+                ->join('subyek','subyek.id','=','kasus_subyek.subyek_id')
+                ->where('kasus_id',$kasus_id)
+                ->get();
+            foreach ($kasus_subyek as $subyek) {
+                array_push($subyeks, $subyek);
+            }
+
+            $kasus_obyek = KasusObyek::select(['obyek_id','nilai_kontrak','kerugian_negara','pemulihan_aset','obyek_pidana','benda_sitaan'])
+                ->join('obyek','obyek.id','=','kasus_obyek.obyek_id')
+                ->where('kasus_obyek.kasus_id',$kasus_id)
+                ->get();
+            foreach ($kasus_obyek as $obyek) {
+                array_push($obyeks, $obyek);
+            }
+
+            $case["subyeks"] = $subyeks;
+            $case["obyeks"] = $obyeks;            
+        }
+        array_push($cases, $case);
         
         if ($cases && !empty($cases)) {
             return view('rp2.rp2_list', ['cases' => $cases]);

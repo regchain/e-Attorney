@@ -14,7 +14,7 @@ class SubyekControllerORI extends Controller
      */
     public function index()
     {
-        return view('subyek.subyek_list');
+        
     }
 
     public function frt0()

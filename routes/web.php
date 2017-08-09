@@ -66,8 +66,6 @@ Route::get('jabatan_edit', 'JabatanController@jabatan_edit');
 |
 */
 
-Route::get('obyek', 'ObyekController@index');
-
 Route::get('geledah', 'ObyekController@geledah');
 
 Route::get('erb1', 'ObyekController@erb1');
@@ -158,12 +156,16 @@ Route::group(['prefix' => '', 'middleware' => ['auth']], function() {
 	Route::resource('rp2', 'Rp2Controller');
 	Route::resource('rp3mum', 'Rp3MumController');
 	Route::resource('rp3sus', 'Rp3SusController');
+	Route::get('subyek', 'SubyekController@index');
+	Route::get('obyek', 'ObyekController@index');
 });
 
 Route::group(['prefix' => 'kasus'], function() {
 	Route::group(['prefix' => '{kasus_id}'], function($kasus_id) {
     	
-    	Route::resource('subyek', 'SubyekController');
-    	Route::resource('obyek', 'ObyekController');
+    	Route::resource('subyek', 'SubyekController', [
+			'except' => ['index', 'show', 'destroy']]);
+    	Route::resource('obyek', 'ObyekController', [
+			'except' => ['index', 'show', 'destroy']]);
   	});	
 });

@@ -12,8 +12,7 @@
                   <th>Tanggal</th>
                   <th>Tersangka</th>
                   <th>Benda Sitaan</th>
-                  <th><a href="geledah" class="btn btn-danger btn-sm"><i class="glyphicon glyphicon-plus
-"> </i>&nbsp;SP Geledah</a></th>
+                  <th><a href="geledah" class="btn btn-danger btn-sm"><i class="glyphicon glyphicon-plus"> </i>&nbsp;SP Geledah</a></th>
                 </tr>
                 <tr>
                   <td>183</td>

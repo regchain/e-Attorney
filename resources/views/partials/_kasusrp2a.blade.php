@@ -6,7 +6,7 @@
   </button>
   <ul class="dropdown-menu">
   		<li><a href="{{ route('rp2.edit', $case->id) }}" class="text-right">Edit &nbsp;&nbsp;<i class="glyphicon glyphicon-pencil"></i></a></li>
-  		<li><a href="frp3mum" class="text-right"><strong>NAIK DIK MUM</strong> &nbsp;&nbsp;<i class="glyphicon glyphicon-log-in text-red"></i></a></li>
+  		<li><a href="{{ route('rp3mum.create') }}" class="text-right"><strong>NAIK DIK MUM</strong> &nbsp;&nbsp;<i class="glyphicon glyphicon-log-in text-red"></i></a></li>
   	</ul>
 </div><!-- end button group -->
 <div class="panel-heading" role="tab" id="headingOne"> 
@@ -21,16 +21,17 @@
 		<br>Kesimpulan: [{{ $case->kesimpulan }}]
 		<br>Saran: [{{ $case->saran }}]
 		<br>Disposisi: [{{ $case->disposisi }}]
-		<br>Nilai Kontrak / Anggaran: <strong>[{{ $case->nilai_kontrak }}] M.</strong> 
-		<br>Kerugian Negara <strong>[{{ $case->kerugian_negara }}] M.</strong> 
-		<br>Pemulihan Aset: <strong>[{{ $case->pemulihan_aset }}] M.</strong> 
+		@forelse ($case->obyeks as $obyek)
+		<br>Nilai Kontrak / Anggaran: <strong>[{{ $obyek->nilai_kontrak }}] M.</strong> 
+		<br>Kerugian Negara <strong>[{{ $obyek->kerugian_negara }}] M.</strong> 
+		<br>Pemulihan Aset: <strong>[{{ $obyek->pemulihan_aset }}] M.</strong>
+		@empty
+		@endforelse
 	</div>
 	<div class="col-lg-8 col-md-8 col-sm-12">
 		<table class="table table-responsive table-striped">
 			<tbody>
-				<tr>
-					<td>@include('partials._subyekrp2')</td>
-				</tr>
+				@include('partials._subyekrp2')				
 			</tbody>
 		</table>
 	</div>

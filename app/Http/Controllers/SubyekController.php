@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Subyek;
 
 class SubyekController extends Controller
 {
@@ -13,7 +14,10 @@ class SubyekController extends Controller
      */
     public function index()
     {
-        //
+        $subyeks = Subyek::select(['*'])->get();
+        if ($subyeks) {
+            return view('subyek.subyek_list', ['subyeks' => $subyeks]);
+        }
     }
 
     /**
