@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Tabel_Subyek;
 use Illuminate\Http\Request;
 
 class SubyekController extends Controller
@@ -14,27 +13,7 @@ class SubyekController extends Controller
      */
     public function index()
     {
-        return view('subyek.subyek_list');
-    }
-
-    public function frt0()
-    {
-        return view('subyek.subyek_create');
-    }
-
-    public function frt1()
-    {
-        return view('subyek.subyek_tsk_create');
-    }
-
-    public function frt2()
-    {
-        return view('subyek.subyek_tahan_create');
-    }
-
-    public function ert1()
-    {
-        return view('subyek.subyek_edit');
+        //
     }
 
     /**
@@ -42,9 +21,9 @@ class SubyekController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($kasus_id)
     {
-        //
+        return view('subyek.subyek_create', ['kasus_id' => $kasus_id]);
     }
 
     /**
@@ -53,18 +32,22 @@ class SubyekController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $kasus_id)
     {
-        //
+        $this->validate($request, [
+            'nama_terlapor'     => 'required',
+            'tempat_tinggal'    => 'required'
+        ]);
+        
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Tabel_Subyek  $tabel_Subyek
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Tabel_Subyek $tabel_Subyek)
+    public function show($id)
     {
         //
     }
@@ -72,10 +55,10 @@ class SubyekController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Tabel_Subyek  $tabel_Subyek
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tabel_Subyek $tabel_Subyek)
+    public function edit($id)
     {
         //
     }
@@ -84,10 +67,10 @@ class SubyekController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Tabel_Subyek  $tabel_Subyek
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tabel_Subyek $tabel_Subyek)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -95,10 +78,10 @@ class SubyekController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Tabel_Subyek  $tabel_Subyek
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tabel_Subyek $tabel_Subyek)
+    public function destroy($id)
     {
         //
     }

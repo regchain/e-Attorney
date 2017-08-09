@@ -4,7 +4,6 @@
 
 @section('stylesheet')
 
-
 @endsection
 
 @section('maintitle', 'DIREKTORAT PENYIDIKAN')

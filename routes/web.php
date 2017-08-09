@@ -160,3 +160,10 @@ Route::group(['prefix' => '', 'middleware' => ['auth']], function() {
 	Route::resource('rp3sus', 'Rp3SusController');
 });
 
+Route::group(['prefix' => 'kasus'], function() {
+	Route::group(['prefix' => '{kasus_id}'], function($kasus_id) {
+    	
+    	Route::resource('subyek', 'SubyekController');
+    	Route::resource('obyek', 'ObyekController');
+  	});	
+});

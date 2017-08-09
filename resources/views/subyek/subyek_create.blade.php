@@ -14,21 +14,22 @@
 
 @section('materi')
 
-
-
+{!! Form::open(['url' => route('subyek.store', $kasus_id), 'method' => 'post']) !!}
 <div class="rows"> 
 	<div class="col-lg-6 col-md-6 col-sm-12">
 		<!-- Print Lid -->
 		<h4>Data Tersangka</h4>
 		<!-- Nama Lengkap -->
-		<div class="form-group">
+		<div class="form-group{{ $errors->has('nama_terlapor') ? ' has-error' : '' }}">
 			<label>Nama Lengkap</label>
-			<textarea class="form-control" rows="1" placeholder="Enter ..."></textarea>
+			{!! Form::text('nama_terlapor', null, ['class' => 'form-control', 'placeholder' => 'Enter ...']) !!}
+			{!! $errors->first('nama_terlapor', '<p class="help-block">:message</p>') !!}
 		</div>
 		<!-- Tempat Tinggal -->
-		<div class="form-group">
+		<div class="form-group{{ $errors->has('tempat_tinggal') ? ' has-error' : '' }}">
 			<label>Tempat Tinggal</label>
-			<textarea class="form-control" rows="1" placeholder="Enter ..."></textarea>
+			{!! Form::text('tempat_tinggal', null, ['class' => 'form-control', 'placeholder' => 'Enter ...']) !!}
+			{!! $errors->first('tempat_tinggal', '<p class="help-block">:message</p>') !!}
 		</div>
 		<div class="row">
 			<div class="col-lg-6 col-md-6 col-sm-12">
@@ -119,17 +120,12 @@
 		</div>
 		<div class="box-tools pull-right">
 			<a href="#" class="btn btn-danger"> BATAL</a>
-			<a href="rp3mum" class="btn btn-success"> KIRIM</a>
+			{{ Form::submit('KIRIM', ['class' => 'btn btn-success']) }}
 		</div>
 
 	</div>
 </div>
-    
-
-
-
-
-
+{!! Form::close() !!}
 
 @stop
 

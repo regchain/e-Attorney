@@ -6,10 +6,10 @@
   </button>
   	<ul class="dropdown-menu">
   		<li><a href="erp3sus" class="text-right">Edit &nbsp;&nbsp;<i class="glyphicon glyphicon-pencil"></i></a></li>
-  		<li><a href="geledah" class="text-right">Barang Bukti &nbsp;&nbsp;<i class="glyphicon glyphicon-plus text-red"></i></a></li>
+  		<li><a href="{{ route('obyek.create', $case->id) }}" class="text-right">Barang Bukti &nbsp;&nbsp;<i class="glyphicon glyphicon-plus text-red"></i></a></li>
   		<li><a href="frp3mum" class="text-right">Sprint Dik Baru &nbsp;&nbsp;<i class="glyphicon glyphicon-plus text-red"></i></a></li>
   		<li><a href="frp3mum" class="text-right">Ganti / Jaksa &nbsp;&nbsp;<i class="glyphicon glyphicon-plus text-red"></i></a></li>
-  		<li><a href="frt0" class="btn btn-default text-warning">Tambah Subyek Baru &nbsp;&nbsp;<i class="glyphicon glyphicon-plus"></i></a></li>
+  		<li><a href="{{ route('subyek.create', $case->id) }}" class="btn btn-default text-warning">Tambah Subyek Baru &nbsp;&nbsp;<i class="glyphicon glyphicon-plus"></i></a></li>
   		<li><a href="frt1" class="btn btn-default"><strong>Penetapan Tersangka &nbsp;&nbsp;</strong><i class="glyphicon glyphicon-log-in"></i></a></li>
   	</ul>
 </div><!-- end button group -->
