@@ -19,17 +19,6 @@ class Rp2Controller extends Controller
     public function index()
     {
         $cases = array();
-        /*
-        $cases = Kasus::select(['kasus.*','subyek.id as subyek_id','subyek.nama_terlapor','subyek.lembaga','subyek.jabatan_resmi','subyek.jabatan_lain','obyek.id as obyek_id','obyek.obyek_pidana','obyek.nilai_kontrak','obyek.kerugian_negara','obyek.pemulihan_aset'])
-            ->join('kasus_subyek','kasus.id','=','kasus_subyek.kasus_id')
-            ->join('subyek','kasus_subyek.subyek_id','=','subyek.id')
-            ->join('kasus_obyek','kasus.id','=','kasus_obyek.kasus_id')
-            ->join('obyek','kasus_obyek.obyek_id','=','obyek.id')
-            ->where('kasus.status', Kasus::STATUS_DITERUSKAN)
-            ->where('kasus.no_surat_rp2', '<>', NULL)
-            ->get();
-        */
-
         $kasus = Kasus::select(['*'])
             ->where('status', Kasus::STATUS_DITERUSKAN)
             ->where('no_surat_rp2', '<>', NULL)

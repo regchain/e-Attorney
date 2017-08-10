@@ -7,6 +7,7 @@ use App\Kasus;
 use App\Obyek;
 use App\Subyek;
 use App\KasusSubyek;
+use App\KasusObyek;
 
 class Rp3MumController extends Controller
 {
@@ -18,35 +19,35 @@ class Rp3MumController extends Controller
     public function index()
     {
         $cases = array();
-
-        /*
-        $kasus = Kasus::select(['kasus.*','subyek.id as subyek_id','subyek.nama_terlapor','subyek.lembaga','subyek.jabatan_resmi','subyek.jabatan_lain','obyek.id as obyek_id','obyek.obyek_pidana','obyek.nilai_kontrak','obyek.kerugian_negara','obyek.pemulihan_aset'])
-            ->join('kasus_subyek','kasus.id','=','kasus_subyek.kasus_id')
-            ->join('subyek','kasus_subyek.subyek_id','=','subyek.id')
-            ->join('kasus_obyek','kasus.id','=','kasus_obyek.kasus_id')
-            ->join('obyek','kasus_obyek.obyek_id','=','obyek.id')
-            ->where('kasus.status', Kasus::STATUS_DITERUSKAN)
-            ->where('kasus.no_surat_rp2', '<>', NULL)
-            ->get();
-        */
         $kasus = Kasus::select(['*'])
             ->where('kasus.status', Kasus::STATUS_DITERUSKAN)
             ->where('kasus.no_surat_rp2', '<>', NULL)
             ->get();
 
-        foreach ($kasus as $a) {
+        foreach ($kasus as $case) {
             $subyeks = array();
-            $kasus_id = $a["id"];
+            $obyeks = array();
+
+            $kasus_id = $case["id"];
             $kasus_subyek = KasusSubyek::select(['subyek_id','nama_terlapor','lembaga'])
                 ->join('subyek','subyek.id','=','kasus_subyek.subyek_id')
                 ->where('kasus_id',$kasus_id)
                 ->get();
-            foreach ($kasus_subyek as $b) {
-                array_push($subyeks, $b);
+            foreach ($kasus_subyek as $subyek) {
+                array_push($subyeks, $subyek);
             }
             
-            $a["subyeks"] = $subyeks;
-            array_push($cases, $a);
+            $kasus_obyek = KasusObyek::select(['obyek_id','nilai_kontrak','kerugian_negara','pemulihan_aset','obyek_pidana','benda_sitaan'])
+                ->join('obyek','obyek.id','=','kasus_obyek.obyek_id')
+                ->where('kasus_obyek.kasus_id',$kasus_id)
+                ->get();
+            foreach ($kasus_obyek as $obyek) {
+                array_push($obyeks, $obyek);
+            }
+
+            $case["subyeks"] = $subyeks;
+            $case["obyeks"] = $obyeks;
+            array_push($cases, $case);
         }
         
         if ($cases && !empty($cases)) {

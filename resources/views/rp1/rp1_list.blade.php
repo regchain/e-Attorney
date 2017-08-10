@@ -25,7 +25,7 @@
   <tbody>
     @forelse ($cases as $case)
     <tr>
-        <td>{{ $case->id }}</td>
+        <td>{{ $loop->iteration }}</td>
         <td><strong> {{$case->judul_kasus}} </strong>, {{ $case->kasus_posisi }}</td>
         <td>Lokasi Kejadian: {{ $case->lokasi_kejadian }}<br>
         Tanggal Kejadian: {{ $case->tanggal_kejadian }}<br>

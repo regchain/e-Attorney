@@ -14,36 +14,45 @@
   	</ul>
 </div><!-- end button group -->
 <div class="panel-heading" role="tab" id="headingOne"> 
-	<p class="panel-title"> <a href="#collapse1" role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="false" aria-controls="collapse1" class="collapsed"> <i class="glyphicon glyphicon-resize-vertical text-green"></i>&nbsp;[{{ $case->judul_kasus }}]</a> </p>
+	<p class="panel-title"> <a href="#collapse{{ $case->id }}" role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="false" aria-controls="collapse1" class="collapsed"> <i class="glyphicon glyphicon-resize-vertical text-green"></i>&nbsp;{{ $case->judul_kasus }}</a> </p>
 </div>
 
-<div class="panel-collapse collapse" role="tabpanel" id="collapse1" aria-labelledby="headingOne" aria-expanded="false" style="height: 0px;">
+<div class="panel-collapse collapse" role="tabpanel" id="collapse{{ $case->id }}" aria-labelledby="headingOne" aria-expanded="false" style="height: 0px;">
 	<div class="panel-body">
 		<div class="col-lg-4 col-md-4 col-sm-12 text-justify">
 			<!-- Custom Tabs (Pulled to the right) -->
 			<div class="nav-tabs-custom">
 				<ul class="nav nav-tabs pull-right">
-					<li class="active"><a href="#tab_3a1-1" data-toggle="tab" aria-expanded="true">Kasus</a></li>
-					<li class=""><a href="#tab_3a2-2" data-toggle="tab" aria-expanded="false">Benda Sitaan</a></li>
-					<li class=""><a href="#tab_3a3-2" data-toggle="tab" aria-expanded="false">Pemulihan Aset</a></li>
-					<li class="pull-left box">&nbsp;&nbsp;&nbsp;<i class="fa fa-balance-scale"></i> <label>Kasus Posisi:</label></li>
+					<li class="active"><a href="#tab_3a1-1{{ $case->id }}" data-toggle="tab" aria-expanded="true">Kasus</a></li>
+					<li class=""><a href="#tab_3a2-2{{ $case->id }}" data-toggle="tab" aria-expanded="false">Benda Sitaan</a></li>
+					<li class=""><a href="#tab_3a3-2{{ $case->id }}" data-toggle="tab" aria-expanded="false">Pemulihan Aset</a></li>
+					<li class="pull-left box">&nbsp;&nbsp;&nbsp;<i class="fa fa-balance-scale"></i> <label>Kasus Posisi</label></li>
 				</ul>
 				<div class="tab-content">
-					<div class="tab-pane active" id="tab_3a1-1">						
-						<strong>[{{ $case->kasus_posisi }}]</strong> 
-						<br>Kesimpulan: [{{ $case->kesimpulan }}]
-						<br>Saran: [{{ $case->saran }}]
-						<br>Disposisi: [{{ $case->disposisi }}]
+					<div class="tab-pane active" id="tab_3a1-1{{ $case->id }}">						
+						<strong>{{ $case->kasus_posisi }}</strong> 
+						<br>Kesimpulan: {{ $case->kesimpulan }}
+						<br>Saran: {{ $case->saran }}
+						<br>Disposisi: {{ $case->disposisi }}
 					</div>
 					<!-- /.tab-pane -->
-					<div class="tab-pane" id="tab_3a2-2">
-						<p class="text-red">...Cantumkan list benda sitaan (tanpa nilai)</p>
+					<div class="tab-pane" id="tab_3a2-2{{ $case->id }}">
+						@forelse ($case->obyeks as $obyek)
+						<p class="text-red">{{ $obyek->obyek_pidana }} {{ $obyek->benda_sitaan }}</p>
+						@empty
+				        <p class="text-red"> Tidak ada benda sitaan</p>
+				        @endforelse
 					</div>
 					<!-- /.tab-pane -->
-					<div class="tab-pane" id="tab_3a3-2">
-						Nilai Kontrak / Anggaran: <strong>[{{ $case->nilai_kontrak }}] M.</strong> 
-						<br>Kerugian Negara <strong>[{{ $case->kerugian_negara }}] M.</strong> 
-						<br>Pemulihan Aset: <strong>[{{ $case->pemulihan_aset }}] M.</strong> 
+					<div class="tab-pane" id="tab_3a3-2{{ $case->id }}">
+						{{ $total_nilai_kontrak = 0 }}
+						{{ $total_kerugian = 0 }}
+						{{ $total_pemulihan = 0 }}
+						@foreach ($case->obyeks as $obyek)
+						Nilai Kontrak / Anggaran: <strong>{{ $total_nilai_kontrak += $obyek->nilai_kontrak }} M.</strong> 
+						<br>Kerugian Negara <strong>{{ $total_kerugian += $case->kerugian_negara }} M.</strong> 
+						<br>Pemulihan Aset: <strong>{{ $total_pemulihan += $case->pemulihan_aset }} M.</strong> 
+						@endforeach
 					</div>
 					<!-- /.tab-pane -->
 				</div>

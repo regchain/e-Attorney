@@ -10,21 +10,21 @@
   	</ul>
 </div><!-- end button group -->
 <div class="panel-heading" role="tab" id="headingOne"> 
-	<p class="panel-title"> <a href="#collapse1" role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="false" aria-controls="collapse1" class="collapsed"> <i class="glyphicon glyphicon-resize-vertical text-green"></i>&nbsp;[{{ $case->judul_kasus }}] </a> </p>
+	<p class="panel-title"> <a href="#collapse{{ $case->id }}" role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="false" aria-controls="collapse1" class="collapsed"> <i class="glyphicon glyphicon-resize-vertical text-green"></i>&nbsp; {{ $case->judul_kasus }} </a> </p>
 </div>
 
-<div class="panel-collapse collapse" role="tabpanel" id="collapse1" aria-labelledby="headingOne" aria-expanded="false" style="height: 0px;">
+<div class="panel-collapse collapse" role="tabpanel" id="collapse{{ $case->id }}" aria-labelledby="headingOne" aria-expanded="false" style="height: 0px;">
 	<div class="panel-body">
 	<div class="col-lg-4 col-md-4 col-sm-12 text-justify">
 		<label>Kasus Posisi:</label>
-		[{{ $case->kasus_posisi }}]. 
-		<br>Kesimpulan: [{{ $case->kesimpulan }}]
-		<br>Saran: [{{ $case->saran }}]
-		<br>Disposisi: [{{ $case->disposisi }}]
+		{{ $case->kasus_posisi }}. 
+		<br>Kesimpulan: {{ $case->kesimpulan }}
+		<br>Saran: {{ $case->saran }}
+		<br>Disposisi: {{ $case->disposisi }}
 		@forelse ($case->obyeks as $obyek)
-		<br>Nilai Kontrak / Anggaran: <strong>[{{ $obyek->nilai_kontrak }}] M.</strong> 
-		<br>Kerugian Negara <strong>[{{ $obyek->kerugian_negara }}] M.</strong> 
-		<br>Pemulihan Aset: <strong>[{{ $obyek->pemulihan_aset }}] M.</strong>
+		<br>Nilai Kontrak / Anggaran: <strong>{{ $obyek->nilai_kontrak }} M.</strong> 
+		<br>Kerugian Negara <strong>{{ $obyek->kerugian_negara }} M.</strong> 
+		<br>Pemulihan Aset: <strong>{{ $obyek->pemulihan_aset }} M.</strong>
 		@empty
 		@endforelse
 	</div>
