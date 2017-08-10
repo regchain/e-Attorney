@@ -13,7 +13,6 @@
 		<div class="form-group{{ $errors->has('no_surat') ? ' has-error' : '' }}">
 			<label>No. Surat</label>
 			{!! Form::text('no_surat', null, ['class' => 'form-control', 'placeholder' => 'Enter ...']) !!}
-			{!! $errors->first('no_surat', '<p class="help-block">:message</p>') !!}
 		</div>
 		<!-- Tanggal Surat-->
 		<div class="form-group{{ $errors->has('tanggal_surat_pelapor') ? ' has-error' : '' }}">
@@ -49,9 +48,10 @@
 	</div>
 	<div class="col-lg-12 col-md-12 col-sm-12">
 		<!-- Judul Kasus -->
-		<div class="form-group">
+		<div class="form-group{{ $errors->has('judul_kasus') ? ' has-error' : '' }}">
 			<label>Judul Kasus: </label>
 			{!! Form::text('judul_kasus', null, ['class' => 'form-control', 'placeholder' => 'ANIM PARIATUR CLICHE REPREHENDERIT']) !!}
+			{!! $errors->first('judul_kasus', '<p class="help-block">:message</p>') !!}
 		</div>
 		<label>Kasus Posisi / Telaahan Masalah</label>
         <br>
@@ -132,9 +132,10 @@
 			{!! Form::hidden('subyek_id', null) !!}
 		</div>
 		<!-- text input -->
-		<div class="form-group">
+		<div class="form-group{{ $errors->has('lembaga') ? ' has-error' : '' }}">
 			<label> Lembaga</label>
 			{!! Form::text('lembaga', null, ['class' => 'form-control', 'placeholder' => 'Enter ...']) !!}
+			{!! $errors->first('lembaga', '<p class="help-block">:message</p>') !!}
 		</div>
 	</div>
 </div>
@@ -143,9 +144,10 @@
 		<div class="col-lg-6 col-md-6 col-sm-12">
 			<h4>Data Obyek</h4>
 			<!-- Obyek Pidana -->
-			<div class="form-group">
+			<div class="form-group{{ $errors->has('obyek_pidana') ? ' has-error' : '' }}">
 				<label>Obyek Pidana</label>
 				{!! Form::text('obyek_pidana', null, ['class' => 'form-control', 'placeholder' => 'Enter ...']) !!}
+				{!! $errors->first('obyek_pidana', '<p class="help-block">:message</p>') !!}
 				{!! Form::hidden('obyek_id', null) !!}
 			</div>
 			<div class="box-tools pull-right">

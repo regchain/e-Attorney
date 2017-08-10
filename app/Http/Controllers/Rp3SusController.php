@@ -33,10 +33,10 @@ class Rp3SusController extends Controller
             foreach ($kasus_subyek as $b) {
                 array_push($subyeks, $b);
             }
-            $a["subyeks"] = $subyeks;
             
+            $a["subyeks"] = $subyeks;
+            array_push($cases, $a);
         }
-        array_push($cases, $a);
         
         if ($cases && !empty($cases)) {
             return view('rp3sus.rp3sus_list', ['cases' => $cases]);

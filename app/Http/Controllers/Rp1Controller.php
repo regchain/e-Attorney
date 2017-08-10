@@ -41,9 +41,9 @@ class Rp1Controller extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'asal_surat'            => 'required',
-            'no_surat'              => 'required',
-            'tanggal_surat_pelapor' => 'required'
+            'judul_kasus'            => 'required',
+            'lembaga'              => 'required',
+            'obyek_pidana' => 'required'
         ]);
 
         $case = Kasus::create($request->all() + ['status' => Kasus::STATUS_BARU]);

@@ -31,8 +31,8 @@ class Rp2Controller extends Controller
         */
 
         $kasus = Kasus::select(['*'])
-            ->where('kasus.status', Kasus::STATUS_DITERUSKAN)
-            ->where('kasus.no_surat_rp2', '<>', NULL)
+            ->where('status', Kasus::STATUS_DITERUSKAN)
+            ->where('no_surat_rp2', '<>', NULL)
             ->get();
 
         foreach ($kasus as $case) {
@@ -57,9 +57,9 @@ class Rp2Controller extends Controller
             }
 
             $case["subyeks"] = $subyeks;
-            $case["obyeks"] = $obyeks;            
+            $case["obyeks"] = $obyeks;
+            array_push($cases, $case);         
         }
-        array_push($cases, $case);
         
         if ($cases && !empty($cases)) {
             return view('rp2.rp2_list', ['cases' => $cases]);
