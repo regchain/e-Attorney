@@ -11,7 +11,7 @@
         <div class="icon">
           <i class="fa fa-eye"></i>
         </div>
-        <a href="rp2" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+        <a href="rp2" class="small-box-footer">Lihat Detil <i class="fa fa-arrow-circle-right"></i></a>
       </div>
     </div>
     <!-- ./col -->
@@ -26,7 +26,7 @@
         <div class="icon">
           <i class="fa fa-gavel"></i>
         </div>
-        <a href="rp3mum" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+        <a href="rp3mum" class="small-box-footer">Lihat Detil <i class="fa fa-arrow-circle-right"></i></a>
       </div>
     </div>
     <!-- ./col -->
@@ -34,14 +34,14 @@
       <!-- small box -->
       <div class="small-box bg-yellow">
         <div class="inner">
-          <h3>44<sup style="font-size: 15px"> kasus</sup></h3>
+          <h3>44<sup style="font-size: 15px"> berkas perkara</sup></h3>
 
           <p>Penyidikan Khusus</p>
         </div>
         <div class="icon">
           <i class="fa fa-balance-scale"></i>
         </div>
-        <a href="rp3sus" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+        <a href="rp3sus" class="small-box-footer">Lihat Detil <i class="fa fa-arrow-circle-right"></i></a>
       </div>
     </div>
     <!-- ./col -->
@@ -56,7 +56,7 @@
         <div class="icon">
           <i class="fa fa-odnoklassniki"></i>
         </div>
-        <a href="subyek" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+        <a href="subyek" class="small-box-footer">Lihat Detil <i class="fa fa-arrow-circle-right"></i></a>
       </div>
     </div>
     <!-- ./col -->

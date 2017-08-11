@@ -18,18 +18,18 @@
 
 <div class="row">
 	<div class="col-lg-6 col-md-6 col-sm-12">
-		@include('partials._3dpiedonut')
+		@include('partials._kategorisubyek')
 	</div>
 	<div class="col-lg-6 col-md-6 col-sm-12">
-		@include('partials._totalmasatahanan')
+		@include('partials._kategoriobyek')
 	</div>
 </div>
 <div class="row">
-	<div class="col-lg-9 col-md-8 col-sm-12">
+	<div class="col-lg-6 col-md-6 col-sm-12">
 		@include('partials._kerugianvspemulihan')
 	</div>
-	<div class="col-lg-3 col-md-4 col-sm-12">
-		@include('partials._kerugiannegara')
+	<div class="col-lg-6 col-md-6 col-sm-12">
+		@include('partials._totalmasatahanan')
 	</div>
 </div>
       
