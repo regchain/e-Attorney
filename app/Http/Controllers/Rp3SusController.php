@@ -19,8 +19,9 @@ class Rp3SusController extends Controller
     {
         $cases = array();
         $kasus = Kasus::select(['*'])
-            ->where('kasus.status', Kasus::STATUS_DITERUSKAN)
-            ->where('kasus.no_surat_rp2', '<>', NULL)
+            ->where('status_rp3mum', Kasus::STATUS_DITERUSKAN)
+            ->where('status_rp3sus', '<>', 0)
+            ->orderBy('status_rp3sus')
             ->get();
 
         foreach ($kasus as $a) {
@@ -38,9 +39,7 @@ class Rp3SusController extends Controller
             array_push($cases, $a);
         }
         
-        if ($cases && !empty($cases)) {
-            return view('rp3sus.rp3sus_list', ['cases' => $cases]);
-        }
+        return view('rp3sus.rp3sus_list', ['cases' => $cases]);
     }
 
     /**

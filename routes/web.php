@@ -146,6 +146,7 @@ Route::group(['prefix' => '', 'middleware' => ['auth']], function() {
 	Route::resource('lidik', 'LidikController', [
 		'except' => ['create', 'store', 'show', 'destroy']]);
 	Route::resource('rp2', 'Rp2Controller');
+	Route::get('dikmum/{kasus_id}', 'Rp3MumController@create');
 	Route::resource('rp3mum', 'Rp3MumController');
 	Route::resource('rp3sus', 'Rp3SusController');
 	Route::get('subyek', 'SubyekController@index');

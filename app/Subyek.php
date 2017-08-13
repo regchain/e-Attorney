@@ -23,11 +23,9 @@ class Subyek extends Model
         'jabatan_lain',
         'lembaga',
         'pendidikan',
-        'kategori_subyek',
+        'kategori_subyek_id',
         'keterangan',
-        'status',
-        'no_surat_rp2',
-        'tanggal_rp2'
+        'status'
     ];
 
 }

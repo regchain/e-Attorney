@@ -7,6 +7,7 @@ use App\Kasus;
 use App\Obyek;
 use App\Subyek;
 use App\Jaksa;
+use App\Surat;
 
 class LidikController extends Controller
 {
@@ -102,6 +103,8 @@ class LidikController extends Controller
             $case = Kasus::find($id);
             if ($case) {
                 $case->update($request->only('judul_kasus','kasus_posisi','disposisi','status_rp1') + ['status_rp2' => Kasus::STATUS_BARU]);
+
+                $surat = Surat::create($request->only('no_surat_perkara','tanggal_surat_perkara') + ['kasus_id' => $case->id, 'tipe_surat' => 'RP2']);
 
                 $jaksas = $request->jaksa_id;
                 if ($jaksas && !empty($jaksas)) {

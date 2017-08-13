@@ -9,6 +9,7 @@ use App\Subyek;
 use App\KasusSubyek;
 use App\KasusObyek;
 use App\KasusJaksa;
+use App\Surat;
 
 class Rp2Controller extends Controller
 {
@@ -22,7 +23,8 @@ class Rp2Controller extends Controller
         $cases = array();
         $kasus = Kasus::select(['*'])
             ->where('status_rp1', Kasus::STATUS_DITERUSKAN)
-            ->where('status_rp2', Kasus::STATUS_BARU)
+            ->where('status_rp2', '<>', 0)
+            ->orderBy('status_rp2')
             ->get();
 
         foreach ($kasus as $case) {
@@ -96,12 +98,14 @@ class Rp2Controller extends Controller
      */
     public function edit($id)
     {
-        $case = Kasus::select(['kasus.*','subyek.id as subyek_id','subyek.nama_terlapor','subyek.lembaga','obyek.id as obyek_id','obyek.obyek_pidana','obyek.nilai_kontrak'])
+        $case = Kasus::select(['kasus.*','subyek.id as subyek_id','subyek.nama_terlapor','subyek.lembaga','obyek.id as obyek_id','obyek.obyek_pidana','obyek.nilai_kontrak','surats.id as surat_id','surats.no_surat_perkara','surats.tanggal_surat_perkara'])
             ->join('kasus_subyek','kasus.id','=','kasus_subyek.kasus_id')
             ->join('subyek','kasus_subyek.subyek_id','=','subyek.id')
             ->join('kasus_obyek','kasus.id','=','kasus_obyek.kasus_id')
             ->join('obyek','kasus_obyek.obyek_id','=','obyek.id')
+            ->join('surats','kasus.id','=','surats.kasus_id')
             ->where('kasus.id',$id)
+            ->where('tipe_surat','=','RP2')
             ->first();
 
         $kasus_jaksa = KasusJaksa::select(['kasus_jaksas.*','nama_jaksa'])
@@ -110,10 +114,10 @@ class Rp2Controller extends Controller
             ->get();
         
         if ($case && !empty($case)) {
-            return view('rp2.rp2_edit', ['case' => $case, 'kasus_jaksa' => $kasus_jaksa]);
+            return view('rp2.rp2_edit', ['case' => $case, 'kasus_jaksa' => $kasus_jaksa, 'status_rp2' => $case->status_rp2]);
         } else {
             return redirect()->route('rp2.index');
-        }        
+        }
     }
 
     /**
@@ -126,56 +130,33 @@ class Rp2Controller extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'judul_kasus'           => 'required',
-            'kasus_posisi'          => 'required'
+            'judul_kasus'   => 'required',
+            'lembaga'       => 'required',
+            'nilai_kontrak' => 'required',
+            'obyek_pidana'  => 'required'
         ]);
 
-        $status = $request->status;
-        if ($status == Kasus::STATUS_DIALIHKAN OR $status == Kasus::STATUS_DIHENTIKAN) {
-            // Update status menjadi arsip
-            $case = Kasus::find($id);
-            if ($case) {
-                $case->update($request->only('judul_kasus','kasus_posisi','disposisi','status'));
-            }
-        } else {
-            $case = Kasus::find($id);
-            if ($case) {
-                $case->update($request->only('judul_kasus','kasus_posisi','disposisi','status'));
-                
-                $kasus_rp2 = $case->toArray();
-                $newCase = Kasus::create($kasus_rp2);
-                $caseID = $newCase->id;
-
-                $updateNewCase = Kasus::find($caseID);
-                $updateNewCase->update($request->only('tanggal_rp2','no_surat_rp2'));
-            }
+        $case = Kasus::find($id);
+        if ($case) {
+            $case->update($request->only('judul_kasus','kasus_posisi','disposisi'));
         }
-
-        // Update subyek
+        
+        $obyek = Obyek::find($request->obyek_id);
+        if ($obyek) {
+            $obyek->update($request->only('nilai_kontrak','obyek_pidana'));
+        }
+        
         $subyek = Subyek::find($request->subyek_id);
         if ($subyek) {
             $subyek->update($request->only('nama_terlapor','lembaga'));
         }
 
-        // Update obyek
-        $obyek = Obyek::find($request->obyek_id);
-        if ($obyek) {
-            $obyek->update($request->only('obyek_pidana','nilai_kontrak'));
+        $surat = Surat::find($request->surat_id);
+        if ($surat) {
+            $surat->update($request->only('tanggal_surat_perkara','no_surat_perkara'));
         }
-
-        $newCase->subyeks()->attach($subyek);
-        $newCase->obyeks()->attach($obyek);
-
-        $jaksas = $request->jaksa_id;
-        if ($jaksas && !empty($jaksas)) {
-            foreach ($jaksas as $jaksa) {
-                $jaksa_id = intval($jaksa);
-                $findJaksa = Jaksa::find($jaksa_id);
-                $newCase->jaksas()->attach($findJaksa);
-            }
-        }       
         
-        return redirect()->route('rp1.index');
+        return redirect()->route('rp2.index');
     }
 
     /**

@@ -1,13 +1,15 @@
 
 <!-- Single button -->
 <div class="btn-group pull-right">
-  <button type="button" class="btn btn-success btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	@if ($case->status_rp2  == 1)
+  	<button type="button" class="btn btn-success btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     Tindakan <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu">
+  	</button>
+  	<ul class="dropdown-menu">
   		<li><a href="{{ route('rp2.edit', $case->id) }}" class="text-right">Edit &nbsp;&nbsp;<i class="glyphicon glyphicon-pencil"></i></a></li>
-  		<li><a href="{{ route('rp3mum.create') }}" class="text-right"><strong>NAIK DIK MUM</strong> &nbsp;&nbsp;<i class="glyphicon glyphicon-log-in text-red"></i></a></li>
+  		<li><a href="{{ url('/dikmum', $case->id) }}" class="text-right"><strong>NAIK DIK MUM</strong> &nbsp;&nbsp;<i class="glyphicon glyphicon-log-in text-red"></i></a></li>
   	</ul>
+  	@endif
 </div><!-- end button group -->
 <div class="panel-heading" role="tab" id="headingOne"> 
 	<p class="panel-title"> <a href="#collapse{{ $case->id }}" role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="false" aria-controls="collapse1" class="collapsed"> <i class="glyphicon glyphicon-resize-vertical text-green"></i>&nbsp; {{ $case->judul_kasus }} </a> </p>

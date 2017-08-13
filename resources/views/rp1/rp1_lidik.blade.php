@@ -31,7 +31,7 @@
 				<div class="input-group-addon">
 					<i class="fa fa-calendar"></i>
 				</div>
-				{!! Form::date('tanggal_rp2', \Carbon\Carbon::now(), ['class' => 'form-control pull-right', 'id' => 'datepicker']) !!}
+				{!! Form::date('tanggal_surat_perkara', \Carbon\Carbon::now(), ['class' => 'form-control pull-right', 'id' => 'datepicker']) !!}
 			</div>
 			<!-- /.input group -->
 		</div>
@@ -41,7 +41,7 @@
 		<!-- No. Surat -->
 		<div class="form-group">
 			<label> No. Surat</label>
-			{!! Form::text('no_surat_rp2', null, ['class' => 'form-control', 'placeholder' => 'PRINT-']) !!}
+			{!! Form::text('no_surat_perkara', null, ['class' => 'form-control', 'placeholder' => 'PRINT-']) !!}
 		</div>
 	</div>
 	<div class="col-lg-8 col-md-8 col-sm-12">
