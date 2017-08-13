@@ -12,7 +12,6 @@ class Obyek extends Model
         'nilai_kontrak',
         'kerugian_negara',
         'pemulihan_aset',
-        'obyek_pidana',
-        'kasus_id'
+        'obyek_pidana'
     ];
 }

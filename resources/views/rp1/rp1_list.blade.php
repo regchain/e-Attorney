@@ -33,7 +33,7 @@
         </td>
         <td>
             <div class="btn-group-vertical pull-right" role="group" aria-label="...">
-                @if ($case->status  == '1')
+                @if ($case->status_rp1  == 1)
                 <a href="{{ route('rp1.edit', $case->id) }}" class="btn btn-default btn-xs">Edit &nbsp;<i class="glyphicon glyphicon-pencil"></i></a>
                 <a href="{{ route('lidik.edit', $case->id) }}" class="btn btn-success btn-xs">Sprint Lidik &nbsp;<span class="glyphicon glyphicon-log-in"></span></a>
                 @endif

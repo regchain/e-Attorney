@@ -51,15 +51,8 @@
 	<div class="col-lg-4 col-md-4 col-sm-12">
 		<label>Status</label>
 		<div class="input-group">
-			{!! Form::select('status', ['3' => 'DITERUSKAN', '2' => 'DIALIHKAN', '4' => 'DIHENTIKAN'], $status, ['class' => 'form-control']) !!}
-			<!--
-			<div class="input-group-btn">
-				<button type="button" class="btn btn-default" aria-label="stop" title="DIHENTIKAN"><span class="glyphicon glyphicon-minus-sign"></span> </button>
-				<button type="button" class="btn btn-default" aria-label="transfer" title="DIALIHKAN"><span class="glyphicon glyphicon-transfer"></span></button> </div> 
-				<input class="form-control" aria-label="Text input with multiple buttons" placeholder="Keterangan Status...">
-			</div>
-			-->
-
+			{!! Form::select('status', ['3' => 'DITERUSKAN', '2' => 'DIALIHKAN', '4' => 'DIHENTIKAN'], 3, ['class' => 'form-control']) !!}
+			
 			<!-- Disposisi / Petunjuk -->
 			<div class="form-group">
 				<label>Disposisi / Petunjuk</label>
@@ -110,10 +103,16 @@
 	</div>
 
 	<div class="col-lg-12 col-md-12 col-sm-12">
+		<h4>Data Jaksa Yang Telah Dipilih</h4>
+		<div class="form-group">
+			@include('partials._jaksa', ['kasus_jaksa' => $kasus_jaksa])
+        </div>
+	</div>
+	<div class="col-lg-12 col-md-12 col-sm-12">
 		<h4>Data Jaksa</h4>
 			<div class="form-group">
 			<label>Pilih Jaksa</label>
-				{!! Form::select('jaksa_id[]', [''=>'']+App\Jaksa::pluck('nama_jaksa','id')->all(), 0, ['class'=>'form-control', 'placeholder' => 'Pilih Jaksa', 'multiple' => 'multiple']) !!}
+				{!! Form::select('jaksa_id[]', [''=>'']+App\Jaksa::pluck('nama_jaksa','id')->all(), 0, ['class'=>'form-control', 'placeholder' => 'Pilih Jaksa', 'multiple' => 'multiple', 'size' => '10']) !!}
 			</div>
 			<a href="{{ route('rp2.index') }}" class="btn btn-danger"> BATAL</a>
 			{{ Form::submit('KIRIM', ['class' => 'btn btn-success']) }}

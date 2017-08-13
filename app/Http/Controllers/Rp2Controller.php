@@ -8,6 +8,7 @@ use App\Obyek;
 use App\Subyek;
 use App\KasusSubyek;
 use App\KasusObyek;
+use App\KasusJaksa;
 
 class Rp2Controller extends Controller
 {
@@ -20,8 +21,8 @@ class Rp2Controller extends Controller
     {
         $cases = array();
         $kasus = Kasus::select(['*'])
-            ->where('status', Kasus::STATUS_DITERUSKAN)
-            ->where('no_surat_rp2', '<>', NULL)
+            ->where('status_rp1', Kasus::STATUS_DITERUSKAN)
+            ->where('status_rp2', Kasus::STATUS_BARU)
             ->get();
 
         foreach ($kasus as $case) {
@@ -95,13 +96,6 @@ class Rp2Controller extends Controller
      */
     public function edit($id)
     {
-        $status = array(
-            Kasus::STATUS_BARU          => "STATUS_BARU",
-            Kasus::STATUS_DIALIHKAN     => "STATUS_DIALIHKAN",
-            Kasus::STATUS_DITERUSKAN    => "STATUS_DITERUSKAN",
-            Kasus::STATUS_DIHENTIKAN    => "STATUS_DIHENTIKAN"
-        );
-
         $case = Kasus::select(['kasus.*','subyek.id as subyek_id','subyek.nama_terlapor','subyek.lembaga','obyek.id as obyek_id','obyek.obyek_pidana','obyek.nilai_kontrak'])
             ->join('kasus_subyek','kasus.id','=','kasus_subyek.kasus_id')
             ->join('subyek','kasus_subyek.subyek_id','=','subyek.id')
@@ -109,10 +103,14 @@ class Rp2Controller extends Controller
             ->join('obyek','kasus_obyek.obyek_id','=','obyek.id')
             ->where('kasus.id',$id)
             ->first();
+
+        $kasus_jaksa = KasusJaksa::select(['kasus_jaksas.*','nama_jaksa'])
+            ->join('jaksas','kasus_jaksas.jaksa_id','=','jaksas.id')
+            ->where('kasus_id',$id)
+            ->get();
         
         if ($case && !empty($case)) {
-            //return view('rp2.rp2_edit')->with(compact('case'));
-            return view('rp2.rp2_edit', ['case' => $case, 'status' => $status]);
+            return view('rp2.rp2_edit', ['case' => $case, 'kasus_jaksa' => $kasus_jaksa]);
         } else {
             return redirect()->route('rp2.index');
         }        
@@ -127,7 +125,57 @@ class Rp2Controller extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'judul_kasus'           => 'required',
+            'kasus_posisi'          => 'required'
+        ]);
+
+        $status = $request->status;
+        if ($status == Kasus::STATUS_DIALIHKAN OR $status == Kasus::STATUS_DIHENTIKAN) {
+            // Update status menjadi arsip
+            $case = Kasus::find($id);
+            if ($case) {
+                $case->update($request->only('judul_kasus','kasus_posisi','disposisi','status'));
+            }
+        } else {
+            $case = Kasus::find($id);
+            if ($case) {
+                $case->update($request->only('judul_kasus','kasus_posisi','disposisi','status'));
+                
+                $kasus_rp2 = $case->toArray();
+                $newCase = Kasus::create($kasus_rp2);
+                $caseID = $newCase->id;
+
+                $updateNewCase = Kasus::find($caseID);
+                $updateNewCase->update($request->only('tanggal_rp2','no_surat_rp2'));
+            }
+        }
+
+        // Update subyek
+        $subyek = Subyek::find($request->subyek_id);
+        if ($subyek) {
+            $subyek->update($request->only('nama_terlapor','lembaga'));
+        }
+
+        // Update obyek
+        $obyek = Obyek::find($request->obyek_id);
+        if ($obyek) {
+            $obyek->update($request->only('obyek_pidana','nilai_kontrak'));
+        }
+
+        $newCase->subyeks()->attach($subyek);
+        $newCase->obyeks()->attach($obyek);
+
+        $jaksas = $request->jaksa_id;
+        if ($jaksas && !empty($jaksas)) {
+            foreach ($jaksas as $jaksa) {
+                $jaksa_id = intval($jaksa);
+                $findJaksa = Jaksa::find($jaksa_id);
+                $newCase->jaksas()->attach($findJaksa);
+            }
+        }       
+        
+        return redirect()->route('rp1.index');
     }
 
     /**

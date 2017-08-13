@@ -16,8 +16,8 @@ class Rp1Controller extends Controller
      */
     public function index()
     {
-        $cases = Kasus::where('no_surat_rp2', NULL)
-            ->orderBy('status')
+        $cases = Kasus::where('status_rp1', '<>', NULL)
+            ->orderBy('status_rp1')
             ->get();
         
         if ($cases && !empty($cases)) {
@@ -44,13 +44,13 @@ class Rp1Controller extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'judul_kasus'            => 'required',
-            'lembaga'              => 'required',
+            'judul_kasus'  => 'required',
+            'lembaga'      => 'required',
             'obyek_pidana' => 'required'
         ]);
 
-        $case = Kasus::create($request->all() + ['status' => Kasus::STATUS_BARU]);
-        $obyek = Obyek::create($request->only('obyek_pidana') + ['kasus_id' => $case->id]);
+        $case = Kasus::create($request->all() + ['status_rp1' => Kasus::STATUS_BARU]);
+        $obyek = Obyek::create($request->only('obyek_pidana'));
         $subyek = Subyek::create($request->only('nama_terlapor', 'lembaga'));
         
         // attach relationship
@@ -82,7 +82,8 @@ class Rp1Controller extends Controller
         $case = Kasus::select(['kasus.*','subyek.id as subyek_id','subyek.nama_terlapor','subyek.lembaga','obyek.id as obyek_id','obyek.obyek_pidana'])
             ->join('kasus_subyek','kasus.id','=','kasus_subyek.kasus_id')
             ->join('subyek','kasus_subyek.subyek_id','=','subyek.id')
-            ->join('obyek','kasus.id','=','obyek.kasus_id')
+            ->join('kasus_obyek','kasus.id','=','kasus_obyek.kasus_id')
+            ->join('obyek','kasus_obyek.obyek_id','=','obyek.id')
             ->where('kasus.id',$id)
             ->first();
 
@@ -103,9 +104,9 @@ class Rp1Controller extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'asal_surat'            => 'required',
-            'no_surat'              => 'required',
-            'tanggal_surat_pelapor' => 'required'
+            'judul_kasus'  => 'required',
+            'lembaga'      => 'required',
+            'obyek_pidana' => 'required'
         ]);
 
         $case = Kasus::find($id);
