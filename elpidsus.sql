@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: 07 Agu 2017 pada 15.35
+-- Generation Time: 14 Agu 2017 pada 10.16
 -- Versi Server: 5.7.19-0ubuntu0.17.04.1
--- PHP Version: 7.0.18-0ubuntu0.17.04.1
+-- PHP Version: 7.0.22-0ubuntu0.17.04.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -40,34 +40,6 @@ CREATE TABLE `admins` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `detail_kasus_surats`
---
-
-CREATE TABLE `detail_kasus_surats` (
-  `id` int(11) NOT NULL,
-  `id_kasus` int(11) NOT NULL,
-  `id_surat` int(11) NOT NULL,
-  `status` varchar(100) NOT NULL,
-  `date_created` datetime NOT NULL,
-  `date_updated` datetime NOT NULL,
-  `created_from_ip` varchar(100) NOT NULL,
-  `updated_from_ip` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
-
---
--- Dumping data untuk tabel `detail_kasus_surats`
---
-
-INSERT INTO `detail_kasus_surats` (`id`, `id_kasus`, `id_surat`, `status`, `date_created`, `date_updated`, `created_from_ip`, `updated_from_ip`) VALUES
-(1, 12, 1, '', '2017-06-26 05:41:13', '2017-06-26 05:41:13', '::1', '::1'),
-(2, 13, 2, '', '2017-06-26 06:03:40', '2017-06-26 06:03:40', '::1', '::1'),
-(3, 14, 3, '', '2017-06-26 06:13:51', '2017-06-26 06:13:51', '::1', '::1'),
-(4, 9, 4, 'RP2', '2017-06-29 00:54:53', '2017-06-29 00:54:53', '::1', '::1'),
-(5, 9, 5, 'RP2', '2017-06-29 00:56:50', '2017-06-29 00:56:50', '::1', '::1');
-
--- --------------------------------------------------------
-
---
 -- Struktur dari tabel `groups`
 --
 
@@ -97,8 +69,8 @@ CREATE TABLE `jaksas` (
   `nama_jaksa` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `pangkat` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
   `telepon` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -106,8 +78,67 @@ CREATE TABLE `jaksas` (
 --
 
 INSERT INTO `jaksas` (`id`, `nip`, `nama_jaksa`, `pangkat`, `telepon`, `created_at`, `updated_at`) VALUES
-(1, '0987654321', 'Susanto Gani SH.', 'Jaksa Madya', '1234567890', '2017-07-31 21:49:51', '2017-07-31 21:49:51'),
-(2, '114567986 6543 98909', 'Fauzal, SH., MH.', 'Jaksa Madya', '0811111111', '2017-07-31 21:51:18', '2017-08-01 05:03:10');
+(1, '1', 'Adi Sutanto SH.MH', 'Jaksa', '1', '2017-08-09 18:29:34', '2017-08-09 18:29:34'),
+(2, '2', 'Agung Arifianto SH.MH', 'Jaksa', '2', '2017-08-09 18:29:34', '2017-08-09 18:29:34'),
+(3, '3', 'Agus Khairudin SH.MH', 'Jaksa', '3', '2017-08-09 18:29:34', '2017-08-09 18:29:34'),
+(4, '4', 'Agus Widodo SH.MH', 'Jaksa', '4', '2017-08-09 18:29:34', '2017-08-09 18:29:34'),
+(5, '5', 'Agus Wirawan Eko Saputro SH.MH', 'Jaksa', '5', '2017-08-09 18:29:34', '2017-08-09 18:29:34'),
+(6, '6', 'Akhmad Mudhor SH.MH', 'Jaksa', '6', '2017-08-09 18:29:34', '2017-08-09 18:29:34'),
+(7, '7', 'Andi Herman SH.MH', 'Jaksa', '7', '2017-08-09 18:29:34', '2017-08-09 18:29:34'),
+(8, '8', 'Anthony Nainggolan SH.MH', 'Jaksa', '8', '2017-08-09 18:29:34', '2017-08-09 18:29:34'),
+(9, '9', 'Arif Susanto SH.MH', 'Jaksa', '9', '2017-08-09 18:29:34', '2017-08-09 18:29:34'),
+(10, '10', 'Damha SH.MH', 'Jaksa', '10', '2017-08-09 18:29:34', '2017-08-09 18:29:34'),
+(11, '11', 'Endi Sulistiyo SH', 'Jaksa', '11', '2017-08-09 18:29:34', '2017-08-09 18:29:34'),
+(12, '12', 'Eryana Ganda Nugraha SH.M.Hum', 'Jaksa', '12', '2017-08-09 18:29:34', '2017-08-09 18:29:34'),
+(13, '13', 'Farida Puspitasari SH.MH', 'Jaksa', '13', '2017-08-09 18:29:34', '2017-08-09 18:29:34'),
+(14, '14', 'Fauzal SH. MH.', 'Jaksa', '14', '2017-08-09 18:29:34', '2017-08-09 18:29:34'),
+(15, '15', 'Fernando Simbolon SH.M.Hum', 'Jaksa', '15', '2017-08-09 18:29:34', '2017-08-09 18:29:34'),
+(16, '16', 'Firdaus Dewilmar SH.MH', 'Jaksa', '16', '2017-08-09 18:29:34', '2017-08-09 18:29:34'),
+(17, '17', 'Ginanjar Cahya Permana SH.MH', 'Jaksa', '17', '2017-08-09 18:29:34', '2017-08-09 18:29:34'),
+(18, '18', 'Gunawan Sumarsono SH', 'Jaksa', '18', '2017-08-09 18:29:34', '2017-08-09 18:29:34'),
+(19, '19', 'Haryono SH.MH', 'Jaksa', '19', '2017-08-09 18:29:34', '2017-08-09 18:29:34'),
+(20, '20', 'Heddy Heddiyanto S SH.MH', 'Jaksa', '20', '2017-08-09 18:29:34', '2017-08-09 18:29:34'),
+(21, '21', 'Hendra Syarbaini SH.MH', 'Jaksa', '21', '2017-08-09 18:29:34', '2017-08-09 18:29:34'),
+(22, '22', 'Hendry Marulitua SH.MH', 'Jaksa', '22', '2017-08-09 18:29:34', '2017-08-09 18:29:34'),
+(23, '23', 'Heru Murjianto SH.MH', 'Jaksa', '23', '2017-08-09 18:29:34', '2017-08-09 18:29:34'),
+(24, '24', 'Husin Fahmi SH.MH', 'Jaksa', '24', '2017-08-09 18:29:34', '2017-08-09 18:29:34'),
+(25, '25', 'I.G. Punia Atmaja NR SH.MH', 'Jaksa', '25', '2017-08-09 18:29:34', '2017-08-09 18:29:34'),
+(26, '26', 'IBN. Wiswantanu SH.MH', 'Jaksa', '26', '2017-08-09 18:29:34', '2017-08-09 18:29:34'),
+(27, '27', 'Indrawan Panacitra SH.MH', 'Jaksa', '27', '2017-08-09 18:29:34', '2017-08-09 18:29:34'),
+(28, '28', 'Ipat Fatmawati SH.MH', 'Jaksa', '28', '2017-08-09 18:29:34', '2017-08-09 18:29:34'),
+(29, '29', 'Jimmy Didi Setiawan SH.MH', 'Jaksa', '29', '2017-08-09 18:29:34', '2017-08-09 18:29:34'),
+(30, '30', 'Muhammad Yusuf Putra SH', 'Jaksa', '30', '2017-08-09 18:29:34', '2017-08-09 18:29:34'),
+(31, '31', 'Muhammad Zubair SH.MH', 'Jaksa', '31', '2017-08-09 18:29:34', '2017-08-09 18:29:34'),
+(32, '32', 'Nophy Tennophero Suoth SH.MH', 'Jaksa', '32', '2017-08-09 18:29:34', '2017-08-09 18:29:34'),
+(33, '33', 'Pathor Rahman SH.MH', 'Jaksa', '33', '2017-08-09 18:29:34', '2017-08-09 18:29:34'),
+(34, '34', 'R.M. Rachmat Zachry SH.MH', 'Jaksa', '34', '2017-08-09 18:29:34', '2017-08-09 18:29:34'),
+(35, '35', 'Reinhard Tololiu SH.MH', 'Jaksa', '35', '2017-08-09 18:29:34', '2017-08-09 18:29:34'),
+(36, '36', 'Rudi Prabowo Adji SH.MH', 'Jaksa', '36', '2017-08-09 18:29:34', '2017-08-09 18:29:34'),
+(37, '37', 'Sefran Haryadi SH.MH', 'Jaksa', '37', '2017-08-09 18:29:34', '2017-08-09 18:29:34'),
+(38, '38', 'Siswhandono SH.MH', 'Jaksa', '38', '2017-08-09 18:29:34', '2017-08-09 18:29:34'),
+(39, '39', 'Susanto Gani SH.', 'Jaksa', '39', '2017-08-09 18:29:34', '2017-08-09 18:29:34'),
+(40, '40', 'Wilyanto SH.MH', 'Jaksa', '40', '2017-08-09 18:29:34', '2017-08-09 18:29:34'),
+(41, '41', 'Yogiswara SH.MH', 'Jaksa', '41', '2017-08-09 18:29:34', '2017-08-09 18:29:34'),
+(42, '42', 'Yopy Adriansyah SH.MH', 'Jaksa', '42', '2017-08-09 18:29:34', '2017-08-09 18:29:34'),
+(43, '43', 'Faizal Banu SH.MH', 'Jaksa', '43', '2017-08-09 18:29:34', '2017-08-09 18:29:34'),
+(44, '44', 'Sapta Putra SH.MH', 'Jaksa', '44', '2017-08-09 18:29:34', '2017-08-09 18:29:34'),
+(45, '45', 'Imam Rahmat Saputra SH.MH', 'Jaksa', '45', '2017-08-09 18:29:34', '2017-08-09 18:29:34'),
+(46, '46', 'Revanda Sitepu SH', 'Jaksa', '46', '2017-08-09 18:29:34', '2017-08-09 18:29:34'),
+(47, '47', 'Haryoko Ari Wibwowo SH. MH', 'Jaksa', '47', '2017-08-09 18:29:34', '2017-08-09 18:29:34'),
+(48, '48', 'Zulkifly Noor SH.MH', 'Jaksa', '48', '2017-08-09 18:29:34', '2017-08-09 18:29:34'),
+(49, '49', 'Chandra Kusumah B SH.MH', 'Jaksa', '49', '2017-08-09 18:29:34', '2017-08-09 18:29:34'),
+(50, '50', 'Widagdo Mulyono Perus SH.MH', 'Jaksa', '50', '2017-08-09 18:29:34', '2017-08-09 18:29:34'),
+(51, '51', 'Susilo Hadi SH.MH', 'Jaksa', '51', '2017-08-09 18:29:34', '2017-08-09 18:29:34'),
+(52, '52', 'Achmad Hariyano SH.MH', 'Jaksa', '52', '2017-08-09 18:29:34', '2017-08-09 18:29:34'),
+(53, '53', 'Ni Wayan Kencanawati SH.MH', 'Jaksa', '53', '2017-08-09 18:29:34', '2017-08-09 18:29:34'),
+(54, '54', 'Fathoni Hatam SH.MH', 'Jaksa', '54', '2017-08-09 18:29:34', '2017-08-09 18:29:34'),
+(55, '55', 'Juli Isnur SH.MH', 'Jaksa', '55', '2017-08-09 18:29:34', '2017-08-09 18:29:34'),
+(56, '56', 'Mardatilla SH.MH', 'Jaksa', '56', '2017-08-09 18:29:34', '2017-08-09 18:29:34'),
+(57, '57', 'G. Sophan Syarif SH', 'Jaksa', '57', '2017-08-09 18:29:34', '2017-08-09 18:29:34'),
+(58, '58', 'Bambang Sunoto SH.MH', 'Jaksa', '58', '2017-08-09 18:29:34', '2017-08-09 18:29:34'),
+(59, '59', 'Junaidi SH', 'Jaksa', '59', '2017-08-09 18:29:34', '2017-08-09 18:29:34'),
+(60, '60', 'IDA BAGUS NYOMAN W, SH', 'jaksa', '60', '2017-08-09 18:42:36', '2017-08-09 18:42:36'),
+(61, '61', 'ARIO WICAKSONO, SH', 'jaksa', '61', '2017-08-09 18:57:03', '2017-08-09 18:57:03');
 
 -- --------------------------------------------------------
 
@@ -121,38 +152,41 @@ CREATE TABLE `kasus` (
   `lokasi_kejadian` varchar(100) DEFAULT NULL,
   `tanggal_kejadian` datetime DEFAULT NULL,
   `nama_lengkap` varchar(100) DEFAULT NULL,
-  `alamat` varchar(150) DEFAULT NULL,
-  `kota` varchar(100) DEFAULT NULL,
-  `propinsi` varchar(255) DEFAULT NULL,
-  `kontak_telpon` varchar(255) DEFAULT NULL,
-  `kontak_handphone` varchar(255) DEFAULT NULL,
-  `kontak_email` varchar(255) DEFAULT NULL,
-  `kodepos` int(11) DEFAULT NULL,
-  `disposisi` varchar(100) DEFAULT NULL,
+  `alamat` text,
+  `kota` varchar(50) DEFAULT NULL,
+  `propinsi` varchar(50) DEFAULT NULL,
+  `kontak_telpon` varchar(30) DEFAULT NULL,
+  `kontak_handphone` varchar(30) DEFAULT NULL,
+  `kontak_email` varchar(50) DEFAULT NULL,
+  `kodepos` char(10) DEFAULT NULL,
+  `disposisi` text,
   `kasus_posisi` text,
-  `kasimpulan` varchar(350) DEFAULT NULL,
-  `saran` varchar(350) DEFAULT NULL,
-  `status` varchar(100) DEFAULT '',
+  `kasimpulan` text,
+  `saran` text,
   `asal_surat` varchar(255) DEFAULT NULL,
   `no_surat` varchar(255) DEFAULT NULL,
   `tanggal_surat_pelapor` datetime DEFAULT NULL,
   `tanggal_surat_diterima` datetime DEFAULT NULL,
-  `pembuat_catatan_surat` varchar(255) DEFAULT NULL,
-  `tanggal_rp2` datetime DEFAULT NULL,
-  `no_surat_rp2` varchar(255) DEFAULT NULL,
+  `pembuat_catatan_surat` varchar(50) DEFAULT NULL,
+  `status_rp1` int(1) DEFAULT '1',
+  `status_rp2` int(1) NOT NULL DEFAULT '0',
+  `status_rp3mum` int(1) NOT NULL DEFAULT '0',
+  `status_rp3sus` int(1) NOT NULL DEFAULT '0',
   `created_at` datetime DEFAULT NULL,
-  `updated_at` datetime DEFAULT NULL,
-  `created_from_ip` varchar(100) DEFAULT '',
-  `updated_from_ip` varchar(100) DEFAULT ''
+  `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `kasus`
 --
 
-INSERT INTO `kasus` (`id`, `judul_kasus`, `lokasi_kejadian`, `tanggal_kejadian`, `nama_lengkap`, `alamat`, `kota`, `propinsi`, `kontak_telpon`, `kontak_handphone`, `kontak_email`, `kodepos`, `disposisi`, `kasus_posisi`, `kasimpulan`, `saran`, `status`, `asal_surat`, `no_surat`, `tanggal_surat_pelapor`, `tanggal_surat_diterima`, `pembuat_catatan_surat`, `tanggal_rp2`, `no_surat_rp2`, `created_at`, `updated_at`, `created_from_ip`, `updated_from_ip`) VALUES
-(1, 'Dugaan TPK PT. Bank Sumut Syariah Cabang Medan kepada PT. FASBIRU', NULL, NULL, 'Anonym', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Dugaan TPK dalam pemberian Fasilitas Kredit oleh PT. Bank Sumut Syariah Cabang Medan kepada PT. FASBIR', NULL, NULL, '1', 'Annomym', '123', '2017-08-07 00:00:00', '2017-08-07 00:00:00', NULL, NULL, NULL, '2017-08-07 00:00:36', '2017-08-07 00:14:07', '', ''),
-(2, 'Dugaan TPK di Suku Dinas Pendidikan Menengah Jakarta Selatan, Jakarta Barat dan Jakarta Pusat', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Dugaan TPK mark up dalam pengadaan alat Fitness SMA dan SMK di Suku Dinas Pendidikan Menengah Jakarta Selatan, Jakarta Barat dan Jakarta Pusat tahun 2014', NULL, NULL, '1', 'Annomym', '333', '2017-08-07 00:00:00', '2017-08-07 00:00:00', NULL, NULL, NULL, '2017-08-07 01:42:46', '2017-08-07 01:42:46', '', '');
+INSERT INTO `kasus` (`id`, `judul_kasus`, `lokasi_kejadian`, `tanggal_kejadian`, `nama_lengkap`, `alamat`, `kota`, `propinsi`, `kontak_telpon`, `kontak_handphone`, `kontak_email`, `kodepos`, `disposisi`, `kasus_posisi`, `kasimpulan`, `saran`, `asal_surat`, `no_surat`, `tanggal_surat_pelapor`, `tanggal_surat_diterima`, `pembuat_catatan_surat`, `status_rp1`, `status_rp2`, `status_rp3mum`, `status_rp3sus`, `created_at`, `updated_at`) VALUES
+(1, 'Dugaan TPK PT. Bank Sumut Syariah Cabang Medan kepada PT. FASBIRU', NULL, NULL, 'Anonym', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Dugaan TPK dalam pemberian Fasilitas Kredit oleh PT. Bank Sumut Syariah Cabang Medan kepada PT. FASBIR', NULL, NULL, 'Annomym', '123', '2017-08-07 00:00:00', '2017-08-07 00:00:00', NULL, 3, 1, 0, 0, '2017-08-10 00:17:22', '2017-08-10 00:17:22'),
+(2, 'Pengadaan alat Fitness SMA dan SMK di Suku Dinas Pendidikan Menengah Jakarta Selatan, Jakarta Barat dan Jakarta Pusat', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'NAIK DIKMUM', 'Dugaan TPK mark up dalam pengadaan alat Fitness SMA dan SMK di Suku Dinas Pendidikan Menengah Jakarta Selatan, Jakarta Barat dan Jakarta Pusat tahun 2014', NULL, NULL, 'Annomym', '333', '2017-08-07 00:00:00', '2017-08-07 00:00:00', NULL, 3, 1, 0, 0, '2017-08-09 23:56:41', '2017-08-12 02:53:52'),
+(3, 'Fasilitas Akta Kredit Investasi pihak Bank Mandiri kepada PT. Tri Selaras Sapta (PT. TSS)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Dugaan TPK atas penurunan fasilitas Akta Kredit Investasi Nomor : CRO.DPA/0157/KL/2013-02 tanggal 02 September 2013 oleh pihak Bank Mandiri kepada PT. Tri Selaras Sapta (PT. TSS)', NULL, NULL, 'abc', '123', '2017-08-12 00:00:00', '2017-08-12 00:00:00', NULL, 1, 0, 0, 0, '2017-08-10 00:02:43', '2017-08-12 02:50:35'),
+(4, 'Dugaan TPK Dugaan TPK', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Dugaan TPK dalam penjualan tanah milik Negara di Jalan Kalimalang Raya Kelurahan Lambangsari, Kecamatan Tambun Selatan Kabupaten Bekasi Provinsi Jawa Barat oleh PT. Adhi Karya kepada Hiu Kok Ming', NULL, NULL, 'aq', '111', '2017-08-10 00:00:00', '2017-08-10 00:00:00', NULL, 3, 1, 0, 0, '2017-08-10 00:08:52', '2017-08-10 00:08:52'),
+(5, 'Dugaan TPK dalam penyalahgunaan keuangan di Kantor Pusat PT. Pos Indonesia (persero)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Dugaan TPK dalam penyalahgunaan keuangan di Kantor Pusat PT. Pos Indonesia (persero)', NULL, NULL, NULL, NULL, '2017-08-10 00:00:00', '2017-08-10 00:00:00', NULL, 3, 3, 1, 0, '2017-08-10 01:59:13', '2017-08-14 02:27:12'),
+(6, 'Penyertaan modal Pemerintah Kabupaten Bengkalis kepada PT. Bumi Laksamana Jaya (Bengkalis)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Dugaan TPK dalam penyertaan modal Pemerintah Kabupaten Bengkalis kepada PT. Bumi Laksamana Jaya (Bengkalis) Tahun Anggaran 2012\r\n\r\n(Asal SP LID Print-86/F.2/Fd.1/05/2015\r\nTanggal 26.05.2015)', NULL, NULL, NULL, NULL, '2017-08-14 00:00:00', '2017-08-14 00:00:00', NULL, 1, 0, 0, 0, '2017-08-14 01:57:50', '2017-08-14 01:57:50');
 
 -- --------------------------------------------------------
 
@@ -167,6 +201,34 @@ CREATE TABLE `kasus_jaksas` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+
+--
+-- Dumping data untuk tabel `kasus_jaksas`
+--
+
+INSERT INTO `kasus_jaksas` (`id`, `kasus_id`, `jaksa_id`, `created_at`, `updated_at`) VALUES
+(1, 2, 3, '2017-08-09 23:56:42', '2017-08-09 23:56:42'),
+(2, 2, 5, '2017-08-09 23:56:42', '2017-08-09 23:56:42'),
+(3, 2, 7, '2017-08-09 23:56:42', '2017-08-09 23:56:42'),
+(4, 2, 8, '2017-08-09 23:56:42', '2017-08-09 23:56:42'),
+(5, 2, 12, '2017-08-09 23:56:42', '2017-08-09 23:56:42'),
+(6, 4, 5, '2017-08-10 00:08:52', '2017-08-10 00:08:52'),
+(7, 4, 6, '2017-08-10 00:08:52', '2017-08-10 00:08:52'),
+(8, 4, 26, '2017-08-10 00:08:52', '2017-08-10 00:08:52'),
+(9, 4, 27, '2017-08-10 00:08:52', '2017-08-10 00:08:52'),
+(10, 4, 31, '2017-08-10 00:08:52', '2017-08-10 00:08:52'),
+(11, 1, 2, '2017-08-10 00:17:22', '2017-08-10 00:17:22'),
+(12, 1, 15, '2017-08-10 00:17:22', '2017-08-10 00:17:22'),
+(13, 1, 26, '2017-08-10 00:17:22', '2017-08-10 00:17:22'),
+(14, 1, 40, '2017-08-10 00:17:22', '2017-08-10 00:17:22'),
+(15, 1, 41, '2017-08-10 00:17:22', '2017-08-10 00:17:22'),
+(16, 1, 42, '2017-08-10 00:17:22', '2017-08-10 00:17:22'),
+(17, 5, 5, '2017-08-10 01:59:13', '2017-08-10 01:59:13'),
+(18, 5, 6, '2017-08-10 01:59:13', '2017-08-10 01:59:13'),
+(19, 5, 27, '2017-08-10 01:59:13', '2017-08-10 01:59:13'),
+(20, 5, 31, '2017-08-10 01:59:13', '2017-08-10 01:59:13'),
+(21, 5, 60, '2017-08-10 01:59:13', '2017-08-10 01:59:13'),
+(22, 5, 61, '2017-08-10 01:59:13', '2017-08-10 01:59:13');
 
 -- --------------------------------------------------------
 
@@ -188,7 +250,11 @@ CREATE TABLE `kasus_obyek` (
 
 INSERT INTO `kasus_obyek` (`id`, `kasus_id`, `obyek_id`, `created_at`, `updated_at`) VALUES
 (1, 1, 1, '2017-08-07 00:00:36', '2017-08-07 00:00:36'),
-(2, 2, 2, '2017-08-07 01:42:46', '2017-08-07 01:42:46');
+(2, 2, 2, '2017-08-09 23:56:42', '2017-08-09 23:56:42'),
+(3, 3, 3, '2017-08-10 00:02:43', '2017-08-10 00:02:43'),
+(4, 4, 4, '2017-08-10 00:08:52', '2017-08-10 00:08:52'),
+(5, 5, 5, '2017-08-10 01:59:13', '2017-08-10 01:59:13'),
+(6, 6, 6, '2017-08-14 01:57:51', '2017-08-14 01:57:51');
 
 -- --------------------------------------------------------
 
@@ -201,18 +267,35 @@ CREATE TABLE `kasus_subyek` (
   `kasus_id` int(11) NOT NULL,
   `subyek_id` int(11) NOT NULL,
   `created_at` datetime DEFAULT NULL,
-  `updated_at` datetime DEFAULT NULL,
-  `created_from_ip` varchar(100) DEFAULT '',
-  `updated_from_ip` varchar(100) DEFAULT ''
+  `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 --
 -- Dumping data untuk tabel `kasus_subyek`
 --
 
-INSERT INTO `kasus_subyek` (`id`, `kasus_id`, `subyek_id`, `created_at`, `updated_at`, `created_from_ip`, `updated_from_ip`) VALUES
-(1, 1, 1, NULL, NULL, '', ''),
-(2, 2, 2, NULL, NULL, '', '');
+INSERT INTO `kasus_subyek` (`id`, `kasus_id`, `subyek_id`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, NULL, NULL),
+(2, 2, 2, NULL, NULL),
+(3, 3, 3, NULL, NULL),
+(4, 4, 4, NULL, NULL),
+(5, 5, 5, NULL, NULL),
+(6, 6, 6, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `kasus_surats`
+--
+
+CREATE TABLE `kasus_surats` (
+  `id` int(11) NOT NULL,
+  `kasus_id` int(11) NOT NULL,
+  `surat_id` int(11) NOT NULL,
+  `status` varchar(100) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 -- --------------------------------------------------------
 
@@ -287,25 +370,26 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 
 CREATE TABLE `obyek` (
   `id` int(11) NOT NULL,
-  `kasus_id` int(11) DEFAULT NULL,
   `benda_sitaan` varchar(100) DEFAULT '',
-  `nilai_kontrak` varchar(100) DEFAULT '',
-  `kerugian_negara` varchar(100) DEFAULT '',
-  `pemulihan_aset` varchar(100) DEFAULT '',
+  `nilai_kontrak` double DEFAULT NULL,
+  `kerugian_negara` double DEFAULT NULL,
+  `pemulihan_aset` double DEFAULT NULL,
   `obyek_pidana` varchar(100) DEFAULT '',
   `created_at` datetime DEFAULT NULL,
-  `updated_at` datetime DEFAULT NULL,
-  `created_from_ip` varchar(100) DEFAULT '',
-  `updated_from_ip` varchar(100) DEFAULT ''
+  `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 --
 -- Dumping data untuk tabel `obyek`
 --
 
-INSERT INTO `obyek` (`id`, `kasus_id`, `benda_sitaan`, `nilai_kontrak`, `kerugian_negara`, `pemulihan_aset`, `obyek_pidana`, `created_at`, `updated_at`, `created_from_ip`, `updated_from_ip`) VALUES
-(1, 1, '', '', '', '', 'fasilitas kredit', '2017-08-07 00:00:36', '2017-08-07 00:00:36', '', ''),
-(2, 2, '', '', '', '', 'Alat Fitnas SMA', '2017-08-07 01:42:46', '2017-08-07 01:42:46', '', '');
+INSERT INTO `obyek` (`id`, `benda_sitaan`, `nilai_kontrak`, `kerugian_negara`, `pemulihan_aset`, `obyek_pidana`, `created_at`, `updated_at`) VALUES
+(1, '', NULL, 0, 0, 'fasilitas kredit', '2017-08-07 00:00:36', '2017-08-10 00:17:22'),
+(2, '', 200000000000, 0, 0, 'Alat Fitnas SMA', '2017-08-07 01:42:46', '2017-08-09 23:56:41'),
+(3, '', 0, 0, 0, 'Fasilitas Kredit', '2017-08-10 00:02:43', '2017-08-10 00:02:43'),
+(4, '', NULL, 0, 0, 'Tanah Milik Negara', '2017-08-10 00:04:53', '2017-08-10 00:08:52'),
+(5, '', 1, NULL, NULL, 'Keuangan Persero', '2017-08-10 00:54:14', '2017-08-14 02:27:12'),
+(6, '', NULL, NULL, NULL, 'Penyertaan Modal', '2017-08-14 01:57:50', '2017-08-14 01:57:50');
 
 -- --------------------------------------------------------
 
@@ -354,7 +438,12 @@ INSERT INTO `pasals` (`id`, `undang_undang`, `pasal`, `ayat`, `huruf`, `keterang
 (24, 'UNDANG-UNDANG REPUBLIK INDONESIA NOMOR 20 TAHUN 2001 TENTANG PEMBERANTASAN TINDAK PIDANA KORUPSI', 12, NULL, 'b', 'pegawai negeri atau penyelenggara negara yang menerima hadiah, padahal diketahui atau patut diduga bahwa hadiah tersebut diberikan sebagai akibat atau disebabkan karena telah melakukan atau tidak melakukan sesuatu dalam jabatannya yang bertentangan dengan kewajibannya;', NULL, NULL, NULL, NULL, 'Suap', '2017-08-04 03:15:25', '2017-08-04 03:15:25'),
 (25, 'UNDANG-UNDANG REPUBLIK INDONESIA NOMOR 20 TAHUN 2001 TENTANG PEMBERANTASAN TINDAK PIDANA KORUPSI', 12, NULL, 'c', 'hakim yang menerima hadiah atau janji, padahal diketahui atau patut diduga bahwa hadiah atau janji tersebut diberikan untuk mempengaruhi putusan perkara yang diserahkan kepadanya untuk diadili;', NULL, NULL, NULL, NULL, 'Suap', '2017-08-04 03:15:47', '2017-08-04 03:15:47'),
 (26, 'UNDANG-UNDANG REPUBLIK INDONESIA NOMOR 20 TAHUN 2001 TENTANG PEMBERANTASAN TINDAK PIDANA KORUPSI', 12, NULL, 'd', 'seseorang yang menurut ketentuan peraturan perundang-undangan ditentukan menjadi advokat untuk menghadiri sidang pengadilan, menerima hadiah atau janji, padahal diketahui atau patut diduga bahwa hadiah atau janji tersebut untuk mempengaruhi nasihat atau pendapat yang akan diberikan, berhubung dengan perkara yang diserahkan kepada pengadilan untuk diadili;', NULL, NULL, NULL, NULL, 'Suap', '2017-08-04 03:16:13', '2017-08-04 03:16:13'),
-(27, 'UNDANG-UNDANG REPUBLIK INDONESIA NOMOR 20 TAHUN 2001 TENTANG PEMBERANTASAN TINDAK PIDANA KORUPSI', 13, NULL, NULL, 'Setiap orang yang memberikan hadiah atau janji kepada pegawai negeri dengan mengingat kekuasaan atau wewenang yang melekat pada jabatan atau kedudukannya, atau oleh pemberi hadiah atau janji dianggap melekat pada jabatan atau kedudukan tersebut, dipidana dengan pidana penjara paling lama 3 (tiga) dan atau denda paling banyak Rp. 150.000.000,00 (seratus lima puluh juta rupiah)', NULL, 3, NULL, 150000000.00, 'Suap', '2017-08-04 03:17:26', '2017-08-04 03:17:26');
+(27, 'UNDANG-UNDANG REPUBLIK INDONESIA NOMOR 20 TAHUN 2001 TENTANG PEMBERANTASAN TINDAK PIDANA KORUPSI', 13, NULL, NULL, 'Setiap orang yang memberikan hadiah atau janji kepada pegawai negeri dengan mengingat kekuasaan atau wewenang yang melekat pada jabatan atau kedudukannya, atau oleh pemberi hadiah atau janji dianggap melekat pada jabatan atau kedudukan tersebut, dipidana dengan pidana penjara paling lama 3 (tiga) dan atau denda paling banyak Rp. 150.000.000,00 (seratus lima puluh juta rupiah)', NULL, 3, NULL, 150000000.00, 'Suap', '2017-08-04 03:17:26', '2017-08-04 03:17:26'),
+(28, 'UNDANG-UNDANG REPUBLIK INDONESIA NOMOR 20 TAHUN 2001 TENTANG PEMBERANTASAN TINDAK PIDANA KORUPSI', 10, NULL, 'b', 'membiarkan orang lain menghilangkan, menghancurkan, merusakkan, atau membuat tidak dapat dipakai barang, akta, surat, atau daftar tersebut; atau', NULL, NULL, NULL, NULL, 'Penggelapan dalam jabatan', '2017-08-11 03:28:00', '2017-08-11 03:28:00'),
+(29, 'UNDANG-UNDANG REPUBLIK INDONESIA NOMOR 20 TAHUN 2001 TENTANG PEMBERANTASAN TINDAK PIDANA KORUPSI', 10, NULL, 'c', 'membantu orang lain menghilangkan, menghancurkan, merusakkan, atau membuat tidak dapat dipakai barang, akta, surat, atau daftar tersebut.', NULL, NULL, NULL, NULL, 'Penggelapan dalam jabatan', '2017-08-11 03:28:34', '2017-08-11 03:28:34'),
+(30, 'UNDANG-UNDANG REPUBLIK INDONESIA NOMOR 20 TAHUN 2001 TENTANG PEMBERANTASAN TINDAK PIDANA KORUPSI', 12, NULL, 'e', 'membantu orang lain menghilangkan, menghancurkan, merusakkan, atau membuat tidak dapat dipakai barang, akta, surat, atau daftar tersebut.', NULL, NULL, NULL, NULL, 'Pemerasan - Pungli', '2017-08-11 03:30:20', '2017-08-11 03:30:20'),
+(31, 'UNDANG-UNDANG REPUBLIK INDONESIA NOMOR 20 TAHUN 2001 TENTANG PEMBERANTASAN TINDAK PIDANA KORUPSI', 12, NULL, 'f', 'pegawai negeri atau penyelenggara negara yang pada waktu menjalankan tugas, meminta, menerima, atau memotong pembayaran kepada pegawai negeri atau penyelenggara negara yang lain atau kepada kas umum, seolah-olah pegawai negeri atau penyelenggara negara yang lain atau kas umum tersebut mempunyai utang kepadanya, padahal diketahui bahwa hal tersebut bukan merupakan utang;', NULL, NULL, NULL, NULL, 'Pemerasan - Pungli', '2017-08-11 03:31:06', '2017-08-11 03:31:06'),
+(32, 'UNDANG-UNDANG REPUBLIK INDONESIA NOMOR 20 TAHUN 2001 TENTANG PEMBERANTASAN TINDAK PIDANA KORUPSI', 12, NULL, 'g', 'pegawai negeri atau penyelenggara negara yang pada waktu menjalankan tugas, meminta atau menerima pekerjaan, atau penyerahan barang, seolah-olah merupakan utang kepada dirinya, padahal diketahui bahwa hal tersebut bukan merupakan utang;', NULL, NULL, NULL, NULL, 'Pemerasan - Pungli', '2017-08-11 03:31:30', '2017-08-11 03:31:30');
 
 -- --------------------------------------------------------
 
@@ -401,57 +490,56 @@ CREATE TABLE `subyek` (
   `jabatan_lain` varchar(100) DEFAULT NULL,
   `lembaga` varchar(100) DEFAULT NULL,
   `pendidikan` varchar(100) DEFAULT NULL,
-  `kategori_subyek` varchar(100) DEFAULT NULL,
+  `kategori_subyek_id` int(11) DEFAULT NULL,
   `keterangan` varchar(100) DEFAULT NULL,
   `status` varchar(100) DEFAULT '1',
-  `no_surat_rp2` varchar(255) DEFAULT NULL,
-  `tanggal_rp2` datetime DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
-  `updated_at` datetime DEFAULT NULL,
-  `created_from_ip` varchar(100) DEFAULT '',
-  `updated_from_ip` varchar(100) DEFAULT ''
+  `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 --
 -- Dumping data untuk tabel `subyek`
 --
 
-INSERT INTO `subyek` (`id`, `judul_surat`, `nama_terlapor`, `tempat_lahir`, `kebangsaan`, `kewarganegaraan`, `tempat_tinggal`, `agama`, `jabatan_resmi`, `jabatan_lain`, `lembaga`, `pendidikan`, `kategori_subyek`, `keterangan`, `status`, `no_surat_rp2`, `tanggal_rp2`, `created_at`, `updated_at`, `created_from_ip`, `updated_from_ip`) VALUES
-(1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'PT Bank Sumut Syariah', NULL, NULL, NULL, '1', NULL, NULL, '2017-08-07 00:00:36', '2017-08-07 00:14:07', '', ''),
-(2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Dinas Pendidikan Menengah Jakarta Selatan, Jakarta Barat dan Jakarta Pusat', NULL, NULL, NULL, '1', NULL, NULL, '2017-08-07 01:42:46', '2017-08-07 01:42:46', '', '');
+INSERT INTO `subyek` (`id`, `judul_surat`, `nama_terlapor`, `tempat_lahir`, `kebangsaan`, `kewarganegaraan`, `tempat_tinggal`, `agama`, `jabatan_resmi`, `jabatan_lain`, `lembaga`, `pendidikan`, `kategori_subyek_id`, `keterangan`, `status`, `created_at`, `updated_at`) VALUES
+(1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'PT Bank Sumut Syariah', NULL, NULL, NULL, '1', '2017-08-07 00:00:36', '2017-08-07 00:14:07'),
+(2, NULL, 'Karyoto Dina', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Dinas Pendidikan Menengah Jakarta Selatan, Jakarta Barat dan Jakarta Pusat', NULL, NULL, NULL, '1', '2017-08-07 01:42:46', '2017-08-09 23:56:41'),
+(3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'PT Bank Mandiri', NULL, NULL, NULL, '1', '2017-08-10 00:02:43', '2017-08-10 00:02:43'),
+(4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'PT Adhi Karya', NULL, NULL, NULL, '1', '2017-08-10 00:04:53', '2017-08-10 00:04:53'),
+(5, NULL, 'annonym', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'PT Pos Indonesis (Persero)', NULL, 1, NULL, '1', '2017-08-10 00:54:14', '2017-08-14 02:27:12'),
+(6, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Pemerintah Kabupaten Bengkalis', NULL, NULL, NULL, '1', '2017-08-14 01:57:50', '2017-08-14 01:57:50');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tabel_surats`
+-- Struktur dari tabel `surats`
 --
 
-CREATE TABLE `tabel_surats` (
+CREATE TABLE `surats` (
   `id` int(11) NOT NULL,
-  `id_surat` int(11) NOT NULL,
-  `judul_surat` varchar(100) NOT NULL,
-  `no_surat` varchar(100) NOT NULL,
-  `tanggal_surat` datetime NOT NULL,
-  `tanggal_mulai` datetime NOT NULL,
-  `tanggal_berhenti` datetime NOT NULL,
-  `saran` varchar(100) NOT NULL,
-  `keterangan` varchar(250) NOT NULL,
-  `date_created` datetime NOT NULL,
-  `date_updated` datetime NOT NULL,
-  `created_from_ip` varchar(100) NOT NULL,
-  `updated_from_ip` varchar(100) NOT NULL
+  `kasus_id` int(11) NOT NULL,
+  `judul_surat` varchar(100) DEFAULT NULL,
+  `no_surat_perkara` varchar(100) NOT NULL,
+  `tanggal_surat_perkara` datetime NOT NULL,
+  `tanggal_mulai` datetime DEFAULT NULL,
+  `tanggal_berhenti` datetime DEFAULT NULL,
+  `saran` text,
+  `keterangan` text,
+  `tipe_surat` char(10) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 --
--- Dumping data untuk tabel `tabel_surats`
+-- Dumping data untuk tabel `surats`
 --
 
-INSERT INTO `tabel_surats` (`id`, `id_surat`, `judul_surat`, `no_surat`, `tanggal_surat`, `tanggal_mulai`, `tanggal_berhenti`, `saran`, `keterangan`, `date_created`, `date_updated`, `created_from_ip`, `updated_from_ip`) VALUES
-(1, 0, 'perampokan', 'nomor surat 1234562', '2017-08-09 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', '2017-06-26 05:41:13', '2017-06-26 05:41:13', '::1', '::1'),
-(2, 0, 'Perampokan begal di serpong', '3f/90/8ui', '2017-04-09 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', '2017-06-26 06:03:40', '2017-06-26 06:03:40', '::1', '::1'),
-(3, 0, 'Pengambilan dana amal', '3g/4g/5h/6j', '2017-01-03 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', '2017-06-26 06:13:51', '2017-06-26 06:13:51', '::1', '::1'),
-(4, 0, '', '', '2017-05-19 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', '2017-06-29 00:54:53', '2017-06-29 00:54:53', '::1', '::1'),
-(5, 0, '', '', '2017-05-19 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', '2017-06-29 00:56:50', '2017-06-29 00:56:50', '::1', '::1');
+INSERT INTO `surats` (`id`, `kasus_id`, `judul_surat`, `no_surat_perkara`, `tanggal_surat_perkara`, `tanggal_mulai`, `tanggal_berhenti`, `saran`, `keterangan`, `tipe_surat`, `created_at`, `updated_at`) VALUES
+(1, 2, NULL, 'PRINT-123456/2017', '2017-08-09 00:00:00', NULL, NULL, NULL, NULL, 'RP2', '2017-08-13 15:55:13', '2017-08-13 19:05:21'),
+(2, 4, NULL, 'Print-06/F.2/Fd.1/01/2016', '2016-01-07 00:00:00', NULL, NULL, NULL, NULL, 'RP2', '2017-08-13 19:12:02', '2017-08-13 20:09:22'),
+(3, 1, NULL, 'Print-02/F.2/Fd.1/01/2016', '2016-01-06 00:00:00', NULL, NULL, NULL, NULL, 'RP2', '2017-08-13 19:12:02', '2017-08-13 20:09:22'),
+(4, 5, NULL, 'Print-01/F.2/Fd.1/01/2016', '2016-01-28 00:00:00', NULL, NULL, NULL, NULL, 'RP2', '2017-08-13 19:12:02', '2017-08-13 20:09:22'),
+(5, 5, NULL, 'Print-01/F.2/Fd.1/01/2016', '2016-01-28 00:00:00', NULL, NULL, NULL, NULL, 'RP3MUM', '2017-08-14 02:27:12', '2017-08-14 02:27:12');
 
 -- --------------------------------------------------------
 
@@ -490,8 +578,8 @@ INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`
 (1, '127.0.0.1', 'administrator', '$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36', '', 'admin@admin.com', '', NULL, NULL, NULL, 1268889823, 1499436520, 1, 'Admin', 'istrator', 'ADMIN', '0', NULL, NULL, NULL),
 (2, '::1', 'Akbar', '$2y$08$Up/1UzTNZZgZkjM0xywQX.G2u0YCaYf1zUT7HGd6HcI17hmNNa55G', NULL, 'akbar@akbar.com', NULL, NULL, NULL, NULL, 1494078910, 1497079982, 1, 'akbar', 'satria permadi', NULL, '081297018587', NULL, NULL, NULL),
 (3, '', NULL, '$2y$10$8fv5Ue0J72xW5duCqCt1qegdGrjj1zh8yIAJ.S31HzULk5oBgjVeC', NULL, 'rahmat.awaludin@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Rahmat Awaludin', '2017-07-15 01:53:00', '2017-07-15 01:53:00'),
-(4, '', NULL, '$2y$10$iNsaSiBuz3VnIinz72FkyeAlr4g9BVbV824WL/YbcMryKEl1b0GH6', NULL, 'azuwir@gmail.com', NULL, NULL, NULL, 'JcXlaVwXHUZAVsgdQBbCPxkUWFiut0QhDR7HMmTdGoM02ymySnX77o6kgqQD', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Azuwir Azzurri', '2017-07-28 16:33:14', '2017-07-28 16:33:14'),
-(5, '', NULL, '$2y$10$pe3HEouTKkT28u.8v./p.O3Hr3goiqqOA7KK3BVgE2SQab2eLaWE6', NULL, 'tonny@soerojo.com', NULL, NULL, NULL, 'AStZRvUxeWOLGgKaPlFgo5sBTegcPXMm3eqzwA1kO2PBX8gtdKXgV6K5ksyM', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Tonny H. Soerojo', '2017-08-03 12:26:21', '2017-08-03 12:26:21');
+(4, '', NULL, '$2y$10$iNsaSiBuz3VnIinz72FkyeAlr4g9BVbV824WL/YbcMryKEl1b0GH6', NULL, 'azuwir@gmail.com', NULL, NULL, NULL, 'wPTxxaEXFl4D5rbqlPNexdFnkUCMXd0iB4TuIYkme1EVh8OYFLZo49LrLZHe', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Azuwir Azzurri', '2017-07-28 16:33:14', '2017-07-28 16:33:14'),
+(5, '', NULL, '$2y$10$pe3HEouTKkT28u.8v./p.O3Hr3goiqqOA7KK3BVgE2SQab2eLaWE6', NULL, 'tonny@soerojo.com', NULL, NULL, NULL, '3AyjBpXQNgQe2GepUMOIh8hb4AIybKYwX2BKZYQtSircgMirdHWAz8qJ0RGw', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Tonny H. Soerojo', '2017-08-03 12:26:21', '2017-08-03 12:26:21');
 
 -- --------------------------------------------------------
 
@@ -524,12 +612,6 @@ INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES
 ALTER TABLE `admins`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `admins_email_unique` (`email`);
-
---
--- Indexes for table `detail_kasus_surats`
---
-ALTER TABLE `detail_kasus_surats`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `groups`
@@ -565,6 +647,12 @@ ALTER TABLE `kasus_obyek`
 -- Indexes for table `kasus_subyek`
 --
 ALTER TABLE `kasus_subyek`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `kasus_surats`
+--
+ALTER TABLE `kasus_surats`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -616,9 +704,9 @@ ALTER TABLE `subyek`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `tabel_surats`
+-- Indexes for table `surats`
 --
-ALTER TABLE `tabel_surats`
+ALTER TABLE `surats`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -646,11 +734,6 @@ ALTER TABLE `users_groups`
 ALTER TABLE `admins`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `detail_kasus_surats`
---
-ALTER TABLE `detail_kasus_surats`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
---
 -- AUTO_INCREMENT for table `groups`
 --
 ALTER TABLE `groups`
@@ -659,27 +742,32 @@ ALTER TABLE `groups`
 -- AUTO_INCREMENT for table `jaksas`
 --
 ALTER TABLE `jaksas`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 --
 -- AUTO_INCREMENT for table `kasus`
 --
 ALTER TABLE `kasus`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `kasus_jaksas`
 --
 ALTER TABLE `kasus_jaksas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT for table `kasus_obyek`
 --
 ALTER TABLE `kasus_obyek`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `kasus_subyek`
 --
 ALTER TABLE `kasus_subyek`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT for table `kasus_surats`
+--
+ALTER TABLE `kasus_surats`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `kategori_subyeks`
 --
@@ -699,12 +787,12 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `obyek`
 --
 ALTER TABLE `obyek`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `pasals`
 --
 ALTER TABLE `pasals`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 --
 -- AUTO_INCREMENT for table `pengumumen`
 --
@@ -714,11 +802,11 @@ ALTER TABLE `pengumumen`
 -- AUTO_INCREMENT for table `subyek`
 --
 ALTER TABLE `subyek`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
--- AUTO_INCREMENT for table `tabel_surats`
+-- AUTO_INCREMENT for table `surats`
 --
-ALTER TABLE `tabel_surats`
+ALTER TABLE `surats`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `users`

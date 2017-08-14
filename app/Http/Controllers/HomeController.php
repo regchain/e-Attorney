@@ -28,8 +28,14 @@ class HomeController extends Controller
     {
         $dashboard = array();
         
-        $kasus_rp2 = Kasus::where('status_rp2','<>',0)->count();
-        $kasus_rp3mum = Kasus::where('status_rp3mum','<>',0)->count();
+        $kasus_rp2 = Kasus::where('status_rp2','<>',0)
+            ->where('status_rp3mum', 0)
+            ->count();
+
+        $kasus_rp3mum = Kasus::where('status_rp3mum','<>',0)
+            ->where('status_rp3sus', 0)
+            ->count();
+
         $kasus_rp3sus = Kasus::where('status_rp3sus','<>',0)->count();
         $tahanan = Subyek::where('status','<>',0)->count();
         $subyek_hukum = KategoriSubyek::select('name')->get()->toArray();

@@ -108,4 +108,9 @@ class SubyekController extends Controller
     {
         return view('subyek.subyek_tsk_create');
     }
+
+    public function tahan()
+    {
+        return view('subyek.subyek_tahan_create');
+    }
 }

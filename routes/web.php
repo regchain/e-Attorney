@@ -151,6 +151,7 @@ Route::group(['prefix' => '', 'middleware' => ['auth']], function() {
 	Route::resource('rp3sus', 'Rp3SusController');
 	Route::get('subyek', 'SubyekController@index');
 	Route::get('tersangka/{kasus_id}', 'SubyekController@tersangka');
+	Route::get('tahan', 'SubyekController@tahan');
 	Route::get('obyek', 'ObyekController@index');
 	Route::get('fp15/{kasus_id}', 'Rp3SusController@fp15');
 	Route::get('fp15a/{kasus_id}', 'Rp3SusController@fp15a');
