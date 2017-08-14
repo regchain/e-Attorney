@@ -18,7 +18,7 @@ class Rp1Controller extends Controller
     {
         $cases = Kasus::where('status_rp1', '<>', NULL)
             ->orderBy('status_rp1')
-            ->get();
+            ->paginate(10);
         
         if ($cases && !empty($cases)) {
             return view('rp1.rp1_list', ['cases' => $cases]);

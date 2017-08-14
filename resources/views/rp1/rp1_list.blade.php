@@ -47,6 +47,7 @@
     @endforelse
   </tbody>
 </table>
+{!! $cases->render() !!}
 </div>
 
 @stop

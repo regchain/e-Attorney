@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Kasus;
 use App\Subyek;
 use App\KasusSubyek;
+use App\KategoriSubyek;
 
 class SubyekController extends Controller
 {
@@ -29,7 +30,11 @@ class SubyekController extends Controller
      */
     public function create($kasus_id)
     {
-        return view('subyek.subyek_create', ['kasus_id' => $kasus_id]);
+        $kategori_subyek = KategoriSubyek::select(['*'])
+            ->orderBy('name')
+            ->pluck('name', 'id');
+
+        return view('subyek.subyek_create', ['kategori_subyek' => $kategori_subyek, 'kasus_id' => $kasus_id]);
     }
 
     /**
@@ -43,7 +48,7 @@ class SubyekController extends Controller
         $this->validate($request, [
             'nama_terlapor'     => 'required',
             'tempat_tinggal'    => 'required',
-            'pendidikan'    => 'required',
+            'lembaga'           => 'required',
         ]);
 
         $subyek = Subyek::create($request->all());
