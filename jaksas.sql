@@ -1,45 +1,43 @@
--- phpMyAdmin SQL Dump
--- version 4.6.5.2
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Generation Time: 10 Agu 2017 pada 01.33
--- Versi Server: 10.1.21-MariaDB
--- PHP Version: 5.6.30
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
+# ************************************************************
+# Sequel Pro SQL dump
+# Version 4541
+#
+# http://www.sequelpro.com/
+# https://github.com/sequelpro/sequelpro
+#
+# Host: localhost (MySQL 5.6.28)
+# Database: openlaw_elpidsus
+# Generation Time: 2017-08-10 23:58:10 +0000
+# ************************************************************
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
---
--- Database: `openlaw_elpidsus`
---
 
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `jaksas`
---
+# Dump of table jaksas
+# ------------------------------------------------------------
 
 DROP TABLE IF EXISTS `jaksas`;
+
 CREATE TABLE `jaksas` (
-  `id` int(10) UNSIGNED NOT NULL,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `nip` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
   `nama_jaksa` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `pangkat` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
   `telepon` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data untuk tabel `jaksas`
---
+LOCK TABLES `jaksas` WRITE;
+/*!40000 ALTER TABLE `jaksas` DISABLE KEYS */;
 
 INSERT INTO `jaksas` (`id`, `nip`, `nama_jaksa`, `pangkat`, `telepon`, `created_at`, `updated_at`) VALUES
 (1, '1', 'Adi Sutanto SH.MH', 'Jaksa', '1', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
@@ -102,6 +100,15 @@ INSERT INTO `jaksas` (`id`, `nip`, `nama_jaksa`, `pangkat`, `telepon`, `created_
 (58, '58', 'Yopy Adriansyah SH.MH', 'Jaksa', '58', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (59, '59', 'Zulkifly Noor SH.MH', 'Jaksa', '59', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
+
+/*!40000 ALTER TABLE `jaksas` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
