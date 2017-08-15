@@ -10,7 +10,7 @@
 				<div class="media">
 					<div class="panel-body">
 						<h4>
-							<a href="home"><img src="dist/img/logo-kejaksaan.png" height="80" class="text-titlecase"></a>
+							<a href="home"><img src="{{ asset('dist/img/logo-kejaksaan.png') }}" height="80" class="text-titlecase"></a>
 							<div class="pull-right">
 								<a href="{{ route('rp1.index') }}" class="btn btn-app btn-primary text-lime "><i class="fa fa-list-ol"></i> RP-1</a>                    
 								<a href="{{ route('rp2.index') }}" class="btn btn-app btn-primary text-lime"><i class="fa fa-list-ol"></i> RP-2</a>                    

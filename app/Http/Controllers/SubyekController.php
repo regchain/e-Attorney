@@ -17,7 +17,7 @@ class SubyekController extends Controller
      */
     public function index()
     {
-        $subyeks = Subyek::select(['*'])->get();
+        $subyeks = Subyek::select(['*'])->paginate(10);
         if ($subyeks) {
             return view('subyek.subyek_list', ['subyeks' => $subyeks]);
         }
@@ -60,7 +60,7 @@ class SubyekController extends Controller
 
         if ($kasus_subyek) {
             return redirect()->route('rp3mum.index');
-        }        
+        }
     }
 
     /**

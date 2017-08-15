@@ -14,7 +14,7 @@
 
 @section('materi')
 
-    <table class="table table-striped">
+    <table class="table table-striped table-bordered">
       <th>
         <td width="33%">
           Tersangka
@@ -38,6 +38,7 @@
       </tr>
       @endforelse
     </table>
+    {!! $subyeks->render() !!}
 
 @stop
 

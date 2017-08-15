@@ -69,8 +69,12 @@ class LidikController extends Controller
             ->where('kasus.id',$id)
             ->first();
 
+        $jaksas = Jaksa::select(['*'])
+            ->orderBy('nama_jaksa')
+            ->pluck('nama_jaksa', 'id');
+
         if ($case && !empty($case)) {
-            return view('rp1.rp1_lidik')->with(compact('case'));
+            return view('rp1.rp1_lidik', ['case' => $case, 'jaksas' => $jaksas]);
         } else {
             return redirect()->route('rp1.index');
         }

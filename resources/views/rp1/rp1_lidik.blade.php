@@ -115,7 +115,7 @@
 		<h4>Data Jaksa</h4>
 			<div class="form-group">
 				<label>Pilih Jaksa</label>
-				{!! Form::select('jaksa_id[]', [''=>'']+App\Jaksa::pluck('nama_jaksa','id')->all(), 0, ['class'=>'form-control', 'placeholder' => 'Pilih Jaksa', 'multiple' => 'multiple', 'size' => '10']) !!}
+				{!! Form::select('jaksa_id[]', $jaksas, 0, ['class'=>'form-control', 'placeholder' => 'Pilih Jaksa', 'multiple' => 'multiple', 'size' => '10']) !!}
 			</div>
 			<a href="{{ route('rp1.index') }}" class="btn btn-danger"> BATAL</a>
 			{{ Form::submit('KIRIM', ['class' => 'btn btn-success']) }}
