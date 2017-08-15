@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Jaksa;
 
 class Surat extends Model
 {
@@ -16,4 +17,9 @@ class Surat extends Model
     	'tipe_surat',
         'kasus_id'
     ];
+
+    public function jaksas()
+    {
+        return $this->belongsToMany(Jaksa::class, 'surat_jaksa', 'surat_id', 'jaksa_id');
+    }
 }

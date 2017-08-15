@@ -97,7 +97,7 @@
 			<label>Nilai Anggaran</label>
 			<div class="input-group">
 				<span class="input-group-addon">Rp</span>
-				{!! Form::number('nilai_kontrak', null, ['class' => 'form-control', 'placeholder' => 'Enter ...']) !!}
+				{!! Form::number('nilai_kontrak', null, ['class' => 'form-control', 'placeholder' => 'Enter ...', 'step' => 'any']) !!}
 				<span class="input-group-addon">miliar</span>
 			</div>
 		</div>
@@ -106,14 +106,14 @@
 	<div class="col-lg-12 col-md-12 col-sm-12">
 		<h4>Data Jaksa Yang Telah Dipilih</h4>
 		<div class="form-group">
-			@include('partials._jaksa', ['kasus_jaksa' => $kasus_jaksa])
+			@include('partials._jaksa', ['surat_jaksa' => $surat_jaksa])
         </div>
 	</div>
 	<div class="col-lg-12 col-md-12 col-sm-12">
 		<h4>Data Jaksa</h4>
 			<div class="form-group">
 			<label>Pilih Jaksa</label>
-				{!! Form::select('jaksa_id[]', [''=>'']+App\Jaksa::pluck('nama_jaksa','id')->all(), 0, ['class'=>'form-control', 'placeholder' => 'Pilih Jaksa', 'multiple' => 'multiple', 'size' => '10']) !!}
+				{!! Form::select('jaksa_id[]', $jaksas, 0, ['class'=>'form-control', 'placeholder' => 'Pilih Jaksa', 'multiple' => 'multiple', 'size' => '10']) !!}
 			</div>
 			<a href="{{ route('rp2.index') }}" class="btn btn-danger"> BATAL</a>
 			{{ Form::submit('KIRIM', ['class' => 'btn btn-success']) }}

@@ -1,5 +1,5 @@
     <table class="table table-striped table-bordered">
-      @forelse ($kasus_jaksa as $jaksa)
+      @forelse ($surat_jaksa as $jaksa)
       <tr>
         <td width="100%" colspan="4">
           <div>

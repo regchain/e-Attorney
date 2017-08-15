@@ -113,7 +113,7 @@
 						<label>Nilai Anggaran</label>
 						<div class="input-group">
 							<span class="input-group-addon">Rp</span>
-							{!! Form::number('nilai_kontrak', null, ['class' => 'form-control', 'placeholder' => 'Enter ...']) !!}
+							{!! Form::number('nilai_kontrak', null, ['class' => 'form-control', 'placeholder' => 'Enter ...', 'step' => 'any']) !!}
 							<span class="input-group-addon">miliar</span>
 						</div>
 					</div>
@@ -125,7 +125,7 @@
 						<label>Kerugian Negara</label>
 						<div class="input-group">
 							<span class="input-group-addon">Rp</span>
-							{!! Form::number('kerugian_negara', null, ['class' => 'form-control', 'placeholder' => 'Enter ...']) !!}
+							{!! Form::number('kerugian_negara', null, ['class' => 'form-control', 'placeholder' => 'Enter ...', 'step' => 'any']) !!}
 							<span class="input-group-addon">miliar</span>
 						</div>
 					</div>
@@ -135,7 +135,7 @@
 						<label>Pemulihan Aset</label>
 						<div class="input-group">
 							<span class="input-group-addon">Rp</span>
-							{!! Form::number('pemulihan_aset', null, ['class' => 'form-control', 'placeholder' => 'Enter ...']) !!}
+							{!! Form::number('pemulihan_aset', null, ['class' => 'form-control', 'placeholder' => 'Enter ...', 'step' => 'any']) !!}
 							<span class="input-group-addon">miliar</span>
 						</div>
 					</div>
@@ -146,7 +146,7 @@
 			<div class="col-lg-6 col-md-6 col-sm-12">
 				<h4>Data Jaksa</h4>
 				<div align="center" class="thumbnail">
-					{!! Form::select('jaksa_id[]', $kasus_jaksa, 0, ['class'=>'form-control', 'placeholder' => 'Pilih Jaksa', 'multiple' => 'multiple', 'size' => '5']) !!}
+					{!! Form::select('jaksa_id[]', $jaksas, 0, ['class'=>'form-control', 'placeholder' => 'Pilih Jaksa', 'multiple' => 'multiple', 'size' => '8']) !!}
 				</div>
 
 				<div class="box-tools pull-right">

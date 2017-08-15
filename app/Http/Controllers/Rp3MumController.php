@@ -6,9 +6,10 @@ use Illuminate\Http\Request;
 use App\Kasus;
 use App\Obyek;
 use App\Subyek;
+use App\Jaksa;
 use App\KasusSubyek;
 use App\KasusObyek;
-use App\KasusJaksa;
+use App\SuratJaksa;
 use App\Surat;
 use App\KategoriSubyek;
 
@@ -73,9 +74,7 @@ class Rp3MumController extends Controller
             ->where('kasus.id',$id)
             ->first();
 
-        $kasus_jaksa = KasusJaksa::select(['kasus_jaksas.*','nama_jaksa'])
-            ->join('jaksas','kasus_jaksas.jaksa_id','=','jaksas.id')
-            ->where('kasus_id',$id)
+        $jaksas = Jaksa::select(['*'])
             ->orderBy('nama_jaksa')
             ->pluck('nama_jaksa', 'id');
 
@@ -83,7 +82,7 @@ class Rp3MumController extends Controller
             ->orderBy('name')
             ->pluck('name', 'id');
 
-        return view('rp3mum.rp3mum_create', ['case' => $case, 'kasus_jaksa' => $kasus_jaksa, 'kategori_subyek' => $kategori_subyek]);
+        return view('rp3mum.rp3mum_create', ['case' => $case, 'jaksas' => $jaksas, 'kategori_subyek' => $kategori_subyek]);
     }
 
     /**
@@ -121,7 +120,7 @@ class Rp3MumController extends Controller
                     foreach ($jaksas as $jaksa) {
                         $jaksa_id = intval($jaksa);
                         $findJaksa = Jaksa::find($jaksa_id);
-                        $case->jaksas()->attach($findJaksa);
+                        $surat->jaksas()->attach($findJaksa);
                     }
                 }
             }
@@ -171,10 +170,13 @@ class Rp3MumController extends Controller
             ->where('surats.tipe_surat','=','RP3MUM')
             ->first();
 
+        $surat_jaksa = SuratJaksa::select(['surat_jaksa.*','nama_jaksa'])
+            ->join('jaksas','surat_jaksa.jaksa_id','=','jaksas.id')
+            ->where('surat_id', $case->surat_id)
+            ->orderBy('nama_jaksa')
+            ->get();
 
-        $kasus_jaksa = KasusJaksa::select(['kasus_jaksas.*','nama_jaksa'])
-            ->join('jaksas','kasus_jaksas.jaksa_id','=','jaksas.id')
-            ->where('kasus_id',$id)
+        $jaksas = Jaksa::select(['*'])
             ->orderBy('nama_jaksa')
             ->pluck('nama_jaksa', 'id');
 
@@ -182,7 +184,7 @@ class Rp3MumController extends Controller
             ->orderBy('name')
             ->pluck('name', 'id');
 
-        return view('rp3mum.rp3mum_edit', ['case' => $case, 'kasus_jaksa' => $kasus_jaksa, 'kategori_subyek' => $kategori_subyek, 'status_rp3mum' => $case->status_rp3mum]);
+        return view('rp3mum.rp3mum_edit', ['case' => $case, 'surat_jaksa' => $surat_jaksa, 'jaksas' => $jaksas, 'kategori_subyek' => $kategori_subyek, 'status_rp3mum' => $case->status_rp3mum]);
     }
 
     /**

@@ -6,9 +6,10 @@ use Illuminate\Http\Request;
 use App\Kasus;
 use App\Obyek;
 use App\Subyek;
+use App\Jaksa;
 use App\KasusSubyek;
 use App\KasusObyek;
-use App\KasusJaksa;
+use App\SuratJaksa;
 use App\Surat;
 
 class Rp2Controller extends Controller
@@ -108,13 +109,17 @@ class Rp2Controller extends Controller
             ->where('tipe_surat','=','RP2')
             ->first();
 
-        $kasus_jaksa = KasusJaksa::select(['kasus_jaksas.*','nama_jaksa'])
-            ->join('jaksas','kasus_jaksas.jaksa_id','=','jaksas.id')
-            ->where('kasus_id',$id)
+        $surat_jaksa = SuratJaksa::select(['surat_jaksa.*','nama_jaksa'])
+            ->join('jaksas','surat_jaksa.jaksa_id','=','jaksas.id')
+            ->where('surat_id', $case->surat_id)
             ->get();
+
+        $jaksas = Jaksa::select(['*'])
+            ->orderBy('nama_jaksa')
+            ->pluck('nama_jaksa', 'id');
         
         if ($case && !empty($case)) {
-            return view('rp2.rp2_edit', ['case' => $case, 'kasus_jaksa' => $kasus_jaksa, 'status_rp2' => $case->status_rp2]);
+            return view('rp2.rp2_edit', ['case' => $case, 'surat_jaksa' => $surat_jaksa, 'jaksas' => $jaksas, 'status_rp2' => $case->status_rp2]);
         } else {
             return redirect()->route('rp2.index');
         }

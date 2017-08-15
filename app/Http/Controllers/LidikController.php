@@ -111,7 +111,7 @@ class LidikController extends Controller
                     foreach ($jaksas as $jaksa) {
                         $jaksa_id = intval($jaksa);
                         $findJaksa = Jaksa::find($jaksa_id);
-                        $case->jaksas()->attach($findJaksa);
+                        $surat->jaksas()->attach($findJaksa);
                     }
                 }
             }

@@ -106,14 +106,11 @@
 				<label>Nilai Anggaran</label>
 				<div class="input-group">
 					<span class="input-group-addon">Rp</span>
-					{!! Form::number('nilai_kontrak', null, ['class' => 'form-control', 'placeholder' => 'Enter ...']) !!}
+					{!! Form::number('nilai_kontrak', null, ['class' => 'form-control', 'placeholder' => 'Enter ...', 'step' => 'any']) !!}
 					<span class="input-group-addon">miliar</span>
 				</div>
 			</div>
-		</div>
-
-	
-	
+		</div>	
 		<div class="col-lg-12 col-md-12 col-sm-12">
 		<h4>Data Jaksa</h4>
 			<div class="form-group">

@@ -54,11 +54,6 @@ class Kasus extends Model
         return $this->belongsToMany(Obyek::class, 'kasus_obyek', 'kasus_id', 'obyek_id');
     }
 
-    public function jaksas()
-    {
-        return $this->belongsToMany(Jaksa::class, 'kasus_jaksas', 'kasus_id', 'jaksa_id');
-    }
-
     public function surat()
     {
         return $this->hasMany(Surat::class, 'kasus_id');
