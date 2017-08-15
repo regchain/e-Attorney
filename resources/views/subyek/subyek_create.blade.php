@@ -26,24 +26,24 @@
 		<!-- Tempat Tinggal -->
 		<div class="form-group{{ $errors->has('tempat_tinggal') ? ' has-error' : '' }}">
 			<label>Tempat Tinggal</label>
-			{!! Form::text('tempat_tinggal', null, ['class' => 'form-control', 'placeholder' => 'Enter ...', 'required' => 'required']) !!}
+			{!! Form::text('tempat_tinggal', null, ['class' => 'form-control', 'placeholder' => 'Enter ...']) !!}
 		</div>
 		<div class="row">
 			<div class="col-lg-6 col-md-6 col-sm-12">
-				<label>Jenis Kelamin</label>
+				<div class="form-group">
+					<label>Pendidikan</label>
+					{!! Form::text('pendidikan', null, ['class' => 'form-control', 'placeholder' => 'Enter ...']) !!}
+				</div>
 			</div>
 			<div class="col-lg-6 col-md-6 col-sm-12">
-				<label class="checkbox-inline">
+				<label>Jenis Kelamin</label>
+				<div class="form-group">
 					{!! Form::radio('jenis_kelamin', 'L') !!} Laki-laki
-				</label>
-				<label class="checkbox-inline">
-					{!! Form::radio('jenis_kelamin', 'P') !!} Perempuan
-				</label>
+					<label class="checkbox-inline">
+						{!! Form::radio('jenis_kelamin', 'P') !!} Perempuan
+					</label>
+				</div>
 			</div>
-		</div>	
-		<div class="form-group">
-			<label>Pendidikan</label>
-			{!! Form::text('pendidikan', null, ['class' => 'form-control', 'placeholder' => 'Enter ...']) !!}
 		</div>
 
 		<div class="row">
@@ -58,7 +58,7 @@
 				<!-- Tanggal Lahir -->
 				<div class="form-group">
 					<label>Tanggal Lahir</label>
-					{!! Form::text('tanggal_lahir', null, ['class' => 'form-control', 'placeholder' => 'Enter ...']) !!}
+					{!! Form::date('tanggal_lahir', null, ['class' => 'form-control', 'placeholder' => 'Enter ...']) !!}
 				</div>
 			</div>
 			<div class="col-lg-6 col-md-6 col-sm-12">

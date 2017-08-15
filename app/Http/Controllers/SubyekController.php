@@ -47,7 +47,6 @@ class SubyekController extends Controller
     {
         $this->validate($request, [
             'nama_terlapor'     => 'required',
-            'tempat_tinggal'    => 'required',
             'lembaga'           => 'required',
         ]);
 

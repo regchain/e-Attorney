@@ -33,15 +33,16 @@ class Rp3MumController extends Controller
             $obyeks = array();
 
             $kasus_id = $case["id"];
-            $kasus_subyek = KasusSubyek::select(['subyek_id','nama_terlapor','lembaga'])
+            $kasus_subyek = KasusSubyek::select(['subyek_id','subyek.*','kategori_subyeks.name as kategori_subyek'])
                 ->join('subyek','subyek.id','=','kasus_subyek.subyek_id')
+                ->join('kategori_subyeks','subyek.kategori_subyek_id','=','kategori_subyeks.id')
                 ->where('kasus_id',$kasus_id)
                 ->get();
             foreach ($kasus_subyek as $subyek) {
                 array_push($subyeks, $subyek);
             }
             
-            $kasus_obyek = KasusObyek::select(['obyek_id','nilai_kontrak','kerugian_negara','pemulihan_aset','obyek_pidana','benda_sitaan'])
+            $kasus_obyek = KasusObyek::select(['obyek_id','obyek.*'])
                 ->join('obyek','obyek.id','=','kasus_obyek.obyek_id')
                 ->where('kasus_obyek.kasus_id',$kasus_id)
                 ->get();
