@@ -20,17 +20,18 @@
     <div class="table-responsive no-padding">
         <table class="table table-striped">
             <tbody><tr>
-                    <th>Kasus</th>
+                    <th width="60%">Kasus Posisi</th>
+                    <th width="40%">No. & Tanggal Surat</th>
                 </tr>
                 @forelse ($cases as $case)
                 <tr>
-                    <td>
+                    <td colspan="2">
                         @include('partials._kasusrp2a', ['case' => $case])
                     </td>
                 </tr>
             @empty
                 <tr>
-                    <td>No data.</td>
+                    <td colspan="32">No data.</td>
                 </tr>
             @endforelse
         </tbody></table>

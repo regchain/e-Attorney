@@ -1,4 +1,4 @@
-
+<div class="row col-md-12">
 <!-- Single button -->
 <div class="btn-group pull-right">
   <button type="button" class="btn btn-success btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -13,10 +13,11 @@
   		<li><a href="frt1" class="btn btn-default"><strong>Penetapan Tersangka &nbsp;&nbsp;</strong><i class="glyphicon glyphicon-log-in"></i></a></li>
   	</ul>
 </div><!-- end button group -->
-<div class="panel-heading" role="tab" id="headingOne"> 
+<div class="panel-heading col-md-7" role="tab" id="headingOne"> 
 	<p class="panel-title"> <a href="#collapse1" role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="false" aria-controls="collapse1" class="collapsed"> <i class="glyphicon glyphicon-resize-vertical text-green"></i>&nbsp;[judul_kasus]</a> </p>
 </div>
-
+<div >$No & $tanggal Surat</div>
+</div>
 
 <div class="panel-collapse collapse" role="tabpanel" id="collapse1" aria-labelledby="headingOne" aria-expanded="false" style="height: 0px;">
 	<div class="panel-body">

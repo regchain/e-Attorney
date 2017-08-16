@@ -22,25 +22,26 @@
             <div class="table-responsive no-padding">
               <table class="table table-striped">
                 <tbody><tr>
-                  <th>Kasus</th>
+                    <th width="60%">Kasus Posisi</th>
+                    <th width="40%">No. & Tanggal Surat</th>
                 </tr>
                 <tr>
-                  <td>
+                  <td colspan="2">
                   @include('partials._kasusrp3muma')
                   </td>
                 </tr>
                 <tr>
-                  <td>
+                  <td colspan="2">
                   @include('partials._kasusrp3mumb')
                   </td>
                 </tr>
                 <tr>
-                  <td>
+                  <td colspan="2">
                   @include('partials._kasusrp3mumc')
                   </td>
                 </tr>
                 <tr>
-                  <td>
+                  <td colspan="2">
                   @include('partials._kasusrp3mumd')
                   </td>
                 </tr>

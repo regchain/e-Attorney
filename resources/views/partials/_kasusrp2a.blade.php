@@ -1,4 +1,4 @@
-
+<div class="row col-md-12">
 <!-- Single button -->
 <div class="btn-group pull-right">
   <button type="button" class="btn btn-success btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -9,10 +9,11 @@
   		<li><a href="frp3mum" class="text-right"><strong>NAIK DIK MUM</strong> &nbsp;&nbsp;<i class="glyphicon glyphicon-log-in text-red"></i></a></li>
   	</ul>
 </div><!-- end button group -->
-<div class="panel-heading" role="tab" id="headingOne"> 
-	<p class="panel-title"> <a href="#collapse1" role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="false" aria-controls="collapse1" class="collapsed"> <i class="glyphicon glyphicon-resize-vertical text-green"></i>&nbsp;[judul_kasus] </a> </p>
+<div class="panel-heading col-md-7" role="tab" id="headingOne"> 
+	<p class="panel-title"> <a href="#collapse1" role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="false" aria-controls="collapse1" class="collapsed"> <i class="glyphicon glyphicon-resize-vertical text-green"></i>&nbsp;[judul_kasus 1] </a> </p>
 </div>
-
+<div class="col-md-4">$No & $tanggal Surat</div>
+</div>
 
 <div class="panel-collapse collapse" role="tabpanel" id="collapse1" aria-labelledby="headingOne" aria-expanded="false" style="height: 0px;">
 	<div class="panel-body">
