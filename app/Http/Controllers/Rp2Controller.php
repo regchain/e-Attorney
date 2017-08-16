@@ -44,7 +44,7 @@ class Rp2Controller extends Controller
                 array_push($subyeks, $subyek);
             }
 
-            $kasus_obyek = KasusObyek::select(['obyek_id','nilai_kontrak','kerugian_negara','pemulihan_aset','obyek_pidana','benda_sitaan'])
+            $kasus_obyek = KasusObyek::select(['obyek_id','nilai_kontrak','kerugian_negara','pemulihan_aset','obyek_pidana'])
                 ->join('obyek','obyek.id','=','kasus_obyek.obyek_id')
                 ->where('kasus_obyek.kasus_id',$kasus_id)
                 ->get();

@@ -142,7 +142,7 @@ class ObyekController extends Controller
     public function edit($id, $surat_id)
     {
         if ($id && $surat_id) {
-            $surat = Surat::select(['surats.*','barang_bukti.obyek_id','barang_sitaan','nilai_pemulihan_aset'])
+            $surat = Surat::select(['surats.*','barang_bukti.id as bukti_id','barang_bukti.obyek_id','barang_sitaan','nilai_pemulihan_aset'])
                 ->join('barang_bukti','surats.id','=','barang_bukti.surat_id')
                 ->where('surats.id', $surat_id)
                 ->first();
@@ -169,6 +169,36 @@ class ObyekController extends Controller
             'no_surat_perkara'      => 'required',
             'tanggal_surat_perkara' => 'required'
         ]);
+
+        $obyek_id = $request->obyek_id;
+        $obyek = Obyek::find($obyek_id);
+        if ($obyek) {
+            $pemulihan_aset = $obyek->pemulihan_aset;
+            $pemulihan_aset += $request->nilai_pemulihan_aset;
+            $obyek->update(['pemulihan_aset' => $pemulihan_aset]);
+        }
+
+        $surat = Surat::find($surat_id);
+        if ($surat) {
+            $surat->update($request->only('no_surat_perkara','tanggal_surat_perkara','tindakan'));
+        }
+
+        $bukti_id = $request->bukti_id;
+        $barang_bukti = BarangBukti::find($bukti_id);
+        if ($barang_bukti) {
+            $barang_bukti->update($request->only('barang_sitaan','nilai_pemulihan_aset'));
+        }
+
+        $jaksas = $request->jaksa_id;
+        if ($jaksas && !empty($jaksas)) {
+            foreach ($jaksas as $jaksa) {
+                $jaksa_id = intval($jaksa);
+                $findJaksa = Jaksa::find($jaksa_id);
+                $surat->jaksas()->attach($findJaksa);
+            }
+        }
+
+        return redirect('/obyek');
     }
 
     /**

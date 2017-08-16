@@ -20,6 +20,7 @@
     <div class="form-group">
       <label>Jenis Surat</label>
       {!! Form::select('tipe_surat', ['PENGGELEDAHAN' => 'PENGGELEDAHAN', 'PENYITAAN' => 'PENYITAAN', 'PENITIPAN' => 'PENITIPAN'], $tipe_surat, ['class' => 'form-control', 'required' => 'required']) !!}
+      {!! Form::hidden('bukti_id', $surat->bukti_id) !!}
     </div>
     
     <!-- No. Surat -->
