@@ -14,7 +14,6 @@
 				<br>
 				Kategori Subyek: <strong>{{ $subyek->kategori_subyek }}</strong>, 
 				Status: <strong>{{ $subyek->status }}, {{ $subyek->masa_tahanan }}</strong><i class="text-red"> (.. belum ada)</i><br>
-				Disposisi / Keterangan: <strong>{{ $case->disposisi }}</strong>
 			</div>
 		</div>
 	</td>

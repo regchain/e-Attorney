@@ -25,13 +25,14 @@ class Rp3MumController extends Controller
         $cases = array();
         $kasus = Kasus::select(['*'])
             ->where('status_rp2', Kasus::STATUS_DITERUSKAN)
-            ->where('status_rp3mum', '<>', 0)
+            ->where('status_rp3mum', Kasus::STATUS_BARU)
             ->orderBy('status_rp3mum')
             ->get();
 
         foreach ($kasus as $case) {
             $subyeks = array();
             $obyeks = array();
+            $jaksas = array();
 
             $kasus_id = $case["id"];
             $kasus_subyek = KasusSubyek::select(['subyek_id','subyek.*','kategori_subyeks.name as kategori_subyek'])
@@ -51,8 +52,21 @@ class Rp3MumController extends Controller
                 array_push($obyeks, $obyek);
             }
 
+            $kasus_jaksa = Surat::select(['nama_jaksa'])
+                ->join('surat_jaksa','surats.id','=','surat_jaksa.surat_id')
+                ->join('jaksas','surat_jaksa.jaksa_id','=','jaksas.id')
+                ->where('surats.kasus_id',$kasus_id)
+                ->where('tipe_surat','=','RP3MUM')
+                ->orderBy('nama_jaksa')
+                ->get();
+            
+            foreach ($kasus_jaksa as $jaksa) {
+                array_push($jaksas, $jaksa);
+            }
+
             $case["subyeks"] = $subyeks;
             $case["obyeks"] = $obyeks;
+            $case["jaksas"] = $jaksas;
             array_push($cases, $case);
         }
         
@@ -221,6 +235,21 @@ class Rp3MumController extends Controller
         $surat = Surat::find($request->surat_id);
         if ($surat) {
             $surat->update($request->only('tanggal_surat_perkara','no_surat_perkara'));
+        }
+
+        $jaksas = $request->jaksa_id;
+        if ($jaksas && !empty($jaksas)) {
+            foreach ($jaksas as $jaksa) {
+                $jaksa_id = intval($jaksa);
+                $findSuratJaksa = SuratJaksa::where('surat_id', $request->surat_id)
+                    ->where('jaksa_id', $jaksa_id)
+                    ->first();
+
+                if (empty($findSuratJaksa)) {
+                    $findJaksa = Jaksa::find($jaksa_id);
+                    $surat->jaksas()->attach($findJaksa);
+                }
+            }
         }
         
         return redirect()->route('rp3mum.index');

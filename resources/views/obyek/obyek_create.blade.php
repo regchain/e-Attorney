@@ -53,12 +53,13 @@
     <!-- Membuat Berita Acara -->
     <div class="form-group">
       <label>Keterangan</label>
-      {!! Form::textarea('keterangan', null, ['class' => 'form-control', 'size' => '120x10' ,'placeholder' => '(Isi Keterangan)']) !!}
+      {!! Form::textarea('barang_sitaan', null, ['class' => 'form-control', 'size' => '120x10' ,'placeholder' => '(Isi Keterangan)']) !!}
     </div>
     <div class="form-group">
       <div class="input-group">
         <span class="input-group-addon">Rp.</span>
-        {!! Form::number('pemulihan_aset', null, ['class' => 'form-control', 'placeholder' => 'Enter ...', 'step' => 'any']) !!}
+        {!! Form::number('nilai_pemulihan_aset', null, ['class' => 'form-control', 'placeholder' => 'Enter ...', 'step' => 'any']) !!}
+        <span class="input-group-addon">Miliar</span>
         <span class="input-group-addon">Nilai Pemulihan Aset</span>
         {!! Form::hidden('obyek_id', $obyek_id) !!}
       </div>

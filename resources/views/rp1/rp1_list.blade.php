@@ -27,9 +27,9 @@
     <tr>
         <td>{{ $loop->iteration }}</td>
         <td><strong> {{$case->judul_kasus}} </strong>, {{ $case->kasus_posisi }}</td>
-        <td>Lokasi Kejadian: {{ $case->lokasi_kejadian }}<br>
-        Tanggal Kejadian: {{ $case->tanggal_kejadian }}<br>
-        Pelapor: {{ $case->nama_lengkap }}<br>
+        <td>Subyek Hukum: {{ $case->nama_terlapor }}<br>
+        Lembaga / Institusi: {{ $case->lembaga }}<br>
+        Obyek Pidana: {{ $case->obyek_pidana }}<br>
         </td>
         <td>
             <div class="btn-group-vertical pull-right" role="group" aria-label="...">

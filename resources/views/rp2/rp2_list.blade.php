@@ -18,7 +18,7 @@
         <table class="table table-striped">
             <tbody>
                 <tr>
-                    <th>Kasus</th>
+                    <th>Kasus Posisi</th>
                 </tr>
                 @forelse ($cases as $case)
                 <tr>

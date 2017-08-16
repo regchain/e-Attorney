@@ -16,13 +16,16 @@ class Rp1Controller extends Controller
      */
     public function index()
     {
-        $cases = Kasus::where('status_rp1', '<>', NULL)
+        $cases = Kasus::select(['kasus.*','nama_terlapor','lembaga','obyek_pidana'])
+            ->join('kasus_subyek','kasus.id','=','kasus_subyek.kasus_id')
+            ->join('subyek','kasus_subyek.subyek_id','=','subyek.id')
+            ->join('kasus_obyek','kasus.id','=','kasus_obyek.kasus_id')
+            ->join('obyek','kasus_obyek.obyek_id','=','obyek.id')
+            ->where('status_rp1', Kasus::STATUS_BARU)
             ->orderBy('status_rp1')
             ->paginate(10);
         
-        if ($cases && !empty($cases)) {
-            return view('rp1.rp1_list', ['cases' => $cases]);
-        }
+        return view('rp1.rp1_list', ['cases' => $cases]);
     }
 
     /**

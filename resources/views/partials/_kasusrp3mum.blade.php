@@ -19,13 +19,14 @@
 
 <div class="panel-collapse collapse" role="tabpanel" id="collapse{{ $case->id }}" aria-labelledby="headingOne" aria-expanded="false" style="height: 0px;">
 	<div class="panel-body">
-		<div class="col-lg-4 col-md-4 col-sm-12 text-justify">
+		<div class="col-lg-5 col-md-5 col-sm-12 text-justify">
 			<!-- Custom Tabs (Pulled to the right) -->
 			<div class="nav-tabs-custom">
 				<ul class="nav nav-tabs pull-right">
 					<li class="active"><a href="#tab_3a1-1{{ $case->id }}" data-toggle="tab" aria-expanded="true">Kasus</a></li>
 					<li class=""><a href="#tab_3a2-2{{ $case->id }}" data-toggle="tab" aria-expanded="false">Benda Sitaan</a></li>
 					<li class=""><a href="#tab_3a3-2{{ $case->id }}" data-toggle="tab" aria-expanded="false">Pemulihan Aset</a></li>
+					<li class=""><a href="#tab_3a4-2{{ $case->id }}" data-toggle="tab" aria-expanded="false">Jaksa Penyidik</a></li>
 					<li class="pull-left box">&nbsp;&nbsp;&nbsp;<i class="fa fa-balance-scale"></i> <label>Kasus Posisi</label></li>
 				</ul>
 				<div class="tab-content">
@@ -45,22 +46,24 @@
 					</div>
 					<!-- /.tab-pane -->
 					<div class="tab-pane" id="tab_3a3-2{{ $case->id }}">
-						{{ $total_nilai_kontrak = 0 }}
-						{{ $total_kerugian = 0 }}
-						{{ $total_pemulihan = 0 }}
 						@foreach ($case->obyeks as $obyek)
-						Nilai Kontrak / Anggaran: <strong>{{ $total_nilai_kontrak += $obyek->nilai_kontrak }} M.</strong> 
-						<br>Kerugian Negara <strong>{{ $total_kerugian += $case->kerugian_negara }} M.</strong> 
-						<br>Pemulihan Aset: <strong>{{ $total_pemulihan += $case->pemulihan_aset }} M.</strong> 
+						Nilai Kontrak / Anggaran: <strong>{{ $obyek->nilai_kontrak }} M.</strong> 
+						<br>Kerugian Negara <strong>{{ $obyek->kerugian_negara }} M.</strong> 
+						<br>Pemulihan Aset: <strong>{{ $obyek->pemulihan_aset }} M.</strong> 
 						@endforeach
 					</div>
 					<!-- /.tab-pane -->
+					<div class="tab-pane" id="tab_3a4-2{{ $case->id }}">
+						@foreach ($case->jaksas as $jaksa)
+						{{ $loop->iteration }}. <strong>{{ $jaksa->nama_jaksa }} </strong><br />
+						@endforeach
+					</div>
 				</div>
 				<!-- /.tab-content -->
 			</div>
 			<!-- nav-tabs-custom -->
 		</div>
-	<div class="col-lg-8 col-md-8 col-sm-12">
+	<div class="col-lg-7 col-md-7 col-sm-12">
 		<table class="table table-responsive table-striped">
 			<tbody>
 				@include('partials._subyekrp3mum', ['case' => $case])				
