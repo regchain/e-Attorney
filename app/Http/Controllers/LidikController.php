@@ -11,6 +11,12 @@ use App\Surat;
 
 class LidikController extends Controller
 {
+    private $service;
+    public function __construct()
+    {
+        $this->service = new HelperController();
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -69,9 +75,7 @@ class LidikController extends Controller
             ->where('kasus.id',$id)
             ->first();
 
-        $jaksas = Jaksa::select(['*'])
-            ->orderBy('nama_jaksa')
-            ->pluck('nama_jaksa', 'id');
+        $jaksas = $this->service->getJaksaAll();
 
         if ($case && !empty($case)) {
             return view('rp1.rp1_lidik', ['case' => $case, 'jaksas' => $jaksas]);

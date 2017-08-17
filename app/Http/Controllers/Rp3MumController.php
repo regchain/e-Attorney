@@ -23,9 +23,11 @@ class Rp3MumController extends Controller
     public function index()
     {
         $cases = array();
-        $kasus = Kasus::select(['*'])
+        $kasus = Kasus::select(['*','no_surat_perkara','tanggal_surat_perkara'])
+            ->join('surats','kasus.id','=','surats.kasus_id')
             ->where('status_rp2', Kasus::STATUS_DITERUSKAN)
             ->where('status_rp3mum', Kasus::STATUS_BARU)
+            ->where('surats.tipe_surat', 'RP3MUM')
             ->orderBy('status_rp3mum')
             ->get();
 

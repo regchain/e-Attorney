@@ -11,9 +11,10 @@
   	</ul>
   	@endif
 </div><!-- end button group -->
-<div class="panel-heading" role="tab" id="headingOne">
+<div class="panel-heading col-md-9" role="tab" id="headingOne">
 	<p class="panel-title"> <a href="#collapse{{ $case->id }}" role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="false" aria-controls="collapse1" class="collapsed"> <i class="glyphicon glyphicon-resize-vertical text-green"></i>&nbsp; {{ $case->judul_kasus }} </a> </p>
 </div>
+<div>{{ $case->no_surat_perkara }}<br /> {{ $case->tanggal_surat_perkara }}</div>
 
 <div class="panel-collapse collapse" role="tabpanel" id="collapse{{ $case->id }}" aria-labelledby="headingOne" aria-expanded="false" style="height: 0px;">
 	<div class="panel-body">

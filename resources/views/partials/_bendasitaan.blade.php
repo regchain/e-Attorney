@@ -4,11 +4,11 @@
 		<div class="panel panel-default">    
 			<div class="panel-heading" role="tab" id="headingOne"> 
 				<h4 class="panel-title">
-          <a href="#collapseOne" role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="false" aria-controls="collapseOne" class="collapsed"><i class="glyphicon glyphicon-resize-vertical text-green"></i>&nbsp; {{ $case->judul_kasus }}</a>
+          <a href="#collapseOne{{ $case->id }}" role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="false" aria-controls="collapseOne" class="collapsed"><i class="glyphicon glyphicon-resize-vertical text-green"></i>&nbsp; {{ $case->judul_kasus }}</a>
           <div class="pull-right"> Pemulihan Aset: Rp. {{ $case->pemulihan_aset }} M</div>
         </h4>
 			</div>
-			<div class="panel-collapse collapse" role="tabpanel" id="collapseOne" aria-labelledby="headingOne" aria-expanded="false" style="height: 0px;"> 
+			<div class="panel-collapse collapse" role="tabpanel" id="collapseOne{{ $case->id }}" aria-labelledby="headingOne" aria-expanded="false" style="height: 0px;"> 
 				<div class="panel-body"> 
 				  <table class="table table-hover">
             <tbody>

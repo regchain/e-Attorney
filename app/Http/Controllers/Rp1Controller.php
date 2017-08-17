@@ -9,6 +9,12 @@ use App\Subyek;
 
 class Rp1Controller extends Controller
 {
+    private $service;
+    public function __construct()
+    {
+        $this->service = new HelperController();
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,14 +22,10 @@ class Rp1Controller extends Controller
      */
     public function index()
     {
-        $cases = Kasus::select(['kasus.*','nama_terlapor','lembaga','obyek_pidana'])
-            ->join('kasus_subyek','kasus.id','=','kasus_subyek.kasus_id')
-            ->join('subyek','kasus_subyek.subyek_id','=','subyek.id')
-            ->join('kasus_obyek','kasus.id','=','kasus_obyek.kasus_id')
-            ->join('obyek','kasus_obyek.obyek_id','=','obyek.id')
-            ->where('status_rp1', Kasus::STATUS_BARU)
-            ->orderBy('status_rp1')
-            ->paginate(10);
+        $status_param = "status_rp1";
+        $status_value = Kasus::STATUS_BARU;
+
+        $cases = $this->service->getKasus($status_param, $status_value);
         
         return view('rp1.rp1_list', ['cases' => $cases]);
     }
@@ -82,13 +84,7 @@ class Rp1Controller extends Controller
      */
     public function edit($id)
     {
-        $case = Kasus::select(['kasus.*','subyek.id as subyek_id','subyek.nama_terlapor','subyek.lembaga','obyek.id as obyek_id','obyek.obyek_pidana'])
-            ->join('kasus_subyek','kasus.id','=','kasus_subyek.kasus_id')
-            ->join('subyek','kasus_subyek.subyek_id','=','subyek.id')
-            ->join('kasus_obyek','kasus.id','=','kasus_obyek.kasus_id')
-            ->join('obyek','kasus_obyek.obyek_id','=','obyek.id')
-            ->where('kasus.id',$id)
-            ->first();
+        $case = $this->service->getKasusByID($id);
 
         if ($case && !empty($case)) {
             return view('rp1.rp1_edit')->with(compact('case'));

@@ -62,6 +62,7 @@
         {!! Form::number('nilai_pemulihan_aset', null, ['class' => 'form-control', 'placeholder' => 'Enter ...', 'step' => 'any']) !!}
         <span class="input-group-addon">Nilai Pemulihan Aset</span>
         {!! Form::hidden('obyek_id', $obyek_id) !!}
+        {!! Form::hidden('nilai_pemulihan_aset_awal', $surat->nilai_pemulihan_aset) !!}
       </div>
     </div>
 

@@ -11,6 +11,12 @@ use App\BarangBukti;
 
 class ObyekController extends Controller
 {
+    private $service;
+    public function __construct()
+    {
+        $this->service = new HelperController();
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -67,9 +73,7 @@ class ObyekController extends Controller
             $kasus_id = $case->id;
         }
 
-        $jaksas = Jaksa::select(['*'])
-            ->orderBy('nama_jaksa')
-            ->pluck('nama_jaksa', 'id');
+        $jaksas = $this->service->getJaksaAll();
 
         return view('obyek.obyek_create', ['jaksas' => $jaksas, 'obyek_id' => $obyek_id, 'kasus_id' => $kasus_id]);
     }
@@ -148,9 +152,7 @@ class ObyekController extends Controller
                 ->first();
         }
         
-        $jaksas = Jaksa::select(['*'])
-            ->orderBy('nama_jaksa')
-            ->pluck('nama_jaksa', 'id');
+        $jaksas = $this->service->getJaksaAll();
 
         return view('obyek.obyek_edit', ['jaksas' => $jaksas, 'surat' => $surat, 'kasus_id' => $id, 'obyek_id' => $surat->obyek_id, 'tipe_surat' => $surat->tipe_surat]);
     }
@@ -174,7 +176,9 @@ class ObyekController extends Controller
         $obyek = Obyek::find($obyek_id);
         if ($obyek) {
             $pemulihan_aset = $obyek->pemulihan_aset;
-            $pemulihan_aset += $request->nilai_pemulihan_aset;
+            $selisih = $request->nilai_pemulihan_aset_awal - $request->nilai_pemulihan_aset;
+            $pemulihan_aset -= $selisih;
+            
             $obyek->update(['pemulihan_aset' => $pemulihan_aset]);
         }
 
