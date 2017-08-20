@@ -25,35 +25,7 @@ Route::get('master_penuntutan', 'HomeController@master_penuntutan');
 
 Route::resource('pengumuman', 'PengumumanController');
 
-/*
-|--------------------------------------------------------------------------
-| Kategori Jabatan Tersangka Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Route::get('penyidikan', 'LayoutController@penyidikan');
-
-/*
-|--------------------------------------------------------------------------
-| Kategori Jabatan Tersangka Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-Route::get('jabatan', 'JabatanController@index');
-
-Route::get('jabatan_create', 'JabatanController@jabatan_create');
-
-Route::get('jabatan_edit', 'JabatanController@jabatan_edit');
 
 /*
 |--------------------------------------------------------------------------
@@ -69,23 +41,6 @@ Route::get('jabatan_edit', 'JabatanController@jabatan_edit');
 Route::get('geledah', 'ObyekController@geledah');
 
 Route::get('erb1', 'ObyekController@erb1');
-
-/*
-|--------------------------------------------------------------------------
-| RP-3mum Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-Route::get('rp3mum', 'Rp3mumController@index');
-
-Route::get('frp3mum', 'Rp3mumController@frp3mum');
-
-Route::get('erp3mum', 'Rp3mumController@erp3mum');
 
 /*
 |--------------------------------------------------------------------------
@@ -113,30 +68,11 @@ Subyek [Tersangka] Routes
 |
 */
 
-Route::get('subyek', 'SubyekController@index');
-
 Route::get('frt0', 'SubyekController@frt0');
 
 Route::get('frt2', 'SubyekController@frt2');
 
 Route::get('ert1', 'SubyekController@ert1');
-
-/*
-|--------------------------------------------------------------------------
-| User [Jaksa Penyidik] Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-Route::get('user', 'UserController@index');
-
-Route::get('fjaksa', 'UserController@fjaksa');
-
-Route::get('ejaksa', 'UserController@ejaksa');
 
 Route::group(['prefix' => '', 'middleware' => ['auth']], function() {
 	Route::resource('jaksa', 'JaksasController');

@@ -23,7 +23,7 @@ class Rp3MumController extends Controller
     public function index()
     {
         $cases = array();
-        $kasus = Kasus::select(['*','no_surat_perkara','tanggal_surat_perkara'])
+        $kasus = Kasus::select(['kasus.*','no_surat_perkara','tanggal_surat_perkara'])
             ->join('surats','kasus.id','=','surats.kasus_id')
             ->where('status_rp2', Kasus::STATUS_DITERUSKAN)
             ->where('status_rp3mum', Kasus::STATUS_BARU)
@@ -35,6 +35,7 @@ class Rp3MumController extends Controller
             $subyeks = array();
             $obyeks = array();
             $jaksas = array();
+            $barang_sitaan = array();
 
             $kasus_id = $case["id"];
             $kasus_subyek = KasusSubyek::select(['subyek_id','subyek.*','kategori_subyeks.name as kategori_subyek'])
@@ -66,12 +67,24 @@ class Rp3MumController extends Controller
                 array_push($jaksas, $jaksa);
             }
 
+            $barang_bukti = Obyek::select(['barang_sitaan'])
+                ->join('barang_bukti','obyek.id','=','barang_bukti.obyek_id')
+                ->join('kasus_obyek','obyek.id','=','kasus_obyek.obyek_id')
+                ->where('kasus_obyek.kasus_id',$kasus_id)
+                ->orderBy('barang_bukti.id')
+                ->get();
+            
+            foreach ($barang_bukti as $bukti) {
+                array_push($barang_sitaan, $bukti);
+            }
+
             $case["subyeks"] = $subyeks;
             $case["obyeks"] = $obyeks;
             $case["jaksas"] = $jaksas;
+            $case["barang_sitaan"] = $barang_sitaan;
             array_push($cases, $case);
         }
-        
+
         return view('rp3mum.rp3mum_list', ['cases' => $cases]);
     }
 

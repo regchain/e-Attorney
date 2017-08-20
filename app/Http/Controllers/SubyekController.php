@@ -110,7 +110,20 @@ class SubyekController extends Controller
 
     public function tersangka($kasus_id)
     {
-        return view('subyek.subyek_tsk_create');
+        $case = Kasus::select(['kasus.*','no_surat_perkara','tanggal_surat_perkara'])
+            ->join('surats','kasus.id','=','surats.kasus_id')
+            ->where('kasus.id', $kasus_id)
+            ->where('surats.tipe_surat','=','RP3MUM')
+            ->orderBy('surats.id', 'desc')
+            ->first();
+
+        $subyeks = Subyek::select(['subyek.*','subyek_id','kategori_subyeks.name'])
+            ->join('kasus_subyek','kasus_subyek.subyek_id','=','subyek.id')
+            ->join('kategori_subyeks','kategori_subyeks.id','=','subyek.kategori_subyek_id')
+            ->where('kasus_subyek.kasus_id', $kasus_id)
+            ->get();
+        
+        return view('subyek.subyek_tsk_create', ['case' => $case, 'subyeks' => $subyeks]);
     }
 
     public function tahan()

@@ -39,8 +39,8 @@
 					</div>
 					<!-- /.tab-pane -->
 					<div class="tab-pane" id="tab_3a2-2{{ $case->id }}">
-						@forelse ($case->obyeks as $obyek)
-						<p class="text-red">{{ $obyek->obyek_pidana }} {{ $obyek->benda_sitaan }}</p>
+						@forelse ($case->barang_sitaan as $sitaan)
+						<p class="text-red">{{ $sitaan->barang_sitaan }} </p>
 						@empty
 				        <p class="text-red"> Tidak ada benda sitaan</p>
 				        @endforelse
