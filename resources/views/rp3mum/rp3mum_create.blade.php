@@ -95,7 +95,7 @@
 			<!-- Kategori Subyek -->
 			<div class="form-group">
 				<label>Kategori Subyek</label>
-				{!! Form::select('kategori_subyek_id', $kategori_subyek, 0, ['class'=>'form-control', 'placeholder' => '']) !!}
+				{!! Form::select('kategori_subyek_id', $kategori_subyek, 1, ['class'=>'form-control', 'placeholder' => '']) !!}
 			</div>
 		</div>
 		<div class="col-lg-6 col-md-6 col-sm-12">

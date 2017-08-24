@@ -94,10 +94,12 @@ class LidikController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'judul_kasus'   => 'required',
-            'kasus_posisi'  => 'required',
-            'lembaga'       => 'required',
-            'obyek_pidana'  => 'required'
+            'judul_kasus'           => 'required',
+            'kasus_posisi'          => 'required',
+            'lembaga'               => 'required',
+            'obyek_pidana'          => 'required',
+            'no_surat_perkara'      => 'required',
+            'tanggal_surat_perkara' => 'required'
         ]);
 
         $status_rp1 = $request->status_rp1;
@@ -112,14 +114,22 @@ class LidikController extends Controller
             if ($case) {
                 $case->update($request->only('judul_kasus','kasus_posisi','disposisi','status_rp1') + ['status_rp2' => Kasus::STATUS_BARU]);
 
-                $surat = Surat::create($request->only('no_surat_perkara','tanggal_surat_perkara') + ['kasus_id' => $case->id, 'tipe_surat' => 'RP2']);
+                $cekSurat = Surat::where('kasus_id', $case->id)
+                    ->where('tipe_surat', 'RP2')
+                    ->first();
+                
+                if ($cekSurat) {
+                    $surat = Surat::find($cekSurat->id);
+                } else {
+                    $surat = Surat::create($request->only('no_surat_perkara','tanggal_surat_perkara') + ['kasus_id' => $case->id, 'tipe_surat' => 'RP2']);
 
-                $jaksas = $request->jaksa_id;
-                if ($jaksas && !empty($jaksas)) {
-                    foreach ($jaksas as $jaksa) {
-                        $jaksa_id = intval($jaksa);
-                        $findJaksa = Jaksa::find($jaksa_id);
-                        $surat->jaksas()->attach($findJaksa);
+                    $jaksas = $request->jaksa_id;
+                    if ($jaksas && !empty($jaksas)) {
+                        foreach ($jaksas as $jaksa) {
+                            $jaksa_id = intval($jaksa);
+                            $findJaksa = Jaksa::find($jaksa_id);
+                            $surat->jaksas()->attach($findJaksa);
+                        }
                     }
                 }
             }

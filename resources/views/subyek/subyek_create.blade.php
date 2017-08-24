@@ -102,7 +102,7 @@
 		<!-- Kategori Subyek -->
 		<div class="form-group">
 			<label>Kategori Subyek</label>
-			{!! Form::select('kategori_subyek_id', $kategori_subyek, 0, ['class'=>'form-control', 'placeholder' => '']) !!}
+			{!! Form::select('kategori_subyek_id', $kategori_subyek, 1, ['class'=>'form-control', 'placeholder' => '']) !!}
 		</div>
 		<div class="box-tools pull-right">
 			<a href="{{ route('rp3mum.index') }}" class="btn btn-danger"> BATAL</a>

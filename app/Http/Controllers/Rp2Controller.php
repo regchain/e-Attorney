@@ -70,9 +70,7 @@ class Rp2Controller extends Controller
             array_push($cases, $case);         
         }
         
-        if ($cases && !empty($cases)) {
-            return view('rp2.rp2_list', ['cases' => $cases]);
-        }
+        return view('rp2.rp2_list', ['cases' => $cases]);
     }
 
     /**

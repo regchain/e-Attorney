@@ -4,7 +4,7 @@
 		<div class="medi col-md-12a">
 			<div class="media-left">
 				<a href="#">
-					<img alt="64x64" class="media-object" data-src="holder.js/64x64" src="dist/img/subyek/nancy.jpg" data-holder-rendered="true" style="width: 64px; height: 64px;">
+					<img alt="64x64" class="media-object" data-src="holder.js/64x64" src="{{ asset('images/subyek.jpg') }}" data-holder-rendered="true" style="width: 64px; height: 64px;">
 				</a>
 			</div> 
 			<div class="media-body">

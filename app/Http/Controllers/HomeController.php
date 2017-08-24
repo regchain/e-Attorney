@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Kasus;
 use App\Subyek;
 use App\KategoriSubyek;
+use App\Pasal;
 
 class HomeController extends Controller
 {
@@ -38,14 +39,17 @@ class HomeController extends Controller
 
         $kasus_rp3sus = Kasus::where('status_rp3sus','<>',0)->count();
         $tahanan = Subyek::where('status','<>',0)->count();
-        $subyek_hukum = KategoriSubyek::select('name')->get()->toArray();
-
+        $subyek_hukum = KategoriSubyek::selectRaw('name, count(kategori_subyek_id) as total')
+            ->join('subyek','kategori_subyeks.id','=','subyek.kategori_subyek_id')
+            ->groupBy('kategori_subyeks.name')
+            ->get();
+        
         $dashboard["kasus_rp2"] = $kasus_rp2;
         $dashboard["kasus_rp3mum"] = $kasus_rp3mum;
         $dashboard["kasus_rp3sus"] = $kasus_rp3sus;
         $dashboard["tahanan"] = $tahanan;
         
-        return view('home', ['dashboard' => $dashboard, 'subyek_hukum' => json_encode($subyek_hukum)]);
+        return view('home', ['dashboard' => $dashboard, 'subyek_hukum' => $subyek_hukum]);
     }
 
     public function trial()
@@ -53,7 +57,6 @@ class HomeController extends Controller
         return view('trial');
     }
   
-
     public function master_penyidikan()
     {
         return view('master_penyidikan');

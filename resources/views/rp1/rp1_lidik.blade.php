@@ -41,7 +41,7 @@
 		<!-- No. Surat -->
 		<div class="form-group">
 			<label> No. Surat</label>
-			{!! Form::text('no_surat_perkara', null, ['class' => 'form-control', 'placeholder' => 'PRINT-']) !!}
+			{!! Form::text('no_surat_perkara', null, ['class' => 'form-control', 'placeholder' => 'PRINT-', 'required' => 'required']) !!}
 		</div>
 	</div>
 	<div class="col-lg-8 col-md-8 col-sm-12">

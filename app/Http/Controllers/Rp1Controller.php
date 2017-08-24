@@ -56,7 +56,7 @@ class Rp1Controller extends Controller
 
         $case = Kasus::create($request->all() + ['status_rp1' => Kasus::STATUS_BARU]);
         $obyek = Obyek::create($request->only('obyek_pidana'));
-        $subyek = Subyek::create($request->only('nama_terlapor', 'lembaga'));
+        $subyek = Subyek::create($request->only('nama_terlapor', 'lembaga') + ['kategori_subyek_id' => 1]);
         
         // attach relationship
         $case->subyeks()->attach($subyek);
