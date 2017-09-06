@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Spt;
+use App\Subyek;
 
 class SptController extends Controller
 {
@@ -34,53 +36,28 @@ class SptController extends Controller
      */
     public function store(Request $request)
     {
-        var_dump($request->status); die;
         $this->validate($request, [
-            'judul_kasus'   => 'required',
-            'lembaga'       => 'required',
-            'nilai_kontrak' => 'required',
-            'obyek_pidana'  => 'required'
+            'no_spt'        => 'required',
+            'tanggal_spt'   => 'required',
+            'kasus_id'      => 'required'
         ]);
 
-        $kasus_id = $request->id;
-        $status_rp2 = $request->status_rp2;
-        if ($status_rp2 == Kasus::STATUS_DIALIHKAN OR $status_rp2 == Kasus::STATUS_DIHENTIKAN) {
-            // Update status menjadi arsip
-            $case = Kasus::find($kasus_id);
-            if ($case) {
-                $case->update($request->only('judul_kasus','kasus_posisi','disposisi','status_rp2'));
-            }
-        } else {
-            $case = Kasus::find($kasus_id);
-            if ($case) {
-                $case->update($request->only('judul_kasus','kasus_posisi','disposisi','status_rp2') + ['status_rp3mum' => Kasus::STATUS_BARU]);
+        $spt = Spt::create($request->only('kasus_id','no_spt','tanggal_spt') + ['judul_spt' => 'Surat Penetapan Tersangka', 'jenis_spt' => 'TERSANGKA']);
 
-                $surat = Surat::create($request->only('no_surat_perkara','tanggal_surat_perkara') + ['kasus_id' => $case->id, 'tipe_surat' => 'RP3MUM']);
-
-                $jaksas = $request->jaksa_id;
-                if ($jaksas && !empty($jaksas)) {
-                    foreach ($jaksas as $jaksa) {
-                        $jaksa_id = intval($jaksa);
-                        $findJaksa = Jaksa::find($jaksa_id);
-                        $surat->jaksas()->attach($findJaksa);
-                    }
+        if ($spt) {
+            $spt_id = $spt->id;
+            $status_subyek = $request->status_subyek;
+            if ($status_subyek && !empty($status_subyek)) {
+                foreach ($status_subyek as $status) {
+                    $subyek_id = intval($status);
+                    $findSubyek = Subyek::find($subyek_id);
+                    $spt->subyeks()->attach($findSubyek);
+                    $findSubyek->update(['status' => Subyek::STATUS_TERSANGKA]);
                 }
             }
         }
 
-        // Update subyek
-        $subyek = Subyek::find($request->subyek_id);
-        if ($subyek) {
-            $subyek->update($request->only('nama_terlapor','lembaga','jabatan_resmi','jabatan_lain','kategori_subyek_id'));
-        }
-
-        // Update obyek
-        $obyek = Obyek::find($request->obyek_id);
-        if ($obyek) {
-            $obyek->update($request->only('obyek_pidana','nilai_kontrak','kerugian_negara','pemulihan_aset'));
-        }
-
-        return redirect()->route('rp2.index');
+        return redirect('/diksus/'. $request->kasus_id .'/spt/'. $spt_id);
     }
 
     /**

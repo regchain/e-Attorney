@@ -7,6 +7,8 @@ use App\Kasus;
 use App\Obyek;
 use App\Subyek;
 use App\KasusSubyek;
+use App\Jaksa;
+use App\KategoriSubyek;
 
 class Rp3SusController extends Controller
 {
@@ -47,9 +49,25 @@ class Rp3SusController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+        $case = Kasus::select(['kasus.*','subyek.id as subyek_id','subyek.nama_terlapor','subyek.lembaga','obyek.id as obyek_id','obyek.obyek_pidana','obyek.nilai_kontrak'])
+            ->join('kasus_subyek','kasus.id','=','kasus_subyek.kasus_id')
+            ->join('subyek','kasus_subyek.subyek_id','=','subyek.id')
+            ->join('kasus_obyek','kasus.id','=','kasus_obyek.kasus_id')
+            ->join('obyek','kasus_obyek.obyek_id','=','obyek.id')
+            ->where('kasus.id',$id)
+            ->first();
+
+        $jaksas = Jaksa::select(['*'])
+            ->orderBy('nama_jaksa')
+            ->pluck('nama_jaksa', 'id');
+
+        $kategori_subyek = KategoriSubyek::select(['*'])
+            ->orderBy('name')
+            ->pluck('name', 'id');
+
+        return view('rp3sus.rp3sus_create', ['case' => $case, 'jaksas' => $jaksas, 'kategori_subyek' => $kategori_subyek]);
     }
 
     /**

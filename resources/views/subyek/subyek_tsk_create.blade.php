@@ -21,6 +21,7 @@
 		<div class="form-group">
 			<label> No.</label>
 			{!! Form::text('no_spt', null, ['class' => 'form-control', 'placeholder' => 'B-', 'required' => '']) !!}
+			{!! Form::hidden('kasus_id', $kasus_id) !!}
 		</div>
 	</div>
 	<div class="col-lg-3 col-md-3 col-sm-12">
@@ -69,7 +70,7 @@
 	<div class="row">
 		@foreach ($subyeks as $subyek)
 		<div class="col-lg-3 col-md-3 col-sm-12" align="center">
-			{!! Form::checkbox('status[]', $subyek->id) !!} 
+			{!! Form::checkbox('status_subyek[]', $subyek->id) !!} 
 			<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#tsk{{ $subyek->subyek_id }}">
 				{{ $subyek->nama_terlapor }}
 				</button>

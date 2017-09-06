@@ -104,7 +104,7 @@ class SubyekController extends Controller
             $subyek->update($request->only('nama_terlapor', 'lembaga', 'kewarganegaraan') + ['status' => Subyek::STATUS_TERSANGKA]);    
         }
         
-        return redirect()->url('/tersangka/'.$kasus_id);
+        return redirect()->route('tersangka', ['kasus_id' => $kasus_id]);
     }
 
     /**
@@ -131,6 +131,7 @@ class SubyekController extends Controller
             ->join('kasus_subyek','kasus_subyek.subyek_id','=','subyek.id')
             ->join('kategori_subyeks','kategori_subyeks.id','=','subyek.kategori_subyek_id')
             ->where('kasus_subyek.kasus_id', $kasus_id)
+            ->where('subyek.status', 1)
             ->get();
 
         $kategori_subyek = KategoriSubyek::select(['*'])

@@ -83,6 +83,7 @@ Route::group(['prefix' => '', 'middleware' => ['auth']], function() {
 		'except' => ['create', 'store', 'show', 'destroy']]);
 	Route::resource('rp2', 'Rp2Controller');
 	Route::get('dikmum/{kasus_id}', 'Rp3MumController@create');
+	Route::get('diksus/{kasus_id}/spt/{spt_id}', 'Rp3SusController@create');
 	Route::resource('rp3mum', 'Rp3MumController');
 	Route::resource('spt', 'SptController');
 	Route::resource('rp3sus', 'Rp3SusController');
