@@ -104,7 +104,7 @@ class SubyekController extends Controller
             $subyek->update($request->only('nama_terlapor', 'lembaga', 'kewarganegaraan') + ['status' => Subyek::STATUS_TERSANGKA]);    
         }
         
-        return redirect()->route('tersangka', ['kasus_id' => $kasus_id]);
+        return redirect('/tersangka/'. $kasus_id);
     }
 
     /**
@@ -138,7 +138,7 @@ class SubyekController extends Controller
             ->orderBy('name')
             ->pluck('name', 'id');
         
-        return view('subyek.subyek_tsk_create', ['case' => $case, 'subyeks' => $subyeks, 'kategori_subyek' => $kategori_subyek, 'kasus_id' => $kasus_id]);
+        return view('subyek.subyek_tersangka_create', ['case' => $case, 'subyeks' => $subyeks, 'kategori_subyek' => $kategori_subyek, 'kasus_id' => $kasus_id]);
     }
 
     public function tahan()

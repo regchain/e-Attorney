@@ -9,6 +9,8 @@ use App\Subyek;
 use App\KasusSubyek;
 use App\Jaksa;
 use App\KategoriSubyek;
+use App\Pasal;
+use App\Spt;
 
 class Rp3SusController extends Controller
 {
@@ -49,25 +51,30 @@ class Rp3SusController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id)
+    public function create($id, $spt_id)
     {
-        $case = Kasus::select(['kasus.*','subyek.id as subyek_id','subyek.nama_terlapor','subyek.lembaga','obyek.id as obyek_id','obyek.obyek_pidana','obyek.nilai_kontrak'])
-            ->join('kasus_subyek','kasus.id','=','kasus_subyek.kasus_id')
-            ->join('subyek','kasus_subyek.subyek_id','=','subyek.id')
+        $case = Kasus::select(['kasus.*','obyek.id as obyek_id','obyek_pidana','nilai_kontrak','kerugian_negara','pemulihan_aset'])
             ->join('kasus_obyek','kasus.id','=','kasus_obyek.kasus_id')
             ->join('obyek','kasus_obyek.obyek_id','=','obyek.id')
             ->where('kasus.id',$id)
             ->first();
 
+        $spt_subyek = Spt::select(['spt_id','subyek_id','no_spt','nama_terlapor','lembaga','jabatan_resmi','jabatan_lain'])
+            ->join('spt_subyek','spt.id','=','spt_subyek.spt_id')
+            ->join('subyek','spt_subyek.subyek_id','=','subyek.id')
+            ->where('spt.kasus_id', $id)
+            ->where('spt.id', $spt_id)
+            ->get();
+        
         $jaksas = Jaksa::select(['*'])
             ->orderBy('nama_jaksa')
             ->pluck('nama_jaksa', 'id');
 
-        $kategori_subyek = KategoriSubyek::select(['*'])
-            ->orderBy('name')
-            ->pluck('name', 'id');
+        $pasals = Pasal::selectRaw('id, CONCAT_WS("-", "Pasal", pasal, ayat, huruf) AS pasal_name')
+            ->orderBy('id')
+            ->pluck('pasal_name', 'id');
 
-        return view('rp3sus.rp3sus_create', ['case' => $case, 'jaksas' => $jaksas, 'kategori_subyek' => $kategori_subyek]);
+        return view('rp3sus.rp3sus_create', ['case' => $case, 'jaksas' => $jaksas, 'pasals' => $pasals, 'spt_subyek' => $spt_subyek]);
     }
 
     /**

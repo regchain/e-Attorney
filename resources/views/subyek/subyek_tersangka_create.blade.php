@@ -55,27 +55,17 @@
 </div>
 
 <div class="rows"> 
-	<div class="row">
-		<div class="col-lg-6 col-md-6 col-sm-12">
-			<h4>Data Tersangka <small class="text-red"><br>Pilih tersangka tertentu untuk berkas perkara yang sama!</small></h4>
-		</div>
-		<div class="col-lg-6 col-md-6 col-sm-12">
-			<div class="box-tools pull-right">
-				<a href="{{ route('rp3mum.index') }}" class="btn btn-danger"> BATAL</a>
-				{{ Form::submit('KIRIM', ['class' => 'btn btn-success']) }}
-			</div>
-		</div>
-	</div>
+	<div class="col-lg-12 col-md-12 col-sm-12">
+		<h4>Data Tersangka <small class="text-red"><br>Pilih tersangka tertentu untuk berkas perkara yang sama!</small></h4>
 	
 	<div class="row">
 		@foreach ($subyeks as $subyek)
 		<div class="col-lg-3 col-md-3 col-sm-12" align="center">
-			{!! Form::checkbox('status_subyek[]', $subyek->id) !!} 
+			{!! Form::checkbox('status_subyek[]', $subyek->id) !!}
 			<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#tsk{{ $subyek->subyek_id }}">
 				{{ $subyek->nama_terlapor }}
-				</button>
-				{!! Form::close() !!}
-				<a href="#"> <img alt="64x64" class="thumbnail" data-src="holder.js/64x64" src="{{ asset('images/robert.jpg') }}" data-holder-rendered="true" style="width: 140px; height: 140px;"></a>
+			</button>
+			<a href="#"> <img alt="64x64" class="thumbnail" data-src="holder.js/64x64" src="{{ asset('images/robert.jpg') }}" data-holder-rendered="true" style="width: 140px; height: 140px;"></a>
 				<!-- Button trigger modal -->
 
 				<!-- Modal -->
@@ -84,13 +74,12 @@
 				    <div class="modal-content">
 				      <div class="modal-header">
 				        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				        <h4 class="modal-title" id="myModalLabel">Tersangka #{{ $loop->iteration }}</h4>
+				        <h4 class="modal-title" id="myModalLabel">Data Tersangka #{{ $loop->iteration }}</h4>
 				      </div>
 				      <div class="modal-body">
 				        <div class="rows"> 
 				        	<div class="col-lg-12 col-md-12 col-sm-12">
-				        		{!! Form::model($subyek, ['url' => route('subyek.update', [$kasus_id, $subyek->id]), 'method' => 'put']) !!}
-				        		<h4>Data Tersangka</h4>
+				        		{!! Form::model($subyek, ['url' => '', 'method' => '']) !!}
 				        		<!-- Nama Lengkap -->
 				        		<div class="form-group">
 				        			<label>Nama Lengkap</label>
@@ -146,7 +135,6 @@
 				        					<label>Agama</label>
 				        					{!! Form::text('agama', null, ['class' => 'form-control', 'placeholder' => 'Enter ...']) !!}
 				        				</div>
-
 				        			</div>
 				        		</div>
 				        	</div>
@@ -172,17 +160,15 @@
 				        			<label>Jabatan Lain</label>
 				        			{!! Form::text('jabatan_lain', null, ['class' => 'form-control', 'placeholder' => 'Enter ...']) !!}
 				        		</div>
-				        	</div>
-				        	<!-- Kategori Subyek -->
-				        	<div class="form-group">
-				        		<label>Kategori Subyek</label>
-				        		{!! Form::select('kategori_subyek_id', $kategori_subyek, null, ['class'=>'form-control', 'placeholder' => '']) !!}
-				        	</div>
+				        		<div class="form-group">
+					        		<label>Kategori Subyek</label>
+					        		{!! Form::select('kategori_subyek_id', $kategori_subyek, null, ['class'=>'form-control', 'placeholder' => '']) !!}
+					        	</div>
+				        	</div>				        	
 				        </div>   
 				      </div>
 				      <div class="modal-footer">
 				        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				        {{ Form::submit('Save Changes', ['class' => 'btn btn-primary']) }}
 				        {!! Form::close() !!}
 				      </div>
 				    </div>
@@ -191,8 +177,13 @@
 		</div>
 		@endforeach
 	</div>
+	<div class="box-tools pull-right">
+		<a href="{{ route('rp3mum.index') }}" class="btn btn-danger"> BATAL</a>
+		{{ Form::submit('KIRIM', ['class' => 'btn btn-success']) }}
 	</div>
+	</div>	
 </div>
+{!! Form::close() !!}
 
 @stop
 
