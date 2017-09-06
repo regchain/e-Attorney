@@ -14,13 +14,13 @@
 
 @section('materi')
 
-{!! Form::model($case, ['url' => route('rp3mum.store'), 'method' => 'post']) !!}
+{!! Form::model($case, ['url' => route('spt.store'), 'method' => 'post']) !!}
 <div class="row">
 	<div class="col-lg-3 col-md-3 col-sm-12">
 		<!-- No. Surat -->
 		<div class="form-group">
 			<label> No.</label>
-			<input type="text" class="form-control" placeholder="B-">
+			{!! Form::text('no_spt', null, ['class' => 'form-control', 'placeholder' => 'B-', 'required' => '']) !!}
 		</div>
 	</div>
 	<div class="col-lg-3 col-md-3 col-sm-12">
@@ -31,7 +31,7 @@
 				<div class="input-group-addon">
 					<i class="fa fa-calendar"></i>
 				</div>
-				<input type="date" class="form-control pull-right" id="datepicker">
+				{!! Form::date('tanggal_spt', \Carbon\Carbon::now(), ['class' => 'form-control pull-right', 'id' => 'datepicker']) !!}
 			</div>
 			<!-- /.input group -->
 		</div>
@@ -54,14 +54,26 @@
 </div>
 
 <div class="rows"> 
-	<div class="col-lg-12 col-md-12 col-sm-12">
-	<h4>Data Tersangka <small class="text-red"><br>Pilih tersangka tertentu untuk berkas perkara yang sama!</small></h4>
+	<div class="row">
+		<div class="col-lg-6 col-md-6 col-sm-12">
+			<h4>Data Tersangka <small class="text-red"><br>Pilih tersangka tertentu untuk berkas perkara yang sama!</small></h4>
+		</div>
+		<div class="col-lg-6 col-md-6 col-sm-12">
+			<div class="box-tools pull-right">
+				<a href="{{ route('rp3mum.index') }}" class="btn btn-danger"> BATAL</a>
+				{{ Form::submit('KIRIM', ['class' => 'btn btn-success']) }}
+			</div>
+		</div>
+	</div>
+	
 	<div class="row">
 		@foreach ($subyeks as $subyek)
 		<div class="col-lg-3 col-md-3 col-sm-12" align="center">
+			{!! Form::checkbox('status[]', $subyek->id) !!} 
 			<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#tsk{{ $subyek->subyek_id }}">
-				  {{ $subyek->nama_terlapor }}
+				{{ $subyek->nama_terlapor }}
 				</button>
+				{!! Form::close() !!}
 				<a href="#"> <img alt="64x64" class="thumbnail" data-src="holder.js/64x64" src="{{ asset('images/robert.jpg') }}" data-holder-rendered="true" style="width: 140px; height: 140px;"></a>
 				<!-- Button trigger modal -->
 
@@ -76,7 +88,7 @@
 				      <div class="modal-body">
 				        <div class="rows"> 
 				        	<div class="col-lg-12 col-md-12 col-sm-12">
-				        		{!! Form::model($subyek, ['url' => route('rp3mum.store'), 'method' => 'post']) !!}
+				        		{!! Form::model($subyek, ['url' => route('subyek.update', [$kasus_id, $subyek->id]), 'method' => 'put']) !!}
 				        		<h4>Data Tersangka</h4>
 				        		<!-- Nama Lengkap -->
 				        		<div class="form-group">
@@ -90,22 +102,20 @@
 				        		</div>
 				        		<div class="row">
 				        			<div class="col-lg-6 col-md-6 col-sm-12">
-				        				<label>Jenis Kelamin</label>
-				        			</div>
-				        			<div class="col-lg-6 col-md-6 col-sm-12">
-				        				<label class="checkbox-inline">
-				        					<input type="checkbox" id="inlineCheckbox1" value="option1"> Laki-laki
-				        				</label>
-				        				<label class="checkbox-inline">
-				        					<input type="checkbox" id="inlineCheckbox2" value="option2"> Perempuan
-				        				</label>
-				        			</div>
-				        		</div>	
-				        		<!-- Pendidikan -->
-				        		<div class="form-group">
-				        			<label>Pendidikan</label>
-				        			{!! Form::text('pendidikan', null, ['class' => 'form-control', 'placeholder' => 'Enter ...']) !!}
-				        		</div>
+				        				<label>Jenis Kelamin</label>     			
+					        			<div class="form-group">			        				
+											{!! Form::radio('jenis_kelamin', 'L') !!} Laki-laki &nbsp;
+											{!! Form::radio('jenis_kelamin', 'P') !!} Perempuan
+										</div>
+									</div>
+					        		<!-- Pendidikan -->
+					        		<div class="col-lg-6 col-md-6 col-sm-12">
+						        		<div class="form-group">
+						        			<label>Pendidikan</label>
+						        			{!! Form::text('pendidikan', null, ['class' => 'form-control', 'placeholder' => 'Enter ...']) !!}
+						        		</div>
+					        		</div>
+					        	</div>
 
 				        		<div class="row">
 				        			<div class="col-lg-6 col-md-6 col-sm-12">
@@ -163,23 +173,16 @@
 				        		</div>
 				        	</div>
 				        	<!-- Kategori Subyek -->
-				        			<div class="form-group">
-				        				<label>Kategori Subyek</label>
-				        				<select class="form-control" style="width: 100%;">
-				        					<option selected="selected">SWASTA</option>
-				        					<option>PNS</option>
-				        					<option>Hakim</option>
-				        					<option>Pengacara</option>
-				        					<option>Jaksa</option>
-				        					<option>Gubernur</option>
-				        					<option>Walikota</option>
-				        				</select>
-				        			</div>
+				        	<div class="form-group">
+				        		<label>Kategori Subyek</label>
+				        		{!! Form::select('kategori_subyek_id', $kategori_subyek, null, ['class'=>'form-control', 'placeholder' => '']) !!}
+				        	</div>
 				        </div>   
 				      </div>
 				      <div class="modal-footer">
 				        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				        <button type="button" class="btn btn-primary">Save changes</button>
+				        {{ Form::submit('Save Changes', ['class' => 'btn btn-primary']) }}
+				        {!! Form::close() !!}
 				      </div>
 				    </div>
 				  </div>
@@ -188,16 +191,7 @@
 		@endforeach
 	</div>
 	</div>
-	<div class="col-lg-6 col-md-6 col-sm-12">
-		<div class="box-tools pull-right">
-			<a href="{{ route('rp3mum.index') }}" class="btn btn-danger"> BATAL</a>
-			{{ Form::submit('KIRIM', ['class' => 'btn btn-success']) }}
-		</div>
-
-	</div>
 </div>
-
-{!! Form::close() !!}
 
 @stop
 

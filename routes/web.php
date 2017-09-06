@@ -84,6 +84,7 @@ Route::group(['prefix' => '', 'middleware' => ['auth']], function() {
 	Route::resource('rp2', 'Rp2Controller');
 	Route::get('dikmum/{kasus_id}', 'Rp3MumController@create');
 	Route::resource('rp3mum', 'Rp3MumController');
+	Route::resource('spt', 'SptController');
 	Route::resource('rp3sus', 'Rp3SusController');
 	Route::get('subyek', 'SubyekController@index');
 	Route::get('tersangka/{kasus_id}', 'SubyekController@tersangka');

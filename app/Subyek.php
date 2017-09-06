@@ -26,7 +26,6 @@ class Subyek extends Model
         'jabatan_lain',        
         'kategori_subyek_id',
         'status',
-        'keterangan'
     ];
 
 }

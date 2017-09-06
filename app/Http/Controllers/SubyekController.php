@@ -92,9 +92,19 @@ class SubyekController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $kasus_id, $id)
     {
-        //
+        $this->validate($request, [
+            'nama_terlapor'     => 'required',
+            'lembaga'           => 'required',
+        ]);
+
+        $subyek = Subyek::find($id);
+        if ($subyek) {
+            $subyek->update($request->only('nama_terlapor', 'lembaga', 'kewarganegaraan') + ['status' => Subyek::STATUS_TERSANGKA]);    
+        }
+        
+        return redirect()->url('/tersangka/'.$kasus_id);
     }
 
     /**
@@ -122,8 +132,12 @@ class SubyekController extends Controller
             ->join('kategori_subyeks','kategori_subyeks.id','=','subyek.kategori_subyek_id')
             ->where('kasus_subyek.kasus_id', $kasus_id)
             ->get();
+
+        $kategori_subyek = KategoriSubyek::select(['*'])
+            ->orderBy('name')
+            ->pluck('name', 'id');
         
-        return view('subyek.subyek_tsk_create', ['case' => $case, 'subyeks' => $subyeks]);
+        return view('subyek.subyek_tsk_create', ['case' => $case, 'subyeks' => $subyeks, 'kategori_subyek' => $kategori_subyek, 'kasus_id' => $kasus_id]);
     }
 
     public function tahan()
