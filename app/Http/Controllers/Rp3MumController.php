@@ -27,6 +27,7 @@ class Rp3MumController extends Controller
             ->join('surats','kasus.id','=','surats.kasus_id')
             ->where('status_rp2', Kasus::STATUS_DITERUSKAN)
             ->where('status_rp3mum', Kasus::STATUS_BARU)
+            ->orWhere('status_rp3mum', Kasus::STATUS_DITERUSKAN)
             ->where('surats.tipe_surat', 'RP3MUM')
             ->orderBy('status_rp3mum')
             ->get();

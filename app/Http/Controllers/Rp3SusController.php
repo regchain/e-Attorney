@@ -62,7 +62,7 @@ class Rp3SusController extends Controller
                 ->join('surat_jaksa','surats.id','=','surat_jaksa.surat_id')
                 ->join('jaksas','surat_jaksa.jaksa_id','=','jaksas.id')
                 ->where('surats.kasus_id',$kasus_id)
-                ->where('tipe_surat','=','RP3MUM')
+                ->where('tipe_surat','=','RP3SUS')
                 ->orderBy('nama_jaksa')
                 ->get();
             
