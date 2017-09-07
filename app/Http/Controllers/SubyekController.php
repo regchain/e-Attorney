@@ -80,9 +80,15 @@ class SubyekController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($kasus_id, $id)
     {
-        //
+        $subyek = Subyek::find($id);
+
+        $kategori_subyek = KategoriSubyek::select(['*'])
+            ->orderBy('name')
+            ->pluck('name', 'id');
+
+        return view('subyek.subyek_edit', ['kategori_subyek' => $kategori_subyek, 'subyek' => $subyek, 'kasus_id' => $kasus_id]);
     }
 
     /**
@@ -97,14 +103,16 @@ class SubyekController extends Controller
         $this->validate($request, [
             'nama_terlapor'     => 'required',
             'lembaga'           => 'required',
+            'jabatan_resmi'     => 'required',
+            'jabatan_lain'      => 'required'
         ]);
 
         $subyek = Subyek::find($id);
         if ($subyek) {
-            $subyek->update($request->only('nama_terlapor', 'lembaga', 'kewarganegaraan') + ['status' => Subyek::STATUS_TERSANGKA]);    
+            $subyek->update($request->all());    
         }
         
-        return redirect('/tersangka/'. $kasus_id);
+        return redirect()->route('rp3mum.index');
     }
 
     /**
@@ -113,9 +121,11 @@ class SubyekController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($kasus_id, $id)
     {
-        //
+        Subyek::destroy($id);
+
+        return redirect()->route('rp3mum.index');
     }
 
     public function tersangka($kasus_id)

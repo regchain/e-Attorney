@@ -28,7 +28,7 @@ class Rp3MumController extends Controller
             ->where('status_rp2', Kasus::STATUS_DITERUSKAN)
             ->where('surats.tipe_surat', 'RP3MUM')
             ->where('status_rp3mum', Kasus::STATUS_BARU)
-            ->orWhere('status_rp3mum', Kasus::STATUS_DITERUSKAN)            
+            ->orWhere('status_rp3mum', Kasus::STATUS_DITERUSKAN)
             ->orderBy('status_rp3mum')
             ->get();
 

@@ -99,7 +99,7 @@ Route::group(['prefix' => 'kasus'], function() {
 	Route::group(['prefix' => '{kasus_id}'], function($kasus_id) {
     	
     	Route::resource('subyek', 'SubyekController', [
-			'except' => ['index', 'show', 'destroy']]);
+			'except' => ['index', 'show']]);
     	Route::resource('obyek', 'ObyekController', [
 			'except' => ['index', 'show', 'destroy']]);
   	});	
