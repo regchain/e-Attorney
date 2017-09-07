@@ -24,8 +24,9 @@ class Rp3SusController extends Controller
     public function index()
     {
         $cases = array();
-        $kasus = Kasus::select(['kasus.*','no_surat_perkara','tanggal_surat_perkara'])
+        $kasus = Kasus::select(['kasus.*','surats.id as surat_id','no_surat_perkara','tanggal_surat_perkara','spt.id as spt_id'])
             ->join('surats','kasus.id','=','surats.kasus_id')
+            ->join('spt','surats.id','=','spt.surat_id')
             ->where('status_rp3mum', Kasus::STATUS_DITERUSKAN)
             ->where('status_rp3sus', Kasus::STATUS_BARU)
             ->where('surats.tipe_surat', 'RP3SUS')
@@ -39,11 +40,13 @@ class Rp3SusController extends Controller
             $barang_sitaan = array();
 
             $kasus_id = $case["id"];
+            $surat_id = $case["surat_id"];
+            $spt_id = $case["spt_id"];
             $kasus_subyek = Spt::select(['subyek_id','subyek.*','kategori_subyeks.name as kategori_subyek'])
                 ->join('spt_subyek','spt_subyek.spt_id','=','spt.id')
                 ->join('subyek','subyek.id','=','spt_subyek.subyek_id')
                 ->join('kategori_subyeks','subyek.kategori_subyek_id','=','kategori_subyeks.id')
-                ->where('spt.kasus_id',$kasus_id)
+                ->where('spt.surat_id', $surat_id)
                 ->where('subyek.status',2)
                 ->get();
             foreach ($kasus_subyek as $subyek) {
@@ -61,8 +64,11 @@ class Rp3SusController extends Controller
             $kasus_jaksa = Surat::select(['nama_jaksa'])
                 ->join('surat_jaksa','surats.id','=','surat_jaksa.surat_id')
                 ->join('jaksas','surat_jaksa.jaksa_id','=','jaksas.id')
+                ->join('spt','spt.surat_id','=','surats.id')
                 ->where('surats.kasus_id',$kasus_id)
                 ->where('tipe_surat','=','RP3SUS')
+                ->where('surats.id','=',$surat_id)
+                ->where('spt.id','=',$spt_id)
                 ->orderBy('nama_jaksa')
                 ->get();
             
@@ -87,6 +93,7 @@ class Rp3SusController extends Controller
             $case["barang_sitaan"] = $barang_sitaan;
             array_push($cases, $case);
         }
+        //echo json_encode($cases); die;
 
         return view('rp3sus.rp3sus_list', ['cases' => $cases]);
     }
@@ -119,7 +126,7 @@ class Rp3SusController extends Controller
             ->orderBy('id')
             ->pluck('pasal_name', 'id');
 
-        return view('rp3sus.rp3sus_create', ['case' => $case, 'jaksas' => $jaksas, 'pasals' => $pasals, 'spt_subyek' => $spt_subyek]);
+        return view('rp3sus.rp3sus_create', ['case' => $case, 'jaksas' => $jaksas, 'pasals' => $pasals, 'spt_subyek' => $spt_subyek, 'spt_id' => $spt_id]);
     }
 
     /**
@@ -136,6 +143,7 @@ class Rp3SusController extends Controller
         ]);
 
         $kasus_id = $request->id;
+        $spt_id = $request->spt_id;
         $status_rp3mum = $request->status_rp3mum;
         if ($status_rp3mum == Kasus::STATUS_DIALIHKAN OR $status_rp3mum == Kasus::STATUS_DIHENTIKAN) {
             // Update status menjadi arsip
@@ -149,6 +157,11 @@ class Rp3SusController extends Controller
                 $case->update($request->only('disposisi','status_rp3mum') + ['status_rp3sus' => Kasus::STATUS_BARU]);
 
                 $surat = Surat::create($request->only('no_surat_perkara','tanggal_surat_perkara') + ['kasus_id' => $case->id, 'tipe_surat' => 'RP3SUS']);
+                if ($surat) {
+                    $surat_id = $surat->id;
+                    $spt = Spt::find($spt_id);
+                    $spt->update(['surat_id' => $surat_id]);
+                }
 
                 $jaksas = $request->jaksa_id;
                 if ($jaksas && !empty($jaksas)) {

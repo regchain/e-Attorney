@@ -9,6 +9,7 @@ class Spt extends Model
     protected $table = 'spt';
     protected $fillable = [
     	'kasus_id',
+        'surat_id',
     	'judul_spt',
         'no_spt',
         'tanggal_spt',

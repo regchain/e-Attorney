@@ -25,6 +25,7 @@
 						<label>No. Surat</label>
 						{!! Form::text('no_surat_perkara', null, ['class' => 'form-control', 'placeholder' => 'PRINT-', 'required']) !!}
 						{!! Form::hidden('id', null) !!}
+						{!! Form::hidden('spt_id', $spt_id) !!}
 					</div>
 				</div>
 				<div class="col-lg-6 col-md-6 col-xs-12">
