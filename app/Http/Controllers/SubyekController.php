@@ -102,9 +102,7 @@ class SubyekController extends Controller
     {
         $this->validate($request, [
             'nama_terlapor'     => 'required',
-            'lembaga'           => 'required',
-            'jabatan_resmi'     => 'required',
-            'jabatan_lain'      => 'required'
+            'lembaga'           => 'required'
         ]);
 
         $subyek = Subyek::find($id);
