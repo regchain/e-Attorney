@@ -24,6 +24,7 @@
 					<div class="form-group">
 						<label>No. Surat</label>
 						{!! Form::text('no_surat_perkara', null, ['class' => 'form-control', 'placeholder' => 'PRINT-', 'required']) !!}
+						{!! Form::hidden('id', null) !!}
 					</div>
 				</div>
 				<div class="col-lg-6 col-md-6 col-xs-12">
@@ -34,20 +35,20 @@
 							<div class="input-group-addon">
 								<i class="fa fa-calendar"></i>
 							</div>
-							{!! Form::date('tanggal_surat_perkara', \Carbon\Carbon::now(), ['class' => 'form-control pull-right', 'id' => 'datepicker']) !!}
+							{!! Form::date('tanggal_surat_perkara', \Carbon\Carbon::now(), ['class' => 'form-control pull-right', 'id' => 'datepicker', 'required']) !!}
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-6 col-md-6 col-xs-12">
 					<label>Status</label>
 					<div class="input-group">
-						{!! Form::select('status_rp3mum', ['3' => 'DITERUSKAN', '2' => 'DIALIHKAN', '4' => 'DIHENTIKAN'], 3, ['class' => 'form-control', 'style' => 'width: 295px;']) !!}
+						{!! Form::select('status_rp3mum', ['3' => 'DITERUSKAN', '2' => 'DIALIHKAN', '4' => 'DIHENTIKAN'], 3, ['class' => 'form-control', 'style' => 'width: 295px;', 'size' => '4', 'required']) !!}
 					</div>
 				</div>				
 				<div class="col-lg-6 col-md-6 col-xs-12">
 					<div class="form-group">
 						<label>Pasal Disangkakan</label>
-						{!! Form::select('pasal_id[]', $pasals, 0, ['class' => 'form-control', 'placeholder' => 'Pilih Pasal', 'size' => '0']) !!}
+						{!! Form::select('pasal_id[]', $pasals, 0, ['class' => 'form-control', 'multiple' => 'multiple', 'size' => '4']) !!}
 					</div>
 				</div>
 				<div class="col-lg-6 col-md-6 col-xs-12">

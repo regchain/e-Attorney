@@ -11,45 +11,58 @@
     <li><a href="{{ url('/fp15a', $case->id) }}" class="btn btn-default"><strong>P-15a &nbsp;&nbsp;<i class="glyphicon glyphicon-share-alt"></i></strong></a></li>
   </ul>
 </div><!-- end button group -->
-<div class="panel-heading" role="tab" id="headingOne"> 
-	<p class="panel-title"> <a href="#collapse1" role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="false" aria-controls="collapse1" class="collapsed"> <i class="glyphicon glyphicon-resize-vertical text-green"></i>&nbsp;{{ $case->judul_kasus }} </a> </p>
+<div class="panel-heading col-md-9" role="tab" id="headingOne"> 
+	<p class="panel-title"> <a href="#collapse{{ $case->id }}" role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="false" aria-controls="collapse1" class="collapsed"> <i class="glyphicon glyphicon-resize-vertical text-green"></i>&nbsp;{{ $case->judul_kasus }} </a> </p>
 </div>
+<div>{{ $case->no_surat_perkara }}<br /> {{ $case->tanggal_surat_perkara }}</div>
 
-<div class="panel-collapse collapse" role="tabpanel" id="collapse1" aria-labelledby="headingOne" aria-expanded="false" style="height: 0px;">
+<div class="panel-collapse collapse" role="tabpanel" id="collapse{{ $case->id }}" aria-labelledby="headingOne" aria-expanded="false" style="height: 0px;">
 	<div class="panel-body">
-		<div class="col-lg-4 col-md-4 col-sm-12 text-justify">
+		<div class="col-lg-5 col-md-5 col-sm-12 text-justify">
 			<!-- Custom Tabs (Pulled to the right) -->
 			<div class="nav-tabs-custom">
 				<ul class="nav nav-tabs pull-right">
-					<li class="active"><a href="#tab_3a1-1" data-toggle="tab" aria-expanded="true">Kasus</a></li>
-					<li class=""><a href="#tab_3a2-2" data-toggle="tab" aria-expanded="false">Benda Sitaan</a></li>
-					<li class=""><a href="#tab_3a3-2" data-toggle="tab" aria-expanded="false">Pemulihan Aset</a></li>
+					<li class="active"><a href="#tab_3a1-1{{ $case->id }}" data-toggle="tab" aria-expanded="true">Kasus</a></li>
+					<li class=""><a href="#tab_3a2-2{{ $case->id }}" data-toggle="tab" aria-expanded="false">Benda Sitaan</a></li>
+					<li class=""><a href="#tab_3a3-2{{ $case->id }}" data-toggle="tab" aria-expanded="false">Pemulihan Aset</a></li>
+					<li class=""><a href="#tab_3a4-2{{ $case->id }}" data-toggle="tab" aria-expanded="false">Jaksa Penyidik</a></li>
 					<li class="pull-left box">&nbsp;&nbsp;&nbsp;<i class="fa fa-balance-scale"></i> <label>Kasus Posisi:</label></li>
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane active" id="tab_3a1-1">
-						<strong>[{{ $case->kasus_posisi }}]</strong> 
-						<br>Kesimpulan: [{{ $case->kesimpulan }}]
-						<br>Saran: [{{ $case->saran }}]
-						<br>Disposisi: [{{ $case->disposisi }}]
+						<strong>{{ $case->kasus_posisi }}</strong> 
+						<br>Kesimpulan: {{ $case->kesimpulan }}
+						<br>Saran: {{ $case->saran }}
+						<br>Disposisi: {{ $case->disposisi }}
 					</div>
 					<!-- /.tab-pane -->
-					<div class="tab-pane" id="tab_3a2-2">
-						<p class="text-red">...Cantumkan list benda sitaan (tanpa nilai)</p>
+					<div class="tab-pane" id="tab_3a2-2{{ $case->id }}">
+						@forelse ($case->barang_sitaan as $sitaan)
+						<p class="text-red">{{ $sitaan->barang_sitaan }} </p>
+						@empty
+				        <p class="text-red"> Tidak ada benda sitaan</p>
+				        @endforelse
 					</div>
 					<!-- /.tab-pane -->
-					<div class="tab-pane" id="tab_3a3-2">
-						Nilai Kontrak / Anggaran: <strong>[{{ $case->nilai_kontrak }}] M.</strong> 
-						<br>Kerugian Negara <strong>[{{ $case->kerugian_negara }}] M.</strong> 
-						<br>Pemulihan Aset: <strong>[{{ $case->pemulihan_aset }}] M.</strong> 
+					<div class="tab-pane" id="tab_3a3-2{{ $case->id }}">
+						@foreach ($case->obyeks as $obyek)
+						Nilai Kontrak / Anggaran: <strong>{{ $obyek->nilai_kontrak }} M.</strong> 
+						<br>Kerugian Negara <strong>{{ $obyek->kerugian_negara }} M.</strong> 
+						<br>Pemulihan Aset: <strong>{{ $obyek->pemulihan_aset }} M.</strong> 
+						@endforeach
 					</div>
 					<!-- /.tab-pane -->
+					<div class="tab-pane" id="tab_3a4-2{{ $case->id }}">
+						@foreach ($case->jaksas as $jaksa)
+						{{ $loop->iteration }}. <strong>{{ $jaksa->nama_jaksa }} </strong><br />
+						@endforeach
+					</div>
 				</div>
 				<!-- /.tab-content -->
 			</div>
 			<!-- nav-tabs-custom -->
 		</div>
-	<div class="col-lg-8 col-md-8 col-sm-12">
+	<div class="col-lg-7 col-md-7 col-sm-12">
 		<table class="table table-responsive table-striped">
 			<tbody>
 				@include('partials._subyekrp3sus', ['case' => $case])

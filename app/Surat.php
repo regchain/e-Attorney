@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Jaksa;
 use App\Obyek;
+use App\Pasal;
 
 class Surat extends Model
 {
@@ -29,5 +30,10 @@ class Surat extends Model
     public function obyeks()
     {
         return $this->belongsToMany(Obyek::class, 'surat_obyek', 'surat_id', 'obyek_id');
+    }
+
+    public function pasals()
+    {
+        return $this->belongsToMany(Pasal::class, 'surat_pasal', 'surat_id', 'pasal_id');
     }
 }
