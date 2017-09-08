@@ -41,6 +41,7 @@ class Kasus extends Model
         'status_rp1',
         'status_rp2',
         'status_rp3mum',
+        'status_rp3mum_partial',
         'status_rp3sus',
     ];
 

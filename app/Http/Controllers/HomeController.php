@@ -7,6 +7,7 @@ use App\Kasus;
 use App\Subyek;
 use App\KategoriSubyek;
 use App\Pasal;
+use App\Spt;
 
 class HomeController extends Controller
 {
@@ -37,8 +38,11 @@ class HomeController extends Controller
             ->where('status_rp3sus', 0)
             ->count();
 
-        $kasus_rp3sus = Kasus::where('status_rp3sus','<>',0)->count();
+        $kasus_rp3sus = Spt::join('kasus','spt.kasus_id','=','kasus.id')
+            ->where('kasus.status_rp3sus','<>',0)->count();
+
         $tahanan = Subyek::where('status','<>',0)->count();
+        
         $subyek_hukum = KategoriSubyek::selectRaw('name, count(kategori_subyek_id) as total')
             ->join('subyek','kategori_subyeks.id','=','subyek.kategori_subyek_id')
             ->groupBy('kategori_subyeks.name')

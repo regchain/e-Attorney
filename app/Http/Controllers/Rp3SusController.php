@@ -152,9 +152,21 @@ class Rp3SusController extends Controller
                 $case->update($request->only('disposisi','status_rp3mum'));
             }
         } else {
+            $kasus_rp3mum = Kasus::join('kasus_subyek','kasus_subyek.kasus_id','=','kasus.id')
+                ->join('subyek','kasus_subyek.subyek_id','=','subyek.id')
+                ->where('subyek.status',1)
+                ->where('kasus.id',$kasus_id)
+                ->count();
+
+            if ($kasus_rp3mum > 0) {
+                $status_rp3mum_partial = 0;
+            } else {
+                $status_rp3mum_partial = 3;
+            }
+
             $case = Kasus::find($kasus_id);
             if ($case) {
-                $case->update($request->only('disposisi','status_rp3mum') + ['status_rp3sus' => Kasus::STATUS_BARU]);
+                $case->update($request->only('disposisi','status_rp3mum') + ['status_rp3mum_partial' => $status_rp3mum_partial, 'status_rp3sus' => Kasus::STATUS_BARU]);
 
                 $surat = Surat::create($request->only('no_surat_perkara','tanggal_surat_perkara') + ['kasus_id' => $case->id, 'tipe_surat' => 'RP3SUS']);
                 if ($surat) {
