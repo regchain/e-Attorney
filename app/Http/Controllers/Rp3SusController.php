@@ -13,6 +13,8 @@ use App\KategoriSubyek;
 use App\Pasal;
 use App\Spt;
 use App\Surat;
+use App\SuratJaksa;
+use App\SuratPasal;
 
 class Rp3SusController extends Controller
 {
@@ -249,16 +251,28 @@ class Rp3SusController extends Controller
             ->join('subyek','spt_subyek.subyek_id','=','subyek.id')
             ->where('spt.id', $id)
             ->get();
+
+        $surat_jaksa = SuratJaksa::select(['surat_jaksa.*','nama_jaksa'])
+            ->join('jaksas','surat_jaksa.jaksa_id','=','jaksas.id')
+            ->where('surat_id', $surat_id)
+            ->orderBy('nama_jaksa')
+            ->get();
         
         $jaksas = Jaksa::select(['*'])
             ->orderBy('nama_jaksa')
             ->pluck('nama_jaksa', 'id');
 
+        $surat_pasal = SuratPasal::selectRaw(('surat_pasal.*, CONCAT_WS("-", "Pasal", pasal, ayat, huruf) AS pasal_name'))
+            ->join('pasals','surat_pasal.pasal_id','=','pasals.id')
+            ->where('surat_id', $surat_id)
+            ->orderBy('pasals.id')
+            ->get();
+
         $pasals = Pasal::selectRaw('id, CONCAT_WS("-", "Pasal", pasal, ayat, huruf) AS pasal_name')
             ->orderBy('id')
             ->pluck('pasal_name', 'id');
 
-        return view('rp3sus.rp3sus_edit', ['case' => $case, 'jaksas' => $jaksas, 'pasals' => $pasals, 'spt_subyek' => $spt_subyek, 'spt_id' => $id]);
+        return view('rp3sus.rp3sus_edit', ['case' => $case, 'surat_jaksa' => $surat_jaksa, 'jaksas' => $jaksas, 'surat_pasal' => $surat_pasal, 'pasals' => $pasals, 'spt_subyek' => $spt_subyek, 'spt_id' => $id, 'tanggal_surat_perkara' => $case->tanggal_surat_perkara]);
     }
 
     /**
@@ -270,7 +284,50 @@ class Rp3SusController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'judul_kasus'   => 'required',
+            'lembaga'       => 'required'
+        ]);
+
         $spt_id = $request->spt_id;
+        /*
+        $case = Kasus::find($id);
+        if ($case) {
+            $case->update($request->only('judul_kasus','kasus_posisi','disposisi'));
+        }
+        
+        $obyek = Obyek::find($request->obyek_id);
+        if ($obyek) {
+            $obyek->update($request->only('obyek_pidana','nilai_kontrak','kerugian_negara','pemulihan_aset'));
+        }
+        
+        $subyek = Subyek::find($request->subyek_id);
+        if ($subyek) {
+            $subyek->update($request->only('nama_terlapor','lembaga','jabatan_resmi','jabatan_lain','kategori_subyek_id'));
+        }
+
+        $surat = Surat::find($request->surat_id);
+        if ($surat) {
+            $surat->update($request->only('tanggal_surat_perkara','no_surat_perkara'));
+        }
+
+        $jaksas = $request->jaksa_id;
+        if ($jaksas && !empty($jaksas)) {
+            foreach ($jaksas as $jaksa) {
+                $jaksa_id = intval($jaksa);
+                $findSuratJaksa = SuratJaksa::where('surat_id', $request->surat_id)
+                    ->where('jaksa_id', $jaksa_id)
+                    ->first();
+
+                if (empty($findSuratJaksa)) {
+                    $findJaksa = Jaksa::find($jaksa_id);
+                    $surat->jaksas()->attach($findJaksa);
+                }
+            }
+        }
+        
+        return redirect()->route('rp3mum.index');
+        */
     }
 
     /**

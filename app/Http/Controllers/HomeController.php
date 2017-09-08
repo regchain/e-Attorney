@@ -39,6 +39,8 @@ class HomeController extends Controller
             ->count();
 
         $kasus_rp3sus = Spt::join('kasus','spt.kasus_id','=','kasus.id')
+            ->join('surats','spt.surat_id','=','surats.id')
+            ->where('surats.tipe_surat','=','RP3SUS')
             ->where('kasus.status_rp3sus','<>',0)->count();
 
         $tahanan = Subyek::where('status','<>',0)->count();

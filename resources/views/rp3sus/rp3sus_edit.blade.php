@@ -36,7 +36,7 @@
 							<div class="input-group-addon">
 								<i class="fa fa-calendar"></i>
 							</div>
-							{!! Form::date('tanggal_surat_perkara', \Carbon\Carbon::now(), ['class' => 'form-control pull-right', 'id' => 'datepicker', 'required']) !!}
+							{!! Form::date('tanggal_surat_perkara', $tanggal_surat_perkara, ['class' => 'form-control pull-right', 'id' => 'datepicker', 'required']) !!}
 						</div>
 					</div>
 				</div>
@@ -45,19 +45,31 @@
 					<div class="input-group">
 						{!! Form::select('status_rp3mum', ['3' => 'DITERUSKAN', '2' => 'DIALIHKAN', '4' => 'DIHENTIKAN'], 3, ['class' => 'form-control', 'style' => 'width: 295px;', 'size' => '4', 'required']) !!}
 					</div>
-				</div>				
-				<div class="col-lg-6 col-md-6 col-xs-12">
-					<div class="form-group">
-						<label>Pasal Disangkakan</label>
-						{!! Form::select('pasal_id[]', $pasals, 0, ['class' => 'form-control', 'multiple' => 'multiple', 'size' => '4']) !!}
-					</div>
 				</div>
 				<div class="col-lg-6 col-md-6 col-xs-12">
 					<div class="form-group">
 						<label>Disposisi / Petunjuk</label>
-						{!! Form::textarea('disposisi', null, ['class' => 'form-control', 'size' => '0x8']) !!}
+						{!! Form::textarea('disposisi', null, ['class' => 'form-control', 'size' => '0x4']) !!}
 					</div>
 				</div>
+				<div class="col-lg-6 col-md-6 col-xs-12">
+					<label>Data Pasal Yang Telah Dipilih</label>
+					<div class="form-group">
+						@include('partials._pasal', ['surat_pasal' => $surat_pasal])
+				    </div>
+				</div>
+				<div class="col-lg-6 col-md-6 col-xs-12">
+					<div class="form-group">
+						<label>Pasal Disangkakan</label>
+						{!! Form::select('pasal_id[]', $pasals, null, ['class' => 'form-control', 'multiple' => 'multiple', 'size' => '4']) !!}
+					</div>
+				</div>
+					<div class="col-lg-6 col-md-6 col-xs-12">
+						<label>Data Jaksa Yang Telah Dipilih</label>
+						<div class="form-group">
+							@include('partials._jaksa', ['surat_jaksa' => $surat_jaksa])
+				        </div>
+					</div>
 				<div class="col-lg-6 col-md-6 col-xs-12">
 					<label>Data Jaksa</label>
 					<div align="center" class="thumbnail">
@@ -111,7 +123,7 @@
 			@endforeach
 
 			<div class="box-tools pull-right">
-				<a href="{{ route('rp3mum.index') }}" class="btn btn-danger"> BATAL</a>
+				<a href="{{ route('rp3sus.index') }}" class="btn btn-danger"> BATAL</a>
 				{{ Form::submit('KIRIM', ['class' => 'btn btn-success']) }}
 			</div>
 		</div>
