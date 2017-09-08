@@ -147,9 +147,10 @@ class Rp3SusController extends Controller
         $status_rp3mum = $request->status_rp3mum;
         if ($status_rp3mum == Kasus::STATUS_DIALIHKAN OR $status_rp3mum == Kasus::STATUS_DIHENTIKAN) {
             // Update status menjadi arsip
+            $status_rp3mum_partial = $request->status_rp3mum;
             $case = Kasus::find($kasus_id);
             if ($case) {
-                $case->update($request->only('disposisi','status_rp3mum'));
+                $case->update($request->only('disposisi','status_rp3mum') + ['status_rp3mum_partial' => $status_rp3mum_partial]);
             }
         } else {
             $kasus_rp3mum = Kasus::join('kasus_subyek','kasus_subyek.kasus_id','=','kasus.id')
@@ -217,7 +218,35 @@ class Rp3SusController extends Controller
      */
     public function edit($id)
     {
-        return view('rp3sus.rp3sus_edit');
+        $spt = Spt::find($id);
+        if ($spt) {
+            $kasus_id = $spt->kasus_id;
+            $surat_id = $spt->surat_id;
+        }
+
+        $case = Kasus::select(['kasus.*','surats.id as surat_id','no_surat_perkara','tanggal_surat_perkara','obyek.id as obyek_id','obyek_pidana','nilai_kontrak','kerugian_negara','pemulihan_aset'])
+            ->join('surats','surats.kasus_id','=','kasus.id')
+            ->join('kasus_obyek','kasus.id','=','kasus_obyek.kasus_id')
+            ->join('obyek','kasus_obyek.obyek_id','=','obyek.id')
+            ->where('kasus.id',$kasus_id)
+            ->where('surats.id',$surat_id)
+            ->first();
+
+        $spt_subyek = Spt::select(['spt_id','subyek_id','no_spt','nama_terlapor','lembaga','jabatan_resmi','jabatan_lain'])
+            ->join('spt_subyek','spt.id','=','spt_subyek.spt_id')
+            ->join('subyek','spt_subyek.subyek_id','=','subyek.id')
+            ->where('spt.id', $id)
+            ->get();
+        
+        $jaksas = Jaksa::select(['*'])
+            ->orderBy('nama_jaksa')
+            ->pluck('nama_jaksa', 'id');
+
+        $pasals = Pasal::selectRaw('id, CONCAT_WS("-", "Pasal", pasal, ayat, huruf) AS pasal_name')
+            ->orderBy('id')
+            ->pluck('pasal_name', 'id');
+
+        return view('rp3sus.rp3sus_edit', ['case' => $case, 'jaksas' => $jaksas, 'pasals' => $pasals, 'spt_subyek' => $spt_subyek, 'spt_id' => $id]);
     }
 
     /**
@@ -229,7 +258,7 @@ class Rp3SusController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $spt_id = $request->spt_id;
     }
 
     /**
