@@ -146,8 +146,20 @@ class Rp3SusController extends Controller
         $spt_id = $request->spt_id;
         $status_rp3mum = $request->status_rp3mum;
         if ($status_rp3mum == Kasus::STATUS_DIALIHKAN OR $status_rp3mum == Kasus::STATUS_DIHENTIKAN) {
+
+            $kasus_rp3mum = Kasus::join('kasus_subyek','kasus_subyek.kasus_id','=','kasus.id')
+                ->join('subyek','kasus_subyek.subyek_id','=','subyek.id')
+                ->where('subyek.status',1)
+                ->where('kasus.id',$kasus_id)
+                ->count();
+
+            if ($kasus_rp3mum > 0) {
+                $status_rp3mum_partial = 0;
+            } else {
+                $status_rp3mum_partial = $request->status_rp3mum;
+            }
+            
             // Update status menjadi arsip
-            $status_rp3mum_partial = $request->status_rp3mum;
             $case = Kasus::find($kasus_id);
             if ($case) {
                 $case->update($request->only('disposisi','status_rp3mum') + ['status_rp3mum_partial' => $status_rp3mum_partial]);
