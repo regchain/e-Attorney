@@ -43,7 +43,7 @@
 				<div class="col-lg-6 col-md-6 col-xs-12">
 					<label>Status</label>
 					<div class="input-group">
-						{!! Form::select('status_rp3mum', ['3' => 'DITERUSKAN', '2' => 'DIALIHKAN', '4' => 'DIHENTIKAN'], 3, ['class' => 'form-control', 'style' => 'width: 295px;', 'size' => '4', 'required']) !!}
+						{!! Form::select('status_rp3sus', ['1' => 'BARU', '3' => 'DITERUSKAN', '2' => 'DIALIHKAN', '4' => 'DIHENTIKAN'], null, ['class' => 'form-control', 'style' => 'width: 295px;', 'size' => '4', 'required']) !!}
 					</div>
 				</div>
 				<div class="col-lg-6 col-md-6 col-xs-12">
@@ -52,25 +52,25 @@
 						{!! Form::textarea('disposisi', null, ['class' => 'form-control', 'size' => '0x4']) !!}
 					</div>
 				</div>
-				<div class="col-lg-6 col-md-6 col-xs-12">
+				<div class="col-lg-12 col-md-12 col-xs-12">
 					<label>Data Pasal Yang Telah Dipilih</label>
 					<div class="form-group">
 						@include('partials._pasal', ['surat_pasal' => $surat_pasal])
 				    </div>
 				</div>
-				<div class="col-lg-6 col-md-6 col-xs-12">
+				<div class="col-lg-12 col-md-12 col-xs-12">
 					<div class="form-group">
 						<label>Pasal Disangkakan</label>
 						{!! Form::select('pasal_id[]', $pasals, null, ['class' => 'form-control', 'multiple' => 'multiple', 'size' => '4']) !!}
 					</div>
 				</div>
-					<div class="col-lg-6 col-md-6 col-xs-12">
+					<div class="col-lg-12 col-md-12 col-xs-12">
 						<label>Data Jaksa Yang Telah Dipilih</label>
 						<div class="form-group">
 							@include('partials._jaksa', ['surat_jaksa' => $surat_jaksa])
 				        </div>
 					</div>
-				<div class="col-lg-6 col-md-6 col-xs-12">
+				<div class="col-lg-12 col-md-12 col-xs-12">
 					<label>Data Jaksa</label>
 					<div align="center" class="thumbnail">
 						{!! Form::select('jaksa_id[]', $jaksas, 0, ['class'=>'form-control', 'multiple' => 'multiple', 'size' => '8']) !!}

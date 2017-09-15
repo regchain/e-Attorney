@@ -14,21 +14,19 @@
 
 @section('materi')
 
-{!! Form::model($case, ['url' => route('rp3sus.update', $case->id), 'method' => 'put']) !!}
+{!! Form::model($case, ['url' => url('/p15', $spt->id), 'method' => 'put']) !!}
 <div class="box-body">
 	<div class="row">
 		<div class="col-lg-6 col-md-6 col-xs-12">
-			<!-- left column -->
 			<div class="row">
 				<div class="col-lg-6 col-md-6 col-xs-12">				
-					<!-- No. Surat -->
 					<div class="form-group">
-						<label> No. Surat P-15</label>
-						<input type="text" class="form-control" placeholder="PRINT-">
+						<label>No. Surat P-15</label>
+						{!! Form::text('no_surat_perkara', $no_surat_perkara, ['class' => 'form-control', 'placeholder' => 'PRINT-', 'required']) !!}
+						{!! Form::hidden('surat_id', $surat_id) !!}
 					</div>
 				</div>
 				<div class="col-lg-6 col-md-6 col-xs-12">
-					<!-- Tanggal Surat -->
 					<div class="form-group">
 						<label>Tanggal</label>
 						<div class="input-group date">
@@ -51,7 +49,7 @@
 				<div class="col-lg-12 col-md-12 col-xs-12">
 					<label>Pasal Disangkakan</label>
 					<div class="form-group">
-						@include('partials._pasal', ['surat_pasal' => $surat_pasal])
+						@include('partials._pasalp15', ['surat_pasal' => $surat_pasal])
 				    </div>
 				</div>
 			</div>

@@ -31,6 +31,7 @@ class Rp3SusController extends Controller
             ->join('spt','surats.id','=','spt.surat_id')
             ->where('status_rp3mum', Kasus::STATUS_DITERUSKAN)
             ->where('status_rp3sus', Kasus::STATUS_BARU)
+            ->orWhere('status_rp3sus', Kasus::STATUS_DITERUSKAN)
             ->where('surats.tipe_surat', 'RP3SUS')
             ->orderBy('status_rp3sus')
             ->get();
@@ -285,37 +286,31 @@ class Rp3SusController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'judul_kasus'   => 'required',
-            'lembaga'       => 'required'
+            'no_surat_perkara'      => 'required',
+            'tanggal_surat_perkara' => 'required'
         ]);
 
         $spt_id = $request->spt_id;
-        /*
-        $case = Kasus::find($id);
-        if ($case) {
-            $case->update($request->only('judul_kasus','kasus_posisi','disposisi'));
-        }
-        
-        $obyek = Obyek::find($request->obyek_id);
-        if ($obyek) {
-            $obyek->update($request->only('obyek_pidana','nilai_kontrak','kerugian_negara','pemulihan_aset'));
-        }
-        
-        $subyek = Subyek::find($request->subyek_id);
-        if ($subyek) {
-            $subyek->update($request->only('nama_terlapor','lembaga','jabatan_resmi','jabatan_lain','kategori_subyek_id'));
+        $spt = Spt::find($spt_id);
+        if ($spt) {
+            $surat_id = $spt->surat_id;
         }
 
-        $surat = Surat::find($request->surat_id);
+        $case = Kasus::find($id);
+        if ($case) {
+            $case->update($request->only('disposisi','status_rp3sus'));
+        }
+        
+        $surat = Surat::find($surat_id);
         if ($surat) {
-            $surat->update($request->only('tanggal_surat_perkara','no_surat_perkara'));
+            $surat->update($request->only('no_surat_perkara','tanggal_surat_perkara'));
         }
 
         $jaksas = $request->jaksa_id;
         if ($jaksas && !empty($jaksas)) {
             foreach ($jaksas as $jaksa) {
                 $jaksa_id = intval($jaksa);
-                $findSuratJaksa = SuratJaksa::where('surat_id', $request->surat_id)
+                $findSuratJaksa = SuratJaksa::where('surat_id', $surat_id)
                     ->where('jaksa_id', $jaksa_id)
                     ->first();
 
@@ -325,9 +320,23 @@ class Rp3SusController extends Controller
                 }
             }
         }
+
+        $pasals = $request->pasal_id;
+        if ($pasals && !empty($pasals)) {
+            foreach ($pasals as $pasal) {
+                $pasal_id = intval($pasal);
+                $findSuratPasal = SuratPasal::where('surat_id', $surat_id)
+                    ->where('pasal_id', $pasal_id)
+                    ->first();
+
+                if (empty($findSuratPasal)) {
+                    $findPasal = Pasal::find($pasal_id);
+                    $surat->pasals()->attach($findPasal);
+                }
+            }
+        }
         
-        return redirect()->route('rp3mum.index');
-        */
+        return redirect()->route('rp3sus.index');
     }
 
     /**
@@ -349,12 +358,10 @@ class Rp3SusController extends Controller
             $surat_id = $spt->surat_id;
         }
 
-        $case = Kasus::select(['kasus.*','surats.id as surat_id','no_surat_perkara','tanggal_surat_perkara','obyek.id as obyek_id','obyek_pidana','nilai_kontrak','kerugian_negara','pemulihan_aset'])
-            ->join('surats','surats.kasus_id','=','kasus.id')
+        $case = Kasus::select(['kasus.*','obyek.id as obyek_id','obyek_pidana','nilai_kontrak','kerugian_negara','pemulihan_aset'])
             ->join('kasus_obyek','kasus.id','=','kasus_obyek.kasus_id')
             ->join('obyek','kasus_obyek.obyek_id','=','obyek.id')
             ->where('kasus.id',$kasus_id)
-            ->where('surats.id',$surat_id)
             ->first();
 
         $kasus_surat = Kasus::select(['no_surat_perkara','tanggal_surat_perkara'])
@@ -375,7 +382,42 @@ class Rp3SusController extends Controller
             ->orderBy('pasals.id')
             ->get();
 
-        return view('rp3sus.p15_create', ['spt' => $spt, 'case' => $case, 'kasus_surat' => $kasus_surat, 'spt_subyek' => $spt_subyek, 'surat_pasal' => $surat_pasal, 'tanggal_surat_perkara' => date('Y-m-d')]);        
+        $p15_surat = Kasus::select(['kasus.*','surats.id as surat_id','no_surat_perkara','tanggal_surat_perkara'])
+            ->join('surats','surats.kasus_id','=','kasus.id')
+            ->where('kasus.id', $kasus_id)
+            ->where('surats.tipe_surat', 'P15')
+            ->first();
+
+        if ($p15_surat) {
+            return view('rp3sus.p15_create', ['spt' => $spt, 'case' => $case, 'kasus_surat' => $kasus_surat, 'spt_subyek' => $spt_subyek, 'surat_pasal' => $surat_pasal, 'surat_id' => $p15_surat->surat_id,'no_surat_perkara' => $p15_surat->no_surat_perkara, 'tanggal_surat_perkara' => $p15_surat->tanggal_surat_perkara]);
+        } else {
+            return view('rp3sus.p15_create', ['spt' => $spt, 'case' => $case, 'kasus_surat' => $kasus_surat, 'spt_subyek' => $spt_subyek, 'surat_pasal' => $surat_pasal, 'surat_id' => '', 'no_surat_perkara' => '', 'tanggal_surat_perkara' => date('Y-m-d')]);
+        }        
+    }
+
+    public function p15update(Request $request, $id)
+    {
+        $this->validate($request, [
+            'no_surat_perkara'      => 'required',
+            'tanggal_surat_perkara' => 'required'
+        ]);
+
+        $spt = Spt::find($id);
+        if ($spt) {
+            $kasus_id = $spt->kasus_id;
+        }
+
+        $surat_id = $request->surat_id;
+        if ($surat_id) {
+            $surat = Surat::find($surat_id);
+            if ($surat) {
+                $surat->update($request->only('no_surat_perkara','tanggal_surat_perkara'));
+            }
+        } else {
+            $surat = Surat::create($request->only('no_surat_perkara','tanggal_surat_perkara') + ['kasus_id' => $kasus_id, 'judul_surat' => 'SURAT PERINTAH PENYERAHAN BERKAS PERKARA', 'tipe_surat' => 'P15']);
+        }       
+
+        return redirect()->route('rp3sus.index');
     }
 
     public function fp15a($spt_id)
