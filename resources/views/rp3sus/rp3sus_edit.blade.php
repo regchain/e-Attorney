@@ -96,7 +96,7 @@
 					Rp. {{ $case->kerugian_negara }} M
 				</div></a>
 				<a href="#" class="list-group-item">Pemulihan Aset<div class="pull-right">
-					Rp. {{ $case->pemulihan_aset }} M	
+					Rp. {{ $case->pemulihan_aset }} M
 				</div></a>
 			</div>
 		</div>
