@@ -22,8 +22,8 @@
 				<div class="col-lg-6 col-md-6 col-xs-12">				
 					<div class="form-group">
 						<label>No. Surat P-15</label>
-						{!! Form::text('no_surat_perkara', $no_surat_perkara, ['class' => 'form-control', 'placeholder' => 'PRINT-', 'required']) !!}
-						{!! Form::hidden('surat_id', $surat_id) !!}
+						{!! Form::text('no_p15', $no_p15, ['class' => 'form-control', 'placeholder' => 'PRINT-', 'required']) !!}
+						{!! Form::hidden('p15_id', $p15_id) !!}
 					</div>
 				</div>
 				<div class="col-lg-6 col-md-6 col-xs-12">
@@ -33,7 +33,7 @@
 							<div class="input-group-addon">
 								<span class="fa fa-calendar"></span>
 							</div>
-							{!! Form::date('tanggal_surat_perkara', $tanggal_surat_perkara, ['class' => 'form-control pull-right', 'id' => 'datepicker', 'required']) !!}
+							{!! Form::date('tanggal_p15', $tanggal_p15, ['class' => 'form-control pull-right', 'id' => 'datepicker', 'required']) !!}
 						</div>
 					</div>
 				</div>

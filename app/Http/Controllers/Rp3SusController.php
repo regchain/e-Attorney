@@ -15,6 +15,7 @@ use App\Spt;
 use App\Surat;
 use App\SuratJaksa;
 use App\SuratPasal;
+use App\SuratP15;
 
 class Rp3SusController extends Controller
 {
@@ -96,8 +97,7 @@ class Rp3SusController extends Controller
             $case["barang_sitaan"] = $barang_sitaan;
             array_push($cases, $case);
         }
-        //echo json_encode($cases); die;
-
+        
         return view('rp3sus.rp3sus_list', ['cases' => $cases]);
     }
 
@@ -367,7 +367,7 @@ class Rp3SusController extends Controller
         $kasus_surat = Kasus::select(['no_surat_perkara','tanggal_surat_perkara'])
             ->join('surats','surats.kasus_id','=','kasus.id')
             ->where('kasus.id', $kasus_id)
-            ->groupBy('no_surat_perkara','tanggal_surat_perkara')
+            //->groupBy('no_surat_perkara','tanggal_surat_perkara')
             ->get();
         
         $spt_subyek = Spt::select(['spt_id','subyek_id','no_spt','nama_terlapor','lembaga','jabatan_resmi','jabatan_lain'])
@@ -382,39 +382,40 @@ class Rp3SusController extends Controller
             ->orderBy('pasals.id')
             ->get();
 
-        $p15_surat = Kasus::select(['kasus.*','surats.id as surat_id','no_surat_perkara','tanggal_surat_perkara'])
-            ->join('surats','surats.kasus_id','=','kasus.id')
-            ->where('kasus.id', $kasus_id)
-            ->where('surats.tipe_surat', 'P15')
+        $surat_p15 = Surat::select(['surat_p15.id as p15_id','no_p15','tanggal_p15'])
+            ->join('surat_p15','surats.id','=','surat_p15.surat_id')
+            ->where('surats.id', $surat_id)
+            ->where('jenis_p15', 'P-15')
             ->first();
 
-        if ($p15_surat) {
-            return view('rp3sus.p15_create', ['spt' => $spt, 'case' => $case, 'kasus_surat' => $kasus_surat, 'spt_subyek' => $spt_subyek, 'surat_pasal' => $surat_pasal, 'surat_id' => $p15_surat->surat_id,'no_surat_perkara' => $p15_surat->no_surat_perkara, 'tanggal_surat_perkara' => $p15_surat->tanggal_surat_perkara]);
+        if ($surat_p15) {
+            return view('rp3sus.p15_create', ['spt' => $spt, 'case' => $case, 'kasus_surat' => $kasus_surat, 'spt_subyek' => $spt_subyek, 'surat_pasal' => $surat_pasal, 'p15_id' => $surat_p15->p15_id, 'no_p15' => $surat_p15->no_p15, 'tanggal_p15' => $surat_p15->tanggal_p15]);
         } else {
-            return view('rp3sus.p15_create', ['spt' => $spt, 'case' => $case, 'kasus_surat' => $kasus_surat, 'spt_subyek' => $spt_subyek, 'surat_pasal' => $surat_pasal, 'surat_id' => '', 'no_surat_perkara' => '', 'tanggal_surat_perkara' => date('Y-m-d')]);
-        }        
+            return view('rp3sus.p15_create', ['spt' => $spt, 'case' => $case, 'kasus_surat' => $kasus_surat, 'spt_subyek' => $spt_subyek, 'surat_pasal' => $surat_pasal, 'p15_id' => '', 'no_p15' => '', 'tanggal_p15' => date('Y-m-d')]);
+        }
     }
 
     public function p15update(Request $request, $id)
     {
         $this->validate($request, [
-            'no_surat_perkara'      => 'required',
-            'tanggal_surat_perkara' => 'required'
+            'no_p15'      => 'required',
+            'tanggal_p15' => 'required'
         ]);
 
         $spt = Spt::find($id);
         if ($spt) {
             $kasus_id = $spt->kasus_id;
+            $surat_id = $spt->surat_id;
         }
 
-        $surat_id = $request->surat_id;
-        if ($surat_id) {
-            $surat = Surat::find($surat_id);
-            if ($surat) {
-                $surat->update($request->only('no_surat_perkara','tanggal_surat_perkara'));
+        $p15_id = $request->p15_id;
+        if ($p15_id) {
+            $surat_p15 = SuratP15::find($p15_id);
+            if ($surat_p15) {
+                $surat_p15->update($request->only('no_p15','tanggal_p15'));
             }
         } else {
-            $surat = Surat::create($request->only('no_surat_perkara','tanggal_surat_perkara') + ['kasus_id' => $kasus_id, 'judul_surat' => 'SURAT PERINTAH PENYERAHAN BERKAS PERKARA', 'tipe_surat' => 'P15']);
+            $surat_p15 = SuratP15::create($request->only('no_p15','tanggal_p15') + ['surat_id' => $surat_id, 'judul_p15' => 'SURAT PERINTAH PENYERAHAN BERKAS PERKARA', 'jenis_p15' => 'P-15']);
         }       
 
         return redirect()->route('rp3sus.index');
@@ -439,7 +440,7 @@ class Rp3SusController extends Controller
         $kasus_surat = Kasus::select(['no_surat_perkara','tanggal_surat_perkara'])
             ->join('surats','surats.kasus_id','=','kasus.id')
             ->where('kasus.id', $kasus_id)
-            ->groupBy('no_surat_perkara','tanggal_surat_perkara')
+            //->groupBy('no_surat_perkara','tanggal_surat_perkara')
             ->get();
 
         $spt_subyek = Spt::select(['spt_id','subyek_id','no_spt','nama_terlapor','lembaga','jabatan_resmi','jabatan_lain'])
@@ -454,6 +455,42 @@ class Rp3SusController extends Controller
             ->orderBy('pasals.id')
             ->get();
 
-        return view('rp3sus.p15a_create', ['spt' => $spt, 'case' => $case, 'kasus_surat' => $kasus_surat, 'spt_subyek' => $spt_subyek, 'surat_pasal' => $surat_pasal, 'tanggal_surat_perkara' => date('Y-m-d')]);
+        $surat_p15a = Surat::select(['surat_p15.id as p15a_id','no_p15','tanggal_p15'])
+            ->join('surat_p15','surats.id','=','surat_p15.surat_id')
+            ->where('surats.id', $surat_id)
+            ->where('jenis_p15', 'P-15A')
+            ->first();
+
+        if ($surat_p15a) {
+            return view('rp3sus.p15a_create', ['spt' => $spt, 'case' => $case, 'kasus_surat' => $kasus_surat, 'spt_subyek' => $spt_subyek, 'surat_pasal' => $surat_pasal, 'p15a_id' => $surat_p15a->p15a_id, 'no_p15a' => $surat_p15a->no_p15, 'tanggal_p15a' => $surat_p15a->tanggal_p15]);
+        } else {
+            return view('rp3sus.p15a_create', ['spt' => $spt, 'case' => $case, 'kasus_surat' => $kasus_surat, 'spt_subyek' => $spt_subyek, 'surat_pasal' => $surat_pasal, 'p15a_id' => '', 'no_p15a' => '', 'tanggal_p15a' => date('Y-m-d')]);
+        }
+    }
+
+    public function p15aupdate(Request $request, $id)
+    {
+        $this->validate($request, [
+            'no_p15'      => 'required',
+            'tanggal_p15' => 'required'
+        ]);
+
+        $spt = Spt::find($id);
+        if ($spt) {
+            $kasus_id = $spt->kasus_id;
+            $surat_id = $spt->surat_id;
+        }
+
+        $p15a_id = $request->p15a_id;
+        if ($p15a_id) {
+            $surat_p15a = SuratP15::find($p15a_id);
+            if ($surat_p15a) {
+                $surat_p15a->update($request->only('no_p15','tanggal_p15'));
+            }
+        } else {
+            $surat_p15a = SuratP15::create($request->only('no_p15','tanggal_p15') + ['surat_id' => $surat_id, 'judul_p15' => 'SURAT PERINTAH PENYERAHAN TANGGUNGJAWAB TERSANGKA DAN BARANG BUKTINYA', 'jenis_p15' => 'P-15A']);
+        }       
+
+        return redirect()->route('rp3sus.index');
     }
 }

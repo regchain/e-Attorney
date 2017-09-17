@@ -93,7 +93,8 @@ Route::group(['prefix' => '', 'middleware' => ['auth']], function() {
 	Route::get('obyek', 'ObyekController@index');
 	Route::get('fp15/{spt_id}', 'Rp3SusController@fp15');
 	Route::put('p15/{spt_id}', 'Rp3SusController@p15update');
-	Route::get('fp15a/{kasus_id}', 'Rp3SusController@fp15a');
+	Route::get('fp15a/{spt_id}', 'Rp3SusController@fp15a');
+	Route::put('p15a/{spt_id}', 'Rp3SusController@p15aupdate');
 });
 
 Route::group(['prefix' => 'kasus'], function() {

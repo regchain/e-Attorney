@@ -14,17 +14,16 @@
 
 @section('materi')
 
-{!! Form::model($case, ['url' => route('rp3sus.update', $case->id), 'method' => 'put']) !!}
+{!! Form::model($case, ['url' => url('/p15a', $spt->id), 'method' => 'put']) !!}
 <div class="box-body">
 				<div class="row">
 			<div class="col-lg-6 col-md-6 col-xs-12">
-				<!-- left column -->
 				<div class="row">
 					<div class="col-lg-6 col-md-6 col-xs-12">				
-							<!-- No. Surat -->
 						<div class="form-group">
-							<label> No. Surat P-15a</label>
-							<input type="text" class="form-control" placeholder="PRINT-">
+							<label>No. Surat P-15a</label>
+							{!! Form::text('no_p15', $no_p15a, ['class' => 'form-control', 'placeholder' => 'PRINT-', 'required']) !!}
+						{!! Form::hidden('p15a_id', $p15a_id) !!}
 						</div>
 					</div>
 					<div class="col-lg-6 col-md-6 col-xs-12">
@@ -34,7 +33,7 @@
 								<div class="input-group-addon">
 									<span class="fa fa-calendar"></span>
 								</div>
-								{!! Form::date('tanggal_surat_perkara', $tanggal_surat_perkara, ['class' => 'form-control pull-right', 'id' => 'datepicker', 'required']) !!}
+								{!! Form::date('tanggal_p15', $tanggal_p15a, ['class' => 'form-control pull-right', 'id' => 'datepicker', 'required']) !!}
 							</div>
 						</div>
 					</div>
@@ -56,7 +55,7 @@
 					<div class="col-lg-12 col-md-12 col-xs-12">
 						<label>Pasal Disangkakan</label>
 						<div class="form-group">
-							@include('partials._pasal', ['surat_pasal' => $surat_pasal])
+							@include('partials._pasalp15', ['surat_pasal' => $surat_pasal])
 					    </div>
 					</div>
 				</div>
