@@ -21,7 +21,7 @@
 		@include('partials._kategorisubyek', ['subyek_hukum' => $subyek_hukum])
 	</div>
 	<div class="col-lg-6 col-md-6 col-sm-12">
-		@include('partials._kategoriobyek')
+		@include('partials._kategoriobyek', ['obyek_pidana' => $obyek_pidana])
 	</div>
 </div>
 <div class="row">

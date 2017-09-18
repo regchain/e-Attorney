@@ -25,16 +25,11 @@
             }
         },
         series: [{
-            name: 'Delivered amount',
+            name: 'Total Obyek Pidana',
             data: [
-                ['Kerugian Uang Negara', 2],
-                ['Suap', 9],
-                ['Penggelapan Dalam Jabatan', 4],
-                ['Pemerasan-Pungli', 1],
-                ['Perbuatan Curang', 3],
-                ['Konflik Kepentingan PBJ', 4],
-                ['Gratifikasi', 4],
-                ['TP Korupsi Lain (yang terkait)', 1]
+                @foreach ($obyek_pidana as $obyek)
+                    ['{{ $obyek->kategori_pasal }}',{{ $obyek->total }}],
+                @endforeach
             ]
         }]
     });
