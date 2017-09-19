@@ -17,10 +17,13 @@ class SubyekController extends Controller
      */
     public function index()
     {
-        $subyeks = Subyek::select(['*'])->paginate(10);
-        if ($subyeks) {
-            return view('subyek.subyek_list', ['subyeks' => $subyeks]);
-        }
+        $subyeks = Subyek::select(['*'])
+            ->where('status','<>',0)
+            ->where('nama_terlapor','<>','Belum ada')
+            ->where('nama_terlapor','<>','')
+            ->paginate(10);
+
+        return view('subyek.subyek_list', ['subyeks' => $subyeks]);
     }
 
     /**

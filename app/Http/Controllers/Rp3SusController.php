@@ -364,6 +364,8 @@ class Rp3SusController extends Controller
 
     public function fp15($spt_id)
     {
+        $suratAll = array();
+
         $spt = Spt::find($spt_id);
         if ($spt) {
             $kasus_id = $spt->kasus_id;
@@ -376,11 +378,31 @@ class Rp3SusController extends Controller
             ->where('kasus.id',$kasus_id)
             ->first();
 
-        $kasus_surat = Kasus::select(['no_surat_perkara','tanggal_surat_perkara'])
+        $kasus_surat = Kasus::select(['surats.id as id_surat','no_surat_perkara','tanggal_surat_perkara','tipe_surat'])
             ->join('surats','surats.kasus_id','=','kasus.id')
             ->where('kasus.id', $kasus_id)
-            //->groupBy('no_surat_perkara','tanggal_surat_perkara')
             ->get();
+        
+        foreach ($kasus_surat as $surat) {
+            $tipe_surat = $surat["tipe_surat"];
+            if ($tipe_surat == "RP2" OR $tipe_surat == "RP3MUM") {
+                $suratAr = array(
+                    "tipe_surat"            => $surat["tipe_surat"],
+                    "no_surat_perkara"      => $surat["no_surat_perkara"],
+                    "tanggal_surat_perkara" => $surat["tanggal_surat_perkara"]
+                );
+                array_push($suratAll, $suratAr);
+            }
+
+            if ($tipe_surat == "RP3SUS" AND $surat["id_surat"] == $surat_id) {
+                $suratAr = array(
+                    "tipe_surat"            => $surat["tipe_surat"],
+                    "no_surat_perkara"      => $surat["no_surat_perkara"],
+                    "tanggal_surat_perkara" => $surat["tanggal_surat_perkara"]
+                );
+                array_push($suratAll, $suratAr);
+            }
+        }
         
         $spt_subyek = Spt::select(['spt_id','subyek_id','no_spt','nama_terlapor','lembaga','jabatan_resmi','jabatan_lain'])
             ->join('spt_subyek','spt.id','=','spt_subyek.spt_id')
@@ -401,9 +423,9 @@ class Rp3SusController extends Controller
             ->first();
 
         if ($surat_p15) {
-            return view('rp3sus.p15_create', ['spt' => $spt, 'case' => $case, 'kasus_surat' => $kasus_surat, 'spt_subyek' => $spt_subyek, 'surat_pasal' => $surat_pasal, 'p15_id' => $surat_p15->p15_id, 'no_p15' => $surat_p15->no_p15, 'tanggal_p15' => $surat_p15->tanggal_p15]);
+            return view('rp3sus.p15_create', ['spt' => $spt, 'case' => $case, 'kasus_surat' => $suratAll, 'spt_subyek' => $spt_subyek, 'surat_pasal' => $surat_pasal, 'p15_id' => $surat_p15->p15_id, 'no_p15' => $surat_p15->no_p15, 'tanggal_p15' => $surat_p15->tanggal_p15]);
         } else {
-            return view('rp3sus.p15_create', ['spt' => $spt, 'case' => $case, 'kasus_surat' => $kasus_surat, 'spt_subyek' => $spt_subyek, 'surat_pasal' => $surat_pasal, 'p15_id' => '', 'no_p15' => '', 'tanggal_p15' => date('Y-m-d')]);
+            return view('rp3sus.p15_create', ['spt' => $spt, 'case' => $case, 'kasus_surat' => $suratAll, 'spt_subyek' => $spt_subyek, 'surat_pasal' => $surat_pasal, 'p15_id' => '', 'no_p15' => '', 'tanggal_p15' => date('Y-m-d')]);
         }
     }
 
@@ -435,6 +457,8 @@ class Rp3SusController extends Controller
 
     public function fp15a($spt_id)
     {
+        $suratAll = array();
+        
         $spt = Spt::find($spt_id);
         if ($spt) {
             $kasus_id = $spt->kasus_id;
@@ -449,11 +473,31 @@ class Rp3SusController extends Controller
             ->where('surats.id',$surat_id)
             ->first();
 
-        $kasus_surat = Kasus::select(['no_surat_perkara','tanggal_surat_perkara'])
+        $kasus_surat = Kasus::select(['surats.id as id_surat','no_surat_perkara','tanggal_surat_perkara','tipe_surat'])
             ->join('surats','surats.kasus_id','=','kasus.id')
             ->where('kasus.id', $kasus_id)
-            //->groupBy('no_surat_perkara','tanggal_surat_perkara')
             ->get();
+        
+        foreach ($kasus_surat as $surat) {
+            $tipe_surat = $surat["tipe_surat"];
+            if ($tipe_surat == "RP2" OR $tipe_surat == "RP3MUM") {
+                $suratAr = array(
+                    "tipe_surat"            => $surat["tipe_surat"],
+                    "no_surat_perkara"      => $surat["no_surat_perkara"],
+                    "tanggal_surat_perkara" => $surat["tanggal_surat_perkara"]
+                );
+                array_push($suratAll, $suratAr);
+            }
+
+            if ($tipe_surat == "RP3SUS" AND $surat["id_surat"] == $surat_id) {
+                $suratAr = array(
+                    "tipe_surat"            => $surat["tipe_surat"],
+                    "no_surat_perkara"      => $surat["no_surat_perkara"],
+                    "tanggal_surat_perkara" => $surat["tanggal_surat_perkara"]
+                );
+                array_push($suratAll, $suratAr);
+            }
+        }
 
         $spt_subyek = Spt::select(['spt_id','subyek_id','no_spt','nama_terlapor','lembaga','jabatan_resmi','jabatan_lain'])
             ->join('spt_subyek','spt.id','=','spt_subyek.spt_id')
@@ -474,9 +518,9 @@ class Rp3SusController extends Controller
             ->first();
 
         if ($surat_p15a) {
-            return view('rp3sus.p15a_create', ['spt' => $spt, 'case' => $case, 'kasus_surat' => $kasus_surat, 'spt_subyek' => $spt_subyek, 'surat_pasal' => $surat_pasal, 'p15a_id' => $surat_p15a->p15a_id, 'no_p15a' => $surat_p15a->no_p15, 'tanggal_p15a' => $surat_p15a->tanggal_p15]);
+            return view('rp3sus.p15a_create', ['spt' => $spt, 'case' => $case, 'kasus_surat' => $suratAll, 'spt_subyek' => $spt_subyek, 'surat_pasal' => $surat_pasal, 'p15a_id' => $surat_p15a->p15a_id, 'no_p15a' => $surat_p15a->no_p15, 'tanggal_p15a' => $surat_p15a->tanggal_p15]);
         } else {
-            return view('rp3sus.p15a_create', ['spt' => $spt, 'case' => $case, 'kasus_surat' => $kasus_surat, 'spt_subyek' => $spt_subyek, 'surat_pasal' => $surat_pasal, 'p15a_id' => '', 'no_p15a' => '', 'tanggal_p15a' => date('Y-m-d')]);
+            return view('rp3sus.p15a_create', ['spt' => $spt, 'case' => $case, 'kasus_surat' => $suratAll, 'spt_subyek' => $spt_subyek, 'surat_pasal' => $surat_pasal, 'p15a_id' => '', 'no_p15a' => '', 'tanggal_p15a' => date('Y-m-d')]);
         }
     }
 

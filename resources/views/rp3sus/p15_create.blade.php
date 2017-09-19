@@ -41,7 +41,7 @@
 					<p>
 					<label>Berkas Perkara Berdasarkan:</label><br>
 						@foreach ($kasus_surat as $surat)
-						<li>Sprint Dik No. <span class="label label-success">{{ $surat->no_surat_perkara }}</span> Tgl. {{ $surat->tanggal_surat_perkara }}</li>
+						<li>No. Surat {{ $surat["tipe_surat"] }} <span class="label label-success">{{ $surat["no_surat_perkara"] }}</span> Tgl. {{ $surat["tanggal_surat_perkara"] }}</li>
 						@endforeach
 						<li>Penetapan Tersangka. <span class="label label-success">{{ $spt->no_spt }}</span> Tgl. {{ $spt->tanggal_spt }}</li>
 					</p>
