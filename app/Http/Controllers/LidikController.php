@@ -8,6 +8,7 @@ use App\Obyek;
 use App\Subyek;
 use App\Jaksa;
 use App\Surat;
+use App\KasusSubyek;
 
 class LidikController extends Controller
 {
@@ -108,6 +109,14 @@ class LidikController extends Controller
             $case = Kasus::find($id);
             if ($case) {
                 $case->update($request->only('judul_kasus','kasus_posisi','disposisi','status_rp1'));
+            }
+
+            $kasus_subyek = KasusSubyek::where('kasus_id',$id)->get();
+            foreach ($kasus_subyek as $subyek) {
+                $findSubyek = Subyek::find($subyek->subyek_id);
+                if ($findSubyek) {
+                    $findSubyek->update(['status' => 0]); 
+                }
             }
         } else {
             $case = Kasus::find($id);

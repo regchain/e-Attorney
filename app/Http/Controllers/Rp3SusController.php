@@ -167,6 +167,18 @@ class Rp3SusController extends Controller
             if ($case) {
                 $case->update($request->only('disposisi','status_rp3mum') + ['status_rp3mum_partial' => $status_rp3mum_partial]);
             }
+
+            $spt_subyek = Spt::select(['spt_id','subyek_id'])
+                ->join('spt_subyek','spt.id','=','spt_subyek.spt_id')
+                ->where('spt.kasus_id',$kasus_id)
+                ->get();
+            foreach ($spt_subyek as $subyek) {
+                $findSubyek = Subyek::find($subyek->subyek_id);
+                if ($findSubyek) {
+                    $findSubyek->update(['status' => 0]); 
+                }
+            }
+
         } else {
             $kasus_rp3mum = Kasus::join('kasus_subyek','kasus_subyek.kasus_id','=','kasus.id')
                 ->join('subyek','kasus_subyek.subyek_id','=','subyek.id')

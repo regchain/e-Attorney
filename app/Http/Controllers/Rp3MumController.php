@@ -138,6 +138,15 @@ class Rp3MumController extends Controller
             if ($case) {
                 $case->update($request->only('judul_kasus','kasus_posisi','disposisi','status_rp2'));
             }
+
+            $kasus_subyek = KasusSubyek::where('kasus_id',$kasus_id)->get();
+            foreach ($kasus_subyek as $subyek) {
+                $findSubyek = Subyek::find($subyek->subyek_id);
+                if ($findSubyek) {
+                    $findSubyek->update(['status' => 0]); 
+                }
+            }
+
         } else {
             $case = Kasus::find($kasus_id);
             if ($case) {
