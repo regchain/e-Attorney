@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Tabel_Subyek;
 use Illuminate\Http\Request;
+use App\Kasus;
+use App\Subyek;
+use App\KasusSubyek;
+use App\KategoriSubyek;
 
 class SubyekController extends Controller
 {
@@ -14,27 +17,13 @@ class SubyekController extends Controller
      */
     public function index()
     {
-        return view('subyek.subyek_list');
-    }
+        $subyeks = Subyek::select(['*'])
+            ->where('status','<>',0)
+            ->where('nama_terlapor','<>','Belum ada')
+            ->where('nama_terlapor','<>','')
+            ->paginate(10);
 
-    public function frt0()
-    {
-        return view('subyek.subyek_create');
-    }
-
-    public function frt1()
-    {
-        return view('subyek.subyek_tsk_create');
-    }
-
-    public function frt2()
-    {
-        return view('subyek.subyek_tahan_create');
-    }
-
-    public function ert1()
-    {
-        return view('subyek.subyek_edit');
+        return view('subyek.subyek_list', ['subyeks' => $subyeks]);
     }
 
     /**
@@ -42,9 +31,13 @@ class SubyekController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($kasus_id)
     {
-        //
+        $kategori_subyek = KategoriSubyek::select(['*'])
+            ->orderBy('name')
+            ->pluck('name', 'id');
+
+        return view('subyek.subyek_create', ['kategori_subyek' => $kategori_subyek, 'kasus_id' => $kasus_id]);
     }
 
     /**
@@ -53,18 +46,33 @@ class SubyekController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $kasus_id)
     {
-        //
+        $this->validate($request, [
+            'nama_terlapor'     => 'required',
+            'lembaga'           => 'required',
+        ]);
+
+        $subyek = Subyek::create($request->all());
+        if ($subyek) {
+            $subyek_id = $subyek->id;
+        }
+
+        $kasus_subyek_data = array("kasus_id" => $kasus_id, "subyek_id" => $subyek_id);
+        $kasus_subyek = KasusSubyek::create($kasus_subyek_data);
+
+        if ($kasus_subyek) {
+            return redirect()->route('rp3mum.index');
+        }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Tabel_Subyek  $tabel_Subyek
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Tabel_Subyek $tabel_Subyek)
+    public function show($id)
     {
         //
     }
@@ -72,34 +80,80 @@ class SubyekController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Tabel_Subyek  $tabel_Subyek
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tabel_Subyek $tabel_Subyek)
+    public function edit($kasus_id, $id)
     {
-        //
+        $subyek = Subyek::find($id);
+
+        $kategori_subyek = KategoriSubyek::select(['*'])
+            ->orderBy('name')
+            ->pluck('name', 'id');
+
+        return view('subyek.subyek_edit', ['kategori_subyek' => $kategori_subyek, 'subyek' => $subyek, 'kasus_id' => $kasus_id]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Tabel_Subyek  $tabel_Subyek
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tabel_Subyek $tabel_Subyek)
+    public function update(Request $request, $kasus_id, $id)
     {
-        //
+        $this->validate($request, [
+            'nama_terlapor'     => 'required',
+            'lembaga'           => 'required'
+        ]);
+
+        $subyek = Subyek::find($id);
+        if ($subyek) {
+            $subyek->update($request->all());    
+        }
+        
+        return redirect()->route('rp3mum.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Tabel_Subyek  $tabel_Subyek
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tabel_Subyek $tabel_Subyek)
+    public function destroy($kasus_id, $id)
     {
-        //
+        Subyek::destroy($id);
+
+        return redirect()->route('rp3mum.index');
+    }
+
+    public function tersangka($kasus_id)
+    {
+        $case = Kasus::select(['kasus.*','no_surat_perkara','tanggal_surat_perkara'])
+            ->join('surats','kasus.id','=','surats.kasus_id')
+            ->where('kasus.id', $kasus_id)
+            ->where('surats.tipe_surat','=','RP3MUM')
+            ->orderBy('surats.id', 'desc')
+            ->first();
+
+        $subyeks = Subyek::select(['subyek.*','subyek_id','kategori_subyeks.name'])
+            ->join('kasus_subyek','kasus_subyek.subyek_id','=','subyek.id')
+            ->join('kategori_subyeks','kategori_subyeks.id','=','subyek.kategori_subyek_id')
+            ->where('kasus_subyek.kasus_id', $kasus_id)
+            ->where('subyek.status', 1)
+            ->get();
+
+        $kategori_subyek = KategoriSubyek::select(['*'])
+            ->orderBy('name')
+            ->pluck('name', 'id');
+        
+        return view('subyek.subyek_tersangka_create', ['case' => $case, 'subyeks' => $subyeks, 'kategori_subyek' => $kategori_subyek, 'kasus_id' => $kasus_id]);
+    }
+
+    public function tahan()
+    {
+        return view('subyek.subyek_tahan_create');
     }
 }

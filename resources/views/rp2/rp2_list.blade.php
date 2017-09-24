@@ -14,14 +14,12 @@
 
 @section('materi')
 
-
-
-
     <div class="table-responsive no-padding">
         <table class="table table-striped">
-            <tbody><tr>
-                    <th width="60%">Kasus Posisi</th>
-                    <th width="40%">No. & Tanggal Surat</th>
+        <tbody>
+                <tr>
+                    <th width="75%">Kasus Posisi</th>
+                    <th width="25%">No. & Tanggal Surat</th>
                 </tr>
                 @forelse ($cases as $case)
                 <tr>
@@ -29,19 +27,13 @@
                         @include('partials._kasusrp2a', ['case' => $case])
                     </td>
                 </tr>
-            @empty
+                @empty
                 <tr>
-                    <td colspan="32">No data.</td>
+                    <td colspan="2">No data.</td>
                 </tr>
-            @endforelse
+                @endforelse
         </tbody></table>
     </div>
-    
-
-
-
-
-
 
 @stop
 

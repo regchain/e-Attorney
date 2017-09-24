@@ -10,14 +10,14 @@
 				<div class="media">
 					<div class="panel-body">
 						<h4>
-							<a href="home"><img src="dist/img/logo-kejaksaan.png" height="80" class="text-titlecase"></a>
+							<a href="home"><img src="{{ asset('dist/img/logo-kejaksaan.png') }}" height="80" class="text-titlecase"></a>
 							<div class="pull-right">
 								<a href="{{ route('rp1.index') }}" class="btn btn-app btn-primary text-lime "><i class="fa fa-list-ol"></i> RP-1</a>                    
-								<a href="rp2" class="btn btn-app btn-primary text-lime"><i class="fa fa-list-ol"></i> RP-2</a>                    
-								<a href="rp3mum" class="btn btn-app btn-primary text-lime"><i class="fa fa-list-ol"></i> RP-3Mum</a>                    
-								<a href="rp3sus" class="btn btn-app btn-primary text-lime"><i class="fa fa-list-ol"></i> RP-3Sus</a>  
-								<a href="obyek" class="btn btn-app btn-primary text-lime"><i class="fa fa-cubes"></i> RB-1</a>  
-								<a href="subyek" class="btn btn-app btn-primary text-lime"><i class="fa fa-odnoklassniki"></i> RT</a>  
+								<a href="{{ route('rp2.index') }}" class="btn btn-app btn-primary text-lime"><i class="fa fa-list-ol"></i> RP-2</a>                    
+								<a href="{{ route('rp3mum.index') }}" class="btn btn-app btn-primary text-lime"><i class="fa fa-list-ol"></i> RP-3Mum</a>                    
+								<a href="{{ route('rp3sus.index') }}" class="btn btn-app btn-primary text-lime"><i class="fa fa-list-ol"></i> RP-3Sus</a>  
+								<a href="{{ url('/obyek') }}" class="btn btn-app btn-primary text-lime"><i class="fa fa-cubes"></i> RB-1</a>  
+								<a href="{{ url('/subyek') }}" class="btn btn-app btn-primary text-lime"><i class="fa fa-odnoklassniki"></i> RT</a>  
 							</div>
 							<div class="push-left" >
 								@yield('maintitle')

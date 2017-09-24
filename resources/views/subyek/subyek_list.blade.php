@@ -14,11 +14,7 @@
 
 @section('materi')
 
-
-
-
-
-    <table class="table table-striped">
+    <table class="table table-striped table-bordered">
       <th>
         <td width="33%">
           Tersangka
@@ -30,59 +26,19 @@
           Obyek Pidana
         </td>
       </th>
+      @forelse ($subyeks as $subyek)
       <tr>
         <td width="100%" colspan="4">
-          <div>@include('partials._tsk1')</div>
+          <div>@include('partials._tersangka', ['subyek' => $subyek])</div>
         </td>
       </tr>
+      @empty
       <tr>
-        <td width="100%" colspan="4">
-          <div>@include('partials._tsk2')</div>
-        </td>
+        <td width="100%" colspan="4"> No Data</td>
       </tr>
-      <tr>
-        <td width="100%" colspan="4">
-          <div>@include('partials._tsk3')</div>
-        </td>
-      </tr>
-      <tr>
-        <td width="100%" colspan="4">
-          <div>@include('partials._tsk4')</div>
-        </td>
-      </tr>
-      <tr>
-        <td width="100%" colspan="4">
-          <div>@include('partials._tsk5')</div>
-        </td>
-      </tr>
-      <tr>
-        <td width="100%" colspan="4">
-          <div>@include('partials._tsk6')</div>
-        </td>
-      </tr>
-      <tr>
-        <td width="100%" colspan="4">
-          <div>@include('partials._tsk7')</div>
-        </td>
-      </tr>
-      <tr>
-        <td width="100%" colspan="4">
-          <div>@include('partials._tsk8')</div>
-        </td>
-      </tr>
-      <tr>
-        <td width="100%" colspan="4">
-          <div>@include('partials._tsk9')</div>
-        </td>
-      </tr>
-
+      @endforelse
     </table>
-    
-    
-
-
-
-
+    {!! $subyeks->render() !!}
 
 @stop
 

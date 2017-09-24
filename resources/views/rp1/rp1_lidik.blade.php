@@ -31,7 +31,7 @@
 				<div class="input-group-addon">
 					<i class="fa fa-calendar"></i>
 				</div>
-				{!! Form::date('tanggal_rp2', \Carbon\Carbon::now(), ['class' => 'form-control pull-right', 'id' => 'datepicker']) !!}
+				{!! Form::date('tanggal_surat_perkara', \Carbon\Carbon::now(), ['class' => 'form-control pull-right', 'id' => 'datepicker']) !!}
 			</div>
 			<!-- /.input group -->
 		</div>
@@ -41,7 +41,7 @@
 		<!-- No. Surat -->
 		<div class="form-group">
 			<label> No. Surat</label>
-			{!! Form::text('no_surat_rp2', null, ['class' => 'form-control', 'placeholder' => 'PRINT-']) !!}
+			{!! Form::text('no_surat_perkara', null, ['class' => 'form-control', 'placeholder' => 'PRINT-', 'required' => 'required']) !!}
 		</div>
 	</div>
 	<div class="col-lg-8 col-md-8 col-sm-12">
@@ -51,7 +51,7 @@
 	<div class="col-lg-4 col-md-4 col-sm-12">
 		<label>Status</label>
 		<div class="input-group">
-			{!! Form::select('status', ['3' => 'DITERUSKAN', '2' => 'DIALIHKAN', '4' => 'DIHENTIKAN'], 3, ['class' => 'form-control']) !!}
+			{!! Form::select('status_rp1', ['3' => 'DITERUSKAN', '2' => 'DIALIHKAN', '4' => 'DIHENTIKAN'], 3, ['class' => 'form-control']) !!}
 			<!--
 			<div class="input-group-btn">
 				<button type="button" class="btn btn-default" aria-label="stop" title="DIHENTIKAN"><span class="glyphicon glyphicon-minus-sign"></span> </button>
@@ -106,19 +106,16 @@
 				<label>Nilai Anggaran</label>
 				<div class="input-group">
 					<span class="input-group-addon">Rp</span>
-					{!! Form::number('nilai_kontrak', null, ['class' => 'form-control', 'placeholder' => 'Enter ...']) !!}
+					{!! Form::number('nilai_kontrak', null, ['class' => 'form-control', 'placeholder' => 'Enter ...', 'step' => 'any']) !!}
 					<span class="input-group-addon">miliar</span>
 				</div>
 			</div>
-		</div>
-
-	
-	
+		</div>	
 		<div class="col-lg-12 col-md-12 col-sm-12">
 		<h4>Data Jaksa</h4>
 			<div class="form-group">
 				<label>Pilih Jaksa</label>
-				{!! Form::select('jaksa_id[]', [''=>'']+App\Jaksa::pluck('nama_jaksa','id')->all(), 0, ['class'=>'form-control', 'rows' => '25',  'placeholder' => 'Pilih Jaksa', 'multiple' => 'multiple']) !!}
+				{!! Form::select('jaksa_id[]', $jaksas, 0, ['class'=>'form-control', 'placeholder' => 'Pilih Jaksa', 'multiple' => 'multiple', 'size' => '10']) !!}
 			</div>
 			<a href="{{ route('rp1.index') }}" class="btn btn-danger"> BATAL</a>
 			{{ Form::submit('KIRIM', ['class' => 'btn btn-success']) }}

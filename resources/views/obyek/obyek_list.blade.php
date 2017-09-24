@@ -14,18 +14,9 @@
 
 @section('materi')
 
-
-
-
     <div class="box-body">
-					@include('partials._bendasitaan')
-				</div>
-    
-
-
-
-
-
+		@include('partials._bendasitaan', ['cases' => $cases])
+	</div>
 
 @stop
 

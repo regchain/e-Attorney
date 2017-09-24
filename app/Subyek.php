@@ -12,22 +12,20 @@ class Subyek extends Model
 
     protected $table = 'subyek';
     protected $fillable = [
-        'judul_surat',
         'nama_terlapor',
-        'tempat_lahir',
-        'kebangsaan',
-        'kewarganegaraan',
         'tempat_tinggal',
-        'agama',
-        'jabatan_resmi',
-        'jabatan_lain',
-        'lembaga',
+        'jenis_kelamin',
         'pendidikan',
-        'kategori_subyek',
-        'keterangan',
+        'tempat_lahir',
+        'tanggal_lahir',
+        'kewarganegaraan',
+        'agama',
+        'pekerjaan',
+        'lembaga',
+        'jabatan_resmi',
+        'jabatan_lain',        
+        'kategori_subyek_id',
         'status',
-        'no_surat_rp2',
-        'tanggal_rp2'
     ];
 
 }

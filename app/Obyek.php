@@ -8,11 +8,9 @@ class Obyek extends Model
 {
     protected $table = 'obyek';
     protected $fillable = [
-        'benda_sitaan',
         'nilai_kontrak',
         'kerugian_negara',
         'pemulihan_aset',
-        'obyek_pidana',
-        'kasus_id'
+        'obyek_pidana'
     ];
 }

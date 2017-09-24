@@ -9,6 +9,12 @@ use App\Subyek;
 
 class Rp1Controller extends Controller
 {
+    private $service;
+    public function __construct()
+    {
+        $this->service = new HelperController();
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,10 +22,12 @@ class Rp1Controller extends Controller
      */
     public function index()
     {
-        $cases = Kasus::where('no_surat_rp2', NULL)->get();
-        if ($cases && !empty($cases)) {
-            return view('rp1.rp1_list', ['cases' => $cases]);
-        }
+        $status_param = "status_rp1";
+        $status_value = Kasus::STATUS_BARU;
+
+        $cases = $this->service->getKasus($status_param, $status_value);
+        
+        return view('rp1.rp1_list', ['cases' => $cases]);
     }
 
     /**
@@ -41,14 +49,14 @@ class Rp1Controller extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'asal_surat'            => 'required',
-            'no_surat'              => 'required',
-            'tanggal_surat_pelapor' => 'required'
+            'judul_kasus'  => 'required',
+            'lembaga'      => 'required',
+            'obyek_pidana' => 'required'
         ]);
 
-        $case = Kasus::create($request->all() + ['status' => Kasus::STATUS_BARU]);
-        $obyek = Obyek::create($request->only('obyek_pidana') + ['kasus_id' => $case->id]);
-        $subyek = Subyek::create($request->only('nama_terlapor', 'lembaga'));
+        $case = Kasus::create($request->all() + ['status_rp1' => Kasus::STATUS_BARU]);
+        $obyek = Obyek::create($request->only('obyek_pidana'));
+        $subyek = Subyek::create($request->only('nama_terlapor', 'lembaga') + ['kategori_subyek_id' => 1]);
         
         // attach relationship
         $case->subyeks()->attach($subyek);
@@ -76,12 +84,7 @@ class Rp1Controller extends Controller
      */
     public function edit($id)
     {
-        $case = Kasus::select(['kasus.*','subyek.id as subyek_id','subyek.nama_terlapor','subyek.lembaga','obyek.id as obyek_id','obyek.obyek_pidana'])
-            ->join('kasus_subyek','kasus.id','=','kasus_subyek.kasus_id')
-            ->join('subyek','kasus_subyek.subyek_id','=','subyek.id')
-            ->join('obyek','kasus.id','=','obyek.kasus_id')
-            ->where('kasus.id',$id)
-            ->first();
+        $case = $this->service->getKasusByID($id);
 
         if ($case && !empty($case)) {
             return view('rp1.rp1_edit')->with(compact('case'));
@@ -100,9 +103,9 @@ class Rp1Controller extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'asal_surat'            => 'required',
-            'no_surat'              => 'required',
-            'tanggal_surat_pelapor' => 'required'
+            'judul_kasus'  => 'required',
+            'lembaga'      => 'required',
+            'obyek_pidana' => 'required'
         ]);
 
         $case = Kasus::find($id);

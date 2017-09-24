@@ -7,9 +7,17 @@ use App\Kasus;
 use App\Obyek;
 use App\Subyek;
 use App\Jaksa;
+use App\Surat;
+use App\KasusSubyek;
 
 class LidikController extends Controller
 {
+    private $service;
+    public function __construct()
+    {
+        $this->service = new HelperController();
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -63,12 +71,15 @@ class LidikController extends Controller
         $case = Kasus::select(['kasus.*','subyek.id as subyek_id','subyek.nama_terlapor','subyek.lembaga','obyek.nilai_kontrak','obyek.id as obyek_id','obyek.obyek_pidana'])
             ->join('kasus_subyek','kasus.id','=','kasus_subyek.kasus_id')
             ->join('subyek','kasus_subyek.subyek_id','=','subyek.id')
-            ->join('obyek','kasus.id','=','obyek.kasus_id')
+            ->join('kasus_obyek','kasus.id','=','kasus_obyek.kasus_id')
+            ->join('obyek','kasus_obyek.obyek_id','=','obyek.id')
             ->where('kasus.id',$id)
             ->first();
 
+        $jaksas = $this->service->getJaksaAll();
+
         if ($case && !empty($case)) {
-            return view('rp1.rp1_lidik')->with(compact('case'));
+            return view('rp1.rp1_lidik', ['case' => $case, 'jaksas' => $jaksas]);
         } else {
             return redirect()->route('rp1.index');
         }
@@ -85,27 +96,51 @@ class LidikController extends Controller
     {
         $this->validate($request, [
             'judul_kasus'           => 'required',
-            'kasus_posisi'          => 'required'
+            'kasus_posisi'          => 'required',
+            'lembaga'               => 'required',
+            'obyek_pidana'          => 'required',
+            'no_surat_perkara'      => 'required',
+            'tanggal_surat_perkara' => 'required'
         ]);
 
-        $status = $request->status;
-        if ($status == Kasus::STATUS_DIALIHKAN OR $status == Kasus::STATUS_DIHENTIKAN) {
+        $status_rp1 = $request->status_rp1;
+        if ($status_rp1 == Kasus::STATUS_DIALIHKAN OR $status_rp1 == Kasus::STATUS_DIHENTIKAN) {
             // Update status menjadi arsip
             $case = Kasus::find($id);
             if ($case) {
-                $case->update($request->only('judul_kasus','kasus_posisi','disposisi','status'));
+                $case->update($request->only('judul_kasus','kasus_posisi','disposisi','status_rp1'));
+            }
+
+            $kasus_subyek = KasusSubyek::where('kasus_id',$id)->get();
+            foreach ($kasus_subyek as $subyek) {
+                $findSubyek = Subyek::find($subyek->subyek_id);
+                if ($findSubyek) {
+                    $findSubyek->update(['status' => 0]); 
+                }
             }
         } else {
             $case = Kasus::find($id);
             if ($case) {
-                $case->update($request->only('judul_kasus','kasus_posisi','disposisi','status'));
-                
-                $kasus_rp2 = $case->toArray();
-                $newCase = Kasus::create($kasus_rp2);
-                $caseID = $newCase->id;
+                $case->update($request->only('judul_kasus','kasus_posisi','disposisi','status_rp1') + ['status_rp2' => Kasus::STATUS_BARU]);
 
-                $updateNewCase = Kasus::find($caseID);
-                $updateNewCase->update($request->only('tanggal_rp2','no_surat_rp2'));
+                $cekSurat = Surat::where('kasus_id', $case->id)
+                    ->where('tipe_surat', 'RP2')
+                    ->first();
+                
+                if ($cekSurat) {
+                    $surat = Surat::find($cekSurat->id);
+                } else {
+                    $surat = Surat::create($request->only('no_surat_perkara','tanggal_surat_perkara') + ['kasus_id' => $case->id, 'tipe_surat' => 'RP2']);
+
+                    $jaksas = $request->jaksa_id;
+                    if ($jaksas && !empty($jaksas)) {
+                        foreach ($jaksas as $jaksa) {
+                            $jaksa_id = intval($jaksa);
+                            $findJaksa = Jaksa::find($jaksa_id);
+                            $surat->jaksas()->attach($findJaksa);
+                        }
+                    }
+                }
             }
         }
 
@@ -121,19 +156,7 @@ class LidikController extends Controller
             $obyek->update($request->only('obyek_pidana','nilai_kontrak'));
         }
 
-        $newCase->subyeks()->attach($subyek);
-        $newCase->obyeks()->attach($obyek);
-
-        $jaksas = $request->jaksa_id;
-        if ($jaksas && !empty($jaksas)) {
-            foreach ($jaksas as $jaksa) {
-                $jaksa_id = intval($jaksa);
-                $findJaksa = Jaksa::find($jaksa_id);
-                $newCase->jaksas()->attach($findJaksa);
-            }
-        }       
-        
-        return redirect()->route('rp1.index');
+        return redirect()->route('rp2.index');
     }
 
     /**
