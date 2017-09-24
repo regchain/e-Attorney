@@ -13,13 +13,14 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="rp1">PENYIDIKAN</a></li>
-        <li><a href="master_penuntutan">PENUNTUTAN</a></li>
-         <li class="disabled"><a href="#">EKSEKUSI</a></li>
-        <li class="disabled"><a href="#">EKSAMINASI</a></li>
-               
-      </ul>
+         <div class="btn-group btn-xs">
+          <a href="{{ route('rp1.index') }}" class="btn btn-primary"><i class="fa fa-list-ol"></i> RP-1</a>                    
+          <a href="{{ route('rp2.index') }}" class="btn btn-primary"><i class="fa fa-list-ol"></i> RP-2</a>                    
+          <a href="{{ route('rp3mum.index') }}" class="btn btn-primary"><i class="fa fa-list-ol"></i> RP-3Mum</a>                    
+          <a href="{{ route('rp3sus.index') }}" class="btn btn-primary"><i class="fa fa-list-ol"></i> RP-3Sus</a>  
+          <a href="{{ url('/obyek') }}" class="btn btn-primary"><i class="fa fa-cubes"></i> RB-1</a>  
+          <a href="{{ url('/subyek') }}" class="btn btn-primary"><i class="fa fa-odnoklassniki"></i> RT</a>  
+        </div>
       <ul class="nav navbar-nav navbar-right">
        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-database"> </i> Master Data <span class="caret"></span></a>
