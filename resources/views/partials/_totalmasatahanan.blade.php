@@ -107,7 +107,7 @@ Highcharts.chart('masatahanan', {
         data: [
             { x: 50, y: 48, z: 13.8, name: 'BE', country: 'Tersangka 1' },
             { x: 45.5, y: 54.9, z: 14.7, name: 'DE', country: 'Tersangka 2' },
-            { x: 12.8, y: 12.5, z: 15.8, name: 'FI', country: 'Tersangka 3' },
+            { x: 10.6, y: 10, z: 16, name: 'FI', country: 'Tersangka 3' },
             { x: 39.4, y: 34.5, z: 12, name: 'NL', country: 'Tersangka 4' },
             { x: 45.3, y: 45.1, z: 11.8, name: 'SE', country: 'Tersangka 5' },
             { x: 41.4, y: 41.1, z: 16.6, name: 'ES', country: 'Tersangka 6' },
