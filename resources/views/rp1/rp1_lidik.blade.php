@@ -26,7 +26,7 @@
 	<div class="col-lg-4 col-md-4 col-sm-12">
 		<!-- Tanggal Surat -->
 		<div class="form-group">
-			<label>Tanggal</label>
+			<label class="text-red">* Tanggal</label>
 			<div class="input-group date">
 				<div class="input-group-addon">
 					<i class="fa fa-calendar"></i>
@@ -40,7 +40,7 @@
 	<div class="col-lg-4 col-md-4 col-sm-12">
 		<!-- No. Surat -->
 		<div class="form-group">
-			<label> No. Surat</label>
+			<label class="text-red">* No. Surat</label>
 			{!! Form::text('no_surat_perkara', null, ['class' => 'form-control', 'placeholder' => 'PRINT-', 'required' => 'required']) !!}
 		</div>
 	</div>
@@ -114,7 +114,7 @@
 		<div class="col-lg-12 col-md-12 col-sm-12">
 		<h4>Data Jaksa</h4>
 			<div class="form-group">
-				<label>Pilih Jaksa</label>
+				<label class="text-red">* Pilih Jaksa</label>
 				{!! Form::select('jaksa_id[]', $jaksas, 0, ['class'=>'form-control', 'placeholder' => 'Pilih Jaksa', 'multiple' => 'multiple', 'size' => '10']) !!}
 			</div>
 			<a href="{{ route('rp1.index') }}" class="btn btn-danger"> BATAL</a>

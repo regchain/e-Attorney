@@ -8,7 +8,7 @@
 		</div>
 		<!-- text input -->
 		<div class="form-group{{ $errors->has('lembaga') ? ' has-error' : '' }}">
-			<label>* Lembaga</label>
+			<label class="text-red">* Lembaga</label>
 			{!! Form::text('lembaga', null, ['class' => 'form-control', 'placeholder' => 'Harus diisi ...']) !!}
 			{!! $errors->first('lembaga', '<p class="help-block">:message</p>') !!}
 		</div>
@@ -17,7 +17,7 @@
 		<h4>Data Obyek</h4>
 		<!-- Obyek Pidana -->
 		<div class="form-group{{ $errors->has('obyek_pidana') ? ' has-error' : '' }}">
-			<label>* Obyek Pidana</label>
+			<label class="text-red">* Obyek Pidana</label>
 			{!! Form::text('obyek_pidana', null, ['class' => 'form-control', 'placeholder' => 'Harus diisi ...']) !!}
 			{!! $errors->first('obyek_pidana', '<p class="help-block">:message</p>') !!}
 			{!! Form::hidden('obyek_id', null) !!}
@@ -27,11 +27,11 @@
 		<h4>Data Kasus</h4>
 		<!-- Judul Kasus -->
 		<div class="form-group{{ $errors->has('judul_kasus') ? ' has-error' : '' }}">
-			<label>* Judul Kasus: </label>
+			<label class="text-red">* Judul Kasus: </label>
 			{!! Form::text('judul_kasus', null, ['class' => 'form-control', 'placeholder' => 'ANIM PARIATUR CLICHE REPREHENDERIT']) !!}
 			{!! $errors->first('judul_kasus', '<p class="help-block">:message</p>') !!}
 		</div>
-		<label>* Kasus Posisi</label>
+		<label class="text-red">* Kasus Posisi</label>
         <br>
         {!! Form::textarea('kasus_posisi', null, ['class'=>'form-control', 'placeholder' => '(BERISI URAIAN KASUS POSISI SECARA SINGKAT)']) !!}
 	</div>

@@ -50,7 +50,7 @@
 	<div class="col-lg-4 col-md-4 col-sm-12">
 		<label>Status</label>
 		<div class="input-group">
-			{!! Form::select('status_rp3mum', ['1' => 'BARU', '3' => 'DITERUSKAN', '2' => 'DIALIHKAN', '4' => 'DIHENTIKAN'], $status_rp3mum, ['class' => 'form-control']) !!}
+{{-- 			{!! Form::select('status_rp3mum', ['1' => 'BARU', '3' => 'DITERUSKAN', '2' => 'DIALIHKAN', '4' => 'DIHENTIKAN'], $status_rp3mum, ['class' => 'form-control']) !!} --}}
 			<!--
 			<div class="input-group-btn"> 
 				<button type="button" class="btn btn-default" aria-label="stop" title="DIHENTIKAN"><span class="glyphicon glyphicon-minus-sign"></span> </button>
@@ -110,7 +110,7 @@
 				</div>
 				<div class="col-lg-6 col-md-6 col-sm-12">
 					<div class="form-group">
-						<label>Nilai Anggaran</label>
+						<label class="text-red">* Nilai Anggaran</label>
 						<div class="input-group">
 							<span class="input-group-addon">Rp</span>
 							{!! Form::number('nilai_kontrak', null, ['class' => 'form-control', 'placeholder' => 'Enter ...', 'step' => 'any']) !!}
