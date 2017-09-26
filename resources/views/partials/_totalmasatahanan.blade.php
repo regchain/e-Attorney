@@ -28,7 +28,7 @@ Highcharts.chart('masatahanan', {
     },
 
     subtitle: {
-        text: 'Source: <a href="http://www.euromonitor.com/">Euromonitor</a> and <a href="https://data.oecd.org/">OECD</a>'
+        text: 'Sumber: DirDik Jampidsus'
     },
 
     xAxis: {
@@ -87,9 +87,9 @@ Highcharts.chart('masatahanan', {
         useHTML: true,
         headerFormat: '<table>',
         pointFormat: '<tr><th colspan="2"><h3>{point.country}</h3></th></tr>' +
-            '<tr><th>Fat intake:</th><td>{point.x}g</td></tr>' +
-            '<tr><th>Sugar intake:</th><td>{point.y}g</td></tr>' +
-            '<tr><th>Obesity (adults):</th><td>{point.z}%</td></tr>',
+            '<tr><th>Kategori Subyek:</th><td>{point.x}g</td></tr>' +
+            '<tr><th>Obyek Pidana:</th><td>{point.y}g</td></tr>' +
+            '<tr><th>Kategori Obyek:</th><td>{point.z}%</td></tr>',
         footerFormat: '</table>',
         followPointer: true
     },
@@ -107,7 +107,7 @@ Highcharts.chart('masatahanan', {
         data: [
             { x: 50, y: 48, z: 13.8, name: 'BE', country: 'Tersangka 1' },
             { x: 45.5, y: 54.9, z: 14.7, name: 'DE', country: 'Tersangka 2' },
-            { x: 12.8, y: 12.5, z: 15.8, name: 'FI', country: 'Tersangka 3' },
+            { x: 10.6, y: 10, z: 16, name: 'FI', country: 'Tersangka 3' },
             { x: 39.4, y: 34.5, z: 12, name: 'NL', country: 'Tersangka 4' },
             { x: 45.3, y: 45.1, z: 11.8, name: 'SE', country: 'Tersangka 5' },
             { x: 41.4, y: 41.1, z: 16.6, name: 'ES', country: 'Tersangka 6' },

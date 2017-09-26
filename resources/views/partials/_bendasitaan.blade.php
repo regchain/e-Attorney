@@ -5,7 +5,7 @@
 			<div class="panel-heading" role="tab" id="headingOne"> 
 				<h4 class="panel-title">
           <a href="#collapseOne{{ $case->id }}" role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="false" aria-controls="collapseOne" class="collapsed"><i class="glyphicon glyphicon-resize-vertical text-green"></i>&nbsp; {{ $case->judul_kasus }}</a>
-          <div class="pull-right"> Pemulihan Aset: Rp. {{ $case->pemulihan_aset }} M</div>
+          <div class="pull-right"> Pemulihan Aset: Rp. {{ number_format($case->pemulihan_aset) }} ,-</div>
         </h4>
 			</div>
 			<div class="panel-collapse collapse" role="tabpanel" id="collapseOne{{ $case->id }}" aria-labelledby="headingOne" aria-expanded="false" style="height: 0px;"> 
@@ -27,7 +27,7 @@
                 <td>{{ $surat->tanggal_surat_perkara }}</td>
                 <td>{{ $surat->tindakan }}</td>
                 <td>{{ $surat->barang_sitaan }}</td>
-                <td><a href="{{ route('obyek.edit', [$case->id, $surat->id]) }}" class="btn btn-success btn-xs"> <i class="fa fa-edit"> &nbsp; </i> Edit</a><p> Rp. {{ $surat->nilai_pemulihan_aset }} Miliar</p></td>
+                <td><a href="{{ route('obyek.edit', [$case->id, $surat->id]) }}" class="btn btn-success btn-xs"> <i class="fa fa-edit"> &nbsp; </i> Edit</a><p> Rp. {{ number_format($surat->nilai_pemulihan_aset) }} ,-</p></td>
               </tr>
               @empty
               <tr>

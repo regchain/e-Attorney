@@ -16,7 +16,7 @@
 
     <div class="table-responsive no-padding">
         <table class="table table-striped">
-            <tbody>
+        <tbody>
                 <tr>
                     <th width="75%">Kasus Posisi</th>
                     <th width="25%">No. & Tanggal Surat</th>

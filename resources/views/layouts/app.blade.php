@@ -28,7 +28,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="http://ejampidsus.openlaw.id">el-<strong>PID</strong>SUS</a>
+      <a class="navbar-brand" href="home">el-<strong>PID</strong>SUS</a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">

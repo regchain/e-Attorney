@@ -27,7 +27,7 @@
 	<div class="col-lg-4 col-md-4 col-sm-12">
 		<!-- Tanggal Surat -->
 		<div class="form-group">
-			<label>Tanggal</label>
+			<label>* Tanggal</label>
 			<div class="input-group date">
 				<div class="input-group-addon">
 					<i class="fa fa-calendar"></i>
@@ -41,7 +41,7 @@
 	<div class="col-lg-4 col-md-4 col-sm-12">
 		<!-- No. Surat -->
 		<div class="form-group">
-			<label> No. Surat</label>
+			<label>* No. Surat</label>
 			<input type="text" class="form-control" placeholder="PRINT-">
 		</div>
 	</div>

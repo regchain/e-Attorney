@@ -6,9 +6,9 @@
   </button>
   <ul class="dropdown-menu">
     <li><a href="{{ route('rp3sus.edit', $case->spt_id) }}" class="text-right">Edit &nbsp;&nbsp;<i class="glyphicon glyphicon-pencil"></i></a></li>
-    <li><a href="{{ route('obyek.create', $case->id) }}" class="text-right">Sprint Geledah &nbsp;&nbsp;<i class="glyphicon glyphicon-plus text-red"></i></a></li>
-    <li><a href="{{ url('/fp15', $case->spt_id) }}" class="btn btn-default"><strong>P-15 &nbsp;&nbsp;<i class="glyphicon glyphicon-share-alt"></i></strong></a></li>
-    <li><a href="{{ url('/fp15a', $case->spt_id) }}" class="btn btn-default"><strong>P-15a &nbsp;&nbsp;<i class="glyphicon glyphicon-share-alt"></i></strong></a></li>
+    <li><a href="{{ route('obyek.create', $case->id) }}" class="text-right">Barang Bukti &nbsp;&nbsp;<i class="glyphicon glyphicon-plus text-red"></i></a></li>
+    <li><a href="{{ url('/fp15', $case->spt_id) }}" class="btn btn-default"><strong>TAHAP I &nbsp;&nbsp;<i class="glyphicon glyphicon-share-alt"></i></strong></a></li>
+    <li><a href="{{ url('/fp15a', $case->spt_id) }}" class="btn btn-default"><strong>TAHAP II &nbsp;&nbsp;<i class="glyphicon glyphicon-share-alt"></i></strong></a></li>
   </ul>
 </div><!-- end button group -->
 <div class="panel-heading col-md-9" role="tab" id="headingOne"> 
@@ -46,9 +46,9 @@
 					<!-- /.tab-pane -->
 					<div class="tab-pane" id="tab_3a3-2{{ $case->spt_id }}">
 						@foreach ($case->obyeks as $obyek)
-						Nilai Kontrak / Anggaran: <strong>{{ $obyek->nilai_kontrak }} M.</strong> 
-						<br>Kerugian Negara <strong>{{ $obyek->kerugian_negara }} M.</strong> 
-						<br>Pemulihan Aset: <strong>{{ $obyek->pemulihan_aset }} M.</strong> 
+						Nilai Kontrak / Anggaran: <strong>Rp. {{ number_format($obyek->nilai_kontrak) }} ,-</strong> 
+						<br>Kerugian Negara <strong>Rp. {{ number_format($obyek->kerugian_negara) }} ,-</strong> 
+						<br>Pemulihan Aset: <strong>Rp. {{ number_format($obyek->pemulihan_aset) }} ,-</strong> 
 						@endforeach
 					</div>
 					<!-- /.tab-pane -->

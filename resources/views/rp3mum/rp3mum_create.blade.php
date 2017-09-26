@@ -28,7 +28,7 @@
 	<div class="col-lg-4 col-md-4 col-sm-12">
 		<!-- Tanggal Surat -->
 		<div class="form-group">
-			<label>Tanggal</label>
+			<label class="text-red">* Tanggal</label>
 			<div class="input-group date">
 				<div class="input-group-addon">
 					<i class="fa fa-calendar"></i>
@@ -40,7 +40,7 @@
 	<div class="col-lg-4 col-md-4 col-sm-12">
 		<!-- No. Surat -->
 		<div class="form-group">
-			<label> No. Surat</label>
+			<label class="text-red">* No. Surat</label>
 			{!! Form::text('no_surat_perkara', null, ['class' => 'form-control', 'placeholder' => 'PRINT-']) !!}
 		</div>
 	</div>
@@ -94,7 +94,7 @@
 			
 			<!-- Kategori Subyek -->
 			<div class="form-group">
-				<label>Kategori Subyek</label>
+				<label>* Kategori Subyek</label>
 				{!! Form::select('kategori_subyek_id', $kategori_subyek, 1, ['class'=>'form-control', 'placeholder' => '']) !!}
 			</div>
 		</div>
@@ -110,11 +110,11 @@
 				</div>
 				<div class="col-lg-6 col-md-6 col-sm-12">
 					<div class="form-group">
-						<label>Nilai Anggaran</label>
+						<label class="text-red">* Nilai Anggaran</label>
 						<div class="input-group">
 							<span class="input-group-addon">Rp</span>
-							{!! Form::number('nilai_kontrak', null, ['class' => 'form-control', 'placeholder' => 'Enter ...', 'step' => 'any']) !!}
-							<span class="input-group-addon">miliar</span>
+							{!! Form::number('nilai_kontrak', null, ['class' => 'form-control', 'placeholder' => 'Masukkan 0 bila belum ada ...', 'step' => 'any']) !!}
+							<span class="input-group-addon">,-</span>
 						</div>
 					</div>
 				</div>
@@ -126,7 +126,7 @@
 						<div class="input-group">
 							<span class="input-group-addon">Rp</span>
 							{!! Form::number('kerugian_negara', null, ['class' => 'form-control', 'placeholder' => 'Enter ...', 'step' => 'any']) !!}
-							<span class="input-group-addon">miliar</span>
+							<span class="input-group-addon">,-</span>
 						</div>
 					</div>
 				</div>
@@ -135,8 +135,8 @@
 						<label>Pemulihan Aset</label>
 						<div class="input-group">
 							<span class="input-group-addon">Rp</span>
-							{!! Form::number('pemulihan_aset', null, ['class' => 'form-control', 'placeholder' => 'Enter ...', 'step' => 'any']) !!}
-							<span class="input-group-addon">miliar</span>
+							{!! Form::number('pemulihan_aset', null, ['class' => 'form-control', 'placeholder' => 'Jangan diisi ...', 'step' => 'any']) !!}
+							<span class="input-group-addon">,-</span>
 						</div>
 					</div>
 				</div>
@@ -144,7 +144,7 @@
 		</div>
 		<div class="box-body">
 			<div class="col-lg-6 col-md-6 col-sm-12">
-				<h4>Data Jaksa</h4>
+				<h4 class="text-red">* Data Jaksa</h4>
 				<div align="center" class="thumbnail">
 					{!! Form::select('jaksa_id[]', $jaksas, 0, ['class'=>'form-control', 'placeholder' => 'Pilih Jaksa', 'multiple' => 'multiple', 'size' => '8']) !!}
 				</div>

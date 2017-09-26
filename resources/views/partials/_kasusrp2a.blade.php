@@ -1,4 +1,4 @@
-
+<div class="row col-md-12">
 <!-- Single button -->
 <div class="btn-group pull-right">
 	@if ($case->status_rp2  == 1)
@@ -7,7 +7,7 @@
   	</button>
   	<ul class="dropdown-menu">
   		<li><a href="{{ route('rp2.edit', $case->id) }}" class="text-right">Edit &nbsp;&nbsp;<i class="glyphicon glyphicon-pencil"></i></a></li>
-  		<li><a href="{{ url('/dikmum', $case->id) }}" class="text-right"><strong>NAIK DIK MUM</strong> &nbsp;&nbsp;<i class="glyphicon glyphicon-log-in text-red"></i></a></li>
+  		<li><a href="{{ url('/dikmum', $case->id) }}" class="text-right"><strong>PENYELESAIAN</strong> &nbsp;&nbsp;<i class="glyphicon glyphicon-log-in text-red"></i></a></li>
   	</ul>
   	@endif
 </div><!-- end button group -->
@@ -23,9 +23,9 @@
 			{{ $case->kasus_posisi }}. 
 			<br>Disposisi: {{ $case->disposisi }}
 			@forelse ($case->obyeks as $obyek)
-			<br>Nilai Kontrak / Anggaran: <strong>{{ $obyek->nilai_kontrak }} M.</strong> 
-			<br>Kerugian Negara <strong>{{ $obyek->kerugian_negara }} M.</strong> 
-			<br>Pemulihan Aset: <strong>{{ $obyek->pemulihan_aset }} M.</strong>
+			<br>Nilai Anggaran:Rp. <strong>{{ number_format($obyek->nilai_kontrak) }} ,-</strong> 
+			<br>Kerugian Negara:Rp. <strong>{{ number_format($obyek->kerugian_negara) }} ,-</strong> 
+			<br>Pemulihan Aset:Rp. <strong>{{ number_format($obyek->pemulihan_aset) }} ,-</strong>
 			@empty
 			@endforelse
 		</div>
