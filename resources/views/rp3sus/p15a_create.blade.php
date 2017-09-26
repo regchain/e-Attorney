@@ -72,13 +72,13 @@
 						<strong>PEMULIHAN ASET</strong>
 					</a>
 					<a href="#" class="list-group-item">Nilai Anggaran <div class="pull-right">
-						Rp. {{ $case->nilai_kontrak }} M
+						Rp. {{ $case->nilai_kontrak }} ,-
 					</div></a>
 					<a href="#" class="list-group-item">Kerugian Negara<div class="pull-right">
-						Rp. {{ $case->kerugian_negara }} M
+						Rp. {{ $case->kerugian_negara }} ,-
 					</div></a>
 					<a href="#" class="list-group-item">Pemulihan Aset<div class="pull-right">
-						Rp. {{ $case->pemulihan_aset }} M
+						Rp. {{ $case->pemulihan_aset }} ,-
 					</div></a>
 				</div>
 			</div>

@@ -98,7 +98,7 @@
 			<div class="input-group">
 				<span class="input-group-addon">Rp</span>
 				{!! Form::number('nilai_kontrak', null, ['class' => 'form-control', 'placeholder' => 'Masukkan 0 bila belum ada ...', 'step' => 'any']) !!}
-				<span class="input-group-addon">miliar</span>
+				<span class="input-group-addon">,-</span>
 			</div>
 		</div>
 	</div>

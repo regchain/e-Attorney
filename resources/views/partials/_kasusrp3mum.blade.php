@@ -48,9 +48,9 @@
 					<!-- /.tab-pane -->
 					<div class="tab-pane" id="tab_3a3-2{{ $case->id }}">
 						@foreach ($case->obyeks as $obyek)
-						Nilai Kontrak / Anggaran: <strong>{{ $obyek->nilai_kontrak }} M.</strong> 
-						<br>Kerugian Negara <strong>{{ $obyek->kerugian_negara }} M.</strong> 
-						<br>Pemulihan Aset: <strong>{{ $obyek->pemulihan_aset }} M.</strong> 
+						Nilai Kontrak / Anggaran: <strong>{{ $obyek->nilai_kontrak }} ,-</strong> 
+						<br>Kerugian Negara <strong>{{ $obyek->kerugian_negara }} ,-</strong> 
+						<br>Pemulihan Aset: <strong>{{ $obyek->pemulihan_aset }} ,-</strong> 
 						@endforeach
 					</div>
 					<!-- /.tab-pane -->
