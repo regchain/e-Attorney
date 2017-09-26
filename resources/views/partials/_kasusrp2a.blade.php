@@ -23,9 +23,9 @@
 			{{ $case->kasus_posisi }}. 
 			<br>Disposisi: {{ $case->disposisi }}
 			@forelse ($case->obyeks as $obyek)
-			<br>Nilai Kontrak / Anggaran: <strong>{{ number_format($obyek->nilai_kontrak) }} ,-</strong> 
-			<br>Kerugian Negara <strong>{{ number_format($obyek->kerugian_negara) }} ,-</strong> 
-			<br>Pemulihan Aset: <strong>{{ number_format($obyek->pemulihan_aset) }} ,-</strong>
+			<br>Nilai Anggaran:Rp. <strong>{{ number_format($obyek->nilai_kontrak) }} ,-</strong> 
+			<br>Kerugian Negara:Rp. <strong>{{ number_format($obyek->kerugian_negara) }} ,-</strong> 
+			<br>Pemulihan Aset:Rp. <strong>{{ number_format($obyek->pemulihan_aset) }} ,-</strong>
 			@empty
 			@endforelse
 		</div>

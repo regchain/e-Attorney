@@ -8,13 +8,12 @@
 				</a>
 			</div> 
 			<div class="media-body">
-				<strong class="media-heading">Terduga: {{ $subyek->nama_terlapor }}</strong>, 
-				Jabatan: <strong>{{ $subyek->jabatan_resmi }} / {{ $subyek->jabatan_lain }}</strong>. 
-				Lembaga/Institusi: <strong>{{ $subyek->lembaga }}</strong>
-				<br>
-				Kategori Subyek: <strong>{{ $subyek->kategori_subyek }}</strong>, 
-				Status: <strong>{{ $subyek->status_subyek }}, {{ $subyek->masa_tahanan }}</strong><i class="text-red"> (.. belum ada)</i><br>
-				<!--Disposisi / Keterangan: <strong>{{ $case->disposisi }}</strong>-->
+				<strong class="media-heading">Terduga: {{ $subyek->nama_terlapor }}</strong><br> 
+				{{-- Jabatan: <strong>{{ $subyek->jabatan_resmi }}&nbsp;/&nbsp;{{ $subyek->jabatan_lain }}</strong><br>  --}}
+				Institusi: <strong>{{ $subyek->lembaga }}</strong><br>
+				Kategori Subyek: <strong>{{ $subyek->kategori_subyek }}</strong>,&nbsp; 
+				{{-- Status: <strong>{{ $subyek->status_subyek }}, {{ $subyek->masa_tahanan }}</strong><br> --}}<br>
+				Disposisi / Keterangan: <strong>{{ $case->disposisi }}</strong>
 			</div>
 			<div>
 				<h5>Jaksa Penyidik</h5>
