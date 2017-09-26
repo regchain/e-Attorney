@@ -14,12 +14,12 @@
 				</a>
 			</div> 
 			<div class="media-body">
-				Terduga <strong class="media-heading">{{ $subyek->nama_terlapor }}</strong>, 
-				Jabatan: <strong>{{ $subyek->jabatan_resmi }} / {{ $subyek->jabatan_lain }}</strong>. 
-				Lembaga/Institusi: <strong>{{ $subyek->lembaga }}</strong>
+				Terduga <strong class="media-heading">{{ $subyek->nama_terlapor }}</strong>,<br> 
+				Jabatan: <strong>{{ $subyek->jabatan_resmi }}&nbsp;/&nbsp;{{ $subyek->jabatan_lain }}</strong>. <br>
+				Institusi: <strong>{{ $subyek->lembaga }}</strong>
 				<br>
 				Kategori Subyek: <strong>{{ $subyek->kategori_subyek }}</strong>, 
-				Status: <strong>{{ $subyek->status }}, {{ $subyek->masa_tahanan }}</strong><i class="text-red"> (.. belum ada)</i><br>
+				Status: <strong>{{ $subyek->status }}, {{ $subyek->masa_tahanan }}</strong></i><br>
 			</div>
 		</div>
 	</td>
