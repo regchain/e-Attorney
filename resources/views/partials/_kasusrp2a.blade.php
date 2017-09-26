@@ -7,7 +7,7 @@
   	</button>
   	<ul class="dropdown-menu">
   		<li><a href="{{ route('rp2.edit', $case->id) }}" class="text-right">Edit &nbsp;&nbsp;<i class="glyphicon glyphicon-pencil"></i></a></li>
-  		<li><a href="{{ url('/dikmum', $case->id) }}" class="text-right"><strong>NAIK DIK MUM</strong> &nbsp;&nbsp;<i class="glyphicon glyphicon-log-in text-red"></i></a></li>
+  		<li><a href="{{ url('/dikmum', $case->id) }}" class="text-right"><strong>PENYELESAIAN</strong> &nbsp;&nbsp;<i class="glyphicon glyphicon-log-in text-red"></i></a></li>
   	</ul>
   	@endif
 </div><!-- end button group -->
