@@ -110,11 +110,11 @@
 				</div>
 				<div class="col-lg-6 col-md-6 col-sm-12">
 					<div class="form-group">
-						<label>Nilai Anggaran</label>
+						<label class="text-red">* Nilai Anggaran</label>
 						<div class="input-group">
 							<span class="input-group-addon">Rp</span>
-							{!! Form::number('nilai_kontrak', null, ['class' => 'form-control', 'placeholder' => 'Enter ...', 'step' => 'any']) !!}
-							<span class="input-group-addon">miliar</span>
+							{!! Form::number('nilai_kontrak', null, ['class' => 'form-control', 'placeholder' => 'Masukkan 0 bila belum ada ...', 'step' => 'any']) !!}
+							<span class="input-group-addon">,-</span>
 						</div>
 					</div>
 				</div>
@@ -126,7 +126,7 @@
 						<div class="input-group">
 							<span class="input-group-addon">Rp</span>
 							{!! Form::number('kerugian_negara', null, ['class' => 'form-control', 'placeholder' => 'Enter ...', 'step' => 'any']) !!}
-							<span class="input-group-addon">miliar</span>
+							<span class="input-group-addon">,-</span>
 						</div>
 					</div>
 				</div>
@@ -135,8 +135,8 @@
 						<label>Pemulihan Aset</label>
 						<div class="input-group">
 							<span class="input-group-addon">Rp</span>
-							{!! Form::number('pemulihan_aset', null, ['class' => 'form-control', 'placeholder' => 'Enter ...', 'step' => 'any']) !!}
-							<span class="input-group-addon">miliar</span>
+							{!! Form::number('pemulihan_aset', null, ['class' => 'form-control', 'placeholder' => 'Jangan diisi ...', 'step' => 'any']) !!}
+							<span class="input-group-addon">,-</span>
 						</div>
 					</div>
 				</div>

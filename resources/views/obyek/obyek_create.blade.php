@@ -59,7 +59,7 @@
       <div class="input-group">
         <span class="input-group-addon">Rp.</span>
         {!! Form::number('nilai_pemulihan_aset', null, ['class' => 'form-control', 'placeholder' => 'Enter ...', 'step' => 'any']) !!}
-        <span class="input-group-addon">Miliar</span>
+        <span class="input-group-addon">,-</span>
         <span class="input-group-addon">Nilai Pemulihan Aset</span>
         {!! Form::hidden('obyek_id', $obyek_id) !!}
       </div>

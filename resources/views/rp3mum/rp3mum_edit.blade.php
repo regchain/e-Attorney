@@ -114,7 +114,7 @@
 						<div class="input-group">
 							<span class="input-group-addon">Rp</span>
 							{!! Form::number('nilai_kontrak', null, ['class' => 'form-control', 'placeholder' => 'Enter ...', 'step' => 'any']) !!}
-							<span class="input-group-addon">miliar</span>
+							<span class="input-group-addon">,-</span>
 						</div>
 					</div>
 				</div>
@@ -126,7 +126,7 @@
 						<div class="input-group">
 							<span class="input-group-addon">Rp</span>
 							{!! Form::number('kerugian_negara', null, ['class' => 'form-control', 'placeholder' => 'Enter ...', 'step' => 'any']) !!}
-							<span class="input-group-addon">miliar</span>
+							<span class="input-group-addon">,-</span>
 						</div>
 					</div>
 				</div>
@@ -136,7 +136,7 @@
 						<div class="input-group">
 							<span class="input-group-addon">Rp</span>
 							{!! Form::number('pemulihan_aset', null, ['class' => 'form-control', 'placeholder' => 'Enter ...', 'step' => 'any']) !!}
-							<span class="input-group-addon">miliar</span>
+							<span class="input-group-addon">,-</span>
 						</div>
 					</div>
 				</div>
