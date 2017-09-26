@@ -28,7 +28,7 @@ Highcharts.chart('masatahanan', {
     },
 
     subtitle: {
-        text: 'Source: <a href="http://www.euromonitor.com/">Euromonitor</a> and <a href="https://data.oecd.org/">OECD</a>'
+        text: 'Sumber: DirDik Jampidsus'
     },
 
     xAxis: {
@@ -87,9 +87,9 @@ Highcharts.chart('masatahanan', {
         useHTML: true,
         headerFormat: '<table>',
         pointFormat: '<tr><th colspan="2"><h3>{point.country}</h3></th></tr>' +
-            '<tr><th>Fat intake:</th><td>{point.x}g</td></tr>' +
-            '<tr><th>Sugar intake:</th><td>{point.y}g</td></tr>' +
-            '<tr><th>Obesity (adults):</th><td>{point.z}%</td></tr>',
+            '<tr><th>Kategori Subyek:</th><td>{point.x}g</td></tr>' +
+            '<tr><th>Obyek Pidana:</th><td>{point.y}g</td></tr>' +
+            '<tr><th>Kategori Obyek:</th><td>{point.z}%</td></tr>',
         footerFormat: '</table>',
         followPointer: true
     },
