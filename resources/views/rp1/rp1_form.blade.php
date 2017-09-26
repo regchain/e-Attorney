@@ -9,7 +9,7 @@
 		<!-- text input -->
 		<div class="form-group{{ $errors->has('lembaga') ? ' has-error' : '' }}">
 			<label class="text-red">* Lembaga</label>
-			{!! Form::text('lembaga', null, ['class' => 'form-control', 'placeholder' => 'Harus diisi ...']) !!}
+			{!! Form::text('lembaga', null, ['class' => 'form-control', 'placeholder' => 'Lembaga / Instansi yang terkait TPK ...']) !!}
 			{!! $errors->first('lembaga', '<p class="help-block">:message</p>') !!}
 		</div>
 	</div>
@@ -18,7 +18,7 @@
 		<!-- Obyek Pidana -->
 		<div class="form-group{{ $errors->has('obyek_pidana') ? ' has-error' : '' }}">
 			<label class="text-red">* Obyek Pidana</label>
-			{!! Form::text('obyek_pidana', null, ['class' => 'form-control', 'placeholder' => 'Harus diisi ...']) !!}
+			{!! Form::text('obyek_pidana', null, ['class' => 'form-control', 'placeholder' => 'Isi dengan kegiatan / obyek TPK ...']) !!}
 			{!! $errors->first('obyek_pidana', '<p class="help-block">:message</p>') !!}
 			{!! Form::hidden('obyek_id', null) !!}
 		</div>	
@@ -27,13 +27,13 @@
 		<h4>Data Kasus</h4>
 		<!-- Judul Kasus -->
 		<div class="form-group{{ $errors->has('judul_kasus') ? ' has-error' : '' }}">
-			<label class="text-red">* Judul Kasus: </label>
-			{!! Form::text('judul_kasus', null, ['class' => 'form-control', 'placeholder' => 'ANIM PARIATUR CLICHE REPREHENDERIT']) !!}
+			<label class="text-red">* Judul Kasus</label>
+			{!! Form::text('judul_kasus', null, ['class' => 'form-control', 'placeholder' => 'Harus ada Perbuatan, Subyek dan Obyek hukum']) !!}
 			{!! $errors->first('judul_kasus', '<p class="help-block">:message</p>') !!}
 		</div>
 		<label class="text-red">* Kasus Posisi</label>
         <br>
-        {!! Form::textarea('kasus_posisi', null, ['class'=>'form-control', 'placeholder' => '(BERISI URAIAN KASUS POSISI SECARA SINGKAT)']) !!}
+        {!! Form::textarea('kasus_posisi', null, ['class'=>'form-control', 'placeholder' => '(Jelaskan kasus secara singkat)']) !!}
 	</div>
 </div>
 <div class="rows"> 

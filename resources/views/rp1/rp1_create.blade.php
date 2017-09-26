@@ -10,7 +10,7 @@
 
 @section('mainsubtitle', 'Tindak Pidana Khusus')
 
-@section('judulhalaman', 'Tambah Laporan Kasus')
+@section('judulhalaman', 'Tambah Laporan Masyarakat / Kasus')
 
 @section('materi')
 
