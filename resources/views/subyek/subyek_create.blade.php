@@ -86,8 +86,8 @@
 		</div>
 		<!-- Institusi / Lembaga -->
 		<div class="form-group">
-			<label>Institusi / Lembaga</label>
-			{!! Form::text('lembaga', null, ['class' => 'form-control', 'placeholder' => 'Enter ...', 'required' => 'required']) !!}
+			<label class="text-red"><strong>* Institusi</strong></label>
+			{!! Form::text('lembaga', null, ['class' => 'form-control', 'placeholder' => 'Institusi / Lembaga tempat subyek bekerja ...', 'required' => 'required']) !!}
 		</div>
 		<!-- Jabatan Resmi -->
 		<div class="form-group">
@@ -101,7 +101,7 @@
 		</div>
 		<!-- Kategori Subyek -->
 		<div class="form-group">
-			<label>Kategori Subyek</label>
+			<label class="text-red"><strong>* Kategori Subyek</strong></label>
 			{!! Form::select('kategori_subyek_id', $kategori_subyek, 1, ['class'=>'form-control', 'placeholder' => '']) !!}
 		</div>
 		<div class="box-tools pull-right">
