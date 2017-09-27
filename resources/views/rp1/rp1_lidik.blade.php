@@ -76,15 +76,15 @@
 			
 			<!-- Institusi / Lembaga -->
 			<div class="form-group">
-				<label>Institusi / Lembaga</label>
-				{!! Form::text('lembaga', null, ['class' => 'form-control', 'placeholder' => 'Enter ...']) !!}
+				<label>Institusi</label>
+				{!! Form::text('lembaga', null, ['class' => 'form-control', 'placeholder' => 'Lembaga / Institusi terkait TPK ...']) !!}
 			</div>
 		</div>
 		<div class="col-lg-6 col-md-6 col-sm-12">
 			<!-- Nama Lengkap -->
 			<div class="form-group">
 				<label>Nama Lengkap</label>
-				{!! Form::text('nama_terlapor', null, ['class' => 'form-control', 'placeholder' => 'Enter ...']) !!}
+				{!! Form::text('nama_terlapor', null, ['class' => 'form-control', 'placeholder' => 'Cantumkan jika ada ...']) !!}
 				{!! Form::hidden('subyek_id', null) !!}
 			</div>
 		</div>		
@@ -103,7 +103,7 @@
 		<div class="col-lg-6 col-md-6 col-sm-12">
 			<!-- Nilai Anggaran / Kontrak -->
 			<div class="form-group">
-				<label>Nilai Anggaran</label>
+				<label class="text-red">* Nilai Anggaran</label>
 				<div class="input-group">
 					<span class="input-group-addon">Rp</span>
 					{!! Form::number('nilai_kontrak', null, ['class' => 'form-control', 'placeholder' => 'Masukkan 0 jika belum ada', 'step' => 'any']) !!}
