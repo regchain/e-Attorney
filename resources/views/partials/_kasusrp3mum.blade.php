@@ -8,7 +8,7 @@
   		<li><a href="{{ route('rp3mum.edit', $case->id) }}" class="text-right">Edit &nbsp;&nbsp;<i class="glyphicon glyphicon-pencil"></i></a></li>
   		<li><a href="{{ route('obyek.create', $case->id) }}" class="text-right">Barang Bukti &nbsp;&nbsp;<i class="glyphicon glyphicon-plus text-red"></i></a></li>
   		<li><a href="{{ url('/dikmum', $case->id) }}" class="text-right">Perpanjang SPRINT &nbsp;&nbsp;<i class="glyphicon glyphicon-plus text-red"></i></a></li>
-  		<li><a href="{{ url('/dikmum', $case->id) }}" class="text-right">Ganti / Jaksa &nbsp;&nbsp;<i class="glyphicon glyphicon-plus text-red"></i></a></li>
+  		<li><a href="{{ url('/dikmum', $case->id) }}" class="text-right">Ganti Jaksa &nbsp;&nbsp;<i class="glyphicon glyphicon-plus text-red"></i></a></li>
   		<li><a href="{{ route('subyek.create', $case->id) }}" class="btn btn-default text-warning">Tambah Subyek Baru &nbsp;&nbsp;<i class="glyphicon glyphicon-plus"></i></a></li>
   		<li><a href="{{ url('/tersangka', $case->id) }}" class="btn btn-default"><strong>PENYELESAIAN &nbsp;&nbsp;</strong><i class="glyphicon glyphicon-log-in"></i></a></li>
   	</ul>
@@ -17,7 +17,7 @@
 	<p class="panel-title"> <a href="#collapse{{ $case->id }}" role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="false" aria-controls="collapse1" class="collapsed"> <i class="glyphicon glyphicon-resize-vertical text-green"></i>&nbsp;{{ $case->judul_kasus }}</a> </p>
 </div>
 <div>{{ $case->no_surat_perkara }}<br /> {{ $case->tanggal_surat_perkara }}</div>
-
+<div class="row col-md-12">
 <div class="panel-collapse collapse" role="tabpanel" id="collapse{{ $case->id }}" aria-labelledby="headingOne" aria-expanded="false" style="height: 0px;">
 	<div class="panel-body">
 		<div class="col-lg-5 col-md-5 col-sm-12 text-justify">
@@ -71,4 +71,6 @@
 			</tbody>
 		</table>
 	</div>
+</div>
+</div>
 </div>

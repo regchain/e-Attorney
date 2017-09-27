@@ -15,7 +15,7 @@
 	<p class="panel-title"> <a href="#collapse{{ $case->spt_id }}" role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="false" aria-controls="collapse1" class="collapsed"> <i class="glyphicon glyphicon-resize-vertical text-green"></i>&nbsp;{{ $case->judul_kasus }} </a> </p>
 </div>
 <div>{{ $case->no_surat_perkara }}<br /> {{ $case->tanggal_surat_perkara }}</div>
-
+<div class="row col-md-12">
 <div class="panel-collapse collapse" role="tabpanel" id="collapse{{ $case->spt_id }}" aria-labelledby="headingOne" aria-expanded="false" style="height: 0px;">
 	<div class="panel-body">
 		<div class="col-lg-5 col-md-5 col-sm-12 text-justify">
@@ -69,4 +69,6 @@
 			</tbody>
 		</table>
 	</div>
+</div>
+</div>
 </div>
