@@ -8,11 +8,8 @@
   		<li><a href="{{ route('rp3mum.edit', $case->id) }}" class="text-right">Edit &nbsp;&nbsp;<i class="glyphicon glyphicon-pencil"></i></a></li>
   		<li><a href="{{ route('obyek.create', $case->id) }}" class="text-right">Barang Bukti &nbsp;&nbsp;<i class="glyphicon glyphicon-plus text-red"></i></a></li>
   		<li><a href="{{ url('/dikmum', $case->id) }}" class="text-right">Perpanjang SPRINT &nbsp;&nbsp;<i class="glyphicon glyphicon-plus text-red"></i></a></li>
-<<<<<<< HEAD
   		<li><a href="{{ url('/dikmum', $case->id) }}" class="text-right">Ganti / Jaksa &nbsp;&nbsp;<i class="glyphicon glyphicon-plus text-red"></i></a></li>
-=======
   		<li><a href="{{ url('/dikmum', $case->id) }}" class="text-right">Ganti Jaksa &nbsp;&nbsp;<i class="glyphicon glyphicon-plus text-red"></i></a></li>
->>>>>>> Tonny
   		<li><a href="{{ route('subyek.create', $case->id) }}" class="btn btn-default text-warning">Tambah Subyek Baru &nbsp;&nbsp;<i class="glyphicon glyphicon-plus"></i></a></li>
   		<li><a href="{{ url('/tersangka', $case->id) }}" class="btn btn-default"><strong>PENYELESAIAN &nbsp;&nbsp;</strong><i class="glyphicon glyphicon-log-in"></i></a></li>
   	</ul>
