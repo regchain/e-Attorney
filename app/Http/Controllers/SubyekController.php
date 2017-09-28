@@ -7,6 +7,7 @@ use App\Kasus;
 use App\Subyek;
 use App\KasusSubyek;
 use App\KategoriSubyek;
+use App\Spt;
 
 class SubyekController extends Controller
 {
@@ -152,8 +153,61 @@ class SubyekController extends Controller
         return view('subyek.subyek_tersangka_create', ['case' => $case, 'subyeks' => $subyeks, 'kategori_subyek' => $kategori_subyek, 'kasus_id' => $kasus_id]);
     }
 
-    public function tahan()
+    public function tahan($subyek_id)
     {
-        return view('subyek.subyek_tahan_create');
+        $subyek = Subyek::select(['subyek.*','kategori_subyeks.name'])
+            ->join('kategori_subyeks','kategori_subyeks.id','=','subyek.kategori_subyek_id')
+            ->where('subyek.id', $subyek_id)
+            ->first();
+
+        $spt_subyek = Spt::select(['spt.id as spt_id','no_spt','tanggal_spt'])
+            ->join('spt_subyek','spt.id','=','spt_subyek.spt_id')
+            ->join('subyek','subyek.id','=','spt_subyek.subyek_id')
+            ->where('subyek.id', $subyek_id)
+            ->where('jenis_spt', 'TAHANAN')
+            ->first();
+
+        $kategori_subyek = KategoriSubyek::select(['*'])
+            ->orderBy('name')
+            ->pluck('name', 'id');
+
+        $surat_dikmum = Subyek::select(['no_surat_perkara','kasus_posisi'])
+            ->join('kasus_subyek','subyek.id','=','kasus_subyek.subyek_id')
+            ->join('kasus','kasus.id','=','kasus_subyek.kasus_id')
+            ->join('surats','kasus.id','=','surats.kasus_id')
+            ->where('subyek.id', $subyek_id)
+            ->first();
+
+        if ($spt_subyek) {
+            return view('subyek.subyek_tahan_create', ['subyek' => $subyek, 'kategori_subyek' => $kategori_subyek, 'spt_id' => $spt_subyek->spt_id, 'no_spt' => $spt_subyek->no_spt, 'tanggal_spt' => $spt_subyek->tanggal_spt, 'surat_dikmum' => $surat_dikmum]);
+        } else {
+            return view('subyek.subyek_tahan_create', ['subyek' => $subyek, 'kategori_subyek' => $kategori_subyek, 'spt_id' => '', 'no_spt' => '', 'tanggal_spt' => date('Y-m-d'), 'surat_dikmum' => $surat_dikmum]);
+        }
+    }
+
+    public function tahanupdate(Request $request, $id)
+    {
+        $this->validate($request, [
+            'no_p15'      => 'required',
+            'tanggal_p15' => 'required'
+        ]);
+
+        $spt = Spt::find($id);
+        if ($spt) {
+            $kasus_id = $spt->kasus_id;
+            $surat_id = $spt->surat_id;
+        }
+
+        $p15a_id = $request->p15a_id;
+        if ($p15a_id) {
+            $surat_p15a = SuratP15::find($p15a_id);
+            if ($surat_p15a) {
+                $surat_p15a->update($request->only('no_p15','tanggal_p15'));
+            }
+        } else {
+            $surat_p15a = SuratP15::create($request->only('no_p15','tanggal_p15') + ['surat_id' => $surat_id, 'judul_p15' => 'SURAT PERINTAH PENYERAHAN TANGGUNGJAWAB TERSANGKA DAN BARANG BUKTINYA', 'jenis_p15' => 'P-15A']);
+        }       
+
+        return redirect()->route('rp3sus.index');
     }
 }

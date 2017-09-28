@@ -23,156 +23,148 @@
 
 @section('materi')
 
+{!! Form::model($subyek, ['url' => url('/tahan', $subyek->id), 'method' => 'put']) !!}
 <div class="row">
-			<div class="col-lg-3 col-md-3 col-sm-12">
-				<!-- No. Surat -->
-				<div class="form-group">
-					<label> No.Surat</label>
-					<input type="text" class="form-control" placeholder="PRINT-">
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-3 col-sm-12">
-				<!-- Tanggal Surat -->
-				<div class="form-group">
-                <label>Masa Tahanan:</label>
-                <div class="input-group">
-                  <div class="input-group-addon">
+	<div class="col-lg-3 col-md-3 col-sm-12">
+		<div class="form-group">
+			<label> No.Surat</label>
+			{!! Form::text('no_spt', $no_spt, ['class' => 'form-control', 'placeholder' => 'PRINT-', 'required']) !!}
+			{!! Form::hidden('spt_id', $spt_id) !!}
+		</div>
+	</div>
+	<div class="col-lg-3 col-md-3 col-sm-12">
+		<div class="form-group">
+            <label>Tanggal Surat</label>
+            <div class="input-group">
+                <div class="input-group-addon">
                     <i class="fa fa-calendar"></i>
-                  </div>
-                  <input type="text" class="form-control pull-right" id="reservation">
                 </div>
-                <!-- /.input group -->
-              </div>			</div>
-			<div class="col-lg-3 col-md-3 col-sm-12">
-				<!-- No. SprinDik -->
-				<div class="form-group">
-					<label>Berdasarkan Sprint Penyidikan Umum:</label>
-					<input type="text" class="form-control" placeholder="PRINT-XX/f.2/fD./MM/YYYY" disabled="disabled">
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-3 col-sm-12">
-				<!-- Disposisi / Keterangan -->
-				<div class="form-group">
-					<label>Berdasarkan Disposisi / Keterangan:</label>
-					<input type="text" class="form-control" placeholder="Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident" disabled="disabled">
-				</div>
-			</div>
-
-			</div>
-	<div class="rows"> 
+                {!! Form::date('tanggal_spt', $tanggal_spt, ['class' => 'form-control pull-right', 'id' => 'datepicker', 'required']) !!}
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-12">
+		<div class="form-group">
+            <label>Masa Tahanan Dari</label>
+            <div class="input-group">
+                <div class="input-group-addon">
+                    <i class="fa fa-calendar"></i>
+                </div>
+                {!! Form::date('masa_hukuman_dari', null, ['class' => 'form-control pull-right', 'id' => 'datepicker', 'required']) !!}
+            </div>
+        </div>
+    </div>
+	<div class="col-lg-3 col-md-3 col-sm-12">
+		<div class="form-group">
+            <label>Masa Tahanan Ke</label>
+            <div class="input-group">
+                <div class="input-group-addon">
+                    <i class="fa fa-calendar"></i>
+                </div>
+                {!! Form::date('masa_hukuman_ke', null, ['class' => 'form-control pull-right', 'id' => 'datepicker', 'required']) !!}
+            </div>
+        </div>
+    </div>
+	<div class="col-lg-6 col-md-6 col-sm-12">
+		<div class="form-group">
+			<label>Berdasarkan Sprint Penyidikan Umum:</label>
+			{!! Form::text('no_surat_perkara', $surat_dikmum->no_surat_perkara, ['class' => 'form-control', 'placeholder' => 'Enter ...', 'disabled']) !!}
+		</div>
+	</div>
+	<div class="col-lg-6 col-md-6 col-sm-12">
+		<div class="form-group">
+			<label>Berdasarkan Disposisi / Keterangan:</label>
+			{!! Form::text('kasus_posisi', $surat_dikmum->kasus_posisi, ['class' => 'form-control', 'placeholder' => 'Enter ...', 'disabled']) !!}
+		</div>
+	</div>
+</div>
+<div class="rows"> 
+	<div class="col-lg-6 col-md-6 col-sm-12">
+		<h4>Data Tersangka</h4>
+		<div class="form-group">
+			<label>Nama Lengkap</label>
+			{!! Form::text('nama_terlapor', null, ['class' => 'form-control', 'placeholder' => 'Enter ...', 'required' => 'required']) !!}
+		</div>
+		<div class="form-group">
+			<label>Tempat Tinggal</label>
+			{!! Form::text('tempat_tinggal', null, ['class' => 'form-control', 'placeholder' => 'Enter ...']) !!}
+		</div>
+		<div class="row">
 			<div class="col-lg-6 col-md-6 col-sm-12">
-				<!-- Print Lid -->
-				<h4>Data Tersangka</h4>
-				<!-- Nama Lengkap -->
-				<div class="form-group">
-					<label>Nama Lengkap</label>
-					<textarea class="form-control" rows="1" placeholder="Enter ..."></textarea>
-				</div>
-				<!-- Tempat Tinggal -->
-				<div class="form-group">
-					<label>Tempat Tinggal</label>
-					<textarea class="form-control" rows="1" placeholder="Enter ..."></textarea>
-				</div>
-				<div class="row">
-					<div class="col-lg-6 col-md-6 col-sm-12">
-					<label>Jenis Kelamin</label>
-					</div>
-					<div class="col-lg-6 col-md-6 col-sm-12">
-					<label class="checkbox-inline">
-						<input type="checkbox" id="inlineCheckbox1" value="option1"> Laki-laki
-					</label>
-					<label class="checkbox-inline">
-						<input type="checkbox" id="inlineCheckbox2" value="option2"> Perempuan
-					</label>
-					</div>
-				</div>	
-								<!-- Pendidikan -->
 				<div class="form-group">
 					<label>Pendidikan</label>
-					<input type="text" class="form-control" placeholder="Enter ...">
+					{!! Form::text('pendidikan', null, ['class' => 'form-control', 'placeholder' => 'Enter ...']) !!}
 				</div>
-			
-				<div class="row">
-					<div class="col-lg-6 col-md-6 col-sm-12">
-				<!-- Tempat Lahir -->
-				<div class="form-group">
-					<label>Tempat Lahir</label>
-					<input type="text" class="form-control" placeholder="Enter ...">
-				</div>
-				</div>
-				<div class="col-lg-6 col-md-6 col-sm-12">
-				<!-- Tanggal Lahir -->
-				<div class="form-group">
-					<label>Tanggal Lahir</label>
-					<input type="date" class="form-control" placeholder="Enter ...">
-				</div>
-				</div>
-				<div class="col-lg-6 col-md-6 col-sm-12">
-				<!-- Kebangsaan / Kewarganegaraan -->
-				<div class="form-group">
-					<label>Kebangsaan / Kewarganegaraan</label>
-					<input type="text" class="form-control" placeholder="Enter ...">
-				</div>
-				</div>
-				<div class="col-lg-6 col-md-6 col-sm-12">
-				<!-- Agama -->
-				<div class="form-group">
-					<label>Agama</label>
-					<input type="text" class="form-control" placeholder="Enter ...">
-				</div>
-
-			</div>
-		</div>
 			</div>
 			<div class="col-lg-6 col-md-6 col-sm-12">
-				<!-- text input -->
-				<h4>Data Pekerjaan</h4>
-				<!-- Pekerjaan -->
+				<label>Jenis Kelamin</label>
 				<div class="form-group">
-					<label>Pekerjaan</label>
-					<input type="text" class="form-control" placeholder="Enter ...">
+					{!! Form::radio('jenis_kelamin', 'L') !!} Laki-laki
+					<label class="checkbox-inline">
+						{!! Form::radio('jenis_kelamin', 'P') !!} Perempuan
+					</label>
 				</div>
-				<!-- Institusi / Lembaga -->
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col-lg-6 col-md-6 col-sm-12">
 				<div class="form-group">
-					<label>Institusi / Lembaga</label>
-					<input type="text" class="form-control" placeholder="Lembaga" disabled="disabled">
+					<label>Tempat Lahir</label>
+					{!! Form::text('tempat_lahir', null, ['class' => 'form-control', 'placeholder' => 'Enter ...']) !!}
 				</div>
-				<!-- Jabatan Resmi -->
+			</div>
+			<div class="col-lg-6 col-md-6 col-sm-12">
 				<div class="form-group">
-					<label>Jabatan Resmi</label>
-					<input type="text" class="form-control" placeholder="Enter ...">
+					<label>Tanggal Lahir</label>
+					{!! Form::date('tanggal_lahir', null, ['class' => 'form-control', 'placeholder' => 'Enter ...']) !!}
 				</div>
-				<!-- Jabatan Lain -->
+			</div>
+			<div class="col-lg-6 col-md-6 col-sm-12">
 				<div class="form-group">
-					<label>Jabatan Lain</label>
-					<input type="text" class="form-control" placeholder="Enter ...">
+					<label>Kebangsaan / Kewarganegaraan</label>
+					{!! Form::text('kewarganegaraan', null, ['class' => 'form-control', 'placeholder' => 'Enter ...']) !!}
 				</div>
-				<!-- Kategori Subyek -->
+			</div>
+			<div class="col-lg-6 col-md-6 col-sm-12">
 				<div class="form-group">
-					<label>Kategori Subyek</label>
-					<select class="form-control" style="width: 100%;">
-						<option selected="selected">SWASTA</option>
-						<option>PNS</option>
-						<option>Hakim</option>
-						<option>Pengacara</option>
-						<option>Jaksa</option>
-						<option>Gubernur</option>
-						<option>Walikota</option>
-					</select>
+					<label>Agama</label>
+					{!! Form::text('agama', null, ['class' => 'form-control', 'placeholder' => 'Enter ...']) !!}
 				</div>
-								<div class="box-tools pull-right">
-					<a href="#" class="btn btn-danger"> BATAL</a>
-					<a href="frp3sus" class="btn btn-success"> KIRIM</a>
-				</div>
-			
-				</div>
+			</div>
 		</div>
-      
+	</div>
+	<div class="col-lg-6 col-md-6 col-sm-12">
+		<h4>Data Pekerjaan</h4>
+		<div class="form-group">
+			<label>Pekerjaan</label>
+			{!! Form::text('pekerjaan', null, ['class' => 'form-control', 'placeholder' => 'Enter ...']) !!}
+		</div>
+		<div class="form-group">
+			<label>Institusi / Lembaga</label>
+			{!! Form::text('lembaga', null, ['class' => 'form-control', 'placeholder' => 'Enter ...', 'required' => 'required']) !!}
+		</div>
+		<div class="form-group">
+			<label>Jabatan Resmi</label>
+			{!! Form::text('jabatan_resmi', null, ['class' => 'form-control', 'placeholder' => 'Enter ...']) !!}
+		</div>
+		<div class="form-group">
+			<label>Jabatan Lain</label>
+			{!! Form::text('jabatan_lain', null, ['class' => 'form-control', 'placeholder' => 'Enter ...']) !!}
+		</div>
+		<div class="form-group">
+			<label>Kategori Subyek</label>
+			{!! Form::select('kategori_subyek_id', $kategori_subyek, null, ['class'=>'form-control', 'placeholder' => '']) !!}
+		</div>
+		<div class="box-tools pull-right">
+			<a href="{{ url('/subyek') }}" class="btn btn-danger"> BATAL</a>
+			{{ Form::submit('KIRIM', ['class' => 'btn btn-success']) }}
+		</div>
+	</div>
+</div>
+{!! Form::close() !!}
+
 @stop
 
 @section('script')
-
-
-
 
 @endsection
