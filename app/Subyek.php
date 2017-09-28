@@ -26,6 +26,9 @@ class Subyek extends Model
         'jabatan_lain',        
         'kategori_subyek_id',
         'status',
+        'masa_hukuman',
+        'masa_hukuman_dari',
+        'masa_hukuman_ke'
     ];
 
 }

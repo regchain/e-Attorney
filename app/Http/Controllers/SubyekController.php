@@ -171,7 +171,7 @@ class SubyekController extends Controller
             ->orderBy('name')
             ->pluck('name', 'id');
 
-        $surat_dikmum = Subyek::select(['no_surat_perkara','kasus_posisi'])
+        $surat_dikmum = Subyek::select(['kasus.id as kasus_id','surats.id as surat_id','no_surat_perkara','kasus_posisi'])
             ->join('kasus_subyek','subyek.id','=','kasus_subyek.subyek_id')
             ->join('kasus','kasus.id','=','kasus_subyek.kasus_id')
             ->join('surats','kasus.id','=','surats.kasus_id')
@@ -188,25 +188,27 @@ class SubyekController extends Controller
     public function tahanupdate(Request $request, $id)
     {
         $this->validate($request, [
-            'no_p15'      => 'required',
-            'tanggal_p15' => 'required'
+            'no_spt'      => 'required',
+            'tanggal_spt' => 'required'
         ]);
 
-        $spt = Spt::find($id);
-        if ($spt) {
-            $kasus_id = $spt->kasus_id;
-            $surat_id = $spt->surat_id;
+        $subyek = Subyek::find($id);
+        if ($subyek) {
+            $subyek->update($request->all() + ['status' => Subyek::STATUS_TAHANAN]);    
         }
 
-        $p15a_id = $request->p15a_id;
-        if ($p15a_id) {
-            $surat_p15a = SuratP15::find($p15a_id);
-            if ($surat_p15a) {
-                $surat_p15a->update($request->only('no_p15','tanggal_p15'));
+        $kasus_id = $request->kasus_id;
+        $surat_id = $request->surat_id;
+        $spt_id = $request->spt_id;
+        if ($spt_id) {
+            $spt = Spt::find($spt_id);
+            if ($spt) {
+                $spt->update($request->only('no_spt','tanggal_spt'));
             }
         } else {
-            $surat_p15a = SuratP15::create($request->only('no_p15','tanggal_p15') + ['surat_id' => $surat_id, 'judul_p15' => 'SURAT PERINTAH PENYERAHAN TANGGUNGJAWAB TERSANGKA DAN BARANG BUKTINYA', 'jenis_p15' => 'P-15A']);
-        }       
+            $spt = Spt::create($request->only('no_spt','tanggal_spt') + ['kasus_id' => $kasus_id, 'surat_id' => $surat_id, 'judul_spt' => 'SURAT PERINTAH PENAHANAN', 'jenis_spt' => 'TAHANAN']);
+            $spt->subyeks()->attach($id);
+        }
 
         return redirect()->route('rp3sus.index');
     }

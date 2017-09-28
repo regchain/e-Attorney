@@ -30,6 +30,8 @@
 			<label> No.Surat</label>
 			{!! Form::text('no_spt', $no_spt, ['class' => 'form-control', 'placeholder' => 'PRINT-', 'required']) !!}
 			{!! Form::hidden('spt_id', $spt_id) !!}
+			{!! Form::hidden('kasus_id', $surat_dikmum->kasus_id) !!}
+			{!! Form::hidden('surat_id', $surat_dikmum->surat_id) !!}
 		</div>
 	</div>
 	<div class="col-lg-3 col-md-3 col-sm-12">
