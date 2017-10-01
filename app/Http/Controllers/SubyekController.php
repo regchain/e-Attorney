@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use App\Kasus;
 use App\Subyek;
 use App\KasusSubyek;
@@ -62,13 +63,25 @@ class SubyekController extends Controller
     public function store(Request $request, $kasus_id)
     {
         $this->validate($request, [
-            'nama_terlapor'     => 'required',
-            'lembaga'           => 'required',
+            'nama_terlapor' => 'required',
+            'lembaga'       => 'required',
+            'foto'          => 'image|max:2048'
         ]);
 
-        $subyek = Subyek::create($request->all());
+        $subyek = Subyek::create($request->except('foto'));
         if ($subyek) {
             $subyek_id = $subyek->id;
+        }
+
+        if ($request->hasFile('foto')) {
+            $uploaded_foto = $request->file('foto');
+            $extension = $uploaded_foto->getClientOriginalExtension();
+            $filename = md5(time()) . '.' . $extension;
+            $destinationPath = public_path() . DIRECTORY_SEPARATOR . 'images';
+            $uploaded_foto->move($destinationPath, $filename);
+            
+            $subyek->foto = $filename;
+            $subyek->save();
         }
 
         $kasus_subyek_data = array("kasus_id" => $kasus_id, "subyek_id" => $subyek_id);

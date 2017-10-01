@@ -43,7 +43,7 @@ class HomeController extends Controller
             ->where('surats.tipe_surat','=','RP3SUS')
             ->where('kasus.status_rp3sus',1)->count();
 
-        $tahanan = Subyek::where('status','<>',0)->count();
+        $tahanan = Subyek::where('status', Subyek::STATUS_TAHANAN)->count();
         
         $subyek_hukum = KategoriSubyek::selectRaw('name, count(kategori_subyek_id) as total')
             ->join('subyek','kategori_subyeks.id','=','subyek.kategori_subyek_id')
