@@ -14,7 +14,7 @@
 
 @section('materi')
 
-{!! Form::model($subyek, ['url' => route('subyek.update', [$kasus_id, $subyek->id]), 'method' => 'put']) !!}
+{!! Form::model($subyek, ['url' => route('subyek.update', [$kasus_id, $subyek->id]), 'method' => 'put', 'files' => 'true']) !!}
 <div class="rows"> 
 	<div class="col-lg-6 col-md-6 col-sm-12">
 		<h4>Data Tersangka</h4>
@@ -75,6 +75,12 @@
 					{!! Form::text('agama', null, ['class' => 'form-control', 'placeholder' => 'Enter ...']) !!}
 				</div>
 			</div>
+			<div class="col-lg-12 col-md-12 col-sm-12">
+				<div class="form-group">
+					<label>Keterangan / Disposisi</label>
+					{!! Form::text('keterangan', null, ['class' => 'form-control', 'placeholder' => 'Enter ...']) !!}
+				</div>
+			</div>
 		</div>
 	</div>
 	<div class="col-lg-6 col-md-6 col-sm-12">
@@ -99,13 +105,21 @@
 			<label>Jabatan Lain</label>
 			{!! Form::text('jabatan_lain', null, ['class' => 'form-control', 'placeholder' => 'Enter ...']) !!}
 		</div>
-		<!-- Kategori Subyek -->
 		<div class="form-group">
 			<label>Kategori Subyek</label>
 			{!! Form::select('kategori_subyek_id', $kategori_subyek, null, ['class'=>'form-control', 'placeholder' => '']) !!}
 		</div>
+		<div class="form-group">
+			<label>Foto</label>
+			{!! Form::file('foto') !!}
+			@if (isset($subyek) && $subyek->foto)
+			<p>
+				{!! Html::image(asset('images/'.$subyek->foto), null, ['class' => 'img-rounded img-responsive']) !!}
+			</p>
+			@endif
+		</div>
 		<div class="box-tools pull-right">
-			<a href="{{ route('rp3mum.index') }}" class="btn btn-danger"> BATAL</a>
+			<a href="{{ url('/subyek') }}" class="btn btn-danger"> BATAL</a>
 			{{ Form::submit('KIRIM', ['class' => 'btn btn-success']) }}
 		</div>
 	</div>

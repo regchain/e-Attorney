@@ -10,26 +10,31 @@
 
 @section('mainsubtitle', 'Tindak Pidana Khusus')
 
-@section('judulhalaman', 'DAFTAR Tahanan')
+@section('judulhalaman', 'DAFTAR Subyek Hukum')
 
 @section('materi')
 
-    <table class="table table-striped table-bordered">
+  <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#terlapor">Terlapor</a></li>
+    <li><a data-toggle="tab" href="#tersangka">Tersangka</a></li>
+    <li><a data-toggle="tab" href="#tahanan">Tahanan</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div id="terlapor" class="tab-pane fade in active">
+      <table class="table table-striped table-bordered">
       <th>
         <td width="33%">
-          Tersangka
+          Terlapor
         </td>
         <td width="33%">
-          Kasus
-        </td>
-        <td width="33%">
-          Obyek Pidana
+          Lembaga
         </td>
       </th>
-      @forelse ($subyeks as $subyek)
+      @forelse ($terlapors as $terlapor)
       <tr>
         <td width="100%" colspan="4">
-          <div>@include('partials._tersangka', ['subyek' => $subyek])</div>
+          <div>@include('partials._terlapor', ['terlapor' => $terlapor])</div>
         </td>
       </tr>
       @empty
@@ -38,7 +43,54 @@
       </tr>
       @endforelse
     </table>
-    {!! $subyeks->render() !!}
+    </div>
+    <div id="tersangka" class="tab-pane fade">
+      <table class="table table-striped table-bordered">
+      <th>
+        <td width="33%">
+          Tersangka
+        </td>
+        <td width="33%">
+          Lembaga
+        </td>
+      </th>
+      @forelse ($tersangkas as $tersangka)
+      <tr>
+        <td width="100%" colspan="4">
+          <div>@include('partials._tersangka', ['tersangka' => $tersangka])</div>
+        </td>
+      </tr>
+      @empty
+      <tr>
+        <td width="100%" colspan="4"> No Data</td>
+      </tr>
+      @endforelse
+    </table>
+  </div>
+    <div id="tahanan" class="tab-pane fade">
+      <table class="table table-striped table-bordered">
+      <th>
+        <td width="33%">
+          Tahanan
+        </td>
+        <td width="33%">
+          Lembaga
+        </td>
+      </th>
+      @forelse ($tahanans as $tahanan)
+      <tr>
+        <td width="100%" colspan="4">
+          <div>@include('partials._tahanan', ['tahanan' => $tahanan])</div>
+        </td>
+      </tr>
+      @empty
+      <tr>
+        <td width="100%" colspan="4"> No Data</td>
+      </tr>
+      @endforelse
+    </table>
+    </div>
+  </div>
 
 @stop
 

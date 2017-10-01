@@ -14,7 +14,7 @@
 
 @section('materi')
 
-{!! Form::open(['url' => route('subyek.store', $kasus_id), 'method' => 'post']) !!}
+{!! Form::open(['url' => route('subyek.store', $kasus_id), 'method' => 'post', 'files' => 'true']) !!}
 <div class="rows"> 
 	<div class="col-lg-6 col-md-6 col-sm-12">
 		<h4>Data Tersangka</h4>
