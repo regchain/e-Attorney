@@ -42,7 +42,8 @@ Route::group(['prefix' => '', 'middleware' => ['auth']], function() {
 	Route::resource('rp3sus', 'Rp3SusController');
 	Route::get('subyek', 'SubyekController@index');
 	Route::get('tersangka/{kasus_id}', 'SubyekController@tersangka');
-	Route::get('tahan', 'SubyekController@tahan');
+	Route::get('tahan/{subyek_id}', 'SubyekController@tahan');
+	Route::put('tahan/{subyek_id}', 'SubyekController@tahanupdate');
 	Route::get('obyek', 'ObyekController@index');
 	Route::get('fp15/{spt_id}', 'Rp3SusController@fp15');
 	Route::put('p15/{spt_id}', 'Rp3SusController@p15update');

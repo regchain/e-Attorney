@@ -1,6 +1,6 @@
 <div class="medi col-md-12a"> 
 	<div class="btn-group-vertical btn-group-xs pull-right" role="group" aria-label="...">
-  		<a href='{{ url('/tahan') }}' class="btn btn-danger">  TAHAN &nbsp;
+  		<a href='{{ url('/tahan', $subyek->id) }}' class="btn btn-danger">  TAHAN &nbsp;
   			<i class="glyphicon glyphicon-log-in"></i>
   		</a>
 	</div>

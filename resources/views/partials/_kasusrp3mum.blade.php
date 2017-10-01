@@ -9,10 +9,14 @@
   		<li><a href="{{ route('obyek.create', $case->id) }}" class="text-right">Barang Bukti &nbsp;&nbsp;<i class="glyphicon glyphicon-plus text-red"></i></a></li>
   		<li><a href="{{ url('/dikmum', $case->id) }}" class="text-right">Perpanjang SPRINT &nbsp;&nbsp;<i class="glyphicon glyphicon-plus text-red"></i></a></li>
 <<<<<<< HEAD
+<<<<<<< HEAD
   		<li><a href="{{ url('/dikmum', $case->id) }}" class="text-right">Ganti / Jaksa &nbsp;&nbsp;<i class="glyphicon glyphicon-plus text-red"></i></a></li>
 =======
   		<li><a href="{{ url('/dikmum', $case->id) }}" class="text-right">Ganti Jaksa &nbsp;&nbsp;<i class="glyphicon glyphicon-plus text-red"></i></a></li>
 >>>>>>> 90673c4bd8d21ad12a653f0801cb9a1436cfe356
+=======
+  		<li><a href="{{ url('/dikmum', $case->id) }}" class="text-right">Ganti Jaksa &nbsp;&nbsp;<i class="glyphicon glyphicon-plus text-red"></i></a></li>
+>>>>>>> master
   		<li><a href="{{ route('subyek.create', $case->id) }}" class="btn btn-default text-warning">Tambah Subyek Baru &nbsp;&nbsp;<i class="glyphicon glyphicon-plus"></i></a></li>
   		<li><a href="{{ url('/tersangka', $case->id) }}" class="btn btn-default"><strong>PENYELESAIAN &nbsp;&nbsp;</strong><i class="glyphicon glyphicon-log-in"></i></a></li>
   	</ul>

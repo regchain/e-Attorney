@@ -7,6 +7,7 @@ use App\Kasus;
 use App\Subyek;
 use App\KasusSubyek;
 use App\KategoriSubyek;
+use App\Spt;
 
 class SubyekController extends Controller
 {
@@ -152,8 +153,63 @@ class SubyekController extends Controller
         return view('subyek.subyek_tersangka_create', ['case' => $case, 'subyeks' => $subyeks, 'kategori_subyek' => $kategori_subyek, 'kasus_id' => $kasus_id]);
     }
 
-    public function tahan()
+    public function tahan($subyek_id)
     {
-        return view('subyek.subyek_tahan_create');
+        $subyek = Subyek::select(['subyek.*','kategori_subyeks.name'])
+            ->join('kategori_subyeks','kategori_subyeks.id','=','subyek.kategori_subyek_id')
+            ->where('subyek.id', $subyek_id)
+            ->first();
+
+        $spt_subyek = Spt::select(['spt.id as spt_id','no_spt','tanggal_spt'])
+            ->join('spt_subyek','spt.id','=','spt_subyek.spt_id')
+            ->join('subyek','subyek.id','=','spt_subyek.subyek_id')
+            ->where('subyek.id', $subyek_id)
+            ->where('jenis_spt', 'TAHANAN')
+            ->first();
+
+        $kategori_subyek = KategoriSubyek::select(['*'])
+            ->orderBy('name')
+            ->pluck('name', 'id');
+
+        $surat_dikmum = Subyek::select(['kasus.id as kasus_id','surats.id as surat_id','no_surat_perkara','kasus_posisi'])
+            ->join('kasus_subyek','subyek.id','=','kasus_subyek.subyek_id')
+            ->join('kasus','kasus.id','=','kasus_subyek.kasus_id')
+            ->join('surats','kasus.id','=','surats.kasus_id')
+            ->where('subyek.id', $subyek_id)
+            ->first();
+
+        if ($spt_subyek) {
+            return view('subyek.subyek_tahan_create', ['subyek' => $subyek, 'kategori_subyek' => $kategori_subyek, 'spt_id' => $spt_subyek->spt_id, 'no_spt' => $spt_subyek->no_spt, 'tanggal_spt' => $spt_subyek->tanggal_spt, 'surat_dikmum' => $surat_dikmum]);
+        } else {
+            return view('subyek.subyek_tahan_create', ['subyek' => $subyek, 'kategori_subyek' => $kategori_subyek, 'spt_id' => '', 'no_spt' => '', 'tanggal_spt' => date('Y-m-d'), 'surat_dikmum' => $surat_dikmum]);
+        }
+    }
+
+    public function tahanupdate(Request $request, $id)
+    {
+        $this->validate($request, [
+            'no_spt'      => 'required',
+            'tanggal_spt' => 'required'
+        ]);
+
+        $subyek = Subyek::find($id);
+        if ($subyek) {
+            $subyek->update($request->all() + ['status' => Subyek::STATUS_TAHANAN]);    
+        }
+
+        $kasus_id = $request->kasus_id;
+        $surat_id = $request->surat_id;
+        $spt_id = $request->spt_id;
+        if ($spt_id) {
+            $spt = Spt::find($spt_id);
+            if ($spt) {
+                $spt->update($request->only('no_spt','tanggal_spt'));
+            }
+        } else {
+            $spt = Spt::create($request->only('no_spt','tanggal_spt') + ['kasus_id' => $kasus_id, 'surat_id' => $surat_id, 'judul_spt' => 'SURAT PERINTAH PENAHANAN', 'jenis_spt' => 'TAHANAN']);
+            $spt->subyeks()->attach($id);
+        }
+
+        return redirect()->route('rp3sus.index');
     }
 }

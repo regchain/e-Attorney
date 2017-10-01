@@ -148,7 +148,7 @@
 				        		<!-- Institusi / Lembaga -->
 				        		<div class="form-group">
 				        			<label>Institusi / Lembaga</label>
-				        			{!! Form::text('lembaga', null, ['class' => 'form-control', 'placeholder' => 'Enter ...', 'disabled']) !!}
+				        			{!! Form::text('lembaga', null, ['class' => 'form-control', 'placeholder' => 'Enter ...']) !!}
 				        		</div>
 				        		<!-- Jabatan Resmi -->
 				        		<div class="form-group">
