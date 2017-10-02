@@ -9,7 +9,7 @@
 		</style>
 
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-<script src="https://code.highcharts.com/highcharts.src.js"></script>
+<script src="{{ asset('plugins/highcharts/code/highcharts.src.js')}}"></script>
 
 <div id="container"></div>
 
