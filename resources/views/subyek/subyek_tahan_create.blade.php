@@ -27,7 +27,7 @@
 <div class="row">
 	<div class="col-lg-3 col-md-3 col-sm-12">
 		<div class="form-group">
-			<label> No.Surat</label>
+			<label class="text-red">* No.Surat</label>
 			{!! Form::text('no_spt', $no_spt, ['class' => 'form-control', 'placeholder' => 'PRINT-', 'required']) !!}
 			{!! Form::hidden('spt_id', $spt_id) !!}
 			{!! Form::hidden('kasus_id', $surat_dikmum->kasus_id) !!}
@@ -36,7 +36,7 @@
 	</div>
 	<div class="col-lg-3 col-md-3 col-sm-12">
 		<div class="form-group">
-            <label>Tanggal Surat</label>
+            <label class="text-red">* Tanggal Surat</label>
             <div class="input-group">
                 <div class="input-group-addon">
                     <i class="fa fa-calendar"></i>
@@ -47,7 +47,7 @@
     </div>
     <div class="col-lg-3 col-md-3 col-sm-12">
 		<div class="form-group">
-            <label>Masa Tahanan Dari</label>
+            <label class="text-red">* Mulai Tanggal</label>
             <div class="input-group">
                 <div class="input-group-addon">
                     <i class="fa fa-calendar"></i>
@@ -58,7 +58,7 @@
     </div>
 	<div class="col-lg-3 col-md-3 col-sm-12">
 		<div class="form-group">
-            <label>Masa Tahanan Ke</label>
+            <label class="text-red">* Sampai Tanggal</label>
             <div class="input-group">
                 <div class="input-group-addon">
                     <i class="fa fa-calendar"></i>
@@ -154,7 +154,7 @@
 			{!! Form::text('jabatan_lain', null, ['class' => 'form-control', 'placeholder' => 'Enter ...']) !!}
 		</div>
 		<div class="form-group">
-			<label>Kategori Subyek</label>
+			<label class="text-red"><strong>*Kategori Subyek</strong></label>
 			{!! Form::select('kategori_subyek_id', $kategori_subyek, null, ['class'=>'form-control', 'placeholder' => '']) !!}
 		</div>
 		<div class="box-tools pull-right">
