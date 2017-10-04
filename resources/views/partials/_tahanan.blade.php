@@ -3,6 +3,9 @@
   		<a href='{{ route('subyek.edit', [0, $tahanan->id]) }}' class="btn btn-primary"> EDIT &nbsp;
   			<i class="glyphicon glyphicon-edit"></i>
   		</a>
+  		<a href='{{ url('/tahan', $tahanan->id) }}' class="btn btn-danger"> TAHAN &nbsp;
+  			<i class="glyphicon glyphicon-log-in"></i>
+  		</a>
 	</div>
 </div>
 <div class="media-left">
