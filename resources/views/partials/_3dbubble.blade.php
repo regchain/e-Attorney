@@ -6,8 +6,11 @@
     margin: 0 auto;
 }
         </style>
-<script src="https://code.highcharts.com/highcharts.src.js"></script>
-<script src="https://code.highcharts.com/highcharts-more.js"></script>
+<script src="{{ asset('plugins/highcharts/code/highcharts.src.js')}}"></script>
+<script src="{{ asset('plugins/highcharts/highcharts-more.js')}}"></script>
+<script src="{{ asset('plugins/highcharts/code/highcharts.src.js')}}"></script>
+<script src="{{ asset('plugins/highcharts/code/highcharts-3d.js')}}"></script>
+<script src="{{ asset('plugins/highcharts/code/modules/exporting.js')}}"></script>
 
 <div id="3dbubble" style="height: 400px; margin: 0 auto;"></div>
 

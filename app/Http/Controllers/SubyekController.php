@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use App\Kasus;
 use App\Subyek;
 use App\KasusSubyek;
@@ -18,13 +19,25 @@ class SubyekController extends Controller
      */
     public function index()
     {
-        $subyeks = Subyek::select(['*'])
-            ->where('status','<>',0)
+        $terlapors = Subyek::select(['*'])
+            ->where('status', Subyek::STATUS_TERLAPOR)
             ->where('nama_terlapor','<>','Belum ada')
             ->where('nama_terlapor','<>','')
-            ->paginate(10);
+            ->get();
 
-        return view('subyek.subyek_list', ['subyeks' => $subyeks]);
+        $tersangkas = Subyek::select(['*'])
+            ->where('status', Subyek::STATUS_TERSANGKA)
+            ->where('nama_terlapor','<>','Belum ada')
+            ->where('nama_terlapor','<>','')
+            ->get();
+
+        $tahanans = Subyek::select(['*'])
+            ->where('status', Subyek::STATUS_TAHANAN)
+            ->where('nama_terlapor','<>','Belum ada')
+            ->where('nama_terlapor','<>','')
+            ->get();
+
+        return view('subyek.subyek_list', ['terlapors' => $terlapors, 'tersangkas' => $tersangkas, 'tahanans' => $tahanans]);
     }
 
     /**
@@ -50,13 +63,25 @@ class SubyekController extends Controller
     public function store(Request $request, $kasus_id)
     {
         $this->validate($request, [
-            'nama_terlapor'     => 'required',
-            'lembaga'           => 'required',
+            'nama_terlapor' => 'required',
+            'lembaga'       => 'required',
+            'foto'          => 'image|max:2048'
         ]);
 
-        $subyek = Subyek::create($request->all());
+        $subyek = Subyek::create($request->except('foto'));
         if ($subyek) {
             $subyek_id = $subyek->id;
+        }
+
+        if ($request->hasFile('foto')) {
+            $uploaded_foto = $request->file('foto');
+            $extension = $uploaded_foto->getClientOriginalExtension();
+            $filename = md5(time()) . '.' . $extension;
+            $destinationPath = public_path() . DIRECTORY_SEPARATOR . 'images';
+            $uploaded_foto->move($destinationPath, $filename);
+            
+            $subyek->foto = $filename;
+            $subyek->save();
         }
 
         $kasus_subyek_data = array("kasus_id" => $kasus_id, "subyek_id" => $subyek_id);
@@ -105,15 +130,36 @@ class SubyekController extends Controller
     public function update(Request $request, $kasus_id, $id)
     {
         $this->validate($request, [
-            'nama_terlapor'     => 'required',
-            'lembaga'           => 'required'
+            'nama_terlapor' => 'required',
+            'lembaga'       => 'required',
+            'foto'          => 'image|max:2048'
         ]);
 
         $subyek = Subyek::find($id);
         if ($subyek) {
             $subyek->update($request->all());    
         }
-        
+
+        if ($request->hasFile('foto')) {
+            $filename = null;
+            $uploaded_foto = $request->file('foto');
+            $extension = $uploaded_foto->getClientOriginalExtension();
+            $filename = md5(time()) . '.' . $extension;
+            $destinationPath = public_path() . DIRECTORY_SEPARATOR . 'images';
+            $uploaded_foto->move($destinationPath, $filename);
+
+            if ($subyek->foto) {
+                $old_foto = $subyek->foto;
+                $filepath = public_path() . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . $subyek->foto;
+                try {
+                    File::delete($filepath);
+                } catch (FileNotFoundException $e) {}
+            }
+
+            $subyek->foto = $filename;
+            $subyek->save();
+        }
+
         return redirect()->route('rp3mum.index');
     }
 

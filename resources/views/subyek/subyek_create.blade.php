@@ -14,7 +14,7 @@
 
 @section('materi')
 
-{!! Form::open(['url' => route('subyek.store', $kasus_id), 'method' => 'post']) !!}
+{!! Form::open(['url' => route('subyek.store', $kasus_id), 'method' => 'post', 'files' => 'true']) !!}
 <div class="rows"> 
 	<div class="col-lg-6 col-md-6 col-sm-12">
 		<h4>Data Tersangka</h4>
@@ -75,6 +75,12 @@
 					{!! Form::text('agama', null, ['class' => 'form-control', 'placeholder' => 'Enter ...']) !!}
 				</div>
 			</div>
+			<div class="col-lg-12 col-md-12 col-sm-12">
+				<div class="form-group">
+					<label>Keterangan / Disposisi</label>
+					{!! Form::text('keterangan', null, ['class' => 'form-control', 'placeholder' => 'Enter ...']) !!}
+				</div>
+			</div>
 		</div>
 	</div>
 	<div class="col-lg-6 col-md-6 col-sm-12">
@@ -103,6 +109,10 @@
 		<div class="form-group">
 			<label class="text-red"><strong>* Kategori Subyek</strong></label>
 			{!! Form::select('kategori_subyek_id', $kategori_subyek, 1, ['class'=>'form-control', 'placeholder' => '']) !!}
+		</div>
+		<div class="form-group">
+			<label>Foto</label>
+			{!! Form::file('foto') !!}
 		</div>
 		<div class="box-tools pull-right">
 			<a href="{{ route('rp3mum.index') }}" class="btn btn-danger"> BATAL</a>

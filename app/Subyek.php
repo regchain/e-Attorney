@@ -28,7 +28,8 @@ class Subyek extends Model
         'status',
         'masa_hukuman',
         'masa_hukuman_dari',
-        'masa_hukuman_ke'
+        'masa_hukuman_ke',
+        'keterangan'
     ];
 
 }
