@@ -22,6 +22,7 @@ class Rp3MumController extends Controller
      */
     public function index()
     {
+        $status_subyek = array("1" => "TERLAPOR", "2" => "TERSANGKA", "3" => "TAHANAN");
         $cases = array();
         $kasus = Kasus::select(['kasus.*','no_surat_perkara','tanggal_surat_perkara'])
             ->join('surats','kasus.id','=','surats.kasus_id')
@@ -42,7 +43,7 @@ class Rp3MumController extends Controller
                 ->join('subyek','subyek.id','=','kasus_subyek.subyek_id')
                 ->join('kategori_subyeks','subyek.kategori_subyek_id','=','kategori_subyeks.id')
                 ->where('kasus_id',$kasus_id)
-                ->where('subyek.status',1)
+                ->whereIn('subyek.status', array(1, 2, 3))
                 ->get();
             foreach ($kasus_subyek as $subyek) {
                 array_push($subyeks, $subyek);
@@ -83,6 +84,7 @@ class Rp3MumController extends Controller
             $case["obyeks"] = $obyeks;
             $case["jaksas"] = $jaksas;
             $case["barang_sitaan"] = $barang_sitaan;
+            $case["status_subyek"] = $status_subyek;
             array_push($cases, $case);
         }
 

@@ -13,7 +13,7 @@
 				<strong class="media-heading">Tersangka: {{ $subyek->nama_terlapor }}</strong>,<br>
 				Jabatan: <strong>{{ $subyek->jabatan_resmi }} &nbsp; /&nbsp;{{ $subyek->jabatan_lain }}</strong><br>
 				Institusi: <strong>{{ $subyek->lembaga }}</strong><br>
-				Kategori Subyek: <strong>{{ $subyek->kategori_subyek }}</strong>, Status: <strong>{{ $subyek->status }}, {{ $subyek->masa_tahanan }}</strong><br>
+				Kategori Subyek: <strong>{{ $subyek->kategori_subyek }}</strong>, Status: <strong>{{ $case->status_subyek[$subyek->status] }}, {{ $subyek->masa_tahanan }}</strong><br>
 				Disposisi / Keterangan: <strong>{{ $case->disposisi }}</strong>
 			</div> 
 		</div>
