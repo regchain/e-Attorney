@@ -55,7 +55,7 @@
 				<div class="col-lg-12 col-md-12 col-xs-12">
 					<label>Data Pasal Yang Telah Dipilih</label>
 					<div class="form-group">
-						@include('partials._pasal', ['surat_pasal' => $surat_pasal])
+						@include('partials._pasal', ['surat_pasal' => $surat_pasal, 'tipe' => 'RP3SUS', 'kasus_id' => $spt_id])
 				    </div>
 				</div>
 				<div class="col-lg-12 col-md-12 col-xs-12">
@@ -67,7 +67,7 @@
 					<div class="col-lg-12 col-md-12 col-xs-12">
 						<label>Data Jaksa Yang Telah Dipilih</label>
 						<div class="form-group">
-							@include('partials._jaksa', ['surat_jaksa' => $surat_jaksa])
+							@include('partials._jaksa', ['surat_jaksa' => $surat_jaksa, 'tipe' => 'RP3SUS', 'kasus_id' => $spt_id])
 				        </div>
 					</div>
 				<div class="col-lg-12 col-md-12 col-xs-12">

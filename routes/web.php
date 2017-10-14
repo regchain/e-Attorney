@@ -49,6 +49,8 @@ Route::group(['prefix' => '', 'middleware' => ['auth']], function() {
 	Route::put('p15/{spt_id}', 'Rp3SusController@p15update');
 	Route::get('fp15a/{spt_id}', 'Rp3SusController@fp15a');
 	Route::put('p15a/{spt_id}', 'Rp3SusController@p15aupdate');
+	Route::get('surat_jaksa/{id}/{tipe}/{kasus_id}', 'JaksasController@deleteSuratJaksa');
+	Route::get('surat_pasal/{id}/{tipe}/{kasus_id}', 'PasalsController@deleteSuratPasal');
 });
 
 Route::group(['prefix' => 'kasus'], function() {

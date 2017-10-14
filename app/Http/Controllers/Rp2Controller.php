@@ -128,7 +128,7 @@ class Rp2Controller extends Controller
             ->where('surat_id', $case->surat_id)
             ->orderBy('nama_jaksa')
             ->get();
-
+        
         $jaksas = Jaksa::select(['*'])
             ->orderBy('nama_jaksa')
             ->pluck('nama_jaksa', 'id');
