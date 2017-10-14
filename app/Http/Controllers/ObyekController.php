@@ -29,7 +29,8 @@ class ObyekController extends Controller
             ->join('kasus_obyek','kasus.id','=','kasus_obyek.kasus_id')
             ->join('obyek','kasus_obyek.obyek_id','=','obyek.id')
             ->where('status_rp2', Kasus::STATUS_DITERUSKAN)
-            ->where('status_rp3mum', Kasus::STATUS_BARU)
+            ->whereIn('status_rp3mum_partial', array(0, Kasus::STATUS_DITERUSKAN))
+            ->whereIn('status_rp3sus', array(0, Kasus::STATUS_BARU))
             ->orderBy('status_rp3mum')
             ->get();
 
@@ -123,7 +124,7 @@ class ObyekController extends Controller
             }
         }
 
-        return redirect()->route('rp3mum.index');
+        return redirect('/obyek');
     }
 
     /**
