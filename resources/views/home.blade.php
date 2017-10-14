@@ -26,7 +26,7 @@
 </div>
 <div class="row">
 	<div class="col-lg-6 col-md-6 col-sm-12">
-		@include('partials._kerugianvspemulihan')
+		@include('partials._kerugianvspemulihan', ['kerugian_pemulihan' => $kerugian_pemulihan, 'nama_bulan' => $nama_bulan])
 	</div>
 	<div class="col-lg-6 col-md-6 col-sm-12">
 		@include('partials._totalmasatahanan')
