@@ -86,10 +86,10 @@ Highcharts.chart('masatahanan', {
     tooltip: {
         useHTML: true,
         headerFormat: '<table>',
-        pointFormat: '<tr><th colspan="2"><h3>{point.country}</h3></th></tr>' +
-            '<tr><th>Kategori Subyek:</th><td>{point.x}g</td></tr>' +
-            '<tr><th>Obyek Pidana:</th><td>{point.y}g</td></tr>' +
-            '<tr><th>Kategori Obyek:</th><td>{point.z}%</td></tr>',
+        pointFormat: '<tr><th colspan="2"><h3>{point.name}</h3></th></tr>' +
+            '<tr><th>Kategori Subyek:</th><td>{point.kategori}</td></tr>' +
+            '<tr><th>Obyek Pidana:</th><td>{point.obyek}</td></tr>' +
+            '<tr><th>Kategori Obyek:</th><td>{point.pasal}</td></tr>',
         footerFormat: '</table>',
         followPointer: true
     },
@@ -98,28 +98,16 @@ Highcharts.chart('masatahanan', {
         series: {
             dataLabels: {
                 enabled: true,
-                format: '{point.name}'
+                format: '{point.inisial}'
             }
         }
     },
 
     series: [{
         data: [
-            { x: 50, y: 48, z: 13.8, name: 'BE', country: 'Tersangka 1' },
-            { x: 45.5, y: 54.9, z: 14.7, name: 'DE', country: 'Tersangka 2' },
-            { x: 10.6, y: 10, z: 16, name: 'FI', country: 'Tersangka 3' },
-            { x: 39.4, y: 34.5, z: 12, name: 'NL', country: 'Tersangka 4' },
-            { x: 45.3, y: 45.1, z: 11.8, name: 'SE', country: 'Tersangka 5' },
-            { x: 41.4, y: 41.1, z: 16.6, name: 'ES', country: 'Tersangka 6' },
-            { x: 39.2, y: 36.5, z: 14.5, name: 'FR', country: 'Tersangka 7' },
-            { x: 18.5, y: 18.1, z: 10, name: 'NO', country: 'Tersangka 8' },
-            { x: 22, y: 22.2, z: 24.7, name: 'UK', country: 'Tersangka 9' },
-            { x: 30.2, y: 30.6, z: 10.4, name: 'IT', country: 'Tersangka 10' },
-            { x: 10.6, y: 10, z: 16, name: 'RU', country: 'Tersangka 11' },
-            { x: 34.5, y: 33.4, z: 35.3, name: 'US', country: 'Tersangka 12' },
-            { x: 26.4, y: 26.8, z: 28.5, name: 'HU', country: 'Tersangka 13' },
-            { x: 27.4, y: 27.8, z: 15.4, name: 'PT', country: 'Tersangka 14' },
-            { x: 23, y: 23.9, z: 31.3, name: 'NZ', country: 'Tersangka 15' }
+            @foreach ($masa_tahanan as $tahanan)
+                { x: {{ $tahanan->masa_hukuman }}, y: {{ $tahanan->masa_hukuman }}, z: {{ $tahanan->masa_hukuman }}, inisial: '{{ $tahanan->nama_terlapor }}', name: '{{ $tahanan->nama_terlapor }}', kategori: '{{ $tahanan->kategori_subyek }}', obyek: '{{ $tahanan->obyek_pidana }}', pasal: '{{ $tahanan->kategori_obyek }}' },
+            @endforeach
         ]
     }]
 
