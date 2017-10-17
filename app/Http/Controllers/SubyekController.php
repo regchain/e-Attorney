@@ -202,7 +202,7 @@ class SubyekController extends Controller
             ->where('kasus_subyek.kasus_id', $kasus_id)
             ->where('subyek.status', 1)
             ->get();
-
+        
         $kategori_subyek = KategoriSubyek::select(['*'])
             ->orderBy('name')
             ->pluck('name', 'id');
