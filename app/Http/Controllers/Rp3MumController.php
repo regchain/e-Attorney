@@ -43,7 +43,7 @@ class Rp3MumController extends Controller
                 ->join('subyek','subyek.id','=','kasus_subyek.subyek_id')
                 ->join('kategori_subyeks','subyek.kategori_subyek_id','=','kategori_subyeks.id')
                 ->where('kasus_id',$kasus_id)
-                ->whereIn('subyek.status', array(1, 2, 3))
+                ->whereIn('subyek.status', array(1))
                 ->get();
             foreach ($kasus_subyek as $subyek) {
                 array_push($subyeks, $subyek);
