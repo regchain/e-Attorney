@@ -19,7 +19,8 @@ class Surat extends Model
         'tindakan',
         'keterangan',
     	'tipe_surat',
-        'kasus_id'
+        'kasus_id',
+        'status_surat'
     ];
 
     public function jaksas()

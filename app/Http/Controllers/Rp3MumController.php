@@ -29,6 +29,7 @@ class Rp3MumController extends Controller
             ->where('status_rp2', Kasus::STATUS_DITERUSKAN)
             ->where('status_rp3mum_partial', 0)
             ->where('surats.tipe_surat', 'RP3MUM')
+            ->where('status_surat', 1)
             ->orderBy('status_rp3mum')
             ->get();
 
@@ -62,6 +63,7 @@ class Rp3MumController extends Controller
                 ->join('jaksas','surat_jaksa.jaksa_id','=','jaksas.id')
                 ->where('surats.kasus_id',$kasus_id)
                 ->where('tipe_surat','=','RP3MUM')
+                ->where('status_surat', 1)
                 ->orderBy('nama_jaksa')
                 ->get();
             
@@ -155,6 +157,18 @@ class Rp3MumController extends Controller
                 $case->update($request->only('judul_kasus','kasus_posisi','disposisi','status_rp2') + ['status_rp3mum' => Kasus::STATUS_BARU]);
 
                 $surat = Surat::create($request->only('no_surat_perkara','tanggal_surat_perkara') + ['kasus_id' => $case->id, 'tipe_surat' => 'RP3MUM']);
+                if ($surat) {
+                    $surat_id = $surat->id;
+                    $anotherSprint = Surat::where('id','<>',$surat_id)
+                        ->where('kasus_id', $kasus_id)
+                        ->where('tipe_surat','=','RP3MUM')
+                        ->get();
+                    foreach ($anotherSprint as $sprint) {
+                        $sprint_id = $sprint->id;
+                        $findSprint = Surat::find($sprint_id);
+                        $findSprint->update(['status_surat' => 0]);
+                    }
+                }
 
                 $jaksas = $request->jaksa_id;
                 if ($jaksas && !empty($jaksas)) {
@@ -179,7 +193,7 @@ class Rp3MumController extends Controller
             $obyek->update($request->only('obyek_pidana','nilai_kontrak','kerugian_negara','pemulihan_aset'));
         }
 
-        return redirect()->route('rp2.index');
+        return redirect()->route('rp3mum.index');
     }
 
     /**
