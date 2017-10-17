@@ -31,10 +31,9 @@ class Rp3SusController extends Controller
         $kasus = Kasus::select(['kasus.*','surats.id as surat_id','no_surat_perkara','tanggal_surat_perkara','spt.id as spt_id'])
             ->join('surats','kasus.id','=','surats.kasus_id')
             ->join('spt','surats.id','=','spt.surat_id')
-            ->where('status_rp3mum', Kasus::STATUS_DITERUSKAN)
-            ->where('status_rp3sus', Kasus::STATUS_BARU)
-            ->orWhere('status_rp3sus', Kasus::STATUS_DITERUSKAN)
+            ->whereIn('status_rp3sus', array(Kasus::STATUS_BARU, Kasus::STATUS_DITERUSKAN))
             ->where('surats.tipe_surat', 'RP3SUS')
+            ->where('status_surat', 1)
             ->orderBy('status_rp3sus')
             ->get();
 
@@ -173,6 +172,7 @@ class Rp3SusController extends Controller
             $spt_subyek = Spt::select(['spt_id','subyek_id'])
                 ->join('spt_subyek','spt.id','=','spt_subyek.spt_id')
                 ->where('spt.kasus_id',$kasus_id)
+                ->where('spt_subyek.spt_id',$spt_id)
                 ->get();
             foreach ($spt_subyek as $subyek) {
                 $findSubyek = Subyek::find($subyek->subyek_id);
