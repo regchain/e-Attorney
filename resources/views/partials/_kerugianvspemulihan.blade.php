@@ -6,9 +6,9 @@
     margin: 0 auto;
 }
 </style>
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/highcharts-3d.js"></script>
-<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="{{ asset('plugins/highcharts/code/highcharts.src.js')}}"></script>
+<script src="{{ asset('plugins/highcharts/code/highcharts-3d.js')}}"></script>
+<script src="{{ asset('plugins/highcharts/code/modules/exporting.js')}}"></script>
 
 <div id="pemulihan" style="height: 450px"></div>
 <script>
