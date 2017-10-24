@@ -9,6 +9,7 @@ use App\Subyek;
 use App\KasusSubyek;
 use App\KategoriSubyek;
 use App\Spt;
+use Carbon\Carbon;
 
 class SubyekController extends Controller
 {
@@ -172,6 +173,16 @@ class SubyekController extends Controller
     public function destroy($kasus_id, $id)
     {
         Subyek::destroy($id);
+        $kasus_subyek = KasusSubyek::where('kasus_id', $kasus_id)
+            ->where('subyek_id', $id)
+            ->first();
+
+        if ($kasus_subyek) {
+            $kasus_subyek_id = $kasus_subyek->id;
+            if ($kasus_subyek_id) {
+                KasusSubyek::destroy($kasus_subyek_id);
+            }
+        }
 
         return redirect()->route('rp3mum.index');
     }
@@ -191,7 +202,7 @@ class SubyekController extends Controller
             ->where('kasus_subyek.kasus_id', $kasus_id)
             ->where('subyek.status', 1)
             ->get();
-
+        
         $kategori_subyek = KategoriSubyek::select(['*'])
             ->orderBy('name')
             ->pluck('name', 'id');
@@ -206,6 +217,19 @@ class SubyekController extends Controller
             ->where('subyek.id', $subyek_id)
             ->first();
 
+        $kategori_subyek = KategoriSubyek::select(['*'])
+            ->orderBy('name')
+            ->pluck('name', 'id');
+
+        $surat_dikmum = Subyek::select(['kasus.id as kasus_id','surats.id as surat_id','no_surat_perkara','kasus_posisi','tipe_surat'])
+            ->join('kasus_subyek','subyek.id','=','kasus_subyek.subyek_id')
+            ->join('kasus','kasus.id','=','kasus_subyek.kasus_id')
+            ->join('surats','kasus.id','=','surats.kasus_id')
+            ->where('subyek.id', $subyek_id)
+            ->where('tipe_surat', 'RP3MUM')
+            ->first();
+
+        /*
         $spt_subyek = Spt::select(['spt.id as spt_id','no_spt','tanggal_spt'])
             ->join('spt_subyek','spt.id','=','spt_subyek.spt_id')
             ->join('subyek','subyek.id','=','spt_subyek.subyek_id')
@@ -213,22 +237,14 @@ class SubyekController extends Controller
             ->where('jenis_spt', 'TAHANAN')
             ->first();
 
-        $kategori_subyek = KategoriSubyek::select(['*'])
-            ->orderBy('name')
-            ->pluck('name', 'id');
-
-        $surat_dikmum = Subyek::select(['kasus.id as kasus_id','surats.id as surat_id','no_surat_perkara','kasus_posisi'])
-            ->join('kasus_subyek','subyek.id','=','kasus_subyek.subyek_id')
-            ->join('kasus','kasus.id','=','kasus_subyek.kasus_id')
-            ->join('surats','kasus.id','=','surats.kasus_id')
-            ->where('subyek.id', $subyek_id)
-            ->first();
-
         if ($spt_subyek) {
             return view('subyek.subyek_tahan_create', ['subyek' => $subyek, 'kategori_subyek' => $kategori_subyek, 'spt_id' => $spt_subyek->spt_id, 'no_spt' => $spt_subyek->no_spt, 'tanggal_spt' => $spt_subyek->tanggal_spt, 'surat_dikmum' => $surat_dikmum]);
         } else {
             return view('subyek.subyek_tahan_create', ['subyek' => $subyek, 'kategori_subyek' => $kategori_subyek, 'spt_id' => '', 'no_spt' => '', 'tanggal_spt' => date('Y-m-d'), 'surat_dikmum' => $surat_dikmum]);
         }
+        */
+
+        return view('subyek.subyek_tahan_create', ['subyek' => $subyek, 'kategori_subyek' => $kategori_subyek, 'spt_id' => '', 'no_spt' => '', 'tanggal_spt' => date('Y-m-d'), 'surat_dikmum' => $surat_dikmum]);
     }
 
     public function tahanupdate(Request $request, $id)
@@ -238,9 +254,13 @@ class SubyekController extends Controller
             'tanggal_spt' => 'required'
         ]);
 
+        $ke = Carbon::createFromFormat('Y-m-d', $request->masa_hukuman_ke);
+        $dari = Carbon::createFromFormat('Y-m-d', $request->masa_hukuman_dari);
+        $masa_hukuman = $ke->diffInDays($dari);
+        
         $subyek = Subyek::find($id);
         if ($subyek) {
-            $subyek->update($request->all() + ['status' => Subyek::STATUS_TAHANAN]);    
+            $subyek->update($request->all() + ['status' => Subyek::STATUS_TAHANAN, 'masa_hukuman' => $masa_hukuman]);    
         }
 
         $kasus_id = $request->kasus_id;
@@ -256,6 +276,6 @@ class SubyekController extends Controller
             $spt->subyeks()->attach($id);
         }
 
-        return redirect()->route('rp3sus.index');
+        return redirect('/subyek');
     }
 }

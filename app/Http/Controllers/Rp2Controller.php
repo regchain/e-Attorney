@@ -36,7 +36,7 @@ class Rp2Controller extends Controller
             $jaksas = array();
 
             $kasus_id = $case["id"];
-            $kasus_subyek = KasusSubyek::select(['subyek_id','nama_terlapor','lembaga'])
+            $kasus_subyek = KasusSubyek::select(['subyek_id','nama_terlapor','lembaga','foto'])
                 ->join('subyek','subyek.id','=','kasus_subyek.subyek_id')
                 ->where('kasus_id',$kasus_id)
                 ->get();
@@ -128,7 +128,7 @@ class Rp2Controller extends Controller
             ->where('surat_id', $case->surat_id)
             ->orderBy('nama_jaksa')
             ->get();
-
+        
         $jaksas = Jaksa::select(['*'])
             ->orderBy('nama_jaksa')
             ->pluck('nama_jaksa', 'id');

@@ -5,7 +5,7 @@
           <div>
             <div class="medi col-md-12a"> 
               <div class="btn-group-vertical btn-group-xs pull-right" role="group" aria-label="...">
-                  <a href='' class="btn btn-danger"> BATAL &nbsp;
+                  <a href='{{ url('/surat_jaksa', [$jaksa->id, $tipe, $kasus_id]) }}' class="btn btn-danger"> BATAL &nbsp;
                     <i class="glyphicon glyphicon-log-in"></i>
                   </a>
               </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Pasal;
+use App\SuratPasal;
 use Yajra\Datatables\Html\Builder;
 use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\Session;
@@ -151,5 +152,21 @@ class PasalsController extends Controller
         ]);
 
         return redirect()->route('pasal.index');
+    }
+
+    public function deleteSuratPasal($surat_pasal_id, $tipe, $kasus_id)
+    {
+        if ($surat_pasal_id) {
+            SuratPasal::destroy($surat_pasal_id);
+
+            Session::flash("flash_notification", [
+                "level"     => "info",
+                "message"   => "Pasal berhasil dibatalkan"
+            ]);
+        }
+
+        if ($tipe && $tipe == "RP3SUS") {
+            return redirect()->route('rp3sus.edit', $kasus_id);
+        }
     }
 }

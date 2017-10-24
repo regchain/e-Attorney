@@ -65,7 +65,7 @@
 			<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#tsk{{ $subyek->subyek_id }}">
 				{{ $subyek->nama_terlapor }}
 			</button>
-			<a href="#"> <img alt="64x64" class="thumbnail" data-src="holder.js/64x64" src="{{ asset('images/robert.jpg') }}" data-holder-rendered="true" style="width: 140px; height: 140px;"></a>
+			<a href="#"><img alt="64x64" class="thumbnail" data-src="holder.js/64x64" src="{{ asset('images/'. $subyek->foto) }}" data-holder-rendered="true" style="width: 140px; height: 140px;"></a>
 				<!-- Button trigger modal -->
 
 				<!-- Modal -->

@@ -8,6 +8,7 @@ use App\Subyek;
 use App\KategoriSubyek;
 use App\Pasal;
 use App\Spt;
+use App\Surat;
 
 class HomeController extends Controller
 {
@@ -28,6 +29,8 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $nama_bulan = array("01" => "Jan", "02" => "Feb", "03" => "Mar", "04" => "Apr", "05" => "May", "06" => "Jun", "07" => "Jul", "08" => "Aug", "09" => "Sep", "10" => "Oct", "11" => "Nov", "12" => "Dec");
+        $kategori_obyek = array();
         $dashboard = array();
         
         $kasus_rp2 = Kasus::where('status_rp2',1)
@@ -60,13 +63,58 @@ class HomeController extends Controller
             ->where('kasus.status_rp3sus','<>',0)
             ->groupBy('kategori_pasal')
             ->get();
+
+        $kerugian_pemulihan = Surat::selectRaw('substr(tanggal_surat_perkara, 6, 2) as bulan, SUM(nilai_pemulihan_aset) as pemulihan_aset, SUM(kerugian_negara) as kerugian_negara')
+            ->join('barang_bukti','surats.id','=','barang_bukti.surat_id')
+            ->join('obyek','obyek.id','=','barang_bukti.obyek_id')
+            ->whereIn('tipe_surat', array('PENYITAAN', 'PENGGELEDAHAN', 'PENITIPAN'))
+            ->groupBy('bulan')
+            ->get();
+
+        $masa_tahanan = Subyek::selectRaw('subyek.id as subyek_id, kasus.id as kasus_id, nama_terlapor, masa_hukuman, kategori_subyeks.name as kategori_subyek, obyek_pidana')
+            ->join('kategori_subyeks','kategori_subyeks.id','=','subyek.kategori_subyek_id')
+            ->join('kasus_subyek','subyek.id','=','kasus_subyek.subyek_id')
+            ->join('kasus','kasus.id','=','kasus_subyek.kasus_id')
+            ->join('kasus_obyek','kasus.id','=','kasus_obyek.kasus_id')
+            ->join('obyek','obyek.id','=','kasus_obyek.obyek_id')
+            ->where('subyek.status', Subyek::STATUS_TAHANAN)
+            ->get();
+        
+        foreach ($masa_tahanan as $masa) {
+            $subyek_id = $masa["subyek_id"];
+            $kasus_id = $masa["kasus_id"];
+
+            $spt_kasus = Spt::selectRaw('surat_id')
+                ->join('spt_subyek','spt.id','=','spt_subyek.spt_id')
+                ->where('kasus_id', $kasus_id)
+                ->where('spt_subyek.subyek_id', $subyek_id)
+                ->where('jenis_spt', 'TERSANGKA')
+                ->orderBy('spt.id', 'DESC')
+                ->first();
+
+            if ($spt_kasus) {
+                $surat_id = $spt_kasus->surat_id;
+                $pasals = Surat::selectRaw('GROUP_CONCAT(kategori_pasal) as kategori_obyek')
+                    ->join('surat_pasal','surats.id','=','surat_pasal.surat_id')
+                    ->join('pasals','pasals.id','=','surat_pasal.pasal_id')
+                    ->where('surats.id', $surat_id)
+                    ->first();
+                if ($pasals) {
+                    $result = $pasals->kategori_obyek;
+                    $kategori_pasal = implode(',',array_unique(explode(',', $result)));
+                }
+            }
+
+            $masa["kategori_obyek"] = $kategori_pasal;
+            array_push($kategori_obyek, $masa);
+        }
         
         $dashboard["kasus_rp2"] = $kasus_rp2;
         $dashboard["kasus_rp3mum"] = $kasus_rp3mum;
         $dashboard["kasus_rp3sus"] = $kasus_rp3sus;
         $dashboard["tahanan"] = $tahanan;
-        
-        return view('home', ['dashboard' => $dashboard, 'subyek_hukum' => $subyek_hukum, 'obyek_pidana' => $obyek_pidana]);
+
+        return view('home', ['dashboard' => $dashboard, 'subyek_hukum' => $subyek_hukum, 'obyek_pidana' => $obyek_pidana, 'kerugian_pemulihan' => $kerugian_pemulihan, 'nama_bulan' => $nama_bulan, 'masa_tahanan' => $kategori_obyek]);
     }
 
     public function trial()

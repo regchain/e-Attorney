@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Jaksa;
+use App\SuratJaksa;
 use Yajra\Datatables\Html\Builder;
 use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\Session;
@@ -139,5 +140,37 @@ class JaksasController extends Controller
         ]);
 
         return redirect()->route('jaksa.index');
+    }
+
+    public function deleteSuratJaksa($surat_jaksa_id, $tipe, $kasus_id)
+    {
+        if ($surat_jaksa_id) {
+            SuratJaksa::destroy($surat_jaksa_id);
+
+            Session::flash("flash_notification", [
+                "level"     => "info",
+                "message"   => "Jaksa berhasil dibatalkan"
+            ]);
+        }
+
+        if ($tipe && !empty($tipe)) {
+            switch ($tipe) {
+                case 'RP2':
+                    return redirect()->route('rp2.edit', $kasus_id);
+                    break;
+
+                case 'RP3MUM':
+                    return redirect()->route('rp3mum.edit', $kasus_id);
+                    break;
+                
+                case 'RP3SUS':
+                    return redirect()->route('rp3sus.edit', $kasus_id);
+                    break;
+
+                default:
+                    return redirect()->route('jaksa.index');
+                    break;
+            }
+        }
     }
 }

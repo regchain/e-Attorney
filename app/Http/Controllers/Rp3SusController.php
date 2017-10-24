@@ -26,14 +26,14 @@ class Rp3SusController extends Controller
      */
     public function index()
     {
+        $status_subyek = array("1" => "TERLAPOR", "2" => "TERSANGKA", "3" => "TAHANAN");
         $cases = array();
         $kasus = Kasus::select(['kasus.*','surats.id as surat_id','no_surat_perkara','tanggal_surat_perkara','spt.id as spt_id'])
             ->join('surats','kasus.id','=','surats.kasus_id')
             ->join('spt','surats.id','=','spt.surat_id')
-            ->where('status_rp3mum', Kasus::STATUS_DITERUSKAN)
-            ->where('status_rp3sus', Kasus::STATUS_BARU)
-            ->orWhere('status_rp3sus', Kasus::STATUS_DITERUSKAN)
+            ->whereIn('status_rp3sus', array(Kasus::STATUS_BARU, Kasus::STATUS_DITERUSKAN))
             ->where('surats.tipe_surat', 'RP3SUS')
+            ->where('status_surat', 1)
             ->orderBy('status_rp3sus')
             ->get();
 
@@ -51,7 +51,7 @@ class Rp3SusController extends Controller
                 ->join('subyek','subyek.id','=','spt_subyek.subyek_id')
                 ->join('kategori_subyeks','subyek.kategori_subyek_id','=','kategori_subyeks.id')
                 ->where('spt.surat_id', $surat_id)
-                ->where('subyek.status',2)
+                ->whereIn('subyek.status', array(2, 3))
                 ->get();
             foreach ($kasus_subyek as $subyek) {
                 array_push($subyeks, $subyek);
@@ -95,6 +95,7 @@ class Rp3SusController extends Controller
             $case["obyeks"] = $obyeks;
             $case["jaksas"] = $jaksas;
             $case["barang_sitaan"] = $barang_sitaan;
+            $case["status_subyek"] = $status_subyek;
             array_push($cases, $case);
         }
         
@@ -114,7 +115,7 @@ class Rp3SusController extends Controller
             ->where('kasus.id',$id)
             ->first();
 
-        $spt_subyek = Spt::select(['spt_id','subyek_id','no_spt','nama_terlapor','lembaga','jabatan_resmi','jabatan_lain'])
+        $spt_subyek = Spt::select(['spt_id','subyek_id','no_spt','nama_terlapor','lembaga','jabatan_resmi','jabatan_lain','foto'])
             ->join('spt_subyek','spt.id','=','spt_subyek.spt_id')
             ->join('subyek','spt_subyek.subyek_id','=','subyek.id')
             ->where('spt.kasus_id', $id)
@@ -171,6 +172,7 @@ class Rp3SusController extends Controller
             $spt_subyek = Spt::select(['spt_id','subyek_id'])
                 ->join('spt_subyek','spt.id','=','spt_subyek.spt_id')
                 ->where('spt.kasus_id',$kasus_id)
+                ->where('spt_subyek.spt_id',$spt_id)
                 ->get();
             foreach ($spt_subyek as $subyek) {
                 $findSubyek = Subyek::find($subyek->subyek_id);

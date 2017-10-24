@@ -10,7 +10,7 @@
 			</div>
 			<div class="media-left">
 				<a href="#">
-				<img alt="64x64" class="media-object" data-src="holder.js/64x64" src="{{ asset('images/subyek.jpg') }}" data-holder-rendered="true" style="width: 64px; height: 64px;">
+				<img alt="64x64" class="media-object" data-src="holder.js/64x64" src="{{ asset('images/'.$subyek->foto) }}" data-holder-rendered="true" style="width: 64px; height: 64px;">
 				</a>
 			</div> 
 			<div class="media-body">
@@ -19,7 +19,7 @@
 				Institusi: <strong>{{ $subyek->lembaga }}</strong>
 				<br>
 				Kategori Subyek: <strong>{{ $subyek->kategori_subyek }}</strong>, 
-				Status: <strong>{{ $subyek->status }}, {{ $subyek->masa_tahanan }}</strong></i><br>
+				Status: <strong>{{ $case->status_subyek[$subyek->status] }}, {{ $subyek->masa_tahanan }}</strong></i><br>
 			</div>
 		</div>
 	</td>

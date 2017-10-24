@@ -106,7 +106,7 @@
 	<div class="col-lg-12 col-md-12 col-sm-12">
 		<h4>Data Jaksa Yang Telah Dipilih</h4>
 		<div class="form-group">
-			@include('partials._jaksa', ['surat_jaksa' => $surat_jaksa])
+			@include('partials._jaksa', ['surat_jaksa' => $surat_jaksa, 'tipe' => 'RP2', 'kasus_id' => $case->id])
         </div>
 	</div>
 	<div class="col-lg-12 col-md-12 col-sm-12">
