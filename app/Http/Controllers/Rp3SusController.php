@@ -261,7 +261,7 @@ class Rp3SusController extends Controller
             ->where('surats.id',$surat_id)
             ->first();
 
-        $spt_subyek = Spt::select(['spt_id','subyek_id','no_spt','nama_terlapor','lembaga','jabatan_resmi','jabatan_lain'])
+        $spt_subyek = Spt::select(['spt_id','subyek_id','no_spt','nama_terlapor','lembaga','jabatan_resmi','jabatan_lain','foto'])
             ->join('spt_subyek','spt.id','=','spt_subyek.spt_id')
             ->join('subyek','spt_subyek.subyek_id','=','subyek.id')
             ->where('spt.id', $id)
@@ -406,7 +406,7 @@ class Rp3SusController extends Controller
             }
         }
         
-        $spt_subyek = Spt::select(['spt_id','subyek_id','no_spt','nama_terlapor','lembaga','jabatan_resmi','jabatan_lain'])
+        $spt_subyek = Spt::select(['spt_id','subyek_id','no_spt','nama_terlapor','lembaga','jabatan_resmi','jabatan_lain','foto'])
             ->join('spt_subyek','spt.id','=','spt_subyek.spt_id')
             ->join('subyek','spt_subyek.subyek_id','=','subyek.id')
             ->where('spt.id', $spt_id)
@@ -501,7 +501,7 @@ class Rp3SusController extends Controller
             }
         }
 
-        $spt_subyek = Spt::select(['spt_id','subyek_id','no_spt','nama_terlapor','lembaga','jabatan_resmi','jabatan_lain'])
+        $spt_subyek = Spt::select(['spt_id','subyek_id','no_spt','nama_terlapor','lembaga','jabatan_resmi','jabatan_lain','foto'])
             ->join('spt_subyek','spt.id','=','spt_subyek.spt_id')
             ->join('subyek','spt_subyek.subyek_id','=','subyek.id')
             ->where('spt.id', $spt_id)
