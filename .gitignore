@@ -10,7 +10,6 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 .env
-
 *.zip
 /public/images/*.jpg
 /public/images/*.png

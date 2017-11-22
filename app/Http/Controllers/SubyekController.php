@@ -89,7 +89,7 @@ class SubyekController extends Controller
         $kasus_subyek = KasusSubyek::create($kasus_subyek_data);
 
         if ($kasus_subyek) {
-            return redirect()->route('rp3mum.index');
+            return redirect('subyek');
         }
     }
 
@@ -161,7 +161,7 @@ class SubyekController extends Controller
             $subyek->save();
         }
 
-        return redirect()->route('rp3mum.index');
+        return redirect('subyek');
     }
 
     /**
@@ -184,7 +184,7 @@ class SubyekController extends Controller
             }
         }
 
-        return redirect()->route('rp3mum.index');
+        return redirect('subyek');
     }
 
     public function tersangka($kasus_id)

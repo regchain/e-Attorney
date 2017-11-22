@@ -34,7 +34,7 @@ Highcharts.chart('pemulihan', {
     yAxis: {
         min: 0,
         title: {
-            text: 'Total (Rp.)'
+            text: 'Total (dalam Miliar.)'
         }
     },
     tooltip: {
@@ -55,7 +55,7 @@ Highcharts.chart('pemulihan', {
         name: 'Kerugian Negara',
         data: [
             @foreach ($kerugian_pemulihan as $aset)
-                {{ $aset->kerugian_negara }},
+                {{ $aset->kerugian_negara/1000000000 }},
             @endforeach
         ]
 
@@ -63,7 +63,7 @@ Highcharts.chart('pemulihan', {
         name: 'Pemulihan Aset',
         data: [
             @foreach ($kerugian_pemulihan as $aset)
-                {{ $aset->pemulihan_aset }},
+                {{ $aset->pemulihan_aset/1000000000 }},
             @endforeach
         ]
 
