@@ -13,3 +13,4 @@ npm-debug.log
 *.zip
 /public/images/*.jpg
 /public/images/*.png
+_notes/
