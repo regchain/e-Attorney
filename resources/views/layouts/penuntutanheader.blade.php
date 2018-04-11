@@ -10,7 +10,7 @@
 				<div class="media">
 					<div class="panel-body">
 						<h4>
-							<a href="home"><img src="dist/img/logo-kejaksaan.png" height="80" class="text-titlecase"></a>
+							<a href="home"><img src="images/logo-kejaksaan.png" height="80" class="text-titlecase"></a>
 							<div class="pull-right">
 								<h3>TIDAK TERSEDIA</h3> 
 							</div>

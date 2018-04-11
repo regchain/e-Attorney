@@ -1,4 +1,4 @@
-@extends('layouts.penyidikan_template')
+@extends('layouts.pidsus.operator')
 
 @section('title', 'Dir.Dik')
 
@@ -12,7 +12,7 @@
 
 @section('judulhalaman', 'DAFTAR Subyek Hukum')
 
-@section('materi')
+@section('content')
 
   <ul class="nav nav-tabs">
     <li class="active"><a data-toggle="tab" href="#terlapor">Terlapor</a></li>

@@ -1,4 +1,4 @@
-@extends('layouts.penyidikan_template')
+@extends('layouts.pidsus.operator')
 
 @section('title', 'Dir.Dik')
 
@@ -12,7 +12,7 @@
 
 @section('judulhalaman', 'DAFTAR PERKARA PENYIDIKAN UMUM [rp-3 mum]')
 
-@section('materi')
+@section('content')
 
   <!-- /.box-header -->
   <div class="table-responsive no-padding">

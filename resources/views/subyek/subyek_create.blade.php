@@ -1,4 +1,4 @@
-@extends('layouts.penyidikan_template')
+@extends('layouts.pidsus.operator')
 
 @section('title', 'Dir.Dik')
 
@@ -12,7 +12,7 @@
 
 @section('judulhalaman', 'Tambah Subyek Baru')
 
-@section('materi')
+@section('content')
 
 {!! Form::open(['url' => route('subyek.store', $kasus_id), 'method' => 'post', 'files' => 'true']) !!}
 <div class="rows"> 

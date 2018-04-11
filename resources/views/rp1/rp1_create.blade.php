@@ -1,4 +1,4 @@
-@extends('layouts.penyidikan_template')
+@extends('layouts.pidsus.operator')
 
 @section('title', 'Dir.Dik')
 
@@ -12,7 +12,7 @@
 
 @section('judulhalaman', 'Tambah Laporan Masyarakat / Kasus')
 
-@section('materi')
+@section('content')
 
 {!! Form::open(['url' => route('rp1.store'), 'method' => 'post']) !!}
 	@include('rp1.rp1_form')
@@ -22,5 +22,5 @@
 
 @section('script')
 	<!-- Form Kasus Posisi -->
-	<script src='{{ asset('js/kasus_posisi.js') }}'></script>
+	<script src='{{ asset('bower_components/js/kasus_posisi.js') }}'></script>
 @endsection

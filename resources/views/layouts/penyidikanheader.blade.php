@@ -10,7 +10,7 @@
 				<div class="media">
 					<div class="panel-body">
 						<h4>
-							<a href="home"><img src="{{ asset('dist/img/logo-kejaksaan.png') }}" height="80" class="text-titlecase"></a>
+							<a href="home"><img src="{{ asset('images/logo-kejaksaan.png') }}" height="80" class="text-titlecase"></a>
 							<div class="pull-right">
 								<a href="{{ route('rp1.index') }}" class="btn btn-app btn-primary text-lime "><i class="fa fa-eye"></i> Penyidikan</a>                    
 								<a href="master_penuntutan" class="btn btn-app btn-primary text-lime"><i class="fa fa-balance-scale"></i> Penuntutan</a>                    

@@ -1,4 +1,4 @@
-@extends('layouts.penyidikan_template')
+@extends('layouts.pidsus.operator')
 
 @section('title', 'Dir.Dik')
 
@@ -12,7 +12,7 @@
 
 @section('judulhalaman', 'Register Perkara Penyelidikan')
 
-@section('materi')
+@section('content')
       
 {!! Form::model($case, ['url' => route('lidik.update', $case->id), 'method' => 'put']) !!}
 <div class="row">

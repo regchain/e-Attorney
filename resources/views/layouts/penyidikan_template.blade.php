@@ -16,7 +16,7 @@
         <div class="box-body">
 
           @include('layouts.ks_flash')
-          @yield('materi')
+          @yield('content')
 
         </div>
         <div class="panel-footer"><p>
@@ -34,13 +34,13 @@
     </div><!-- /.content -->
     
     <!-- Scripts -->
-    <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('js/dataTables.bootstrap.min.js') }}"></script>
-    <script src="{{ asset('js/selectize.min.js') }}"></script>
-    <script src="{{ asset('js/confirm.js') }}"></script>
-    <script src="{{ asset('js/custom.js') }}"></script>
+    <script src="{{ asset('bower_components/jquery/dist/jquery.min.js') }}"></script>
+    <script src="{{ asset('bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
+    <script src="{{ asset('bower_components/selectize/dist/js/selectize.min.js') }}"></script>
+   {{--  <script src="{{ asset('bower_components/js/confirm.js') }}"></script>
+    <script src="{{ asset('bower_components/js/custom.js') }}"></script> --}}
     @yield('scripts')
 
   </div><!-- /.content-wrapper -->
@@ -48,11 +48,11 @@
 </div><!-- /.wrapper -->
 
 <!-- JQuery -->
-    <!--<script src='{{ asset('plugins/jQuery/jquery-3.2.1.min.js') }}'></script>-->
+    <script src='{{ asset('bower_components/jquery/dist/jquery.min.js') }}'></script>
 
 
     <!-- Include all compiled plugins (below), or include individual files as needed -->
   <!-- Latest compiled and minified JavaScript -->
-    <!--<script src="{{ asset('js/bootstrap.js') }}"></script>-->
+    <script src="{{ asset('bower_components/bootstrap/dist/js/bootstrap.js') }}"></script>
     </body>
 </html>

@@ -4,9 +4,9 @@
     <!-- Logo -->
     <a href="{{ url('lapdu') }}" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><img src="{{asset('kejaksaan/was/dist/img/logo-kejaksaan.png')}}" width="50"></span>
+      <span class="logo-mini"><img src="{{asset('kejaksaan/was/images/logo-kejaksaan.png')}}" width="50"></span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><img src="{{asset('kejaksaan/was/dist/img/logo-kejaksaan-small.png')}}" height="50"></span>
+      <span class="logo-lg"><img src="{{asset('kejaksaan/was/images/sus-pidsus/logo-kejaksaan-small.png')}}" height="50"></span>
     </a>
 
     <!-- Header Navbar -->

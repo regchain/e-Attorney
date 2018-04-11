@@ -1,4 +1,4 @@
-@extends('layouts.penyidikan_template')
+@extends('layouts.pidsus.operator')
 
 @section('title', 'Dir.Dik')
 
@@ -12,7 +12,7 @@
 
 @section('judulhalaman', 'Barang Bukti')
 
-@section('materi')
+@section('content')
 
 {!! Form::model($surat, ['url' => route('obyek.update', [$kasus_id, $surat->id]), 'method' => 'put']) !!}
 <div class="row">

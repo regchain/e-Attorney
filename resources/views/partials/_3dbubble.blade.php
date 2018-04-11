@@ -6,11 +6,11 @@
     margin: 0 auto;
 }
         </style>
-<script src="{{ asset('plugins/highcharts/code/highcharts.src.js')}}"></script>
-<script src="{{ asset('plugins/highcharts/highcharts-more.js')}}"></script>
-<script src="{{ asset('plugins/highcharts/code/highcharts.src.js')}}"></script>
-<script src="{{ asset('plugins/highcharts/code/highcharts-3d.js')}}"></script>
-<script src="{{ asset('plugins/highcharts/code/modules/exporting.js')}}"></script>
+<script src="{{ asset('bower_components/highcharts/highcharts.src.js')}}"></script>
+<script src="{{ asset('bower_components/highcharts/highcharts-more.js')}}"></script>
+<script src="{{ asset('bower_components/highcharts/highcharts.src.js')}}"></script>
+<script src="{{ asset('bower_components/highcharts/highcharts-3d.js')}}"></script>
+<script src="{{ asset('bower_components/highcharts/modules/exporting.js')}}"></script>
 
 <div id="3dbubble" style="height: 400px; margin: 0 auto;"></div>
 

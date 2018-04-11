@@ -12,7 +12,7 @@
 
 @section('judulhalaman', 'daftar perkara p-21')
 
-@section('materi')
+@section('content')
 
          <table width="100%" background="dist/img/gavel.jpg">
          	<tbody>

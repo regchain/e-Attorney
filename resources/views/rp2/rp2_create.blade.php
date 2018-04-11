@@ -1,4 +1,4 @@
-@extends('layouts.penyidikan_template')
+@extends('layouts.pidsus.operator')
 
 @section('title', 'Dir.Dik')
 
@@ -12,7 +12,7 @@
 
 @section('judulhalaman', 'Register Perkara Penyelidikan')
 
-@section('materi')
+@section('content')
       
 
 <div class="row">
@@ -218,6 +218,6 @@ Pemulihan Aset
 @section('script')
 
 	<!-- Form Kasus Posisi -->
-	<script src='{{ asset('js/kasus_posisi.js') }}'></script>
+	<script src='{{ asset('bower_components/js/kasus_posisi.js') }}'></script>
 
 @endsection

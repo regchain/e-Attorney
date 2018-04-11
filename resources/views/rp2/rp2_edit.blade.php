@@ -1,4 +1,4 @@
-@extends('layouts.penyidikan_template')
+@extends('layouts.pidsus.operator')
 
 @section('title', 'Dir.Dik')
 
@@ -12,7 +12,7 @@
 
 @section('judulhalaman', 'Edit Perkara Penyelidikan')
 
-@section('materi')
+@section('content')
 
 {!! Form::model($case, ['url' => route('rp2.update', $case->id), 'method' => 'put']) !!}
 <div class="row">
@@ -126,6 +126,6 @@
 @section('script')
 
 	<!-- Form Kasus Posisi -->
-	<script src='{{ asset('js/kasus_posisi.js') }}'></script>
+	<script src='{{ asset('bower_components/js/kasus_posisi.js') }}'></script>
 
 @endsection

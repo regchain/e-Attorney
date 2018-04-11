@@ -9,7 +9,7 @@
 
         <!-- Fonts -->
         {{-- <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css"> --}}
-        <link href="{{asset('css/font-awesome.css')}}" type="text/css">
+        <link href="{{asset('bower_components/font-awesome/css/font-awesome.css')}}" type="text/css">
 
         <!-- Styles -->
         <style>
@@ -80,7 +80,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                <img class="pull-right" src="dist/img/logo-kejaksaan.png" height="200"><br>
+                <img class="pull-right" src="images/logo-kejaksaan.png" height="200"><br>
                     el-PIDSUS
                 </div>
 

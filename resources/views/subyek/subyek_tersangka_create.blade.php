@@ -1,4 +1,4 @@
-@extends('layouts.penyidikan_template')
+@extends('layouts.pidsus.operator')
 
 @section('title', 'Dir.Dik')
 
@@ -12,7 +12,7 @@
 
 @section('judulhalaman', 'Surat Penetapan Tersangka')
 
-@section('materi')
+@section('content')
 
 {!! Form::model($case, ['url' => route('spt.store'), 'method' => 'post']) !!}
 <div class="row">

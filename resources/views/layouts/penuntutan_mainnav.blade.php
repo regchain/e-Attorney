@@ -8,7 +8,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-    <a href="home"><img src="dist/img/logo-kejaksaan-small.png"></a>
+    <a href="home"><img src="images/sus-pidsus/logo-kejaksaan-small.png"></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->

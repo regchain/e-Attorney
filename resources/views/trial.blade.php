@@ -1,4 +1,4 @@
-@extends('layouts.penyidikan_template')
+@extends('layouts.pidsus.operator')
 
 @section('title', 'Dir.Dik')
 
@@ -61,7 +61,7 @@
 
 @section('judulhalaman', 'Dashboard')
 
-@section('materi')
+@section('content')
 
 <div id='content'>
        

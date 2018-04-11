@@ -1,4 +1,4 @@
-@extends('layouts.penyidikan_template')
+@extends('layouts.pidsus.operator')
 
 @section('title', 'Dir.Dik')
 
@@ -12,7 +12,7 @@
 
 @section('judulhalaman', 'Tambah Data Jaksa')
 
-@section('materi')
+@section('content')
 
         <p class="text-center"><img src="dist/img/UnderConstruct.png" alt=""></p>
       

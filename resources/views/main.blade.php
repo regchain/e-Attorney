@@ -14,14 +14,14 @@
 
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.6 -->
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/bootstrap-theme.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bower_components/bootstrap/dist/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bower_components/bootstrap/dist/css/bootstrap-theme.min.css') }}">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bower_components/font-awesome/css/font-awesome.min.css') }}">
     <!-- Ionicons -->
-    <link rel="stylesheet" href="{{ asset('css/ionicons.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bower_components/Ionicons/css/ionicons.min.css') }}">
     <!-- Theme style -->
-    <link rel="stylesheet" href="{{ asset('css/AdminLTE.css') }}">
+    <link rel="stylesheet" href="{{ asset('bower_components/admin-lte/css/AdminLTE.css') }}">
 
   
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -73,7 +73,7 @@
     <div class="content-header">
       <h3>
         @include('layouts.topnav')
-        <a href="home"><img class="push-left" src="dist/img/logo-kejaksaan.png" width="100"></a>
+        <a href="home"><img class="push-left" src="images/logo-kejaksaan.png" width="100"></a>
         Dashboard
         <small>Control panel</small>
       </h3>
@@ -82,7 +82,7 @@
 
 
     @yield('layouts.ks_flash')
-    @yield('materi')
+    @yield('content')
 
 
 
@@ -94,6 +94,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
   <!-- Latest compiled and minified JavaScript -->
-    <script src="{{ asset('js/bootstrap.js') }}"></script>
+    <script src="{{ asset('bower_components/bootstrap/dist/js/bootstrap.js') }}"></script>
     </body>
 </html>

@@ -1,4 +1,4 @@
-@extends('layouts.penyidikan_template')
+@extends('layouts.pidsus.operator')
 
 @section('title', 'Dir.Dik')
 
@@ -12,7 +12,7 @@
 
 @section('judulhalaman', 'DAFTAR PERKARA PENYELIDIKAN [RP-2]')
 
-@section('materi')
+@section('content')
 
     <div class="table-responsive no-padding">
         <table class="table table-striped">

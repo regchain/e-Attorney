@@ -1,4 +1,4 @@
-@extends('layouts.penyidikan_template')
+@extends('layouts.pidsus.operator')
 
 @section('title', 'Dir.Dik')
 
@@ -12,7 +12,7 @@
 
 @section('judulhalaman', 'Daftar Kasus Baru')
 
-@section('materi')
+@section('content')
 
 <div class="table table-responsive">
 <table class="table table-striped">

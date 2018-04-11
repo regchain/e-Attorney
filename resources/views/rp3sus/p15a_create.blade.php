@@ -1,4 +1,4 @@
-@extends('layouts.penyidikan_template')
+@extends('layouts.pidsus.operator')
 
 @section('title', 'Dir.Dik')
 
@@ -12,7 +12,7 @@
 
 @section('judulhalaman', 'Surat Perintah Penyerahan Tanggungjawab Tersangka dan Barang Buktinya [p-15a]')
 
-@section('materi')
+@section('content')
 
 {!! Form::model($case, ['url' => url('/p15a', $spt->id), 'method' => 'put']) !!}
 <div class="box-body">
@@ -117,5 +117,5 @@
 @stop
 
 @section('script')
-	<script src='{{ asset('js/kasus_posisi.js') }}'></script>
+	<script src='{{ asset('bower_components/js/kasus_posisi.js') }}'></script>
 @endsection

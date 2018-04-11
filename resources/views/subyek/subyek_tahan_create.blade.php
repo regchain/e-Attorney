@@ -1,4 +1,4 @@
-@extends('layouts.penyidikan_template')
+@extends('layouts.pidsus.operator')
 
 @section('title', 'Dir.Dik')
 
@@ -21,7 +21,7 @@
 
 @section('judulhalaman', 'Surat Perintah Penahanan')
 
-@section('materi')
+@section('content')
 
 {!! Form::model($subyek, ['url' => url('/tahan', $subyek->id), 'method' => 'put']) !!}
 <div class="row">

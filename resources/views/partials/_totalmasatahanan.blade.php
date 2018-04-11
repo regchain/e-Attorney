@@ -4,9 +4,9 @@
 }
 </style>
 
-<script src="{{ asset('plugins/highcharts/code/highcharts.js')}}"></script>
-<script src="{{ asset('plugins/highcharts/code/highcharts-more.js')}}"></script>
-<script src="{{ asset('plugins/highcharts/code/modules/exporting.js')}}"></script>
+<script src="{{ asset('bower_components/highcharts/highcharts.js')}}"></script>
+<script src="{{ asset('bower_components/highcharts/highcharts-more.js')}}"></script>
+<script src="{{ asset('bower_components/highcharts/modules/exporting.js')}}"></script>
 
 <div id="masatahanan" style="height: 400px; min-width: 310px; max-width: 600px; margin: 0 auto"></div>
 

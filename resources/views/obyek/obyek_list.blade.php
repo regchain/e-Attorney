@@ -1,4 +1,4 @@
-@extends('layouts.penyidikan_template')
+@extends('layouts.pidsus.operator')
 
 @section('title', 'Dir.Dik')
 
@@ -12,7 +12,7 @@
 
 @section('judulhalaman', 'DAFTAR benda sitaan')
 
-@section('materi')
+@section('content')
 
     <div class="box-body">
 		@include('partials._bendasitaan', ['cases' => $cases])
