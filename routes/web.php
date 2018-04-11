@@ -23,7 +23,6 @@ Route::get('/trial', 'HomeController@trial');
 Route::get('master_penyidikan', 'HomeController@master_penyidikan');
 Route::get('master_penuntutan', 'HomeController@master_penuntutan');
 
-Route::resource('pengumuman', 'PengumumanController');
 
 Route::get('penyidikan', 'LayoutController@penyidikan');
 
