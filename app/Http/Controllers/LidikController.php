@@ -79,7 +79,7 @@ class LidikController extends Controller
         $jaksas = $this->service->getJaksaAll();
 
         if ($case && !empty($case)) {
-            return view('rp1.rp1_lidik', ['case' => $case, 'jaksas' => $jaksas]);
+            return view('decay-case.rp1.rp1_lidik', ['case' => $case, 'jaksas' => $jaksas]);
         } else {
             return redirect()->route('rp1.index');
         }

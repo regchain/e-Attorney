@@ -10,14 +10,14 @@
 
 @section('mainsubtitle', 'Tindak Pidana Khusus')
 
-@section('judulhalaman', 'Edit / Arsip Kasus')
+@section('judulhalaman', 'Tambah Laporan Masyarakat / Kasus')
 
 @section('content')
 
-{!! Form::model($case, ['url' => route('rp1.update', $case->id), 'method' => 'put']) !!}
-	@include('rp1.rp1_form')
+{!! Form::open(['url' => route('rp1.store'), 'method' => 'post']) !!}
+	@include('decay-case.rp1.rp1_form')
 {!! Form::close() !!}
-      
+
 @stop
 
 @section('script')
