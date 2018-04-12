@@ -27,7 +27,7 @@ class Rp1Controller extends Controller
 
         $cases = $this->service->getKasus($status_param, $status_value);
         
-        return view('rp1.rp1_list', ['cases' => $cases]);
+        return view('decay-case.rp1.rp1_list', ['cases' => $cases]);
     }
 
     /**
@@ -37,7 +37,7 @@ class Rp1Controller extends Controller
      */
     public function create()
     {
-        return view('rp1.rp1_create');
+        return view('decay-case.rp1.rp1_create');
     }
 
     /**
@@ -87,7 +87,7 @@ class Rp1Controller extends Controller
         $case = $this->service->getKasusByID($id);
 
         if ($case && !empty($case)) {
-            return view('rp1.rp1_edit')->with(compact('case'));
+            return view('decay-case.rp1.rp1_edit')->with(compact('case'));
         } else {
             return redirect()->route('rp1.index');
         }
