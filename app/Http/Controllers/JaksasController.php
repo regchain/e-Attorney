@@ -22,7 +22,7 @@ class JaksasController extends Controller
             $jaksas = Jaksa::select(['id', 'nip', 'nama_jaksa', 'pangkat', 'telepon']);
             return Datatables::of($jaksas)
                 ->addColumn('action', function($jaksas) {
-                    return view('datatable._action', [
+                    return view('decay-case.datatable._action', [
                         'model'     => $jaksas,
                         'form_url'  => route('jaksa.destroy', $jaksas->id),
                         'edit_url'  => route('jaksa.edit', $jaksas->id),
@@ -38,7 +38,7 @@ class JaksasController extends Controller
             ->addColumn(['data' => 'telepon', 'name' => 'telepon', 'title' => 'No Telepon / HP'])
             ->addColumn(['data' => 'action', 'name' => 'action', 'title' => 'Aksi', 'orderable' => false, 'searchable' => false, 'width' => '15%']);
 
-        return view('jaksa.index')->with(compact('html'));
+        return view('core.jaksa.index')->with(compact('html'));
     }
 
     /**
@@ -48,7 +48,7 @@ class JaksasController extends Controller
      */
     public function create()
     {
-        return view('jaksa.create');
+        return view('core.jaksa.create');
     }
 
     /**
@@ -95,7 +95,7 @@ class JaksasController extends Controller
     public function edit($id)
     {
         $jaksa = Jaksa::find($id);
-        return view('jaksa.edit')->with(compact('jaksa'));
+        return view('core.jaksa.edit')->with(compact('jaksa'));
     }
 
     /**

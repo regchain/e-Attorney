@@ -1,4 +1,4 @@
-@extends('layouts.pidsus.operator')
+@extends('decay-case.operator.template')
 
 @section('title', 'Dir.Dik')
 

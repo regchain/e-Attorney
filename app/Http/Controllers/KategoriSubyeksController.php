@@ -21,7 +21,7 @@ class KategoriSubyeksController extends Controller
             $kategori_subyeks = KategoriSubyek::select(['id', 'name']);
             return Datatables::of($kategori_subyeks)
                 ->addColumn('action', function($kategori_subyeks) {
-                    return view('datatable._action', [
+                    return view('decay-case.datatable._action', [
                         'model'     => $kategori_subyeks,
                         'form_url'  => route('kategori_subyek.destroy', $kategori_subyeks->id),
                         'edit_url'  => route('kategori_subyek.edit', $kategori_subyeks->id),
@@ -34,7 +34,7 @@ class KategoriSubyeksController extends Controller
             ->addColumn(['data' => 'name', 'name' => 'name', 'title' => 'Kategori Subyek'])
             ->addColumn(['data' => 'action', 'name' => 'action', 'title' => 'Aksi', 'orderable' => false, 'searchable' => false, 'width' => '15%']);
 
-        return view('kategori_subyek.index')->with(compact('html'));
+        return view('core.kategori_subyek.index')->with(compact('html'));
     }
 
     /**
@@ -44,7 +44,7 @@ class KategoriSubyeksController extends Controller
      */
     public function create()
     {
-        return view('kategori_subyek.create');
+        return view('core.kategori_subyek.create');
     }
 
     /**
@@ -85,7 +85,7 @@ class KategoriSubyeksController extends Controller
     public function edit($id)
     {
         $kategori_subyek = KategoriSubyek::find($id);
-        return view('kategori_subyek.edit')->with(compact('kategori_subyek'));
+        return view('core.kategori_subyek.edit')->with(compact('kategori_subyek'));
     }
 
     /**

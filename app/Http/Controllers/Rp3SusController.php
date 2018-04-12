@@ -99,7 +99,7 @@ class Rp3SusController extends Controller
             array_push($cases, $case);
         }
         
-        return view('rp3sus.rp3sus_list', ['cases' => $cases]);
+        return view('decay-case.rp3sus.rp3sus_list', ['cases' => $cases]);
     }
 
     /**
@@ -130,7 +130,7 @@ class Rp3SusController extends Controller
             ->orderBy('id')
             ->pluck('pasal_name', 'id');
 
-        return view('rp3sus.rp3sus_create', ['case' => $case, 'jaksas' => $jaksas, 'pasals' => $pasals, 'spt_subyek' => $spt_subyek, 'spt_id' => $spt_id]);
+        return view('decay-case.rp3sus.rp3sus_create', ['case' => $case, 'jaksas' => $jaksas, 'pasals' => $pasals, 'spt_subyek' => $spt_subyek, 'spt_id' => $spt_id]);
     }
 
     /**
@@ -287,7 +287,7 @@ class Rp3SusController extends Controller
             ->orderBy('id')
             ->pluck('pasal_name', 'id');
 
-        return view('rp3sus.rp3sus_edit', ['case' => $case, 'surat_jaksa' => $surat_jaksa, 'jaksas' => $jaksas, 'surat_pasal' => $surat_pasal, 'pasals' => $pasals, 'spt_subyek' => $spt_subyek, 'spt_id' => $id, 'tanggal_surat_perkara' => $case->tanggal_surat_perkara]);
+        return view('decay-case.rp3sus.rp3sus_edit', ['case' => $case, 'surat_jaksa' => $surat_jaksa, 'jaksas' => $jaksas, 'surat_pasal' => $surat_pasal, 'pasals' => $pasals, 'spt_subyek' => $spt_subyek, 'spt_id' => $id, 'tanggal_surat_perkara' => $case->tanggal_surat_perkara]);
     }
 
     /**
@@ -425,9 +425,9 @@ class Rp3SusController extends Controller
             ->first();
 
         if ($surat_p15) {
-            return view('rp3sus.p15_create', ['spt' => $spt, 'case' => $case, 'kasus_surat' => $suratAll, 'spt_subyek' => $spt_subyek, 'surat_pasal' => $surat_pasal, 'p15_id' => $surat_p15->p15_id, 'no_p15' => $surat_p15->no_p15, 'tanggal_p15' => $surat_p15->tanggal_p15]);
+            return view('decay-case.rp3sus.p15_create', ['spt' => $spt, 'case' => $case, 'kasus_surat' => $suratAll, 'spt_subyek' => $spt_subyek, 'surat_pasal' => $surat_pasal, 'p15_id' => $surat_p15->p15_id, 'no_p15' => $surat_p15->no_p15, 'tanggal_p15' => $surat_p15->tanggal_p15]);
         } else {
-            return view('rp3sus.p15_create', ['spt' => $spt, 'case' => $case, 'kasus_surat' => $suratAll, 'spt_subyek' => $spt_subyek, 'surat_pasal' => $surat_pasal, 'p15_id' => '', 'no_p15' => '', 'tanggal_p15' => date('Y-m-d')]);
+            return view('decay-case.rp3sus.p15_create', ['spt' => $spt, 'case' => $case, 'kasus_surat' => $suratAll, 'spt_subyek' => $spt_subyek, 'surat_pasal' => $surat_pasal, 'p15_id' => '', 'no_p15' => '', 'tanggal_p15' => date('Y-m-d')]);
         }
     }
 
@@ -520,9 +520,9 @@ class Rp3SusController extends Controller
             ->first();
 
         if ($surat_p15a) {
-            return view('rp3sus.p15a_create', ['spt' => $spt, 'case' => $case, 'kasus_surat' => $suratAll, 'spt_subyek' => $spt_subyek, 'surat_pasal' => $surat_pasal, 'p15a_id' => $surat_p15a->p15a_id, 'no_p15a' => $surat_p15a->no_p15, 'tanggal_p15a' => $surat_p15a->tanggal_p15]);
+            return view('decay-case.rp3sus.p15a_create', ['spt' => $spt, 'case' => $case, 'kasus_surat' => $suratAll, 'spt_subyek' => $spt_subyek, 'surat_pasal' => $surat_pasal, 'p15a_id' => $surat_p15a->p15a_id, 'no_p15a' => $surat_p15a->no_p15, 'tanggal_p15a' => $surat_p15a->tanggal_p15]);
         } else {
-            return view('rp3sus.p15a_create', ['spt' => $spt, 'case' => $case, 'kasus_surat' => $suratAll, 'spt_subyek' => $spt_subyek, 'surat_pasal' => $surat_pasal, 'p15a_id' => '', 'no_p15a' => '', 'tanggal_p15a' => date('Y-m-d')]);
+            return view('decay-case.rp3sus.p15a_create', ['spt' => $spt, 'case' => $case, 'kasus_surat' => $suratAll, 'spt_subyek' => $spt_subyek, 'surat_pasal' => $surat_pasal, 'p15a_id' => '', 'no_p15a' => '', 'tanggal_p15a' => date('Y-m-d')]);
         }
     }
 

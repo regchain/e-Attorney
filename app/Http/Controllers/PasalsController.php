@@ -22,7 +22,7 @@ class PasalsController extends Controller
             $pasals = Pasal::select(['id', 'pasal', 'ayat', 'huruf', 'keterangan', 'kategori_pasal']);
             return Datatables::of($pasals)
                 ->addColumn('action', function($pasals) {
-                    return view('datatable._action', [
+                    return view('decay-case.datatable._action', [
                         'model'     => $pasals,
                         'form_url'  => route('pasal.destroy', $pasals->id),
                         'edit_url'  => route('pasal.edit', $pasals->id),
@@ -39,7 +39,7 @@ class PasalsController extends Controller
             ->addColumn(['data' => 'keterangan', 'name' => 'keterangan', 'title' => 'Keterangan', 'width' => '55%'])
             ->addColumn(['data' => 'action', 'name' => 'action', 'title' => 'Aksi', 'orderable' => false, 'searchable' => false, 'width' => '15%']);
 
-        return view('pasal.index')->with(compact('html'));
+        return view('core.pasal.index')->with(compact('html'));
     }
 
     /**
@@ -49,7 +49,7 @@ class PasalsController extends Controller
      */
     public function create()
     {
-        return view('pasal.create');
+        return view('core.pasal.create');
     }
 
     /**
@@ -102,7 +102,7 @@ class PasalsController extends Controller
     public function edit($id)
     {
         $pasal = Pasal::find($id);
-        return view('pasal.edit')->with(compact('pasal'));
+        return view('core.pasal.edit')->with(compact('pasal'));
     }
 
     /**

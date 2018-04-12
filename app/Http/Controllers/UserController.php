@@ -14,17 +14,17 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('user.user_list');
+        return view('core.user.user_list');
     }
 
     public function fjaksa()
     {
-        return view('user.user_create');
+        return view('core.user.user_create');
     }
 
     public function ejaksa()
     {
-        return view('user.user_edit');
+        return view('core.user.user_edit');
     }
 
 

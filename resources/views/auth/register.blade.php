@@ -1,4 +1,4 @@
-@extends('layouts.master.clean')
+@extends('templates.master.clean')
 
 @section('content')
 <div class="container">

@@ -70,7 +70,7 @@ class Rp2Controller extends Controller
             array_push($cases, $case);         
         }
         
-        return view('rp2.rp2_list', ['cases' => $cases]);
+        return view('decay-case.rp2.rp2_list', ['cases' => $cases]);
     }
 
     /**
@@ -134,7 +134,7 @@ class Rp2Controller extends Controller
             ->pluck('nama_jaksa', 'id');
         
         if ($case && !empty($case)) {
-            return view('rp2.rp2_edit', ['case' => $case, 'surat_jaksa' => $surat_jaksa, 'jaksas' => $jaksas, 'status_rp2' => $case->status_rp2]);
+            return view('decay-case.rp2.rp2_edit', ['case' => $case, 'surat_jaksa' => $surat_jaksa, 'jaksas' => $jaksas, 'status_rp2' => $case->status_rp2]);
         } else {
             return redirect()->route('rp2.index');
         }

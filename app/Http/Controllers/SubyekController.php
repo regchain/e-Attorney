@@ -38,7 +38,7 @@ class SubyekController extends Controller
             ->where('nama_terlapor','<>','')
             ->get();
 
-        return view('subyek.subyek_list', ['terlapors' => $terlapors, 'tersangkas' => $tersangkas, 'tahanans' => $tahanans]);
+        return view('decay-case.subyek.subyek_list', ['terlapors' => $terlapors, 'tersangkas' => $tersangkas, 'tahanans' => $tahanans]);
     }
 
     /**
@@ -52,7 +52,7 @@ class SubyekController extends Controller
             ->orderBy('name')
             ->pluck('name', 'id');
 
-        return view('subyek.subyek_create', ['kategori_subyek' => $kategori_subyek, 'kasus_id' => $kasus_id]);
+        return view('decay-case.subyek.subyek_create', ['kategori_subyek' => $kategori_subyek, 'kasus_id' => $kasus_id]);
     }
 
     /**
@@ -118,7 +118,7 @@ class SubyekController extends Controller
             ->orderBy('name')
             ->pluck('name', 'id');
 
-        return view('subyek.subyek_edit', ['kategori_subyek' => $kategori_subyek, 'subyek' => $subyek, 'kasus_id' => $kasus_id]);
+        return view('decay-case.subyek.subyek_edit', ['kategori_subyek' => $kategori_subyek, 'subyek' => $subyek, 'kasus_id' => $kasus_id]);
     }
 
     /**
@@ -207,7 +207,7 @@ class SubyekController extends Controller
             ->orderBy('name')
             ->pluck('name', 'id');
         
-        return view('subyek.subyek_tersangka_create', ['case' => $case, 'subyeks' => $subyeks, 'kategori_subyek' => $kategori_subyek, 'kasus_id' => $kasus_id]);
+        return view('decay-case.subyek.subyek_tersangka_create', ['case' => $case, 'subyeks' => $subyeks, 'kategori_subyek' => $kategori_subyek, 'kasus_id' => $kasus_id]);
     }
 
     public function tahan($subyek_id)
@@ -238,13 +238,13 @@ class SubyekController extends Controller
             ->first();
 
         if ($spt_subyek) {
-            return view('subyek.subyek_tahan_create', ['subyek' => $subyek, 'kategori_subyek' => $kategori_subyek, 'spt_id' => $spt_subyek->spt_id, 'no_spt' => $spt_subyek->no_spt, 'tanggal_spt' => $spt_subyek->tanggal_spt, 'surat_dikmum' => $surat_dikmum]);
+            return view('decay-case.subyek.subyek_tahan_create', ['subyek' => $subyek, 'kategori_subyek' => $kategori_subyek, 'spt_id' => $spt_subyek->spt_id, 'no_spt' => $spt_subyek->no_spt, 'tanggal_spt' => $spt_subyek->tanggal_spt, 'surat_dikmum' => $surat_dikmum]);
         } else {
-            return view('subyek.subyek_tahan_create', ['subyek' => $subyek, 'kategori_subyek' => $kategori_subyek, 'spt_id' => '', 'no_spt' => '', 'tanggal_spt' => date('Y-m-d'), 'surat_dikmum' => $surat_dikmum]);
+            return view('decay-case.subyek.subyek_tahan_create', ['subyek' => $subyek, 'kategori_subyek' => $kategori_subyek, 'spt_id' => '', 'no_spt' => '', 'tanggal_spt' => date('Y-m-d'), 'surat_dikmum' => $surat_dikmum]);
         }
         */
 
-        return view('subyek.subyek_tahan_create', ['subyek' => $subyek, 'kategori_subyek' => $kategori_subyek, 'spt_id' => '', 'no_spt' => '', 'tanggal_spt' => date('Y-m-d'), 'surat_dikmum' => $surat_dikmum]);
+        return view('decay-case.subyek.subyek_tahan_create', ['subyek' => $subyek, 'kategori_subyek' => $kategori_subyek, 'spt_id' => '', 'no_spt' => '', 'tanggal_spt' => date('Y-m-d'), 'surat_dikmum' => $surat_dikmum]);
     }
 
     public function tahanupdate(Request $request, $id)

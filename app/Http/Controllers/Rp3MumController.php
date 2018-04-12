@@ -90,7 +90,7 @@ class Rp3MumController extends Controller
             array_push($cases, $case);
         }
 
-        return view('rp3mum.rp3mum_list', ['cases' => $cases]);
+        return view('decay-case.rp3mum.rp3mum_list', ['cases' => $cases]);
     }
 
     /**
@@ -116,7 +116,7 @@ class Rp3MumController extends Controller
             ->orderBy('name')
             ->pluck('name', 'id');
 
-        return view('rp3mum.rp3mum_create', ['case' => $case, 'jaksas' => $jaksas, 'kategori_subyek' => $kategori_subyek]);
+        return view('decay-case.rp3mum.rp3mum_create', ['case' => $case, 'jaksas' => $jaksas, 'kategori_subyek' => $kategori_subyek]);
     }
 
     /**
@@ -239,7 +239,7 @@ class Rp3MumController extends Controller
             ->orderBy('name')
             ->pluck('name', 'id');
 
-        return view('rp3mum.rp3mum_edit', ['case' => $case, 'surat_jaksa' => $surat_jaksa, 'jaksas' => $jaksas, 'kategori_subyek' => $kategori_subyek, 'status_rp3mum' => $case->status_rp3mum]);
+        return view('decay-case.rp3mum.rp3mum_edit', ['case' => $case, 'surat_jaksa' => $surat_jaksa, 'jaksas' => $jaksas, 'kategori_subyek' => $kategori_subyek, 'status_rp3mum' => $case->status_rp3mum]);
     }
 
     /**

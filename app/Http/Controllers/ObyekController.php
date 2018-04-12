@@ -54,7 +54,7 @@ class ObyekController extends Controller
             array_push($cases, $case);
         }
         
-        return view('obyek.obyek_list', ['cases' => $cases]);
+        return view('decay-case.obyek.obyek_list', ['cases' => $cases]);
     }
 
     /**
@@ -76,7 +76,7 @@ class ObyekController extends Controller
 
         $jaksas = $this->service->getJaksaAll();
 
-        return view('obyek.obyek_create', ['jaksas' => $jaksas, 'obyek_id' => $obyek_id, 'kasus_id' => $kasus_id]);
+        return view('decay-case.obyek.obyek_create', ['jaksas' => $jaksas, 'obyek_id' => $obyek_id, 'kasus_id' => $kasus_id]);
     }
 
     /**
@@ -155,7 +155,7 @@ class ObyekController extends Controller
         
         $jaksas = $this->service->getJaksaAll();
 
-        return view('obyek.obyek_edit', ['jaksas' => $jaksas, 'surat' => $surat, 'kasus_id' => $id, 'obyek_id' => $surat->obyek_id, 'tipe_surat' => $surat->tipe_surat]);
+        return view('decay-case.obyek.obyek_edit', ['jaksas' => $jaksas, 'surat' => $surat, 'kasus_id' => $id, 'obyek_id' => $surat->obyek_id, 'tipe_surat' => $surat->tipe_surat]);
     }
 
     /**

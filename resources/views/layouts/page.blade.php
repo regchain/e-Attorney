@@ -109,7 +109,7 @@
 
             <!-- Content Header (Page header) -->
             <section class="content-header">
-                @include('modul._topmenu')
+                @include('decay-case.modul._topmenu')
                 @yield('content_header')
             </section>
 
@@ -127,7 +127,7 @@
             @endif
         </div>
         <!-- /.content-wrapper -->
-        @include('modul.footer')
+        @include('decay-case.modul.footer')
     </div>
     <!-- ./wrapper -->
 @stop
